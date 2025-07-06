@@ -1,0 +1,37 @@
+[
+  {
+    "objectID": "bio.html",
+    "href": "bio.html",
+    "title": "Workshop Presenters",
+    "section": "",
+    "text": "Kelly Bodwin\n\n\n\nTyson Barrett\n\n\n\nAllison Theobold is an Assistant Professor of Statistics at Cal Poly. Allison’s work focuses on innovation in statistics and data science education, with an emphasis on equitable pedagogy and learning trajectories. Allison is also interested in exploring pedagogical approaches for enhancing retention of under-represented students in STEM, including creating inclusive discoursive spaces and equitable group collaborations."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "USCOTS 2025 Workshop",
+    "section": "",
+    "text": "by: Kelly Bodwin, Tyson Barrett & Allison Theobold"
+  },
+  {
+    "objectID": "index.html#teaching-intermediate-r",
+    "href": "index.html#teaching-intermediate-r",
+    "title": "USCOTS 2025 Workshop",
+    "section": "",
+    "text": "by: Kelly Bodwin, Tyson Barrett & Allison Theobold"
+  },
+  {
+    "objectID": "index.html#learning-objectives-for-workshop",
+    "href": "index.html#learning-objectives-for-workshop",
+    "title": "USCOTS 2025 Workshop",
+    "section": "Learning Objectives for Workshop",
+    "text": "Learning Objectives for Workshop\nWe will first establish a suggested common curriculum for intermediate R based on five areas: Data types and sources beyond comma-separated files, advanced and dynamic data visualization, complexities of unclean or unstructured data, speed and efficiency concerns for large or repeated analyses, and reproducible workflow for long-term collaborative projects.\nFollowing the introduction to each topic, we will have educators consider how these topics could be incorporated into a projet for their specific course."
+  },
+  {
+    "objectID": "index.html#intended-audience-and-level",
+    "href": "index.html#intended-audience-and-level",
+    "title": "USCOTS 2025 Workshop",
+    "section": "Intended Audience and Level",
+    "text": "Intended Audience and Level\nWe expect attendees to have R fluency at the level of a typical introductory course, such as the textbook R for Data Science (Wickham, Çetinkaya-Rundel, & Grolemund 2023); as well as familiarity with some scattered intermediate to advanced topics, interpreted broadly.\nThe focus of this workshop will not be training in intermediate R skills, but rather in preparing educators to deliver higher-level R courses. We will provide resources, examples, and frameworks to empower attendees to expand their R knowledge and design a meaningful hands-on classroom experience."
+  }
+]
