@@ -1,0 +1,87 @@
+---
+title: "USCOTS 2025 Workshop"
+---
+
+## Teaching Intermediate R
+
+by: Kelly Bodwin, Tyson Barrett & Allison Theobold
+
+# Welcome!
+
+Welcome to the [USCOTS workshop on teaching intermediate R](https://www.causeweb.org/cause/uscots/uscots25/program/workshops/w01)! The goal for the workshop is to provide structured learning goals, course material resources, and skills training for instructors of intermediate to advanced R courses.
+
+This workshop is geared towards educators who may have taught a first course in R or used R as supporting software in other statistics courses, and who are interested in teaching a second R course or beyond.
+
+## Learning Objectives for Workshop
+
+We will first establish a suggested common curriculum for intermediate R based on five areas: Data types and sources beyond comma-separated files, advanced and dynamic data visualization, complexities of unclean or unstructured data, speed and efficiency concerns for large or repeated analyses, and reproducible workflow for long-term collaborative projects.
+
+Following the introduction to each topic, we will have educators consider how these topics could be incorporated into a projet for their specific course.
+
+## Intended Audience and Level
+
+We expect attendees to have R fluency at the level of a typical introductory course, such as the textbook [R for Data Science](https://r4ds.hadley.nz/) (Wickham, Çetinkaya-Rundel, & Grolemund 2023); as well as familiarity with some scattered intermediate to advanced topics, interpreted broadly.
+
+The focus of this workshop will not be training in intermediate R skills, but rather in preparing educators to deliver higher-level R courses. We will provide resources, examples, and frameworks to empower attendees to expand their R knowledge and design a meaningful hands-on classroom experience.
+
+# Schedule
+
+### **Tuesday (1:00 - 4:30pm)**
+
+|    Time     |               Topic               |       Presenter       |
+|:-----------:|:---------------------------------:|:---------------------:|
+| 1:00 - 1:15 |           Introductions           |       Everyone!       |
+| 1:15 - 1:45 |  Set-up, Installs & Group Norms   | Kelly, Tyson, Allison |
+| 1:45 - 2:15 |    Activity: Find Data Sources    |         You!          |
+| 2:15 - 2:30 |               Break               |                       |
+| 2:30 - 3:15 |    More Complex Data Pipelines    |         Kelly         |
+| 3:15 - 4:00 |         More Complex Data         |         Tyson         |
+| 4:00 - 4:30 | Activity: Create Your *Project A* |         You!          |
+
+### **Wednesday (8:30am - 4:30pm)**
+
+|               |                                    |                       |
+|:-------------:|:----------------------------------:|:---------------------:|
+|  8:30 - 8:45  |  Review, Reset & Share Project A   |       Everyone!       |
+|  8:45 - 9:30  |  Professional Data Visualization   |         Kelly         |
+| 9:30 - 10:00  |          Magic of Quarto           |        Allison        |
+| 10:00 - 10:15 |               Break                |                       |
+| 10:15 - 10:45 |         Quarto Dashboards          |        Allison        |
+| 10:45 - 11:30 |               Shiny                |         Kelly         |
+| 11:30 - 12:00 | Activity: Create Your *Project B*  |         You!          |
+| 12:00 - 1:00  |            Lunch Break             |                       |
+|  1:00 - 1:15  |  Review, Reset & Share Project B   |         You!          |
+|  1:15 - 2:30  |     Package Workflow Teaching      |         Kelly         |
+|  2:30 - 2:45  |               Break                |                       |
+|  2:45 - 3:30  |     Thinking Like a Developer      |         Tyson         |
+|  3:00 - 4:00  | Activity: Create Your *Project C*  |         You!          |
+|  4:00 - 4:15  |          Share Project C           |       Everyone!       |
+|  4:15 - 4:30  |              Wrap-up               | Kelly, Tyson, Allison |
+
+# In preparation for the workshop
+
+Participants are required to follow the next steps before the day of the workshop:
+
+1.  Install or Update RStudio to the most current version -- [2025.05.1+513 "Mariposa Orchid"](https://posit.co/download/rstudio-desktop/)
+
+2.  Install the most current version of Quarto -- [Quarto CLI 1.7.32](https://quarto.org/docs/get-started/)
+
+3.  Install or Update R to the most current version: 4.5.1 (2025-06-13) -- Great Square Root
+
+-   Windows: <https://cran.rstudio.com/bin/windows/>
+
+-   Mac: <https://cran.rstudio.com/bin/macosx/>
+
+-   Linux: <https://cran.rstudio.com/bin/linux/>
+
+# Workshop Materials
+
+Workshop materials can be found in the github repository [uscots-intermediate-r](https://github.com/atheobold/uscots-intermediate-r)!
+
+<!-- # After the Workshop -->
+
+<!-- Feel free to parooze the [list of Quarto docs and presentations](resources/resource-list.qmd) we have used in our statisics courses. Many of these documents are from the first week of classes, so they could give you an idea of how you might want to introduce your students to Quarto!  -->
+
+------------------------------------------------------------------------
+
+![](https://i.creativecommons.org/l/by/4.0/88x31.png) This work is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).

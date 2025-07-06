@@ -1,0 +1,105 @@
+project:
+  type: website
+  output-dir: docs
+  title: "Intermediate R at USCOTS"
+
+website:
+  title: "USCOTS 2025 Intermediate R Workshop"
+  description: "USCOTS 2025 Workshop on Teaching Intermediate R"
+  site-url: https://github.com/atheobold/uscots-intermediate-r
+  repo-url: https://github.com/atheobold/uscots-intermediate-r
+  repo-actions: [issue]
+  navbar:
+    background: primary
+    search: true
+    left:
+       - href: index.qmd
+         text: Home
+       - href: bio.qmd
+         text: Presenters
+       - text: Tuesday
+         # menu:
+         #  - href: materials/01-rstudio-refresher.qmd
+         #    text: "A Brief RStudio Refresher"
+         #  - href: materials/02-quarto-docs.qmd
+         #    text: "Introduction to Quarto Documents"
+         #  - href: materials/03-styling-quarto-docs.qmd
+         #    text: "Styling Quarto Documents"
+       - text: Wednesday
+         # menu:
+         #  - href: materials/04-quarto-presentations.qmd
+         #    text: "Introduction to Quarto Presentations"
+         #  - href: materials/05-styling-quarto-presentations.qmd
+         #    text: "Styling Quarto Presentations"
+         #  - href: materials/06-version-control.qmd
+         #    text: "Introduction to Version Control"
+         #  - href: materials/07-publishing.qmd
+         #    text: "Publishing Your Materials"
+       - text: Activities
+         # menu: 
+         #  - href: materials/02-activity-quarto-yaml.qmd
+         #    text: "Exploring YAML Options in Quarto Docs"
+         #  - href: materials/03-activity-styling-quarto-docs.qmd
+         #    text: "Embellishing your Quarto doc"
+         #  - href: materials/04-activity-quarto-presentations.qmd
+         #    text: "Your first (?) Quarto presentation"
+         #  - href: materials/05-activity-styling-quarto-presentations.qmd
+         #    text: "Embellishing your Quarto presentation"
+
+    right: 
+      - icon: github
+        href: https://github.com/atheobold/uscots-intermediate-r
+      
+  page-footer:
+    right: "This page is built with ❤️ and [Quarto](https://quarto.org/)."
+    left: "&copy; Copyright 2025, Kelly Bodwin, Tyson Barrett & Allison Theobold"
+    background: "#D9E3E4"
+    
+  # sidebar:
+  #   logo: "images/quarto_icon.png"
+  #   pinned: true
+  #   align: center
+  #   search: true
+  #   style: "docked"
+  #   background: light
+  #   contents:
+  #     - section: "Morning"
+  #       contents: 
+  #         - href: materials/01-rstudio-refresher.qmd
+  #           text: "A Brief RStudio Refresher"
+  #         - href: materials/02-quarto-docs.qmd
+  #           text: "Introduction to Quarto Documents"
+  #         - href: materials/02-activity-quarto-yaml.qmd
+  #           text: "Your turn! Exploring YAML Options"
+  #         - href: materials/03-styling-quarto-docs.qmd
+  #           text: "Styling Quarto Documents"
+  #         - href: materials/03-activity-styling-quarto-docs.qmd
+  #           text: "Your turn! Embellishing your Quarto doc"
+  #     - section: "Afternoon"
+  #       contents:
+  #         - href: materials/04-quarto-presentations.qmd
+  #           text: "Introduction to Quarto Presentations"
+  #         - href: materials/04-activity-quarto-presentations.qmd
+  #           text: "Your turn! Making a Quarto Presentation"
+  #         - href: materials/05-styling-quarto-presentations.qmd
+  #           text: "Styling Quarto Presentations"
+  #         - href: materials/05-activity-styling-quarto-presentations.qmd
+  #           text: "Your turn! Styling Your Presentation"
+  #         - href: materials/06-version-control.qmd
+  #           text: "Introduction to Version Control"
+  #         - href: materials/07-publishing.qmd
+  #           text: "Publishing Your Materials"
+  #   
+  # page-navigation: false
+
+format:
+  html:
+    theme: 
+      - cosmo
+      - style.scss
+    toc: true
+
+callout-appearance: simple
+
+execute:
+  freeze: auto
