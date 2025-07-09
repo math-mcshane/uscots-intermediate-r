@@ -33,5 +33,68 @@
     "title": "USCOTS 2025 Workshop",
     "section": "Intended Audience and Level",
     "text": "Intended Audience and Level\nWe expect attendees to have R fluency at the level of a typical introductory course, such as the textbook R for Data Science (Wickham, Çetinkaya-Rundel, & Grolemund 2023); as well as familiarity with some scattered intermediate to advanced topics, interpreted broadly.\nThe focus of this workshop will not be training in intermediate R skills, but rather in preparing educators to deliver higher-level R courses. We will provide resources, examples, and frameworks to empower attendees to expand their R knowledge and design a meaningful hands-on classroom experience."
+  },
+  {
+    "objectID": "materials/00-introductions.html",
+    "href": "materials/00-introductions.html",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "",
+    "text": "Reproducible documents, presentations, and websites with Quarto"
+  },
+  {
+    "objectID": "materials/00-introductions.html#section",
+    "href": "materials/00-introductions.html#section",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "",
+    "text": "Reproducible documents, presentations, and websites with Quarto"
+  },
+  {
+    "objectID": "materials/00-introductions.html#welcome",
+    "href": "materials/00-introductions.html#welcome",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "Welcome!",
+    "text": "Welcome!\n WiFi\n\nUsername: psu-guest\nPassword: NO PASSWORD!\n\nMaterials\nTo access the workshop materials use the following link:\n\nhttps://atheobold.github.io/uscots-intermediate-r/\n\n\nlibrary(fontawesome)\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.2     ✔ tibble    3.3.0\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n✔ purrr     1.0.4     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(quarto)\nlibrary(gt)\nlibrary(gtExtras)\nlibrary(gtsummary)"
+  },
+  {
+    "objectID": "materials/00-introductions.html#code-of-conduct",
+    "href": "materials/00-introductions.html#code-of-conduct",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "Code of Conduct",
+    "text": "Code of Conduct\n\nThe American Statistical Association (ASA) is committed to providing an atmosphere in which personal respect and intellectual growth are valued and the free expression and exchange of ideas are encouraged. Consistent with this commitment, it is the policy of the ASA that all participants in ASA activities enjoy a welcoming environment free from unlawful discrimination, harassment, and retaliation. We strive to be a community that welcomes and supports people of all backgrounds and identities. This includes, but is not limited to, members of any race, ethnicity, culture, national origin, color, immigration status, social and economic class, educational level, sex, sexual orientation, gender identity and expression, age, size, family status, political belief, religion, and mental and physical ability.\n\n\n\nASA Code of Conduct"
+  },
+  {
+    "objectID": "materials/00-introductions.html#expected-behavior",
+    "href": "materials/00-introductions.html#expected-behavior",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "Expected Behavior",
+    "text": "Expected Behavior\n\n\nModel and support the norms of respect necessary to promote the conditions for healthy exchange of scientific ideas.\nIn speech or conduct, do not insult or disparage other participants.\nBe conscious of hierarchical structures, specifically the existence of stark power differentials between students, early career statisticians and established career statisticians—noting that fear of retaliation from more established statisticians can make it difficult for students and early career statisticians to express discomfort, rebuff unwelcome advances, and report violations of the conduct policy.\nBe sensitive to indications that may suggest that individuals are feeling unwelcome.\n\n\n\n\nASA Code of Conduct"
+  },
+  {
+    "objectID": "materials/00-introductions.html#your-workshop-leaders",
+    "href": "materials/00-introductions.html#your-workshop-leaders",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "Your Workshop Leaders",
+    "text": "Your Workshop Leaders\n\n\n\n\n\n\nKelly Bodwin\n\n\n\nTyson Barrett\n\n\n\nAllison Theobold"
+  },
+  {
+    "objectID": "materials/00-introductions.html#section-1",
+    "href": "materials/00-introductions.html#section-1",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "",
+    "text": "We are assuming\n\n\n You know R\n You know a little bit of Markdown\n You want to learn about Quarto\n\n\n\n\n\nWe’ll teach you about\n\n\nQuarto documents\nQuarto presentations\nStyling documents & presentations\nOptions for publishing your content"
+  },
+  {
+    "objectID": "materials/00-introductions.html#workshop-structure",
+    "href": "materials/00-introductions.html#workshop-structure",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "Workshop structure",
+    "text": "Workshop structure\n\nMy turn: Lecture segments + live coding\nOur turn: Live coding + follow along\nYour turn: Exercises\n\n. . .\n\n\nGetting help\n\n\nDuring my turn and our turn segments – raise your hand\nDuring your turn segments – also feel free to raise your hand for questions!"
+  },
+  {
+    "objectID": "materials/00-introductions.html#workshop-prep",
+    "href": "materials/00-introductions.html#workshop-prep",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "Workshop Prep",
+    "text": "Workshop Prep\n\nAre you on the latest version of RStudio i.e. v2023.03.0+386 or later?\nAre you on the latest version of Quarto i.e. v1.3.340 or later?\nAre you on the latest version of R i.e. v4.3.0 or later?\n\n. . .\nGreat, let’s get started!"
   }
 ]
