@@ -1,0 +1,37 @@
+---
+title: "Workshop Set-up & Installs"
+subtitle: ""
+format: 
+  revealjs:
+    footer: "[USCOTS Intermediate R Workshop](https://atheobold.github.io/uscots-intermediate-r/)"
+    theme: [simple, styles.scss]
+    embed-resources: true
+editor: source
+---
+
+## Workshop Prep
+
+-   Are you on the latest version of RStudio i.e. [`v2023.03.0+386` or later](https://posit.co/download/rstudio-desktop/)?
+-   Are you on the latest version of Quarto i.e. [`v1.3.340` or later](https://quarto.org/docs/get-started/)?
+-   Are you on the latest version of R i.e. [`v4.3.0` or later](https://cran.r-project.org/)?
+
+<!-- Install all our packages -->
+<!-- Download course materials from gh with use_course() -->
+
+## Overview of a project-based course 
+
+<!-- kelly inserts slides from SDSS -->
+
+## Why are you here?
+
+<!-- leading questions about setting intentions for workshop -->
+
+## Activity: Find Your Data Sources
+
+In pairs, come up with a data context and broad research questions.
+
+Find online as many of the following as you can related to your data context:
+
+- Clean tabular datasets, e.g. kaggle or tidytuesday
+- Messy or non-tabular datasets, e.g. JSONs or tables on a webpage
+- API sources

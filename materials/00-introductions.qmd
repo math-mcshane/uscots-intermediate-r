@@ -1,4 +1,6 @@
 ---
+title: "Teaching Intermediate R"
+subtitle: ""
 format: 
   revealjs:
     footer: "[USCOTS Intermediate R Workshop](https://atheobold.github.io/uscots-intermediate-r/)"
@@ -7,13 +9,6 @@ format:
 editor: source
 ---
 
-##  {background-image="images/00-horst-quarto-meteor-transparent.png" background-position="center" background-size="cover" aria-label="A meteor where the head of the meteor is the Quarto logo."}
-
-::: {style="font-size: 2.5em; color: #000000;"}
-Reproducible documents, presentations, and websites with Quarto
-:::
-
-
 ## Welcome! 
 
 `r fontawesome::fa("wifi")` WiFi
@@ -21,11 +16,13 @@ Reproducible documents, presentations, and websites with Quarto
 -   Username: `psu-guest`
 -   Password: NO PASSWORD!
 
+</br>
+
 **Materials**
 
 To access the workshop materials use the following link:
 
-::: {style="font-size: 1.25em; color: #000000;"}
+::: {style="color: #000000;"}
 <https://atheobold.github.io/uscots-intermediate-r/>
 :::
 
@@ -39,28 +36,6 @@ library(gt)
 library(gtExtras)
 library(gtsummary)
 ```
-
-## Code of Conduct {.smaller}
-
-> The American Statistical Association (ASA) is committed to providing an atmosphere in which personal respect and intellectual growth are valued and the free expression and exchange of ideas are encouraged. Consistent with this commitment, it is the policy of the ASA that all participants in ASA activities enjoy a welcoming environment free from unlawful discrimination, harassment, and retaliation. We strive to be a community that welcomes and supports people of all backgrounds and identities. This includes, but is not limited to, members of any race, ethnicity, culture, national origin, color, immigration status, social and economic class, educational level, sex, sexual orientation, gender identity and expression, age, size, family status, political belief, religion, and mental and physical ability.
-
-::: aside
-[ASA Code of Conduct](https://www.amstat.org/meetings/code-of-conduct)
-:::
-
-## Expected Behavior {.smaller}
-
-> -   Model and support the norms of respect necessary to promote the conditions for healthy exchange of scientific ideas.
->
-> -   In speech or conduct, do not insult or disparage other participants.
->
-> -   Be conscious of hierarchical structures, specifically the existence of stark power differentials between students, early career statisticians and established career statisticians---noting that fear of retaliation from more established statisticians can make it difficult for students and early career statisticians to express discomfort, rebuff unwelcome advances, and report violations of the conduct policy.
->
-> -   Be sensitive to indications that may suggest that individuals are feeling unwelcome.
-
-::: aside
-[ASA Code of Conduct](https://www.amstat.org/meetings/code-of-conduct)
-:::
 
 ## Your Workshop Leaders
 
@@ -86,11 +61,9 @@ library(gtsummary)
 
 </br>
 
-`r fa("r-project")` You know R
+`r fa("r-project")` You are familar with introductory R concepts
 
-`r fa("markdown")` You know a little bit of Markdown
-
-<img src="https://raw.githubusercontent.com/quarto-dev/quarto-web/main/favicon.png" style="display: inline-block; margin: 0; margin-bottom: -2px; height: 35px;"/></img> You want to learn about Quarto
+`r fa("markdown")` <img src="https://raw.githubusercontent.com/quarto-dev/quarto-web/main/favicon.png" style="display: inline-block; margin: 0; margin-bottom: -2px; height: 35px;"/></img> You know a little bit of Markdown and / or Quarto
 :::
 
 ::: {.column width="5%"}
@@ -98,49 +71,44 @@ library(gtsummary)
 
 ::: {.column width="55%"}
 ::: fragment
-<h2>We'll teach you about</h2>
+<h2>We'll help you</h2>
 
 </br> 
+</br> 
 
-Quarto documents
+learn about potential "intermediate" concepts to incorporate into a course
 
-Quarto presentations
+brainstorm ideas for incorporating these ideas into a course project
 
-Styling documents & presentations
-
-Options for publishing your content
 :::
 :::
 :::
 
 ## Workshop structure
 
--   **My turn:** Lecture segments + live coding
+-   **Topic Overview:** Lecture segments + Project examples
 
--   **Our turn:** Live coding + follow along
+-   **Activity:** Make (incremental) progress toward designing three different
+projects
 
--   **Your turn:** Exercises
+## Code of Conduct {.smaller}
 
-. . .
+> The American Statistical Association (ASA) is committed to providing an atmosphere in which personal respect and intellectual growth are valued and the free expression and exchange of ideas are encouraged. Consistent with this commitment, it is the policy of the ASA that all participants in ASA activities enjoy a welcoming environment free from unlawful discrimination, harassment, and retaliation. We strive to be a community that welcomes and supports people of all backgrounds and identities. This includes, but is not limited to, members of any race, ethnicity, culture, national origin, color, immigration status, social and economic class, educational level, sex, sexual orientation, gender identity and expression, age, size, family status, political belief, religion, and mental and physical ability.
 
-</br>
+::: aside
+[ASA Code of Conduct](https://www.amstat.org/meetings/code-of-conduct)
+:::
 
-<h2> **Getting help** </h2>
+## Expected Behavior {.smaller}
 
--   During **my turn** and **our turn** segments -- raise your hand
+> -   Model and support the norms of respect necessary to promote the conditions for healthy exchange of scientific ideas.
+>
+> -   In speech or conduct, do not insult or disparage other participants.
+>
+> -   Be conscious of hierarchical structures, specifically the existence of stark power differentials between students, early career statisticians and established career statisticians---noting that fear of retaliation from more established statisticians can make it difficult for students and early career statisticians to express discomfort, rebuff unwelcome advances, and report violations of the conduct policy.
+>
+> -   Be sensitive to indications that may suggest that individuals are feeling unwelcome.
 
--   During **your turn** segments -- also feel free to raise your hand for questions! 
-
-    <!-- - `r fa("square", "pink")` = I'm stuck or I'm running into a code error -->
-
-    <!-- - `r fa("square", "green")` = I have completed the activity -->
-
-## Workshop Prep
-
--   Are you on the latest version of RStudio i.e. [`v2023.03.0+386` or later](https://posit.co/download/rstudio-desktop/)?
--   Are you on the latest version of Quarto i.e. [`v1.3.340` or later](https://quarto.org/docs/get-started/)?
--   Are you on the latest version of R i.e. [`v4.3.0` or later](https://cran.r-project.org/)?
-
-. . .
-
-[Great, let's get started!]{.r-fit-text}
+::: aside
+[ASA Code of Conduct](https://www.amstat.org/meetings/code-of-conduct)
+:::
