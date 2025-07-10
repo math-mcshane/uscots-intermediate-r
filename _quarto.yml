@@ -18,12 +18,12 @@ website:
        - href: bio.qmd
          text: Presenters
        - text: Tuesday
-         # menu:
-         #  - href: materials/01-rstudio-refresher.qmd
-         #    text: "A Brief RStudio Refresher"
-         #  - href: materials/02-quarto-docs.qmd
-         #    text: "Introduction to Quarto Documents"
-         #  - href: materials/03-styling-quarto-docs.qmd
+         menu:
+          - href: materials/00-introductions.qmd
+            text: "Introductions"
+          - href: materials/01-setup-installs.qmd
+            text: "Set-up & Installs"
+         #- href: materials/03-styling-quarto-docs.qmd
          #    text: "Styling Quarto Documents"
        - text: Wednesday
          # menu:
