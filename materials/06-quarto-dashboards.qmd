@@ -13,11 +13,223 @@ editor: source
 Quarto Dashboards
 :::
 
+## Creating a Quarto Dashboard
+
+::: {.midi}
+To create a dashboard you need to use `format: dashboard` in the YAML:
+:::
+
+```{.bash filename="dashboard.qmd"}
+--- 
+title: "Palmer Penguins"
+author: "Cobblepot Analytics"
+format: dashboard
+---
+```
+
+. . .
+
+::: {.midi}
+We can add futher details to the dashboard:
+:::
+
+```{.bash filename="dashboard.qmd"}
+--- 
+title: "Palmer Penguins"
+author: "Cobblepot Analytics"
+format: 
+  dashboard:
+    logo: images/penguins.png
+    nav-buttons: [linkedin, twitter, github]
+---
+```
+
+
+## Quarto Dashboard Components
+
+</br>
+
+::: {.incremental}
+1. Navigation Bar — Icon, title, author, links to sub-pages
+
+<!-- Subpages contain additional content -->
+
+2. Pages, Rows, Columns, and Tabsets 
+
+<!-- Pages, rows and columns are defined using markdown headings (with optional attributes to control height, width, etc.). Tabsets can be used to further divide content within a row or column. -->
+
+3. Cards, Sidebars, and Toolbars 
+
+<!-- Cards are containers for plots, data display, and free form content. The content of cards typically maps to cells in your notebook or source document. Sidebars and toolbars are used to present inputs within interactive dashboards. -->
+
+:::
 
 # Static Dashboards
 
 ## {background-iframe="https://mine.quarto.pub/olympic-games-py/"}
 
+
+## Default Layout (in Rows)
+
+<!-- Here, level 2 markdown headings (e.g. ## Row {height=70%}) define the contents of rows as well as their relative height. The ```{python} code cells in turn automatically create cards that are laid out in columns within the row. -->
+
+::: columns
+::: {.column width="50%"}
+::: {.chart-example}
+```` {.r}
+---
+title: "Palmer Penguins"
+author: "Allison Theobold"
+format: dashboard
+---
+    
+## Row {height=70%}
+
+```{{r}}
+```
+
+## Row {height=30%}
+
+```{{r}}
+```
+
+```{{r}}
+```
+````
+:::
+:::
+
+::: {.column width="50%"}
+![](images/06-quarto-layout.png){fig-alt="A schematic of a page layout showing Chart 1 at the top using the full page width, then Chart 2 and Chart 3 side by side in a row below it."}
+:::
+:::
+
+## Changing Orientation (to Columns)
+
+<!-- By default, dashboard pages are laid out first by row, then by column. However, you can change this by specifying the `orientation: columns` document option: -->
+
+
+::: columns
+::: {.column width="50%"}
+::: {.chart-example}
+```` {.r}
+---
+title: "Palmer Penguins"
+author: "Allison Theobold"
+format: 
+  dashboard:
+    orientation: columns
+---
+    
+## Column {width=60%}
+
+```{{r}}
+```
+
+## Column {width=40%}
+
+```{{r}}
+```
+
+```{{r}}
+```
+````
+:::
+:::
+
+::: {.column width="50%"}
+![](images/06-column-orientation.png){fig-alt="A schematic of a page layout showing Chart 1 on the left using the full page height, and on the right Chart 2 and Chart 3 are one above the other."}
+:::
+:::
+
+## Adding More Pages
+
+```` {.r}
+---
+title: "Palmer Penguins"
+author: "Allison Theobold"
+format: dashboard
+---
+    
+# Bills 
+
+```{{r}}
+```
+
+# Flippers {orientation="columns"}
+
+## Column
+
+```{{r}}
+```
+
+```{{r}}
+```
+
+## Column 
+
+```{{r}}
+```
+````
+
+. . .
+
+::: {.callout-tip}
+What orientation will the `Bills` page use?
+:::
+
+# Fun Stuff!
+
+## Tabsets
+
+
+## [Value Boxes](https://quarto.org/docs/dashboards/data-display.html#value-boxes)
+
+<!-- ## Column - Medals by country {width=35%} -->
+
+<!-- ### Row - Value boxes {height=30%} -->
+
+<!-- ```{r} -->
+<!-- #| label: summer-calculate-most-medals -->
+<!-- summer_most_golds <- summer_olympics |> -->
+<!--   filter(medal == "Gold") |> -->
+<!--   count(team, sort = TRUE) |> -->
+<!--   slice_head(n = 1) -->
+
+<!-- summer_most_silvers <- summer_olympics |> -->
+<!--   filter(medal == "Silver") |> -->
+<!--   count(team, sort = TRUE) |> -->
+<!--   slice_head(n = 1) -->
+
+<!-- summer_most_bronzes <- summer_olympics |> -->
+<!--   filter(medal == "Bronze") |> -->
+<!--   count(team, sort = TRUE) |> -->
+<!--   slice_head(n = 1) -->
+<!-- ``` -->
+
+<!-- ::: {.valuebox icon="award-fill" color="#d4af37"} -->
+<!-- Most golds:  -->
+
+<!-- `{r} summer_most_golds$n` -->
+
+<!-- `{r} summer_most_golds$team` -->
+<!-- ::: -->
+
+<!-- ::: {.valuebox icon="award-fill" color="#c0c0c0"} -->
+<!-- Most silvers:  -->
+
+<!-- `{r} summer_most_silvers$n` -->
+
+<!-- `{r} summer_most_silvers$team` -->
+<!-- ::: -->
+
+<!-- ::: {.valuebox icon="award-fill" color="#cd7f32"} -->
+<!-- Most bronzes:  -->
+
+<!-- `{r} summer_most_bronzes$n` -->
+
+<!-- `{r} summer_most_bronzes$team` -->
+<!-- ::: -->
 
 # The Middle Child (Part Static, Part Dynamic)
 

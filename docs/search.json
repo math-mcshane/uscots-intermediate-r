@@ -201,5 +201,96 @@
     "title": "USCOTS 2025 Workshop",
     "section": "Intended Audience and Level",
     "text": "Intended Audience and Level\nWe expect attendees to have R fluency at the level of a typical introductory course, such as the textbook R for Data Science (Wickham, Çetinkaya-Rundel, & Grolemund 2023); as well as familiarity with some scattered intermediate to advanced topics, interpreted broadly.\nThe focus of this workshop will not be training in intermediate R skills, but rather in preparing educators to deliver higher-level R courses. We will provide resources, examples, and frameworks to empower attendees to expand their R knowledge and design a meaningful hands-on classroom experience."
+  },
+  {
+    "objectID": "materials/06-quarto-dashboards.html#creating-a-quarto-dashboard",
+    "href": "materials/06-quarto-dashboards.html#creating-a-quarto-dashboard",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "Creating a Quarto Dashboard",
+    "text": "Creating a Quarto Dashboard\n\nTo create a dashboard you need to use format: dashboard in the YAML:\n\n\n\ndashboard.qmd\n\n--- \ntitle: \"Palmer Penguins\"\nauthor: \"Cobblepot Analytics\"\nformat: dashboard\n---\n\n\n\nWe can add futher details to the dashboard:\n\n\n\ndashboard.qmd\n\n--- \ntitle: \"Palmer Penguins\"\nauthor: \"Cobblepot Analytics\"\nformat: \n  dashboard:\n    logo: images/penguins.png\n    nav-buttons: [linkedin, twitter, github]\n---"
+  },
+  {
+    "objectID": "materials/06-quarto-dashboards.html#quarto-dashboard-components",
+    "href": "materials/06-quarto-dashboards.html#quarto-dashboard-components",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "Quarto Dashboard Components",
+    "text": "Quarto Dashboard Components\n\n\n\nNavigation Bar — Icon, title, author, links to sub-pages\n\n\n\nPages, Rows, Columns, and Tabsets\n\n\n\nCards, Sidebars, and Toolbars"
+  },
+  {
+    "objectID": "materials/06-quarto-dashboards.html#example",
+    "href": "materials/06-quarto-dashboards.html#example",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "Example",
+    "text": "Example\n{background-iframe=“https://mine.quarto.pub/olympic-games-py/”}"
+  },
+  {
+    "objectID": "materials/06-quarto-dashboards.html#section-1",
+    "href": "materials/06-quarto-dashboards.html#section-1",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "",
+    "text": "gganimate\nleaflet"
+  },
+  {
+    "objectID": "materials/06-quarto-dashboards.html#layout",
+    "href": "materials/06-quarto-dashboards.html#layout",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "Layout",
+    "text": "Layout\n\n\n\n\n---\ntitle: \"Palmer Penguins\"\nauthor: \"Allison Theobold\"\nformat: dashboard\n---\n    \n## Row {height=70%}\n\n```{r}\n```\n\n## Row {height=30%}\n\n```{r}\n```\n\n```{r}\n```"
+  },
+  {
+    "objectID": "materials/06-quarto-dashboards.html#orientation",
+    "href": "materials/06-quarto-dashboards.html#orientation",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "Orientation",
+    "text": "Orientation\nBy default, dashboard pages are laid out first by row, then by column. However, you can change this by specifying the orientation: columns document option:\n\n\n\ntitle: \"Palmer Penguins\"\nauthor: \"Allison Theobold\"\nformat: \n  dashboard:\n    orientation: columns\n---\n    \n## Column {width=60%}\n\n```{python}\n```\n\n## Column {width=40%}\n\n```{python}\n```\n\n```{python}\n```"
+  },
+  {
+    "objectID": "materials/06-quarto-dashboards.html#changing-orientation",
+    "href": "materials/06-quarto-dashboards.html#changing-orientation",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "Changing Orientation",
+    "text": "Changing Orientation\n\n\n\n\n---\ntitle: \"Palmer Penguins\"\nauthor: \"Allison Theobold\"\nformat: \n  dashboard:\n    orientation: columns\n---\n    \n## Column {width=60%}\n\n```{r}\n```\n\n## Column {width=40%}\n\n```{r}\n```\n\n```{r}\n```"
+  },
+  {
+    "objectID": "materials/06-quarto-dashboards.html#default-layout-in-rows",
+    "href": "materials/06-quarto-dashboards.html#default-layout-in-rows",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "Default Layout (in Rows)",
+    "text": "Default Layout (in Rows)\n\n\n\n\n---\ntitle: \"Palmer Penguins\"\nauthor: \"Allison Theobold\"\nformat: dashboard\n---\n    \n## Row {height=70%}\n\n```{r}\n```\n\n## Row {height=30%}\n\n```{r}\n```\n\n```{r}\n```"
+  },
+  {
+    "objectID": "materials/06-quarto-dashboards.html#changing-orientation-to-columns",
+    "href": "materials/06-quarto-dashboards.html#changing-orientation-to-columns",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "Changing Orientation (to Columns)",
+    "text": "Changing Orientation (to Columns)\n\n\n\n\n---\ntitle: \"Palmer Penguins\"\nauthor: \"Allison Theobold\"\nformat: \n  dashboard:\n    orientation: columns\n---\n    \n## Column {width=60%}\n\n```{r}\n```\n\n## Column {width=40%}\n\n```{r}\n```\n\n```{r}\n```"
+  },
+  {
+    "objectID": "materials/06-quarto-dashboards.html#pages",
+    "href": "materials/06-quarto-dashboards.html#pages",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "Pages",
+    "text": "Pages\n---\ntitle: \"Palmer Penguins\"\nauthor: \"Allison Theobold\"\nformat: dashboard\n---\n    \n# Bills \n\n```{r}\n```\n\n# Flippers {orientation=\"columns\" scrolling=\"true\"}\n\n## Column\n\n```{r}\n```\n\n```{r}\n```\n\n## Column \n\n```{r}\n```"
+  },
+  {
+    "objectID": "materials/06-quarto-dashboards.html#adding-more-pages",
+    "href": "materials/06-quarto-dashboards.html#adding-more-pages",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "Adding More Pages",
+    "text": "Adding More Pages\n---\ntitle: \"Palmer Penguins\"\nauthor: \"Allison Theobold\"\nformat: dashboard\n---\n    \n# Bills \n\n```{r}\n```\n\n# Flippers {orientation=\"columns\"}\n\n## Column\n\n```{r}\n```\n\n```{r}\n```\n\n## Column \n\n```{r}\n```\n\n\n\n\n\n\n\nWhat orientation will the Bills page use?"
+  },
+  {
+    "objectID": "materials/06-quarto-dashboards.html#tabsets",
+    "href": "materials/06-quarto-dashboards.html#tabsets",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "Tabsets",
+    "text": "Tabsets"
+  },
+  {
+    "objectID": "materials/06-quarto-dashboards.html#value-boxes",
+    "href": "materials/06-quarto-dashboards.html#value-boxes",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "Value Boxes",
+    "text": "Value Boxes"
   }
 ]
