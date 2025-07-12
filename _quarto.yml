@@ -26,12 +26,12 @@ website:
          #- href: materials/03-styling-quarto-docs.qmd
          #    text: "Styling Quarto Documents"
        - text: Wednesday
-         # menu:
-         #  - href: materials/04-quarto-presentations.qmd
-         #    text: "Introduction to Quarto Presentations"
-         #  - href: materials/05-styling-quarto-presentations.qmd
-         #    text: "Styling Quarto Presentations"
-         #  - href: materials/06-version-control.qmd
+         menu:
+          - href: materials/05-quarto-projects-websites.qmd
+            text: "Introduction to Quarto Projects and Websites"
+          - href: materials/06-quarto-dashboards.qmd
+            text: "Quarto Dashboards (Static & Dynamic)"
+         # - href: materials/06-version-control.qmd
          #    text: "Introduction to Version Control"
          #  - href: materials/07-publishing.qmd
          #    text: "Publishing Your Materials"
@@ -54,43 +54,6 @@ website:
     right: "This page is built with ❤️ and [Quarto](https://quarto.org/)."
     left: "&copy; Copyright 2025, Kelly Bodwin, Tyson Barrett & Allison Theobold"
     background: "#D9E3E4"
-    
-  # sidebar:
-  #   logo: "images/quarto_icon.png"
-  #   pinned: true
-  #   align: center
-  #   search: true
-  #   style: "docked"
-  #   background: light
-  #   contents:
-  #     - section: "Morning"
-  #       contents: 
-  #         - href: materials/01-rstudio-refresher.qmd
-  #           text: "A Brief RStudio Refresher"
-  #         - href: materials/02-quarto-docs.qmd
-  #           text: "Introduction to Quarto Documents"
-  #         - href: materials/02-activity-quarto-yaml.qmd
-  #           text: "Your turn! Exploring YAML Options"
-  #         - href: materials/03-styling-quarto-docs.qmd
-  #           text: "Styling Quarto Documents"
-  #         - href: materials/03-activity-styling-quarto-docs.qmd
-  #           text: "Your turn! Embellishing your Quarto doc"
-  #     - section: "Afternoon"
-  #       contents:
-  #         - href: materials/04-quarto-presentations.qmd
-  #           text: "Introduction to Quarto Presentations"
-  #         - href: materials/04-activity-quarto-presentations.qmd
-  #           text: "Your turn! Making a Quarto Presentation"
-  #         - href: materials/05-styling-quarto-presentations.qmd
-  #           text: "Styling Quarto Presentations"
-  #         - href: materials/05-activity-styling-quarto-presentations.qmd
-  #           text: "Your turn! Styling Your Presentation"
-  #         - href: materials/06-version-control.qmd
-  #           text: "Introduction to Version Control"
-  #         - href: materials/07-publishing.qmd
-  #           text: "Publishing Your Materials"
-  #   
-  # page-navigation: false
 
 format:
   html:
