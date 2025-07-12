@@ -7,6 +7,27 @@
     "text": "Kelly Bodwin\n\n\n\nTyson Barrett\n\n\n\nAllison Theobold is an Assistant Professor of Statistics at Cal Poly. Allison’s work focuses on innovation in statistics and data science education, with an emphasis on equitable pedagogy and learning trajectories. Allison is also interested in exploring pedagogical approaches for enhancing retention of under-represented students in STEM, including creating inclusive discoursive spaces and equitable group collaborations."
   },
   {
+    "objectID": "materials/06-quarto-dashboards.html#section",
+    "href": "materials/06-quarto-dashboards.html#section",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "",
+    "text": "Quarto Dashboards"
+  },
+  {
+    "objectID": "materials/06-quarto-dashboards.html#section-2",
+    "href": "materials/06-quarto-dashboards.html#section-2",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "",
+    "text": "gganimate\nleaflet"
+  },
+  {
+    "objectID": "materials/06-quarto-dashboards.html#section-3",
+    "href": "materials/06-quarto-dashboards.html#section-3",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "",
+    "text": "leaflet\nplotly"
+  },
+  {
     "objectID": "materials/01-setup-installs.html#workshop-prep",
     "href": "materials/01-setup-installs.html#workshop-prep",
     "title": "Workshop Set-up & Installs",
@@ -180,47 +201,5 @@
     "title": "USCOTS 2025 Workshop",
     "section": "Intended Audience and Level",
     "text": "Intended Audience and Level\nWe expect attendees to have R fluency at the level of a typical introductory course, such as the textbook R for Data Science (Wickham, Çetinkaya-Rundel, & Grolemund 2023); as well as familiarity with some scattered intermediate to advanced topics, interpreted broadly.\nThe focus of this workshop will not be training in intermediate R skills, but rather in preparing educators to deliver higher-level R courses. We will provide resources, examples, and frameworks to empower attendees to expand their R knowledge and design a meaningful hands-on classroom experience."
-  },
-  {
-    "objectID": "materials/06-quarto-dashboards.html#section",
-    "href": "materials/06-quarto-dashboards.html#section",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": "",
-    "text": "Quarto Dashboards"
-  },
-  {
-    "objectID": "materials/06-quarto-dashboards.html#example-dashboard",
-    "href": "materials/06-quarto-dashboards.html#example-dashboard",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": "Example Dashboard",
-    "text": "Example Dashboard\n{background-iframe=“https://mine.quarto.pub/olympic-games-py/” background-interactive=True}"
-  },
-  {
-    "objectID": "materials/06-quarto-dashboards.html#example-dashboard-1",
-    "href": "materials/06-quarto-dashboards.html#example-dashboard-1",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": "Example Dashboard",
-    "text": "Example Dashboard\n{background-iframe=“https://mine.quarto.pub/olympic-games-py/” background-interactive=True}"
-  },
-  {
-    "objectID": "materials/06-quarto-dashboards.html#example-dashboard-2",
-    "href": "materials/06-quarto-dashboards.html#example-dashboard-2",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": "Example Dashboard",
-    "text": "Example Dashboard\n{background-iframe=“https://mine.quarto.pub/olympic-games-py/” background-interactive=True}"
-  },
-  {
-    "objectID": "materials/06-quarto-dashboards.html#section-2",
-    "href": "materials/06-quarto-dashboards.html#section-2",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": "",
-    "text": "gganimate\nleaflet"
-  },
-  {
-    "objectID": "materials/06-quarto-dashboards.html#section-3",
-    "href": "materials/06-quarto-dashboards.html#section-3",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": "",
-    "text": "leaflet\nplotly"
   }
 ]
