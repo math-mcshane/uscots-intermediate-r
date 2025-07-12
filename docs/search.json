@@ -103,5 +103,96 @@
     "title": "USCOTS 2025 Workshop",
     "section": "Intended Audience and Level",
     "text": "Intended Audience and Level\nWe expect attendees to have R fluency at the level of a typical introductory course, such as the textbook R for Data Science (Wickham, Çetinkaya-Rundel, & Grolemund 2023); as well as familiarity with some scattered intermediate to advanced topics, interpreted broadly.\nThe focus of this workshop will not be training in intermediate R skills, but rather in preparing educators to deliver higher-level R courses. We will provide resources, examples, and frameworks to empower attendees to expand their R knowledge and design a meaningful hands-on classroom experience."
+  },
+  {
+    "objectID": "materials/05-quarto-projects-websites.html#section",
+    "href": "materials/05-quarto-projects-websites.html#section",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "",
+    "text": "Quarto Projects & Websites"
+  },
+  {
+    "objectID": "materials/05-quarto-projects-websites.html#quarto-projects",
+    "href": "materials/05-quarto-projects-websites.html#quarto-projects",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "Quarto Projects",
+    "text": "Quarto Projects\nare directories that provide the ability to…\n\n\nrender all or some of the files in a directory with a single command (e.g. quarto render myproject)\nshare a YAML configuration across multiple documents\nredirect output artifacts to another directory\nfreeze rendered output (i.e. don’t re-execute documents unless they have changed)"
+  },
+  {
+    "objectID": "materials/05-quarto-projects-websites.html#yml-files",
+    "href": "materials/05-quarto-projects-websites.html#yml-files",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": ".yml Files",
+    "text": ".yml Files\n\n\n_quarto.yml\n\nproject:\n  type: website\n\nwebsite:\n  title: \"trial-website\"\n  navbar:\n    left:\n      - href: index.qmd\n        text: Home\n      - about.qmd\n\nformat:\n  html:\n    theme: cosmo\n    css: styles.css\n    toc: true\n\neditor: visual"
+  },
+  {
+    "objectID": "materials/05-quarto-projects-websites.html#types-of-projects",
+    "href": "materials/05-quarto-projects-websites.html#types-of-projects",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "Types of Projects",
+    "text": "Types of Projects\nUse the quarto create project command (in the terminal) to create a new project:\n\n\nTerminal\n\nquarto create project\n\n\nYou will then be given a variety of options for projects:\n\n\nOutput\n\n ? Type\n ❯ default\n   website\n   blog\n   manuscript\n   book\n   confluence"
+  },
+  {
+    "objectID": "materials/05-quarto-projects-websites.html#say-we-chose-to-make-a-website",
+    "href": "materials/05-quarto-projects-websites.html#say-we-chose-to-make-a-website",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "Say we chose to make a website…",
+    "text": "Say we chose to make a website…\n\nOur website would come pre-populated with five initial files:\n\n\n\nLet’s talk about each file!"
+  },
+  {
+    "objectID": "materials/05-quarto-projects-websites.html#rproj-where-does-your-analysis-live",
+    "href": "materials/05-quarto-projects-websites.html#rproj-where-does-your-analysis-live",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": ".Rproj – Where does your analysis live?",
+    "text": ".Rproj – Where does your analysis live?\n\nR has a powerful notion of a working directory–where R looks for files that you ask it to load, and where it will store any files that you ask it to save.\nR for Data Science\n\n\nRStudio shows your current working directory at the top of the console:"
+  },
+  {
+    "objectID": "materials/05-quarto-projects-websites.html#file-paths",
+    "href": "materials/05-quarto-projects-websites.html#file-paths",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "File Paths (😩)",
+    "text": "File Paths (😩)\n\nInside a .Rproj, you can access files using a relative path. Absolute paths should never be used!\n\n\n\n\n\n\nIf I wanted to access the students.xlsx file in the data folder of my project, I could use data/students.csv to access these data.\n\n\n\n\n\n\n\n\n\nThis is different from the full path (where the file lives on my computer): /Users/atheobol/Desktop/trial-website/data/students.csv."
+  },
+  {
+    "objectID": "materials/05-quarto-projects-websites.html#css",
+    "href": "materials/05-quarto-projects-websites.html#css",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": ".css",
+    "text": ".css\nA Cascading Style Sheets (CSS) file is a style sheet language used in web development to describe the presentation and formatting of documents written in HTML or XML."
+  },
+  {
+    "objectID": "materials/05-quarto-projects-websites.html#about.qmd",
+    "href": "materials/05-quarto-projects-websites.html#about.qmd",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "about.qmd",
+    "text": "about.qmd"
+  },
+  {
+    "objectID": "materials/05-quarto-projects-websites.html#index.qmd",
+    "href": "materials/05-quarto-projects-websites.html#index.qmd",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "index.qmd",
+    "text": "index.qmd"
+  },
+  {
+    "objectID": "materials/05-quarto-projects-websites.html#rproj-where-does-your-analysis-live-1",
+    "href": "materials/05-quarto-projects-websites.html#rproj-where-does-your-analysis-live-1",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": ".Rproj – Where does your analysis live?",
+    "text": ".Rproj – Where does your analysis live?\nKeeping all the files associated with a given project (data, R scripts, figures, etc.) together in one directory is such a wise and common practice that RStudio has built-in support for this via RStudio projects (.Rproj)."
+  },
+  {
+    "objectID": "materials/05-quarto-projects-websites.html#index.qmd-about.qmd",
+    "href": "materials/05-quarto-projects-websites.html#index.qmd-about.qmd",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "index.qmd & about.qmd",
+    "text": "index.qmd & about.qmd\n\n\n\n\nThis is the home page for the website!\nWhatever you place in the index.qmd file will be the first page people see!\nThis page is also accessed using the top navigation menu (on the left side) using the link titled “Home.”\n\n\n\n\n\n\nThis is an additional content page!\nThis is accessed through the top navigation menu.\nNotice that the .yml file doesn’t give this page a name, so it defaults to the title included in the about.qmd document."
+  },
+  {
+    "objectID": "materials/05-quarto-projects-websites.html#website-themes",
+    "href": "materials/05-quarto-projects-websites.html#website-themes",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "Website Themes",
+    "text": "Website Themes\nformat:\n  html:\n    theme: cosmo\n    css: styles.css\n    toc: true\n\nHere is a list of every theme available for Quarto websites: https://quarto.org/docs/output-formats/html-themes.html\n\n\n\n\nOptionally, you can set separate “light” and “dark” themes:\n\ntheme:\n  light: flatly\n  dark: darkly"
   }
 ]
