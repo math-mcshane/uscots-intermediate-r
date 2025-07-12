@@ -180,8 +180,82 @@ What orientation will the `Bills` page use?
 
 # Fun Stuff!
 
-## Tabsets
+## Tabsets 
 
+[are created by adding the `.tabset` class to a row or column.]{.midi}
+
+::: columns
+::: {.column width="50%"}
+::: {.chart-example}
+```` {.r}
+---
+title: "Palmer Penguins"
+format: dashboard
+---
+    
+## Row
+
+```{{r}}
+```
+
+## Row {.tabset}
+
+```{{r}}
+#| title: Chart 2
+```
+
+```{{r}}
+#| title: Chart 3
+```
+````
+:::
+:::
+
+::: {.column width="50%"}
+![](images/06-tabsets.png){fig-alt="Schematic of a dashboard layout showing Chart 1 at the top using the full page width. Below Chart 1, a panel with two tabs is shown: the Chart 2 tab is selected and occupies the full page width; the Chart 3 tab is unselected."}
+:::
+:::
+
+## Deeply Nested Tabsets
+
+::: columns
+::: {.column width="50%"}
+::: {.chart-example}
+```` {.r}
+---
+title: "Palmer Penguins"
+format: dashboard
+---
+    
+## Row {height=70%}
+
+```{{r}}
+```
+
+## Row {height=30%}
+
+### Column {.tabset}
+
+```{{r}}
+#| title: Chart 2
+```
+
+```{{r}}
+#| title: Chart 3
+```
+
+### Column
+
+```{{r}}
+```
+````
+:::
+:::
+
+::: {.column width="50%"}
+![](images/06-nested-tabsets.png){fig-alt="Schematic of a dashboard layout showing Chart 1 at the top using the full page width. The row below Chart 1 is split into two columns. In the left column is a panel with two tabs: Chart 2 and Chart 3. In the right column is Chart 4."}
+:::
+:::
 
 ## [Value Boxes](https://quarto.org/docs/dashboards/data-display.html#value-boxes)
 

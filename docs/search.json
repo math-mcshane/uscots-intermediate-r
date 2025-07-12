@@ -284,7 +284,7 @@
     "href": "materials/06-quarto-dashboards.html#tabsets",
     "title": "USCOTS 2025 Intermediate R Workshop",
     "section": "Tabsets",
-    "text": "Tabsets"
+    "text": "Tabsets\nare created by adding the .tabset class to a row or column.\n\n\n\n---\ntitle: \"Palmer Penguins\"\nformat: dashboard\n---\n    \n## Row\n\n```{r}\n```\n\n## Row {.tabset}\n\n```{r}\n#| title: Chart 2\n```\n\n```{r}\n#| title: Chart 3\n```"
   },
   {
     "objectID": "materials/06-quarto-dashboards.html#value-boxes",
@@ -292,5 +292,12 @@
     "title": "USCOTS 2025 Intermediate R Workshop",
     "section": "Value Boxes",
     "text": "Value Boxes"
+  },
+  {
+    "objectID": "materials/06-quarto-dashboards.html#deeply-nested-tabsets",
+    "href": "materials/06-quarto-dashboards.html#deeply-nested-tabsets",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "Deeply Nested Tabsets",
+    "text": "Deeply Nested Tabsets\n\n\n\n---\ntitle: \"Palmer Penguins\"\nformat: dashboard\n---\n    \n## Row {height=70%}\n\n```{r}\n```\n\n## Row {height=30%}\n\n### Column {.tabset}\n\n```{r}\n#| title: Chart 2\n```\n\n```{r}\n#| title: Chart 3\n```\n\n### Column\n\n```{r}\n```"
   }
 ]
