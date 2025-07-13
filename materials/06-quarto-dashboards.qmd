@@ -7,6 +7,14 @@ format:
 editor: source
 ---
 
+```{r}
+#| label: packages
+
+library(fontawesome)
+library(tidyverse)
+library(quarto)
+```
+
 ##  {background-image="images/06-snow-dashboard.png" background-position="center" background-size="cover" aria-label="Two cute cartoon penguins stand facing each other. The blue penguin on the left is raising one flipper, appearing to toss or launch a glowing, comet-like object with the Quarto logo on it. The orange penguin on the right looks up happily at the flying object."}
 
 ::: {style="font-size: 2.5em; color: #000000;"}
@@ -30,7 +38,7 @@ format: dashboard
 . . .
 
 ::: {.midi}
-We can add futher details to the dashboard:
+We can add further details to the dashboard:
 :::
 
 ```{.bash filename="dashboard.qmd"}
@@ -257,67 +265,350 @@ format: dashboard
 :::
 :::
 
-## [Value Boxes](https://quarto.org/docs/dashboards/data-display.html#value-boxes)
+## [Value Boxes](https://mine.quarto.pub/olympic-games-py/) 
 
-<!-- ## Column - Medals by country {width=35%} -->
+<!-- ![](images/06-value-boxes.png){fig-alt="A screenshot of three value boxes from the first Quarto dashboard shown (of Olympic medals). The first card shown on the left is colored gold and reads 'Most golds: 2363, United States,' the second card shown in the center is colored silver and reads 'Most silvers: 1251, United States,' and the third card shown on the right is colored bronze and reads 'Most bronze: 1126, United States."} -->
 
-<!-- ### Row - Value boxes {height=30%} -->
+::: {.chart-example}
+```` {.r}
+## Column - Medals by country {width=35%}
 
-<!-- ```{r} -->
-<!-- #| label: summer-calculate-most-medals -->
-<!-- summer_most_golds <- summer_olympics |> -->
-<!--   filter(medal == "Gold") |> -->
-<!--   count(team, sort = TRUE) |> -->
-<!--   slice_head(n = 1) -->
+### Row - Value boxes {height=30%}
 
-<!-- summer_most_silvers <- summer_olympics |> -->
-<!--   filter(medal == "Silver") |> -->
-<!--   count(team, sort = TRUE) |> -->
-<!--   slice_head(n = 1) -->
+```{{r}}
+#| label: summer-calculate-most-medals
 
-<!-- summer_most_bronzes <- summer_olympics |> -->
-<!--   filter(medal == "Bronze") |> -->
-<!--   count(team, sort = TRUE) |> -->
-<!--   slice_head(n = 1) -->
-<!-- ``` -->
+summer_most_golds <- summer_olympics |>
+  filter(medal == "Gold") |>
+  count(team, sort = TRUE) |>
+  slice_head(n = 1)
 
-<!-- ::: {.valuebox icon="award-fill" color="#d4af37"} -->
-<!-- Most golds:  -->
+summer_most_silvers <- summer_olympics |>
+  filter(medal == "Silver") |>
+  count(team, sort = TRUE) |>
+  slice_head(n = 1)
 
-<!-- `{r} summer_most_golds$n` -->
+summer_most_bronzes <- summer_olympics |>
+  filter(medal == "Bronze") |>
+  count(team, sort = TRUE) |>
+  slice_head(n = 1)
+```
 
-<!-- `{r} summer_most_golds$team` -->
-<!-- ::: -->
+::: {.valuebox icon="award-fill" color="#d4af37"}
+Most golds:
 
-<!-- ::: {.valuebox icon="award-fill" color="#c0c0c0"} -->
-<!-- Most silvers:  -->
+`{{r}} summer_most_golds$n`
 
-<!-- `{r} summer_most_silvers$n` -->
+`{{r}} summer_most_golds$team`
+:::
 
-<!-- `{r} summer_most_silvers$team` -->
-<!-- ::: -->
+::: {.valuebox icon="award-fill" color="#c0c0c0"}
+Most silvers:
 
-<!-- ::: {.valuebox icon="award-fill" color="#cd7f32"} -->
-<!-- Most bronzes:  -->
+`{{r}} summer_most_silvers$n`
 
-<!-- `{r} summer_most_bronzes$n` -->
+`{{r}} summer_most_silvers$team`
+:::
 
-<!-- `{r} summer_most_bronzes$team` -->
-<!-- ::: -->
+::: {.valuebox icon="award-fill" color="#cd7f32"}
+Most bronzes:
+
+`{{r}} summer_most_bronzes$n`
+
+`{{r}} summer_most_bronzes$team`
+````
+:::
 
 # The Middle Child (Part Static, Part Dynamic)
 
-## {background-iframe="https://nasoares.quarto.pub/wellcome-global-monitor-2018"}
-
-- gganimate
-- leaflet
+## {background-iframe="https://nasoares.quarto.pub/wellcome-global-monitor-2018/"}
 
 ## {background-iframe="https://stat541.visruth.com/static_dashboard"}
 
-- leaflet
-- plotly
-
 # Dynamic Dashboard
 
-## {background-iframe="https://jjallaire.shinyapps.io/penguins-dashboard/"}
+## {background-iframe="https://jjallaire.shinyapps.io/diamonds/"}
+
+## Creating a Shiny Dashboard
+
+```{.bash filename="dashboard.qmd"}
+--- 
+title: "Palmer Penguins"
+author: "Cobblepot Analytics"
+format: dashboard
+server: shiny
+---
+```
+
+## Interactive Dashboard Components
+
+::: {.midi}
+The format of interactive dashboards are similar to a "standard" dashboard. The
+difference lies in how the outputs (e.g., plots, tables) are created. 
+
+::: {.incremental}
+1. The user is given a set of controls that influence the output that is seen. 
+
+2. There are code chunks that "react" to these user inputs.
+
+3. The outputs displayed in the app depend on these user inputs. 
+:::
+:::
+
+. . .
+
+::: {.callout-important}
+There are three main `#| context:` values that code chunks can have: `data`, `setup`, `server`.  
+:::
+
+## `#| context: setup`
+
+::: {.chart-example}
+````{.bash filename="dashboard.qmd"}
+---
+title: "Diamonds Explorer"
+author: "Barkamian Analytics"
+format: dashboard
+server: shiny
+---
+
+```{{r}}
+#| context: setup
+
+library(ggplot2)
+dataset <- diamonds
+```
+````
+:::
+
+. . .
+
+::: {.small}
+::: {.callout-tip}
+This could have been broken apart into **two** code chunks, one with a `setup` context and one with a `data` context. Using the `data` context is helpful because any R objects created in that chunk will be saved to an .RData file, which will then be loaded during Shiny server startup. 
+:::
+:::
+
+## `.sidebar` Content
+
+::: {.chart-example}
+````{.bash filename="dashboard.qmd"}
+---
+title: "Diamonds Explorer"
+author: "Barkamian Analytics"
+format: dashboard
+server: shiny
+---
+
+```{{r}}
+#| context: setup
+
+library(ggplot2)
+dataset <- diamonds
+```
+
+
+# {.sidebar}
+
+```{{r}}
+sliderInput('sampleSize', 'Sample Size', 
+            min = 1, max = nrow(dataset),
+            value = min(1000, nrow(dataset)), 
+            step = 500, round = 0)
+br()
+checkboxInput('jitter', 'Jitter')
+checkboxInput('smooth', 'Smooth')
+```
+
+```{{r}}
+selectInput('x', 'X', names(dataset)) 
+selectInput('y', 'Y', names(dataset), names(dataset)[[2]])
+selectInput('color', 'Color', c('None', names(dataset)))
+```
+
+```{{r}}
+selectInput('facet_row', 'Facet Row',
+  c(None = '.', names(diamonds[sapply(diamonds, is.factor)])))
+selectInput('facet_col', 'Facet Column',
+  c(None = '.', names(diamonds[sapply(diamonds, is.factor)])))
+```
+````
+:::
+
+## What's with the formatting?
+
+::: {.small}
+```{r}
+#| eval: false
+#| echo: true
+#| label: sidebar-input
+
+sliderInput('sampleSize', 'Sample Size', min = 1, max = nrow(dataset),
+            value = min(1000, nrow(dataset)), step = 500, round = 0)
+```
+:::
+
+::: {.small}
+::: {.incremental}
+- `'sampleSize'`: the name of the object that stores the value (to be used later in other code chunks)
+- `'Sample Size'`: the title (for the slider) that is displayed on the dashboard
+- `min = 1`: the starting value of the slider
+- `max = nrow(dataset)`: the ending value of the slider
+- `value = min(1000, nrow(dataset))`: sets the initial (default) value of the slider 
+- `step = 500`: how big of increments should be displayed
+- `round = 0`: specifies there should be 0 decimals places used
+:::
+:::
+
+. . .
+
+::: {.small}
+::: {.callout-tip}
+Why do these say `dataset` instead of `diamonds`? This makes the app usable for **any** dataset!
+:::
+:::
+
+## How are these inputs used?
+
+::: {.chart-example}
+````{.bash filename="dashboard.qmd"}
+---
+title: "Diamonds Explorer"
+author: "Barkamian Analytics"
+format: dashboard
+server: shiny
+---
+
+```{{r}}
+#| context: setup
+library(ggplot2)
+dataset <- diamonds
+```
+
+# {.sidebar}
+
+```{{r}}
+sliderInput('sampleSize', 'Sample Size', 
+            min=1, max=nrow(dataset),
+            value=min(1000, nrow(dataset)), 
+            step=500, round=0)
+br()
+checkboxInput('jitter', 'Jitter')
+checkboxInput('smooth', 'Smooth')
+```
+
+```{{r}}
+selectInput('x', 'X', names(dataset)) 
+selectInput('y', 'Y', names(dataset), names(dataset)[[2]])
+selectInput('color', 'Color', c('None', names(dataset)))
+```
+
+```{{r}}
+selectInput('facet_row', 'Facet Row',
+  c(None='.', names(diamonds[sapply(diamonds, is.factor)])))
+selectInput('facet_col', 'Facet Column',
+  c(None='.', names(diamonds[sapply(diamonds, is.factor)])))
+```
+
+# Plot
+
+```{{r}}
+plotOutput('plot')
+```
+
+# Data
+
+```{{r}}
+tableOutput('data')
+```
+
+````
+:::
+
+
+## What about `'plot'` and `'data'`?
+
+````{.bash filename="dashboard.qmd"}
+```{{r}}
+#| context: server
+
+dataset <- reactive({
+  diamonds[sample(nrow(diamonds), input$sampleSize),]
+})
+ 
+output$plot <- renderPlot({
+  
+  p <- ggplot(
+    dataset(), 
+    aes_string(x=input$x, y=input$y)) + geom_point()
+  
+  if (input$color != 'None')
+    p <- p + aes_string(color=input$color)
+  
+  facets <- paste(input$facet_row, '~', input$facet_col)
+  if (facets != '. ~ .')
+    p <- p + facet_grid(facets)
+  
+  if (input$jitter)
+    p <- p + geom_jitter()
+  if (input$smooth)
+    p <- p + geom_smooth()
+  
+  p
+  
+})
+
+output$data <- renderTable({
+  dataset()
+})
+```
+````
+
+## How are all of these pieces connected?
+
+::: columns
+::: {.column width="90%"}
+`plotOutput('plot')` is an empty picture frame in your user interface
+:::
+
+::: {.column width="10%"}
+![](images/06-frame.png)
+:::
+:::
+
+. . .
+
+::: columns
+::: {.column width="90%"}
+`renderPlot()` is the painting you generate in your server 
+:::
+
+::: {.column width="10%"}
+![](images/06-art.png)
+:::
+:::
+
+. . .
+
+::: columns
+::: {.column width="90%"}
+`output$plot` places the painting in the frame
+:::
+
+::: {.column width="10%"}
+![](images/06-painting.png)
+:::
+:::
+
+. . .
+
+::: columns
+::: {.column width="90%"}
+`plotOutput('plot')` places the painting on display
+:::
+
+::: {.column width="10%"}
+![](images/06-hang-art.png)
+:::
+:::
 
