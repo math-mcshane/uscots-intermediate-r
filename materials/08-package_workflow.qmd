@@ -1,0 +1,71 @@
+---
+title: "3.3 - Package-based Workflow"
+subtitle: ""
+format: 
+  revealjs:
+    footer: "[Teaching Intermediate R](https://github.com/atheobold/uscots-intermediate-r)"
+    theme: [simple, styles.scss]
+    embed-resources: true
+editor: source
+---
+
+## What is a package workflow?
+
+# Why a package workflow?
+
+* Ease students into *developer* mindset.
+
+* Emphasize *unit-testing* and *documentation* frameworks.
+
+* Practice with *code review* of others' code.
+
+* Easier to *performance check* code.
+
+* Grading via automatic tests.
+
+# How-to
+
+1. Create a **skeleton R package** on GitHub.
+
+2. Include **pre-written unit tests**.
+
+3. Include **vignette-style** function demos.
+
+4. Duplicate unit tests **with a new dataset** for your own use in grading.
+
+5. Require **code review** as part of assignment.
+
+# Setup
+
+## Skeleton R package
+
+1. `usethis::create_package("example_skeleton_package")`
+
+2. `usethis::use_r("simple_linear_regression")`
+
+3. `usethis::use_test("simple_linear_regression")`
+
+4. New File > Quarto > `slr_demo.qmd`
+
+# Student Assignment
+
+## Complete the function
+
+## Document and build
+
+## Pass the unit tests
+
+## Render the demo
+
+## What do students turn in?
+
+1. A link to their GitHub of the package.
+
+2. The rendered html of `slr_demo`.
+
+3. A code review of someone else's package.
+
+## Grading
+
+1. `
+
