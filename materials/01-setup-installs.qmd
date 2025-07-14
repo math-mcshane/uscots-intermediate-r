@@ -116,11 +116,11 @@ result <- data_main %>%
 
 ::::: {.columns layout-ncol="2"}
 ::: column
-![](images/r4ds.jpg)
+![](images/01-r4ds.jpg)
 :::
 
 ::: column
-![](images/book_of_r.jpg)
+![](images/01-book_of_r.jpg)
 :::
 :::::
 
@@ -142,7 +142,7 @@ result <- data_main %>%
 
 ## Is it *just* programming? Of course not!
 
-![](images/advR.jpg){fig-align="center"}
+![](images/01-advR.jpg){fig-align="center"}
 
 # What is *Intermediate R*?
 
