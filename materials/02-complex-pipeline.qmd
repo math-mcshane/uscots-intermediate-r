@@ -1,0 +1,280 @@
+---
+title: "1.1 - Complex Data Pipelines"
+subtitle: ""
+format: 
+  revealjs:
+    footer: "[USCOTS Intermediate R Workshop](https://atheobold.github.io/uscots-intermediate-r/)"
+    theme: [simple, styles.scss]
+    embed-resources: true
+editor: source
+---
+
+```{r}
+library(tidyverse)
+dat_ff <- read_csv(here::here("data", "fastfood.csv"))
+```
+
+
+# Asking more complex research questions
+
+## Setup: Data
+
+```{r}
+dat_ff
+```
+
+
+## Background: Intro level RQs
+
+* The **Big Five** tidyverse verbs:
+
+    + `arrange`
+    + `filter`
+    + `mutate`
+    + `group_by`
+    + `summarize`
+    
+* (Doesn't have to be tidyverse syntax!)
+
+## thing
+
+Type of basic questions:
+
+* `arrange` What item has **the most** calories?
+
+* `mutate` **Calculate** the saturated fat to total fat ratio of each item.
+
+* `summarize` What is the **median** calorie item?
+
+* `filter` **How many** items have more than 1000 calories?
+
+* `group_by` Same questions, but **within each** restaurant.
+
+## Intro pipelines
+
+* `mutate` -> `arrange` "What item has the highest saturated fat to total fat ratio?"
+
+* `mutate` -> `filter` "How many items have more than 50% of total fat in saturated form?"
+
+* `group_by` -> `summarize` -> `filter` "How many restaurants have at least one 2000 calorie item?"
+
+* any -> plot: "Make a boxplot of average saturated fat percentages for items in each restaurant."
+
+# Designing pipeline activities
+
+## Sketch a plan
+
+## Reorder a pipeline
+
+## Fill in a blank
+
+## YOUR TURN
+
+Jot down some RQs for intro-level pipelines.
+
+[timer]
+
+## Making it complex
+
+Ways to level up **pipeline complexity** of the RQs:
+
+1. Changing the *cases/rows* (esp for *visualization*)
+
+2. Operations *inside* `mutate` or with `group_by`
+
+3. Many pivots, especially for *summary tables*
+
+4. Multiple datasets and *joins*
+
+
+## Change the cases/rows
+
+* Summarizing by group: rows become *restaurants* not *items*.
+
+* Pivoting: rows become *nutrition measurement for an item* rather than *items*.
+
+* Filter/distinct: rows become *flagship item of each restaurant* rather than *items*.
+
+* (condensing vs filtering)
+
+```{r}
+dat_ff
+```
+
+
+```{r}
+dat_ff |>
+  group_by(restaurant) |>
+  summarize(mean(calories))
+```
+
+```{r}
+dat_ff |>
+  pivot_longer(calories:calcium,
+               values_to = "amount",
+               names_to = "nutritional_item")
+```
+
+```{r}
+flagships <- c("Mcdonalds" = "Big Mac", 
+               "Burger King" = "WHOPPER w/ Cheese", 
+               "Taco Bell" = "Crunchwrap Supreme®",
+               "Chick Fil-A" = "Chicken Sandwich", 
+               "Subway" = "Footlong Subway Club",
+               "Arbys" = "Classic Roast Beef",
+               "Dairy Queen" = "DQ Ultimate® Burger",
+               "Sonic" = "Sonic Bacon Cheeseburger (w/mayo)")
+
+dat_ff |>
+  filter(item %in% flagships)
+```
+
+
+
+
+## Do more with mutate
+
+##  `group_by` |> `mutate`
+
+**What is the highest-calorie single item at each restaurant?**
+
+```{r}
+dat_ff |>
+  group_by(restaurant) |>
+  mutate(
+    max_calories = max(calories),
+    prop_of_max_cal = calories/max_calories
+  )
+```
+
+## YOUR TURN
+
+Think of a measurement *by category* that you might want to add to *every additional row* of your dataset, for purposes of comparing.
+
+## Pipelines inside mutate
+
+```{r}
+dat_ff |>
+  group_by(restaurant) |>
+  mutate(
+    flagship_calories = .data |> filter(item %in% flagships) |> pull(calories)
+  )
+```
+
+## String parsing
+
+**Find the median calories for a burger at each restaurant.**
+
+
+```{r}
+dat_ff |>
+  mutate(
+    is_burger = str_detect(item, "burger")
+  ) |>
+  filter(is_burger) |>
+  group_by(restaurant) |>
+  summarize(median(calories))
+```
+
+-> RegEx Opportunity
+
+## YOUR TURN
+
+Find a string column in your dataset, jot down 1-3 new *non-string* columns you might want to make by parsing that string.
+
+## Custom/complicated functions and mapping
+
+**YOUR TURN!**
+
+> Your city has just passed a law that fast food items need to contain a warning note if they have over 40% calories from fat, over 40% saturated fat, or any trans fats at all.
+
+> Write a function that creates a warning note based on an items nutritional information.
+
+> Then, use that function inside of `mutate` to add a warning label for each item.
+
+*timer*
+
+
+## Answer
+
+```{r}
+check_healthy_fat <- function(calories, cal_fat, total_fat, sat_fat, trans_fat) {
+  
+  cal_fat_pct <- cal_fat/calories
+  sat_fat_pct <- sat_fat/total_fat
+  
+  warning <- ""
+  
+  if (!is.na(cal_fat_pct) & cal_fat_pct > 0.4) {
+    warning <- paste(warning, "Calories from fat is high.")
+  }
+  
+  if (!is.na(sat_fat_pct) & sat_fat_pct > 0.4) {
+    warning <- paste(warning, "High saturated fat percent.")
+  }
+  
+  if (!is.na(trans_fat) & trans_fat > 0) {
+    warning <- paste(warning, "Contains trans fat.")
+  }
+  
+  return(warning)
+  
+}
+```
+
+## Answer
+
+
+```{r}
+dat_ff |>
+  mutate(
+    healthy_fat_warning = pmap_chr(dat_ff |> select(calories, cal_fat, total_fat, sat_fat, trans_fat), check_healthy_fat)
+  )
+```
+
+
+
+
+
+## Non-one-to-one Joins
+
+## YOUR TURN
+
+Look at your collection of data - where are there keys to match?  Are any of them not one-to-one, or otherwise complex?
+
+## Multiple Pivots
+
+
+## YOUR TURN
+
+Sketch a summary table that might be interesting for your data, then "flip it".
+
+<!-- # Teaching unit testing principles -->
+
+<!-- ## "Checking in" on the pipeline -->
+
+<!-- ## Look at the extremes -->
+
+<!-- ## Try to break it -->
+
+# Summary and resources
+
+## RegEx
+
+## Map/apply inside and outside
+
+## Custom functions for pipeline problems
+
+## List-cols
+
+
+## YOUR TURN
+
+For your dataset, come up with some research questions that require a complicated pipeline to address. 
+
+Sketch out the steps needed to answer a research question.
+
+Jot down some ideas about how you would make *transitional* student questions out of these - e.g., which steps would you show and which would you leave blank?
+
+*timer*
+
