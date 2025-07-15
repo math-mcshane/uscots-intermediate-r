@@ -81,6 +81,24 @@ Jot down some research questions or tasks that are answerable with intro-level p
 countdown(minutes = 3)
 ```
 
+### Ryan's choice: 
+
+Find the highest protein to calories ratio item: 
+
+```{r}
+r_ff = readr::read_csv("data/fastfood.csv")
+r_ff |> 
+  mutate(
+    pro_cal = protein / calories, 
+    max_pro_cal = max(pro_cal, na.rm = TRUE)
+  ) |>
+  arrange(desc(pro_cal)) |>
+  filter(max_pro_cal == pro_cal)
+```
+
+
+
+
 # Designing problems for complex pipelines
 
 ## Making it complex
@@ -182,6 +200,18 @@ Think of a measurement *by category* that you might want to add to *every additi
 countdown(minutes = 3)
 ```
 
+### Ryan
+
+Find the highest protein to calories ratio item by restaurant:
+
+```{r}
+r_ff = r_ff |> 
+  group_by(restaurant) |>
+  mutate(
+    pro_cal = protein / calories, 
+    max_pro_cal = max(pro_cal, na.rm = TRUE)
+  )
+```
 
 ## String parsing
 
