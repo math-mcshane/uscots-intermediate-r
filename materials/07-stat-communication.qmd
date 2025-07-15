@@ -1,0 +1,10 @@
+---
+format: 
+  revealjs:
+    footer: "[Teaching Intermediate R](https://github.com/atheobold/uscots-intermediate-r)"
+    theme: [simple, styles.scss]
+    embed-resources: true
+editor: source
+---
+
+##  
