@@ -154,6 +154,9 @@ Think of a measurement *by category* that you might want to add to *every additi
 ## Pipelines inside mutate
 
 ```{r}
+#| error: true
+#| label: allison-cant-run-this
+
 dat_ff |>
   group_by(restaurant) |>
   mutate(
