@@ -39,6 +39,7 @@ library(countdown)
 
 install.packages("usethis")
 
+
 usethis::use_course("atheobold/uscots-intermediate-r")
 ```
 
