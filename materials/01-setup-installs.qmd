@@ -248,7 +248,6 @@ digraph flowchart {
 
 4.  Use complex data wrangling pipelines, including **multiple pivots** and/or **multiple grouping levels**, to wrangle data.
 
-5.  Produce visualizations beyond basic geometries, including **maps** and **annotated** plots.
 
 ## Unit A Project
 
@@ -340,6 +339,8 @@ Research questions will be provided that require **complex, multi-step data wran
 ![](images/R-deliv.png){.circular-img fig-align="center"}
 
 ## Learning Goals
+
+-  Produce visualizations beyond basic geometries, including **maps** and **annotated** plots.
 
 -   Incorporate **interactivity** into data reports.
 

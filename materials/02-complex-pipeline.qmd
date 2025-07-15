@@ -6,22 +6,22 @@ format:
     footer: "[USCOTS Intermediate R Workshop](https://atheobold.github.io/uscots-intermediate-r/)"
     theme: [simple, styles.scss]
     embed-resources: true
+    code-fold: true
 editor: source
+execute:
+  echo: true
 ---
 
 ```{r}
+#| include: false
 library(tidyverse)
+library(countdown)
 dat_ff <- read_csv(here::here("materials", "data", "fastfood.csv"))
 ```
 
 
 # Asking more complex research questions
 
-## Setup: Data
-
-```{r}
-dat_ff
-```
 
 
 ## Background: Intro level RQs
@@ -36,7 +36,13 @@ dat_ff
     
 * (Doesn't have to be tidyverse syntax!)
 
-## thing
+## Dataset 1: Fast food nutrition
+
+```{r}
+dat_ff
+```
+
+## Single-function RQs
 
 Type of basic questions:
 
@@ -50,7 +56,7 @@ Type of basic questions:
 
 * `group_by` Same questions, but **within each** restaurant.
 
-## Intro pipelines
+## Intro pipeline RQs
 
 * `mutate` -> `arrange` "What item has the highest saturated fat to total fat ratio?"
 
@@ -60,19 +66,21 @@ Type of basic questions:
 
 * any -> plot: "Make a boxplot of average saturated fat percentages for items in each restaurant."
 
-# Designing pipeline activities
-
-## Sketch a plan
-
-## Reorder a pipeline
-
-## Fill in a blank
 
 ## YOUR TURN
 
-Jot down some RQs for intro-level pipelines.
+::: {.r-fit-text}
+Choose one of your clean tabular datasets.
 
-[timer]
+Jot down some research questions or tasks that are answerable with intro-level pipelines on that dataset.
+:::
+
+```{r}
+#| echo: false
+countdown(minutes = 3)
+```
+
+# Designing problems for complex pipelines
 
 ## Making it complex
 
@@ -91,22 +99,15 @@ Ways to level up **pipeline complexity** of the RQs:
 
 * Summarizing by group: rows become *restaurants* not *items*.
 
-* Pivoting: rows become *nutrition measurement for an item* rather than *items*.
-
-* Filter/distinct: rows become *flagship item of each restaurant* rather than *items*.
-
-* (condensing vs filtering)
-
-```{r}
-dat_ff
-```
-
-
 ```{r}
 dat_ff |>
   group_by(restaurant) |>
   summarize(mean(calories))
 ```
+
+## Change the cases/rows
+
+* Pivoting: rows become *nutrition measurement for an item* rather than *items*.
 
 ```{r}
 dat_ff |>
@@ -115,7 +116,21 @@ dat_ff |>
                names_to = "nutritional_item")
 ```
 
+## Change the cases/rows
+
+* Distinct: rows become *restaurants* rather than *items*.
+
 ```{r}
+dat_ff |>
+  distinct(restaurant, .keep_all = TRUE)
+```
+
+```{r}
+#| include: false
+#| eval: false
+
+## old idea, might use later
+
 flagships <- c("Mcdonalds" = "Big Mac", 
                "Burger King" = "WHOPPER w/ Cheese", 
                "Taco Bell" = "Crunchwrap Supreme®",
@@ -127,6 +142,12 @@ flagships <- c("Mcdonalds" = "Big Mac",
 
 dat_ff |>
   filter(item %in% flagships)
+
+dat_ff |>
+  group_by(restaurant) |>
+  mutate(
+    flagship_calories = .data |> filter(item %in% flagships) |> pull(calories)
+  )
 ```
 
 
@@ -144,30 +165,26 @@ dat_ff |>
   mutate(
     max_calories = max(calories),
     prop_of_max_cal = calories/max_calories
-  )
+  ) 
 ```
 
 ## YOUR TURN
 
-Think of a measurement *by category* that you might want to add to *every additional row* of your dataset, for purposes of comparing.
 
-## Pipelines inside mutate
+::: {.r-fit-text}
+Think of a measurement *by category* that you might want to add to *every additional row* of your dataset, for purposes of comparing.
+:::
 
 ```{r}
-#| error: true
-#| label: allison-cant-run-this
 
-dat_ff |>
-  group_by(restaurant) |>
-  mutate(
-    flagship_calories = .data |> filter(item %in% flagships) |> pull(calories)
-  )
+#| echo: false
+countdown(minutes = 3)
 ```
+
 
 ## String parsing
 
 **Find the median calories for a burger at each restaurant.**
-
 
 ```{r}
 dat_ff |>
@@ -179,23 +196,79 @@ dat_ff |>
   summarize(median(calories))
 ```
 
--> RegEx Opportunity
+## Regular expressions
+
+*Optional:* Level up this task with regular expressions!
+
+**Find the median calories for a CHEESE burger at each restaurant.**
+
+```{r}
+dat_ff |>
+  mutate(
+    is_cheese_burger = str_detect(item, "[Ch]ee(z|se) ?[bB]urger")
+  ) |>
+  filter(is_cheese_burger) |>
+  group_by(restaurant) |>
+  summarize(median(calories))
+```
 
 ## YOUR TURN
 
+::: {.r-fit-text}
 Find a string column in your dataset, jot down 1-3 new *non-string* columns you might want to make by parsing that string.
+:::
 
-## Custom/complicated functions and mapping
+```{r}
+#| echo: false
+countdown(minutes = 3)
+```
 
-**YOUR TURN!**
 
+## Complex/unvectorized functions and mapping
+
+**For each item, give the amount of saturated fat or of trans fat, whichever is larger**
+
+```{r}
+## This won't work!
+
+dat_ff |>
+  mutate(
+    bad_fat = max(sat_fat, trans_fat)
+  )
+```
+
+
+## Complex/unvectorized functions and mapping
+
+**For each item, give the amount of saturated fat or of trans fat, whichever is larger**
+
+```{r}
+## This will!
+
+dat_ff |>
+  mutate(
+    bad_fat = pmap_dbl(list(sat_fat, trans_fat), max)
+  )
+```
+
+
+
+## YOUR TURN - Try an activity
+
+::: {.r-fit-text}
 > Your city has just passed a law that fast food items need to contain a warning note if they have over 40% calories from fat, over 40% saturated fat, or any trans fats at all.
 
 > Write a function that creates a warning note based on an items nutritional information.
 
 > Then, use that function inside of `mutate` to add a warning label for each item.
 
-*timer*
+As you work on this, make note of any pain points, confusions, or complexities that differentiate this task from an "Intro level" one.
+:::
+
+```{r}
+#| echo: false
+countdown(minutes = 10)
+```
 
 
 ## Answer
@@ -231,26 +304,140 @@ check_healthy_fat <- function(calories, cal_fat, total_fat, sat_fat, trans_fat) 
 ```{r}
 dat_ff |>
   mutate(
-    healthy_fat_warning = pmap_chr(dat_ff |> select(calories, cal_fat, total_fat, sat_fat, trans_fat), check_healthy_fat)
+    healthy_fat_warning = pmap_chr(list(calories, cal_fat, total_fat, sat_fat, trans_fat), check_healthy_fat)
   )
+```
+
+
+## Non one-to-one Joins
+
+Consider this additional dataset:
+
+```{r}
+#| echo: false
+dat_loc <- read_csv(here::here("materials", "data", "Fast_Food_Restaurants_US.csv"))
+```
+
+```{r}
+dat_loc
+```
+
+## Complex joins
+
+There are some complications in joining this data to our nutritional data...
+
+* The restaurants aren't named consistently, e.g. "Sonic" vs "SONIC Drive-In".
+
+* Sometimes there are multiple matches - "Dairy Queen", "Wolf's Dairy Queen", "Dairy Heaven", "Dairy Queen (Treat Only)"
+
+* Many restaurants appear in `dat_loc` but not `dat_ff`.
+
+* Each restaurant appears multiple times in both `dat_loc` and `dat_ff`.
+
+## Filtering Joins
+
+`anti_join` can be used to check which keys don't match:
+
+```{r}
+dat_ff |>
+  anti_join(dat_loc,
+            by = c("restaurant" = "name")) |>
+  distinct(restaurant)
+```
+
+
+## Mutating Joins
+
+"Where can I get a burger?"
+
+```{r}
+dat_ff |>
+  filter(str_detect(item, "burger")) |>
+  distinct(restaurant) |>
+  left_join(dat_loc,
+            by = c("restaurant" = "name"))
+```
+
+## Mutating Joins
+
+Notice:
+
+* We used `distinct` on `dat_ff` first.  This makes it a *one-to-many* join instead of a *many-to-many*.  Why is this good/what if we didn't?
+
+* `dat_ff` had 515 rows. `dat_loc` had 10000.  The result of our pipeline has `1075`. *When a join is not one-to-one, you can't predict the number of rows easily!*
+
+* What if we had used `full_join`?  `right_join`?
+
+
+## YOUR TURN
+
+::: {.r-fit-text}
+Look at your collection of data - where are there keys to match?  Are any of them not one-to-one, or otherwise complex?
+:::
+
+```{r}
+#| echo: false
+countdown(minutes = 3)
+```
+
+
+## Multiple Pivots
+
+A common pipeline with multiple pivots might be:
+
+1. Do a calculation
+2. Pivot longer
+3. Join
+4. Calculate some summary by groups
+5. Pivot back wider
+
+## Example
+
+> What city has the most burgers?
+
+```{r}
+burger_counts <- dat_ff |> 
+  mutate(
+    is_burger = str_detect(item, "burger")
+  ) |>
+  group_by(restaurant) |> 
+  count(is_burger) |>
+  pivot_wider(names_from = is_burger,
+              values_from = n,
+              names_prefix = "burger_")
+
+burger_counts
+```
+
+## Example
+
+> What city has the most burgers?
+
+```{r}
+burger_counts |>
+  left_join(dat_loc,
+            by = c("restaurant" = "name")) |>
+  group_by(city) |>
+  summarize(
+    total_burgers = sum(burger_TRUE, na.rm = TRUE)
+  ) |>
+  arrange(desc(total_burgers))
 ```
 
 
 
 
-
-## Non-one-to-one Joins
-
 ## YOUR TURN
 
-Look at your collection of data - where are there keys to match?  Are any of them not one-to-one, or otherwise complex?
+::: {.r-fit-text}
+Sketch a summary table that might be interesting for your data, then reverse engineer the pivots and joins needed to achieve it.
+:::
 
-## Multiple Pivots
 
-
-## YOUR TURN
-
-Sketch a summary table that might be interesting for your data, then "flip it".
+```{r}
+#| echo: false
+countdown(minutes = 5)
+```
 
 <!-- # Teaching unit testing principles -->
 
@@ -260,24 +447,99 @@ Sketch a summary table that might be interesting for your data, then "flip it".
 
 <!-- ## Try to break it -->
 
-# Summary and resources
+<!-- # Summary and resources -->
 
-## RegEx
+<!-- ## RegEx -->
 
-## Map/apply inside and outside
+<!-- ## Map/apply inside and outside -->
 
-## Custom functions for pipeline problems
+<!-- ## Custom functions for pipeline problems -->
 
-## List-cols
+<!-- ## List-cols -->
+
+
+# Designing pipeline activities
+
+## "Transition" or "Scaffold" activities
+
+Some suggested "scaffold" activities:
+
+1. Sketch a plan
+
+2. Reorder a pipeline
+
+3. Fill in a blank
+
+## Sketch a plan
+
+* Begin with **pen-and-paper only** - no computer, no code
+
+* Plan out the steps needed to address the RQ
+
+* Include "sketches" of the how the dataset should look after each step
+
+## Reorder a pipeline
+
+Provide all the pipeline elements, ask students to put them in proper order.
+
+```
+burger_counts |>
+
+a) summarize(
+    total_burgers = sum(burger_TRUE, na.rm = TRUE)
+  )
+b) group_by(city)
+c) left_join(dat_loc,
+            by = c("restaurant" = "name"))
+d) arrange(desc(total_burgers))
+  
+```
+
+Answer: `c-b-a-d`
+
+## Fill in a blank
+
+This could mean fill in a blank in **code** to achieve a goal ...
+
+```
+burger_counts |>
+  left_join(dat_loc,
+            by = c("restaurant" = "name")) |>
+  ___________ |>
+  summarize(
+    total_burgers = sum(burger_TRUE, na.rm = TRUE)
+  ) |>
+  arrange(desc(total_burgers))
+
+```
+
+## Fill in a blank
+
+This could also mean fill in an *intermediate dataset step*:
+
+```
+[Original Data Sketch]
+->
+[Joined Data Sketch]
+->
+STUDENTS FILL IN THIS SKETCH
+->
+[Final output]
+```
 
 
 ## YOUR TURN
 
+::: {.r-fit-text}
 For your dataset, come up with some research questions that require a complicated pipeline to address. 
 
 Sketch out the steps needed to answer a research question.
 
 Jot down some ideas about how you would make *transitional* student questions out of these - e.g., which steps would you show and which would you leave blank?
+:::
 
-*timer*
+```{r}
+#| echo: false
+countdown(minutes = 10)
+```
 
