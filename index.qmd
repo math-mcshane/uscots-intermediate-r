@@ -29,7 +29,7 @@ The focus of this workshop will not be training in intermediate R skills, but ra
 ### **Tuesday (1:00 - 4:30pm)**
 
 | Time | Topic | Presenter |
-|:---------------:|:-------------------------------:|:--------------------:|
+|:----------------:|:------------------------------:|:--------------------:|
 | 1:00 - 1:15 | [Introductions](materials/00-introductions.qmd) | Everyone! |
 | 1:15 - 1:45 | [Workshop Installs & Set-up](materials/01-setup-installs.qmd) | Kelly, Tyson, Allison |
 | 1:45 - 2:15 | Activity: Find Data Sources | You! |
@@ -41,9 +41,9 @@ The focus of this workshop will not be training in intermediate R skills, but ra
 ### **Wednesday (8:30am - 4:30pm)**
 
 |  |  |  |
-|:---------------:|:-------------------------------:|:-------------------:|
+|:----------------:|:-------------------------------:|:-------------------:|
 | 8:30 - 8:45 | Review, Reset & Share Project A | Everyone! |
-| 8:45 - 9:30 | Professional Data Visualization | Tyson |
+| 8:45 - 9:30 | [Professional Data Visualization](/materials/04-professional-viz.qmd) | Tyson |
 | 9:30 - 10:00 | [Magic of Quarto](materials/05-quarto-projects-websites.qmd) | Allison |
 | 10:00 - 10:15 | Break |  |
 | 10:15 - 10:45 | [Quarto Dashboards](materials/06-quarto-dashboards.qmd) | Allison |
@@ -51,7 +51,7 @@ The focus of this workshop will not be training in intermediate R skills, but ra
 | 11:30 - 12:00 | Activity: Create Your *Project B* | You! |
 | 12:00 - 1:00 | Lunch Break |  |
 | 1:00 - 1:15 | Review, Reset & Share Project B | You! |
-| 1:15 - 2:30 | [Package Workflow Teaching](materials/08-package_workflow.qmd) | Kelly |
+| 1:15 - 2:30 | [Package Workflow Teaching](materials/09-package_workflow.qmd) | Kelly |
 | 2:30 - 2:45 | Break |  |
 | 2:45 - 3:30 | Thinking Like a Developer | Tyson |
 | 3:00 - 4:00 | Activity: Create Your *Project C* | You! |
