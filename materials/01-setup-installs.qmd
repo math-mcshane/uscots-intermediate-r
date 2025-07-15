@@ -27,6 +27,10 @@ library(countdown)
 
 ## Download course materials
 
+**Option A:** Clone or fork from GitHub: atheobold/uscots-intermediate-r
+
+**Option B:**
+
 ```{r}
 #| eval: false
 #| echo: true
@@ -37,6 +41,7 @@ install.packages("usethis")
 usethis::use_course("atheobold/uscots-intermediate-r")
 ```
 
+**Option C:** Just use the website!
 
 
 ## Package installs
@@ -54,8 +59,18 @@ packages <- c(
   "tidyverse",
   "tidymodels",
   "data.table",
-  "duckdb"
-  ### Allison and Tyson add
+  "duckdb",
+  "rvest",
+  "polite",
+  "httr2",
+  "jsonlite",
+  "xml2",
+  "arrow",
+  "DBI",
+  "RSQLite",
+  "RPostgreSQL",
+  "RMySQL",
+  "dbplyr"
 )
 
 install.packages(packages)
