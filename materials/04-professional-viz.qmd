@@ -1,0 +1,144 @@
+---
+title: "Professional Data Visualization"
+subtitle: "Beyond Basic ggplot2"
+format: 
+  revealjs:
+    footer: "[USCOTS Intermediate R Workshop](https://atheobold.github.io/uscots-intermediate-r/)"
+    theme: [simple, styles.scss]
+    embed-resources: true
+    scrollable: true
+editor: source
+---
+
+## Why Professional Data Visualization?
+
+Moving from "making plots" to "effective communication":
+
+::: {.incremental}
+- **Process vs. Product**: Teaching students to evaluate their own work
+- **Advanced techniques**: Extensions, theming, interactivity
+- **Professional standards**: Publication-ready graphics
+- **Assessment strategies**: Clear grading principles
+:::
+
+
+## Learning Objectives
+
+By the end of this session, you will:
+
+::: {.incremental}
+1. Understand grading principles for "good" data visualization (process vs. product)
+2. Know current ggplot2 extensions and advanced theming techniques
+3. Be familiar with interactive visualization tools (plotly, htmlwidgets)
+:::
+
+. . .
+
+::: {style="font-size: 1.1em; color: #2E7D32;"}
+**Focus: Comprehensive resources to teach professional data visualization**
+:::
+
+# Grading Principles {background-color="#0F4C81"}
+
+## Process vs. Product Assessment
+
+Teaching visualization requires evaluating **both**:
+
+::: {.incremental}
+- **Process**: Design thinking, iteration, justification
+- **Product**: Technical execution, clarity, aesthetics
+- **Reflection**: Understanding of design choices
+- **Critique**: Ability to evaluate others' work
+:::
+
+. . .
+
+::: {style="font-size: 1.1em; color: #2E7D32;"}
+**Goal: Students learn to self-assess, iterate, and improve**
+:::
+
+## What Makes a "Good" Visualization?
+
+::: {.small}
+**Technical Accuracy:**
+
+- Appropriate chart type for data
+- Correct use of scales and axes
+- Accurate representation of relationships
+
+**Design Principles:**
+
+- Clear, informative titles and labels
+- Appropriate color choices and accessibility
+- Effective use of visual hierarchy
+- Minimal cognitive load
+
+**Communication:**
+
+- Clear message or insight
+- Appropriate for target audience
+- Context and interpretation provided
+:::
+
+## Grading Rubric for Visualizations
+
+:::{.large}
+⁇ **After considering some of the principles of "good" viz, what features should we be grading for?**
+:::
+
+. . . 
+
+:::{.large}
+⁇ **What message do we want to tell by the rubric?**
+:::
+
+
+## Example Grading Rubric Framework
+
+::: {.small}
+| **Criteria** | **Excellent (4)** | **Good (3)** | **Needs Work (2)** | **Poor (1)** |
+|:-------------|:------------------|:-------------|:-------------------|:-------------|
+| **Chart Type** | Match for data & message | Appropriate choice | Questionable fit | Wrong choice |
+| **Design** | Polished, clean, accessible | Good design principles | Some issues | Many problems |
+| **Message** | Compelling insight | Good communication | Unclear message | No clear point |
+| **Process** | Shows iteration/ reflection | Evidence of thinking | Some documentation | No process shown |
+:::
+
+::: {style="font-size: 0.9em; color: #666;"}
+**Teaching Tip:** Have students grade example visualizations using your rubric before using it on their own work
+:::
+
+## Sometimes Bad Is The Way
+
+TODO: insert mandalorian meme
+
+::: {style="font-size: 1em; color: #666;"}
+**Challenge students to create a data visual does well in only one of the 4 criteria**
+:::
+
+* Can encourage them to think through the criteria without being too routine or safe
+* Sharing within the class (e.g., on the class message board) can expand the learning
+* 
+
+
+
+## Teaching Resources for Assessment
+
+::: {.small}
+**Rubric Examples:**
+
+- [Penn State Data Visualization Rubric](https://libraries.psu.edu/about/departments/research-informatics-and-publishing/data-learning-center/data-visualization-1) - Award judging criteria
+- [Georgetown Assessment Guide](https://guides.library.georgetown.edu/c.php?g=75874&p=490360) - Student evaluation framework
+- [ASA Poster Judging Rubric](https://www.amstat.org/asa/files/pdfs/EDU-PosterJudgingRubric.pdf) - Professional standards
+
+**Design Principle Resources:**
+
+- Alberto Cairo's "The Truthful Art" - Comprehensive visualization principles
+- Edward Tufte's principles - Classic design guidelines  
+- Claus Wilke's "Fundamentals of Data Visualization" - Modern, R-focused approach
+
+**Teaching Examples:**
+
+- [UMass Visualization Assessment](https://scholarworks.umass.edu/cgi/viewcontent.cgi?article=1073&context=librarian_pubs) - Academic research
+- [IU Visualization Rubric](https://scholarworks.iu.edu/dspace/bitstream/handle/2022/16814/VisualizationAssessmentRubric.pdf) - Complete framework
+:::
