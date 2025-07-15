@@ -1060,14 +1060,16 @@ margin-right: 0; }
 </section>
 <section id="why-move-beyond-csv" class="slide level2">
 <h2>Why Move Beyond CSV?</h2>
+<div class="fragment">
 <p>Real-world data comes in many forms:</p>
 <div>
 <ul>
 <li class="fragment"><strong>Web data</strong>: HTML tables, JSON APIs, XML feeds</li>
+<li class="fragment"><strong>Real-time data</strong>: APIs that update continuously</li>
 <li class="fragment"><strong>Large datasets</strong>: Files too big for memory</li>
 <li class="fragment"><strong>Structured databases</strong>: Relational data with foreign keys</li>
-<li class="fragment"><strong>Real-time data</strong>: APIs that update continuously</li>
 </ul>
+</div>
 </div>
 <div class="fragment">
 <div style="font-size: 1.2em; color: #0F4C81;">
@@ -1075,9 +1077,8 @@ margin-right: 0; }
 </div>
 </div>
 </section>
-<section id="learning-objectives" class="slide level2 scrollable">
-<h2>Learning Objectives</h2>
-<p>Why these four topics?</p>
+<section id="why-integrate-other-data-sources" class="slide level2 scrollable">
+<h2>Why Integrate Other Data Sources?</h2>
 <div>
 <ol type="1">
 <li class="fragment">Real-world data are rarely nicely formatted</li>
@@ -1099,23 +1100,23 @@ margin-right: 0; }
 <ul>
 <li class="fragment"><strong><code>rvest</code></strong>: Core web scraping package for R</li>
 <li class="fragment"><strong><code>polite</code></strong>: Ethical scraping practices</li>
-<li class="fragment"><strong><code>httr2</code></strong>: HTTP requests and authentication</li>
+<li class="fragment"><strong><code>httr2</code></strong>: HTTP requests and authentication (we’ll get into this with APIs)</li>
 </ul>
 </div>
 <div class="fragment">
-<div style="font-size: 1.1em; color: #D32F2F;">
+<div style="font-size: 0.9em; color: #D32F2F;">
 <p><strong>Always check robots.txt and respect rate limits!</strong></p>
-<p><strong>Teaching Ethics:</strong> Use <a href="https://www.robotstxt.org/robotstxt.html">robots.txt checker</a> as classroom demo</p>
+<p><strong>Web Scraping Ethics:</strong> Use <a href="https://www.robotstxt.org/robotstxt.html">robots.txt checker</a> to review the “language” of this file</p>
+<p><strong>Example:</strong> <a href="https://www.google.com/robots.txt">Google’s robot.txt</a></p>
 </div>
 </div>
 </section>
 <section id="essential-web-scraping-packages" class="slide level2">
 <h2>Essential Web Scraping Packages</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="co"># pak::pak(c(&quot;rvest&quot;, &quot;polite&quot;, &quot;httr2&quot;))</span></span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="co"># pak::pak(c(&quot;rvest&quot;, &quot;polite&quot;))</span></span>
 <span id="cb1-2"><a></a><span class="fu">library</span>(rvest)</span>
-<span id="cb1-3"><a></a><span class="fu">library</span>(polite)</span>
-<span id="cb1-4"><a></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a></a><span class="fu">library</span>(polite)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <div class="midi">
@@ -1141,28 +1142,35 @@ margin-right: 0; }
 <span id="cb2-7"><a></a><span class="co"># 2. Scrape politely</span></span>
 <span id="cb2-8"><a></a>scraped_data <span class="ot">&lt;-</span> <span class="fu">scrape</span>(session) <span class="sc">%&gt;%</span></span>
 <span id="cb2-9"><a></a>  <span class="fu">html_elements</span>(<span class="st">&quot;title&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb2-10"><a></a>  <span class="fu">html_text</span>()</span>
-<span id="cb2-11"><a></a></span>
-<span id="cb2-12"><a></a>scraped_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-10"><a></a>  <span class="fu">html_text</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>What would you expect <code>scraped_data</code> to contain?</p>
 </section>
 <section id="polite-web-scraping-workflow-1" class="slide level2">
 <h2>Polite Web Scraping Workflow</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>session <span class="ot">&lt;-</span> <span class="fu">bow</span>(</span>
-<span id="cb3-2"><a></a>  <span class="st">&quot;https://example.com&quot;</span>, </span>
-<span id="cb3-3"><a></a>  <span class="at">user_agent =</span> <span class="st">&quot;Your Name &lt;email@example.com&gt;&quot;</span></span>
-<span id="cb3-4"><a></a>)</span>
-<span id="cb3-5"><a></a></span>
-<span id="cb3-6"><a></a>scraped_data <span class="ot">&lt;-</span> <span class="fu">scrape</span>(session) <span class="sc">%&gt;%</span></span>
-<span id="cb3-7"><a></a>  <span class="fu">html_elements</span>(<span class="st">&quot;title&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb3-8"><a></a>  <span class="fu">html_text</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>scraped_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] &quot;Example Domain&quot;</code></pre>
+</div>
+</div>
+</section>
+<section id="polite-web-scraping-workflow-2" class="slide level2">
+<h2>Polite Web Scraping Workflow</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="co"># 1. Bow and introduce yourself</span></span>
+<span id="cb5-2"><a></a>session <span class="ot">&lt;-</span> <span class="fu">bow</span>(</span>
+<span id="cb5-3"><a></a>  <span class="st">&quot;https://example.com&quot;</span>, </span>
+<span id="cb5-4"><a></a>  <span class="at">user_agent =</span> <span class="st">&quot;Your Name &lt;email@example.com&gt;&quot;</span></span>
+<span id="cb5-5"><a></a>)</span>
+<span id="cb5-6"><a></a></span>
+<span id="cb5-7"><a></a><span class="co"># 2. Scrape politely</span></span>
+<span id="cb5-8"><a></a>scraped_data <span class="ot">&lt;-</span> <span class="fu">scrape</span>(session) <span class="sc">%&gt;%</span></span>
+<span id="cb5-9"><a></a>  <span class="fu">html_elements</span>(<span class="st">&quot;title&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-10"><a></a>  <span class="fu">html_text</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="midi">
 <p>This workflow automatically: 1) Checks robots.txt, 2) Introduces your scraper and 3) Respects crawl delays</p>
-<div style="font-size: 0.9em; color: #666;">
-<p><strong>Tip:</strong> Have students practice on <a href="https://httpbin.org/">httpbin.org</a> first - it’s designed for testing HTTP requests</p>
-</div>
 </div>
 </section>
 <section id="web-scraping-resources-for-teaching" class="slide level2">
@@ -1197,7 +1205,7 @@ margin-right: 0; }
 </div>
 <div class="fragment">
 <div style="font-size: 1.1em; color: #2E7D32;">
-<p><strong>Always prefer APIs over web scraping when available!</strong></p>
+<p><strong>NOTE: Always prefer APIs over web scraping when available! But why??</strong></p>
 <div style="font-size: 0.9em; color: #666;">
 <p><strong>Student Exercise 💡</strong> Compare same data via API vs scraping (<a href="https://openweathermap.org/api">OpenWeather API</a> vs weather websites)</p>
 </div>
@@ -1207,12 +1215,12 @@ margin-right: 0; }
 <section id="modern-r-api-tools" class="slide level2">
 <h2>Modern R API Tools</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="co"># Install if needed</span></span>
-<span id="cb4-2"><a></a><span class="co"># pak::pak(c(&quot;httr2&quot;, &quot;jsonlite&quot;, &quot;xml2&quot;))</span></span>
-<span id="cb4-3"><a></a></span>
-<span id="cb4-4"><a></a><span class="fu">library</span>(httr2)    <span class="co"># Modern HTTP client</span></span>
-<span id="cb4-5"><a></a><span class="fu">library</span>(jsonlite) <span class="co"># JSON parsing</span></span>
-<span id="cb4-6"><a></a><span class="fu">library</span>(xml2)     <span class="co"># XML handling</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="co"># Install if needed</span></span>
+<span id="cb6-2"><a></a><span class="co"># pak::pak(c(&quot;httr2&quot;, &quot;jsonlite&quot;, &quot;xml2&quot;))</span></span>
+<span id="cb6-3"><a></a></span>
+<span id="cb6-4"><a></a><span class="fu">library</span>(httr2)    <span class="co"># Modern HTTP client</span></span>
+<span id="cb6-5"><a></a><span class="fu">library</span>(jsonlite) <span class="co"># JSON parsing</span></span>
+<span id="cb6-6"><a></a><span class="fu">library</span>(xml2)     <span class="co"># XML handling</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <div class="midi">
@@ -1235,24 +1243,25 @@ margin-right: 0; }
 <section id="httr2-api-workflow" class="slide level2">
 <h2><code>httr2</code> API Workflow</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="co"># Create and execute request </span></span>
-<span id="cb5-2"><a></a>response <span class="ot">&lt;-</span> <span class="fu">request</span>(<span class="st">&quot;https://api.nasa.gov/insight_weather/&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb5-3"><a></a>  <span class="fu">req_url_query</span>(<span class="at">api_key =</span> <span class="st">&quot;DEMO_KEY&quot;</span>, <span class="at">feedtype =</span> <span class="st">&quot;json&quot;</span>, <span class="at">ver =</span> <span class="st">&quot;1.0&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb5-4"><a></a>  <span class="fu">req_perform</span>()</span>
-<span id="cb5-5"><a></a></span>
-<span id="cb5-6"><a></a><span class="co"># Parse JSON response</span></span>
-<span id="cb5-7"><a></a>data <span class="ot">&lt;-</span> response <span class="sc">%&gt;%</span></span>
-<span id="cb5-8"><a></a>  <span class="fu">resp_body_json</span>() </span>
-<span id="cb5-9"><a></a></span>
-<span id="cb5-10"><a></a>data <span class="sc">%&gt;%</span></span>
-<span id="cb5-11"><a></a>  purrr<span class="sc">::</span><span class="fu">pluck</span>(<span class="st">&quot;675&quot;</span>, <span class="st">&quot;AT&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-12"><a></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb5-13"><a></a>  <span class="fu">mutate</span>(<span class="at">day =</span> <span class="dv">675</span>)</span>
-<span id="cb5-14"><a></a></span>
-<span id="cb5-15"><a></a>data <span class="sc">%&gt;%</span></span>
-<span id="cb5-16"><a></a>  purrr<span class="sc">::</span><span class="fu">pluck</span>(<span class="st">&quot;676&quot;</span>, <span class="st">&quot;AT&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-17"><a></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb5-18"><a></a>  <span class="fu">mutate</span>(<span class="at">day =</span> <span class="dv">676</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="co"># Create and execute request </span></span>
+<span id="cb7-2"><a></a>response <span class="ot">&lt;-</span> <span class="fu">request</span>(<span class="st">&quot;https://api.nasa.gov/insight_weather/&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a></a>  <span class="fu">req_url_query</span>(<span class="at">api_key =</span> <span class="st">&quot;DEMO_KEY&quot;</span>, <span class="at">feedtype =</span> <span class="st">&quot;json&quot;</span>, <span class="at">ver =</span> <span class="st">&quot;1.0&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-4"><a></a>  <span class="fu">req_perform</span>()</span>
+<span id="cb7-5"><a></a></span>
+<span id="cb7-6"><a></a><span class="co"># Parse JSON response</span></span>
+<span id="cb7-7"><a></a>data <span class="ot">&lt;-</span> response <span class="sc">%&gt;%</span></span>
+<span id="cb7-8"><a></a>  <span class="fu">resp_body_json</span>() </span>
+<span id="cb7-9"><a></a></span>
+<span id="cb7-10"><a></a>data <span class="sc">%&gt;%</span></span>
+<span id="cb7-11"><a></a>  purrr<span class="sc">::</span><span class="fu">pluck</span>(<span class="st">&quot;675&quot;</span>, <span class="st">&quot;AT&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-12"><a></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb7-13"><a></a>  <span class="fu">mutate</span>(<span class="at">day =</span> <span class="dv">675</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 5
+     av     ct    mn    mx   day
+  &lt;dbl&gt;  &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 -62.3 177556 -96.9 -15.9   675</code></pre>
+</div>
 </div>
 <div class="small">
 <p><strong>Student Exercise 💡</strong> NASA has a lot of APIs to play with!</p>
@@ -1261,24 +1270,24 @@ margin-right: 0; }
 <section id="working-with-json-data" class="slide level2">
 <h2>Working with JSON Data</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="co"># Convert JSON to data frame</span></span>
-<span id="cb6-2"><a></a>json_data <span class="ot">&lt;-</span> <span class="st">&#39;{</span></span>
-<span id="cb6-3"><a></a><span class="st">  &quot;users&quot;: [</span></span>
-<span id="cb6-4"><a></a><span class="st">    {&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 25},</span></span>
-<span id="cb6-5"><a></a><span class="st">    {&quot;name&quot;: &quot;Bob&quot;, &quot;age&quot;: 30}</span></span>
-<span id="cb6-6"><a></a><span class="st">  ]</span></span>
-<span id="cb6-7"><a></a><span class="st">}&#39;</span></span>
-<span id="cb6-8"><a></a></span>
-<span id="cb6-9"><a></a><span class="co"># Parse with jsonlite</span></span>
-<span id="cb6-10"><a></a>df <span class="ot">&lt;-</span> jsonlite<span class="sc">::</span><span class="fu">fromJSON</span>(json_data)</span>
-<span id="cb6-11"><a></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="co"># Convert JSON to data frame</span></span>
+<span id="cb9-2"><a></a>json_data <span class="ot">&lt;-</span> <span class="st">&#39;{</span></span>
+<span id="cb9-3"><a></a><span class="st">  &quot;users&quot;: [</span></span>
+<span id="cb9-4"><a></a><span class="st">    {&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 25},</span></span>
+<span id="cb9-5"><a></a><span class="st">    {&quot;name&quot;: &quot;Bob&quot;, &quot;age&quot;: 30}</span></span>
+<span id="cb9-6"><a></a><span class="st">  ]</span></span>
+<span id="cb9-7"><a></a><span class="st">}&#39;</span></span>
+<span id="cb9-8"><a></a></span>
+<span id="cb9-9"><a></a><span class="co"># Parse with jsonlite</span></span>
+<span id="cb9-10"><a></a>df <span class="ot">&lt;-</span> jsonlite<span class="sc">::</span><span class="fu">fromJSON</span>(json_data)</span>
+<span id="cb9-11"><a></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$users
    name age
 1 Alice  25
 2   Bob  30</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>df[[<span class="st">&quot;users&quot;</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>df[[<span class="st">&quot;users&quot;</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   name age
 1 Alice  25
@@ -1329,13 +1338,13 @@ margin-right: 0; }
 <section id="the-performance-trio" class="slide level2">
 <h2>The Performance Trio</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="co"># Install if needed</span></span>
-<span id="cb10-2"><a></a><span class="co"># pak::pak(c(&quot;data.table&quot;, &quot;arrow&quot;, &quot;duckdb&quot;))</span></span>
-<span id="cb10-3"><a></a></span>
-<span id="cb10-4"><a></a><span class="co"># High-performance data processing</span></span>
-<span id="cb10-5"><a></a><span class="fu">library</span>(data.table)  <span class="co"># In-memory speed</span></span>
-<span id="cb10-6"><a></a><span class="fu">library</span>(arrow)       <span class="co"># Columnar storage and data transfer</span></span>
-<span id="cb10-7"><a></a><span class="fu">library</span>(duckdb)      <span class="co"># In-process analytics</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="co"># Install if needed</span></span>
+<span id="cb13-2"><a></a><span class="co"># pak::pak(c(&quot;data.table&quot;, &quot;arrow&quot;, &quot;duckdb&quot;))</span></span>
+<span id="cb13-3"><a></a></span>
+<span id="cb13-4"><a></a><span class="co"># High-performance data processing</span></span>
+<span id="cb13-5"><a></a><span class="fu">library</span>(data.table)  <span class="co"># In-memory speed</span></span>
+<span id="cb13-6"><a></a><span class="fu">library</span>(arrow)       <span class="co"># Columnar storage and data transfer</span></span>
+<span id="cb13-7"><a></a><span class="fu">library</span>(duckdb)      <span class="co"># In-process analytics</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <div class="midi">
@@ -1351,16 +1360,19 @@ margin-right: 0; }
 <section id="data.table" class="slide level2">
 <h2><code>data.table</code></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="co"># Read large parquet file</span></span>
-<span id="cb11-2"><a></a>large_data <span class="ot">&lt;-</span> arrow<span class="sc">::</span><span class="fu">open_dataset</span>(<span class="st">&quot;huge_file.parquet&quot;</span>)</span>
-<span id="cb11-3"><a></a></span>
-<span id="cb11-4"><a></a><span class="co"># data.table</span></span>
-<span id="cb11-5"><a></a><span class="fu">setDT</span>(large_data)</span>
-<span id="cb11-6"><a></a>large_data[year <span class="sc">==</span> <span class="dv">2023</span>, .(<span class="at">avg_value =</span> <span class="fu">mean</span>(value)), by <span class="ot">=</span> category]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="co"># Read large parquet file</span></span>
+<span id="cb14-2"><a></a>large_data <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;materials&quot;</span>, <span class="st">&quot;data&quot;</span>, <span class="st">&quot;large_data.csv&quot;</span>))</span>
+<span id="cb14-3"><a></a></span>
+<span id="cb14-4"><a></a><span class="co"># data.table</span></span>
+<span id="cb14-5"><a></a><span class="fu">setDT</span>(large_data)</span>
+<span id="cb14-6"><a></a>large_data[year <span class="sc">==</span> <span class="dv">2023</span>, .(<span class="at">avg_value =</span> <span class="fu">mean</span>(value)), by <span class="ot">=</span> species]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="midi">
-<p><strong>Extremely fast aggregation, grouped calculations, and filtering</strong></p>
+<p>Based on this code alone, can you guess what is happening to <code>large_data</code>?</p>
 </div>
+</section>
+<section id="data.table-1" class="slide level2">
+<h2><code>data.table</code></h2>
 <div style="font-size: 0.9em; color: #666;">
 <p>Depending on student needs, <code>data.table</code> can be a very useful R development package:</p>
 <ul>
@@ -1374,16 +1386,16 @@ margin-right: 0; }
 <section id="arrow-duckdb-integration" class="slide level2">
 <h2>Arrow + DuckDB Integration</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="co"># Read large parquet file</span></span>
-<span id="cb12-2"><a></a>large_data <span class="ot">&lt;-</span> arrow<span class="sc">::</span><span class="fu">open_dataset</span>(<span class="st">&quot;huge_file.parquet&quot;</span>)</span>
-<span id="cb12-3"><a></a></span>
-<span id="cb12-4"><a></a><span class="co"># Query with DuckDB (SQL or dplyr syntax)</span></span>
-<span id="cb12-5"><a></a>result <span class="ot">&lt;-</span> large_data <span class="sc">%&gt;%</span></span>
-<span id="cb12-6"><a></a>  arrow<span class="sc">::</span><span class="fu">to_duckdb</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb12-7"><a></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2023</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb12-8"><a></a>  <span class="fu">group_by</span>(category) <span class="sc">%&gt;%</span></span>
-<span id="cb12-9"><a></a>  <span class="fu">summarise</span>(<span class="at">avg_value =</span> <span class="fu">mean</span>(value)) <span class="sc">%&gt;%</span></span>
-<span id="cb12-10"><a></a>  <span class="fu">collect</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="co"># Read large parquet file</span></span>
+<span id="cb15-2"><a></a>huge_data <span class="ot">&lt;-</span> arrow<span class="sc">::</span><span class="fu">open_dataset</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;materials&quot;</span>, <span class="st">&quot;data&quot;</span>, <span class="st">&quot;huge_data.parquet&quot;</span>))</span>
+<span id="cb15-3"><a></a></span>
+<span id="cb15-4"><a></a><span class="co"># Query with DuckDB (SQL or dplyr syntax)</span></span>
+<span id="cb15-5"><a></a>result <span class="ot">&lt;-</span> huge_data <span class="sc">%&gt;%</span></span>
+<span id="cb15-6"><a></a>  arrow<span class="sc">::</span><span class="fu">to_duckdb</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb15-7"><a></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2023</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb15-8"><a></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span></span>
+<span id="cb15-9"><a></a>  <span class="fu">summarise</span>(<span class="at">avg_value =</span> <span class="fu">mean</span>(bill_length_mm)) <span class="sc">%&gt;%</span></span>
+<span id="cb15-10"><a></a>  <span class="fu">collect</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="midi">
 <p><strong>Zero-copy integration</strong> between Arrow and DuckDB!</p>
@@ -1401,7 +1413,7 @@ margin-right: 0; }
 </div>
 <div class="fragment">
 <div style="font-size: 1.1em; color: #2E7D32;">
-<p><strong>Result: 33.8 GB data analyzed in 16 GB RAM</strong></p>
+<p><strong>This means that 33.8 GB data analyzed in 16 GB RAM</strong></p>
 </div>
 </div>
 </section>
@@ -1449,53 +1461,48 @@ margin-right: 0; }
 <section id="r-database-ecosystem" class="slide level2">
 <h2>R Database Ecosystem</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="co"># Install if needed</span></span>
-<span id="cb13-2"><a></a><span class="co"># pak::pak(c(&quot;DBI&quot;, &quot;RSQLite&quot;, &quot;RPostgreSQL&quot;, &quot;RMySQL&quot;, &quot;dbplyr&quot;))</span></span>
-<span id="cb13-3"><a></a></span>
-<span id="cb13-4"><a></a><span class="co"># Core database interface</span></span>
-<span id="cb13-5"><a></a><span class="fu">library</span>(DBI)</span>
-<span id="cb13-6"><a></a></span>
-<span id="cb13-7"><a></a><span class="co"># Specific database drivers</span></span>
-<span id="cb13-8"><a></a><span class="fu">library</span>(RSQLite)    <span class="co"># SQLite (embedded)</span></span>
-<span id="cb13-9"><a></a><span class="fu">library</span>(RPostgreSQL) <span class="co"># PostgreSQL</span></span>
-<span id="cb13-10"><a></a><span class="fu">library</span>(RMySQL)     <span class="co"># MySQL/MariaDB</span></span>
-<span id="cb13-11"><a></a></span>
-<span id="cb13-12"><a></a><span class="co"># Database-aware dplyr</span></span>
-<span id="cb13-13"><a></a><span class="fu">library</span>(dbplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="co"># Install if needed</span></span>
+<span id="cb16-2"><a></a><span class="co"># pak::pak(c(&quot;DBI&quot;, &quot;RSQLite&quot;, &quot;RPostgreSQL&quot;, &quot;RMySQL&quot;, &quot;dbplyr&quot;))</span></span>
+<span id="cb16-3"><a></a></span>
+<span id="cb16-4"><a></a><span class="fu">library</span>(DBI)         <span class="co"># core database interface</span></span>
+<span id="cb16-5"><a></a><span class="fu">library</span>(RSQLite)     <span class="co"># SQLite (embedded)</span></span>
+<span id="cb16-6"><a></a><span class="fu">library</span>(RPostgreSQL) <span class="co"># PostgreSQL</span></span>
+<span id="cb16-7"><a></a><span class="fu">library</span>(RMySQL)      <span class="co"># MySQL/MariaDB</span></span>
+<span id="cb16-8"><a></a><span class="fu">library</span>(dbplyr)      <span class="co"># Database-aware dplyr</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="basic-database-workflow" class="slide level2">
 <h2>Basic Database Workflow</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="co"># Connect to database</span></span>
-<span id="cb14-2"><a></a>con <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(RSQLite<span class="sc">::</span><span class="fu">SQLite</span>(), <span class="st">&quot;mydata.db&quot;</span>)</span>
-<span id="cb14-3"><a></a></span>
-<span id="cb14-4"><a></a><span class="co"># Write data to database</span></span>
-<span id="cb14-5"><a></a><span class="fu">dbWriteTable</span>(con, <span class="st">&quot;customers&quot;</span>, customer_data)</span>
-<span id="cb14-6"><a></a></span>
-<span id="cb14-7"><a></a><span class="co"># Query with SQL</span></span>
-<span id="cb14-8"><a></a>result <span class="ot">&lt;-</span> <span class="fu">dbGetQuery</span>(con, <span class="st">&quot;</span></span>
-<span id="cb14-9"><a></a><span class="st">  SELECT customer_id, SUM(amount) as total</span></span>
-<span id="cb14-10"><a></a><span class="st">  FROM orders </span></span>
-<span id="cb14-11"><a></a><span class="st">  GROUP BY customer_id</span></span>
-<span id="cb14-12"><a></a><span class="st">&quot;</span>)</span>
-<span id="cb14-13"><a></a></span>
-<span id="cb14-14"><a></a><span class="co"># Always disconnect</span></span>
-<span id="cb14-15"><a></a><span class="fu">dbDisconnect</span>(con)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="co"># Connect to database</span></span>
+<span id="cb17-2"><a></a>con <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(RSQLite<span class="sc">::</span><span class="fu">SQLite</span>(), <span class="st">&quot;mydata.db&quot;</span>)</span>
+<span id="cb17-3"><a></a></span>
+<span id="cb17-4"><a></a><span class="co"># Write data to database</span></span>
+<span id="cb17-5"><a></a><span class="fu">dbWriteTable</span>(con, <span class="st">&quot;customers&quot;</span>, customer_data)</span>
+<span id="cb17-6"><a></a></span>
+<span id="cb17-7"><a></a><span class="co"># Query with SQL</span></span>
+<span id="cb17-8"><a></a>result <span class="ot">&lt;-</span> <span class="fu">dbGetQuery</span>(con, <span class="st">&quot;</span></span>
+<span id="cb17-9"><a></a><span class="st">  SELECT customer_id, SUM(amount) as total</span></span>
+<span id="cb17-10"><a></a><span class="st">  FROM orders </span></span>
+<span id="cb17-11"><a></a><span class="st">  GROUP BY customer_id</span></span>
+<span id="cb17-12"><a></a><span class="st">&quot;</span>)</span>
+<span id="cb17-13"><a></a></span>
+<span id="cb17-14"><a></a><span class="co"># Always disconnect</span></span>
+<span id="cb17-15"><a></a><span class="fu">dbDisconnect</span>(con)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="database-with-dplyr-syntax" class="slide level2">
 <h2>Database with <code>dplyr</code> Syntax</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="co"># Connect to table as dplyr object</span></span>
-<span id="cb15-2"><a></a>customers_tbl <span class="ot">&lt;-</span> <span class="fu">tbl</span>(con, <span class="st">&quot;customers&quot;</span>)</span>
-<span id="cb15-3"><a></a></span>
-<span id="cb15-4"><a></a><span class="co"># Use familiar dplyr syntax</span></span>
-<span id="cb15-5"><a></a>summary <span class="ot">&lt;-</span> customers_tbl <span class="sc">%&gt;%</span></span>
-<span id="cb15-6"><a></a>  <span class="fu">filter</span>(status <span class="sc">==</span> <span class="st">&quot;active&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb15-7"><a></a>  <span class="fu">group_by</span>(region) <span class="sc">%&gt;%</span></span>
-<span id="cb15-8"><a></a>  <span class="fu">summarise</span>(<span class="at">avg_value =</span> <span class="fu">mean</span>(lifetime_value)) <span class="sc">%&gt;%</span></span>
-<span id="cb15-9"><a></a>  <span class="fu">collect</span>()  <span class="co"># Execute and bring to R</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="co"># Connect to table as dplyr object</span></span>
+<span id="cb18-2"><a></a>customers_tbl <span class="ot">&lt;-</span> <span class="fu">tbl</span>(con, <span class="st">&quot;customers&quot;</span>)</span>
+<span id="cb18-3"><a></a></span>
+<span id="cb18-4"><a></a><span class="co"># Use familiar dplyr syntax</span></span>
+<span id="cb18-5"><a></a>summary <span class="ot">&lt;-</span> customers_tbl <span class="sc">%&gt;%</span></span>
+<span id="cb18-6"><a></a>  <span class="fu">filter</span>(status <span class="sc">==</span> <span class="st">&quot;active&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb18-7"><a></a>  <span class="fu">group_by</span>(region) <span class="sc">%&gt;%</span></span>
+<span id="cb18-8"><a></a>  <span class="fu">summarise</span>(<span class="at">avg_value =</span> <span class="fu">mean</span>(lifetime_value)) <span class="sc">%&gt;%</span></span>
+<span id="cb18-9"><a></a>  <span class="fu">collect</span>()  <span class="co"># Execute and bring to R</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="midi">
 <p><strong><code>dbplyr</code> translates dplyr code to SQL automatically!</strong></p>
@@ -1564,18 +1571,17 @@ margin-right: 0; }
 <div class="fragment">
 <div style="font-size: 1.2em; color: #0F4C81;">
 <p><strong>Choose the right tool for your data source and size!</strong></p>
-<section id="course-integration-strategies" class="slide level2 scrollable">
-<h2>Course Integration Strategies</h2>
+</div>
+</div>
+</section>
+<section id="ideas-for-projects" class="slide level2 scrollable">
+<h2>Ideas for Projects</h2>
 <div class="midi">
-<p><strong>Scaffolded Approach (Recommended):</strong></p>
+<p><strong>BRAINSTORM:</strong> What kinds of projects could you include that:</p>
 <ol type="1">
-<li><strong>Week 1-2:</strong> Start with APIs (structured, documented)</li>
-<li><strong>Week 3-4:</strong> Introduce ethical web scraping<br>
-</li>
-<li><strong>Week 5-6:</strong> Scale up with large data tools</li>
-<li><strong>Week 7-8:</strong> Databases for persistence and collaboration</li>
+<li>Gives students exposure to these data sources</li>
+<li>While continuing to focus on the topic of your course</li>
 </ol>
-<p><strong>Project-Based Learning:</strong> - Students find their own data sources - Progress from simple to complex data types - Build cumulative portfolio of data acquisition skills</p>
 </div>
 </section>
 <section id="additional-teaching-resources" class="slide level2">
@@ -1600,34 +1606,8 @@ margin-right: 0; }
 <li><a href="https://tosdr.org/">API Terms of Service Examples</a> - Teaching about data use agreements</li>
 </ul>
 </div>
-</section>
-<section id="assessment-ideas" class="slide level2">
-<h2>Assessment Ideas</h2>
-<div class="midi">
-<p><strong>Formative Assessment:</strong></p>
-<ul>
-<li>Compare API vs. scraping</li>
-<li>Debug broken scraping code (robots.txt violations)</li>
-<li>Optimize slow data processing with performance tools</li>
-</ul>
-<p><strong>Summative Projects:</strong></p>
-<ul>
-<li>Build data pipeline from multiple sources</li>
-<li>Create reproducible research workflow</li>
-<li>Document data provenance and ethics considerations</li>
-</ul>
-<p><strong>Peer Review Components:</strong></p>
-<ul>
-<li>Code review for ethical scraping practices</li>
-<li>Performance benchmarking comparisons</li>
-<li>API documentation quality assessment</li>
-</ul>
-</div>
-</section>
-</div>
 
 
-</div>
 </section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
