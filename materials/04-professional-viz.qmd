@@ -110,7 +110,7 @@ Teaching visualization requires evaluating **both**:
 
 ## Sometimes Bad Is The Way
 
-[](mando.png]
+[](04-mando.png]
 
 ## Sometimes Bad Is The Way
 
