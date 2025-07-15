@@ -1,5 +1,5 @@
 ---
-title: "1.1 - Complex Data Pipelines"
+title: "Complex Data Pipelines"
 subtitle: ""
 format: 
   revealjs:
@@ -11,7 +11,7 @@ editor: source
 
 ```{r}
 library(tidyverse)
-dat_ff <- read_csv(here::here("data", "fastfood.csv"))
+dat_ff <- read_csv(here::here("materials", "data", "fastfood.csv"))
 ```
 
 
