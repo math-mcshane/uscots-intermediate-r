@@ -555,7 +555,16 @@ Your code and/or vignette must:
 
 ## Why are you here?
 
-<!-- leading questions about setting intentions for workshop -->
+What inspired you to sign-up for this workshop? 
+
+What are **two** goals you have related to teaching intermediate R?
+
+::: {.callout-important}
+# Make SMART goals!
+
+Find goals that are **specific**, that you can **measure**, that you can 
+**achieve** in the next 1.5 days, and that are **relevant** to your teaching! 
+:::
 
 ## Activity: Find Your Data Sources
 
