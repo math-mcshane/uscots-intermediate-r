@@ -35,12 +35,14 @@ website:
             text: "Introduction to Quarto Projects and Websites"
           - href: materials/06-quarto-dashboards.qmd
             text: "Quarto Dashboards (Static & Dynamic)"
-          - href: materials/07-shiny.qmd
+          - href: materials/07-stat-communications.qmd
             text: "Introduction to Shiny"
-          - href: materials/08-package_workflow.qmd
-            text: "Package-based Teaching"
-         #  - href: materials/09-developer.qmd
-         #    text: "Thinking Like a Developer"
+          # - href: materials/08-developer.qmd
+          #   text: "Thinking Like a Developer"
+          - href: materials/09-package_workflow.qmd
+            text: "Package-Based Teaching"
+          - href: materials/10-wrapup.qmd
+            text: "Wrap Up"
          
        - text: Activities
          # menu: 
