@@ -4,7 +4,7 @@
     "href": "bio.html",
     "title": "Workshop Presenters",
     "section": "",
-    "text": "Kelly Bodwin\n\n\n\nTyson Barrett\n\n\n\nAllison Theobold is an Assistant Professor of Statistics at Cal Poly. Allison’s work focuses on innovation in statistics and data science education, with an emphasis on equitable pedagogy and learning trajectories. Allison is also interested in exploring pedagogical approaches for enhancing retention of under-represented students in STEM, including creating inclusive discoursive spaces and equitable group collaborations."
+    "text": "Kelly Bodwin is an Associate Professor of Statistics and Data Science at Cal Poly in San Luis Obispo, CA. She primarily teaches courses in statistical computing, data science, and predictive modeling. All her courses involve elements of programming - typically in R, with a focus on the tidyverse, but she is reluctantly learning to embrace a little python in her life.\n\n\n\nKelly’s research includes applied statistics projects in a variety of fields and open-source software development. She is an author of multiple R packages including flair, tidyclust, shindig, and templar. She leads the Central Coast R Users group, and she is currently part of a major NSF-funded venture to expand the data.table package community and ecosystem. | |  | Tyson Barrett is a researcher and an applied statistician at Highmark Health and Utah State University. He has over 15 years of R package development and programming experience, including maintaining data.table (with over 600,000 monthly downloads) and 3 other published R packages. He is currently a consultant on an NSF Grant building infrastructure for the data.table package. In his research work, he regularly works with large datasets with millions of rows and hundreds of columns. He and his team use data.table, arrow, and duckDB daily to manage and analyze their data to efficiently and quickly communicate insights with stakeholders. | |  | Allison Theobold is an Assistant Professor of Statistics at Cal Poly. Allison’s work focuses on innovation in statistics and data science education, with an emphasis on equitable pedagogy and learning trajectories. Allison is also interested in exploring pedagogical approaches for enhancing retention of under-represented students in STEM, including creating inclusive discoursive spaces and equitable group collaborations. |"
   },
   {
     "objectID": "materials/03-complex-data.html#why-move-beyond-csv",
@@ -201,6 +201,13 @@
     "title": "More Complex Data",
     "section": "Additional Teaching Resources",
     "text": "Additional Teaching Resources\n\nCourse Syllabi & Examples:\n\nUC Davis STA 141C - Complete web scraping course\nData Science in a Box - Includes web data modules\n\nPractice Datasets & APIs:\n\nJSONPlaceholder - Fake REST API for testing\nhttpbin.org - HTTP request/response service\nOpenWeather API - Real weather data with free tier\nREST Countries API - Country data, no auth required\n\nEthics & Legal Resources:\n\nrobots.txt Specification - Official standard\nWeb Scraping Ethics Guide - Legal considerations\nAPI Terms of Service Examples - Teaching about data use agreements"
+  },
+  {
+    "objectID": "materials/03-complex-data.html#create-your-project-a-data-analysis-assignment",
+    "href": "materials/03-complex-data.html#create-your-project-a-data-analysis-assignment",
+    "title": "More Complex Data",
+    "section": "Create your Project A Data Analysis assignment",
+    "text": "Create your Project A Data Analysis assignment\nThings to include:\n\nWill you require any specific research questions to be addressed, or is it open-ended?\nWill you require any specific elements, such as “join at least two datasets” or “use a dataset of at least 10000 rows”?\nHow technical should the report be - is the audience other data scientists, or general public?\nHow will you grade successful but inefficient pipelines?\nHow will you make sure the pipeline really accomplishes what the report claims?"
   },
   {
     "objectID": "materials/06-quarto-dashboards.html#section",
@@ -665,13 +672,6 @@
     "text": "Overlap in content\n\ndata.table and friends can be emphasized in A for wrangling tasks, or in C as an efficiency/syntax skill.\nplotly and friends can be used in A for easy plot upgrade, or in B for interactive dashboards\nGit and GitHub can be introduced in any Unit.\nfunction writing can be used to streamline steps in units A or B"
   },
   {
-    "objectID": "materials/01-setup-installs.html#takeaways",
-    "href": "materials/01-setup-installs.html#takeaways",
-    "title": "Workshop Installs & Set-up",
-    "section": "Takeaways",
-    "text": "Takeaways\n\n\n\nDesign your Intermediate R class around projects\nSeparate content into modular units organized by goals.\nSign up to be notified when the Course in a Box is available!"
-  },
-  {
     "objectID": "materials/01-setup-installs.html#why-are-you-here",
     "href": "materials/01-setup-installs.html#why-are-you-here",
     "title": "Workshop Installs & Set-up",
@@ -684,6 +684,27 @@
     "title": "Workshop Installs & Set-up",
     "section": "Activity: Find Your Data Sources",
     "text": "Activity: Find Your Data Sources\nIn pairs, come up with a data context and a few broad research questions.\nFind online as many of the following as you can related to your data context:\n\nClean tabular datasets, e.g. kaggle or tidytuesday\nMessy or non-tabular datasets, e.g. JSONs or tables on a webpage\nAPI sources related to your data\nMassive datasets\n\nWe recommend starting a Google Doc or similar with your group, to collect references to datasets, as well as content from future activities.\n\n\n\n−+\n15:00"
+  },
+  {
+    "objectID": "materials/10-wrapup.html#takeaways",
+    "href": "materials/10-wrapup.html#takeaways",
+    "title": "Wrap-Up",
+    "section": "Takeaways",
+    "text": "Takeaways\n\n\n\nDesign your Intermediate R class around projects\nSeparate content into modular units organized by goals.\nSign up to be notified when the Course in a Box is available!"
+  },
+  {
+    "objectID": "materials/10-wrapup.html#reflections",
+    "href": "materials/10-wrapup.html#reflections",
+    "title": "Wrap-Up",
+    "section": "Reflections",
+    "text": "Reflections\n\nWhat from this workshop are you excited to incorporate into your class?\nWhat from this workshop will you probably not include in your class?\nAre there any skills you want to learn better, so that you can eventually teach them in your class?\nWhat will you commit to creating before your next class?\nHow can we help you going forward?"
+  },
+  {
+    "objectID": "materials/10-wrapup.html#find-us",
+    "href": "materials/10-wrapup.html#find-us",
+    "title": "Wrap-Up",
+    "section": "Find us!",
+    "text": "Find us!\n\n\n\n\n\n\n\n\n\nAllison Theobold\n\n\n🌐 Github\n\n\n\n\nKelly Bodwin\n\n\n🌐 GitHub\n🦋 BlueSky\n🔗 LinkedIn\n🐘 Fosstodon\n\n\n\n\nTyson Barrett\n\n\n🌐 GitHub\n🦋 BlueSky\n🔗 LinkedIn\n🐘 Fosstodon"
   },
   {
     "objectID": "materials/05-quarto-projects-websites.html#section",
@@ -761,27 +782,6 @@
     "title": "USCOTS 2025 Intermediate R Workshop",
     "section": "Website Themes",
     "text": "Website Themes\nformat:\n  html:\n    theme: cosmo\n    css: styles.css\n    toc: true\n\nHere is a list of every theme available for Quarto websites: https://quarto.org/docs/output-formats/html-themes.html\n\n\n\n\nOptionally, you can set separate “light” and “dark” themes:\n\ntheme:\n  light: flatly\n  dark: darkly"
-  },
-  {
-    "objectID": "materials/07-shiny.html#section",
-    "href": "materials/07-shiny.html#section",
-    "title": "Shiny",
-    "section": "",
-    "text": "Quarto Dashboards"
-  },
-  {
-    "objectID": "materials/07-shiny.html#section-2",
-    "href": "materials/07-shiny.html#section-2",
-    "title": "Shiny",
-    "section": "",
-    "text": "gganimate\nleaflet"
-  },
-  {
-    "objectID": "materials/07-shiny.html#section-3",
-    "href": "materials/07-shiny.html#section-3",
-    "title": "Shiny",
-    "section": "",
-    "text": "leaflet\nplotly"
   },
   {
     "objectID": "materials/09-package_workflow.html#what-is-a-package-workflow",
@@ -1006,6 +1006,76 @@
     "title": "Professional Data Visualization",
     "section": "Professional Development Resources",
     "text": "Professional Development Resources\n\nVisualization Theory & Principles:\n\nClaus Wilke’s “Fundamentals of Data Visualization” - Modern, comprehensive guide\nAlberto Cairo’s “The Truthful Art” - Ethics and principles\nEdward Tufte’s Works - Classic visualization theory\n\nR-Specific Advanced Techniques:\n\nggplot2: Elegant Graphics for Data Analysis - Hadley Wickham’s comprehensive guide\nR Graphics Cookbook - Practical solutions\nData Visualization: A Practical Introduction - Sociology perspective with R\n\nTeaching Methodology:\n\nData Science Education Resources - Complete course framework\nTeaching Data Science - Pedagogical approaches\nJournal of Statistics Education - Academic research on teaching"
+  },
+  {
+    "objectID": "materials/07-stat-communication.html#the-9010-rule",
+    "href": "materials/07-stat-communication.html#the-9010-rule",
+    "title": "Communicating Statistical Results",
+    "section": "The “90/10” rule",
+    "text": "The “90/10” rule\n\n90% of the work you do will occupy only 10% of your presentation time/space.\n\n\nStudents tend to make reports and dashboards using the timeline they experienced in the analysis\nInstead, focus on conclusions and takeaways\nDifferentiate between communicating results and documenting a process (both are important!)"
+  },
+  {
+    "objectID": "materials/07-stat-communication.html#the-9010-rule-1",
+    "href": "materials/07-stat-communication.html#the-9010-rule-1",
+    "title": "Communicating Statistical Results",
+    "section": "The “90/10” rule",
+    "text": "The “90/10” rule\n10%:\n\nData cleaning and wrangling details\nAssumption checking for models or statistical tests\nCombined results all in one visual\n\n90%:\n\nSpecific conclusions from tests - “we found evidence that…”\nPlots of model predictions and summary statistics\nVisuals highlighting individual takeaways - “California has higher predicted prices than the Midwest”"
+  },
+  {
+    "objectID": "materials/07-stat-communication.html#the-newspaper-headline-approach",
+    "href": "materials/07-stat-communication.html#the-newspaper-headline-approach",
+    "title": "Communicating Statistical Results",
+    "section": "The “Newspaper Headline” approach",
+    "text": "The “Newspaper Headline” approach\n\nFor each analysis, what is the headline a newspaper would use.\n\n\nNO: Statements of general accomplishment - “We fit a model to predict prices of fast food items.”\nNO: Model assessment - “Our model has 93% accuracy on a test set.”\nNO: Results in technical form - “The variable found to be most significant was location of store.”\nNO: Unspecific results - “Location of fast food store impacts price.”\nYES: Results of public interest in plain terms with specific knowledge: “Fast food prices are 50% higher in California than in the Midwest.”"
+  },
+  {
+    "objectID": "materials/07-stat-communication.html#your-turn",
+    "href": "materials/07-stat-communication.html#your-turn",
+    "title": "Communicating Statistical Results",
+    "section": "YOUR TURN",
+    "text": "YOUR TURN\n\nBrainstorm a list of headlines that could be produced from your data.\nMake these specific, not meta, even though the numbers will be made up - e.g. “Fast food prices are 50% higher in California than in the Midwest.” not “Find the differences in price by region”.\n\n\n\n\n−+\n03:00"
+  },
+  {
+    "objectID": "materials/07-stat-communication.html#dashboards-as-qa",
+    "href": "materials/07-stat-communication.html#dashboards-as-qa",
+    "title": "Communicating Statistical Results",
+    "section": "Dashboards as “Q&A”",
+    "text": "Dashboards as “Q&A”\n\nThe goal of an interactive dashboard is to replace you, by giving the audience a way to ask and answer questions themselves.\n\n\nAnticipate follow up questions to the main “headlines”.\nGo from general to specific - e.g. “Here is a plot of the average price of burgers over time. Use this drop-down to filter by state.”\nKeep your dashboard sanitized against bad statistical choices - e.g., don’t allow users to select “Show logistic regression” for numeric data."
+  },
+  {
+    "objectID": "materials/07-stat-communication.html#why-should-i-care",
+    "href": "materials/07-stat-communication.html#why-should-i-care",
+    "title": "Communicating Statistical Results",
+    "section": "“Why should I care?”",
+    "text": "“Why should I care?”\n\nDashboards and presentations are for your target audience, not your peers.\n\n\nWhat is interesting to a data scientist might not be interesting to your target audience.\nUse personas:\n\nGive your client a name\nWhy does this client want your analysis?\nWhat is their specific stake in the data?\nWhat level of technical content will they understand and appreciate?\n\nStay focused on how the client will use the analysis to make decisions."
+  },
+  {
+    "objectID": "materials/07-stat-communication.html#example",
+    "href": "materials/07-stat-communication.html#example",
+    "title": "Communicating Statistical Results",
+    "section": "Example",
+    "text": "Example\n\nMy client is Nisha, a CEO of a small restaurant chain that competes with local fast food. She has a degree in business administration, so she understands basic statistics. She has hired me to analyze price trends in the food industry.\n\n\nNisha is a CEO of a small business - she is probably interested in how to keep her restaurant solvent\nWe can quote basic statistics, but we should not go deep into modeling math.\nShe has asked specifically about prices, so our presentation should focus on that.\nShe has asked about trends, so our “newspaper headline” should be about changes over time.\nWe should state how our analysis will help her set her prices at her restaurants."
+  },
+  {
+    "objectID": "materials/07-stat-communication.html#your-turn-1",
+    "href": "materials/07-stat-communication.html#your-turn-1",
+    "title": "Communicating Statistical Results",
+    "section": "YOUR TURN",
+    "text": "YOUR TURN\n\nCome up with three different personas that your students might target with their dashboards.\nHow would you expect the dashboard to be different between these three personas?\n\n\n\n\n−+\n03:00"
+  },
+  {
+    "objectID": "materials/07-stat-communication.html#activity-ideas",
+    "href": "materials/07-stat-communication.html#activity-ideas",
+    "title": "Communicating Statistical Results",
+    "section": "Activity ideas",
+    "text": "Activity ideas\nCan the data answer this question?\n\nGive students a dataset and a list of questions\n\nIs this conclusion supported?\n\nGive a visualization or test result, and a client quote - “This means I should sell more hamburgers!”\nAsk students if they think the result supports the conclusion.\n\n“Client” feedback\n\nInvent a mock client for all student groups to target\nHave student groups swap projects and imagine themselves as the clients"
+  },
+  {
+    "objectID": "materials/07-stat-communication.html#create-your-project-b-dashboard-assignment",
+    "href": "materials/07-stat-communication.html#create-your-project-b-dashboard-assignment",
+    "title": "Communicating Statistical Results",
+    "section": "Create your Project B Dashboard Assignment",
+    "text": "Create your Project B Dashboard Assignment\nThings to include:\n\nWho is the target audience that the student should address?\nWill you require any specific research questions to be addressed, or is it open-ended?\nWill you require any specific dashboard elements, such as interactivity?\nHow will you grade:\n\nthe design elements?\nthe technical elements?\nthe communication elements?"
   },
   {
     "objectID": "materials/02-complex-pipeline.html#background-intro-level-rqs",

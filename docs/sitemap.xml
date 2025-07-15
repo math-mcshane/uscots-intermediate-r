@@ -2,11 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://github.com/atheobold/uscots-intermediate-r/bio.html</loc>
-    <lastmod>2025-07-09T17:53:12.588Z</lastmod>
+    <lastmod>2025-07-15T16:21:22.088Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/atheobold/uscots-intermediate-r/materials/03-complex-data.html</loc>
-    <lastmod>2025-07-15T15:11:49.226Z</lastmod>
+    <lastmod>2025-07-15T16:21:22.089Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/atheobold/uscots-intermediate-r/materials/06-quarto-dashboards.html</loc>
@@ -18,15 +18,15 @@
   </url>
   <url>
     <loc>https://github.com/atheobold/uscots-intermediate-r/materials/01-setup-installs.html</loc>
-    <lastmod>2025-07-15T15:22:46.027Z</lastmod>
+    <lastmod>2025-07-15T16:21:22.089Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/atheobold/uscots-intermediate-r/materials/10-wrapup.html</loc>
+    <lastmod>2025-07-15T16:21:22.089Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/atheobold/uscots-intermediate-r/materials/05-quarto-projects-websites.html</loc>
     <lastmod>2025-07-12T00:53:01.072Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/atheobold/uscots-intermediate-r/materials/07-shiny.html</loc>
-    <lastmod>2025-07-15T02:04:15.001Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/atheobold/uscots-intermediate-r/materials/09-package_workflow.html</loc>
@@ -38,7 +38,7 @@
   </url>
   <url>
     <loc>https://github.com/atheobold/uscots-intermediate-r/materials/07-stat-communication.html</loc>
-    <lastmod>2025-07-15T15:13:32.874Z</lastmod>
+    <lastmod>2025-07-15T17:21:48.724Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/atheobold/uscots-intermediate-r/materials/02-complex-pipeline.html</loc>
@@ -46,6 +46,6 @@
   </url>
   <url>
     <loc>https://github.com/atheobold/uscots-intermediate-r/index.html</loc>
-    <lastmod>2025-07-15T15:16:07.082Z</lastmod>
+    <lastmod>2025-07-15T16:21:22.088Z</lastmod>
   </url>
 </urlset>
