@@ -1,5 +1,5 @@
 ---
-title: "3.3 - Package-based Workflow"
+title: "Package-based Workflow"
 subtitle: ""
 format: 
   revealjs:

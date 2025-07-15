@@ -1,7 +1,9 @@
 ---
+title: "Shiny"
+subtitle: ""
 format: 
   revealjs:
-    footer: "[Teaching Intermediate R](https://github.com/atheobold/uscots-intermediate-r)"
+    footer: "[USCOTS Intermediate R Workshop](https://atheobold.github.io/uscots-intermediate-r/)"
     theme: [simple, styles.scss]
     embed-resources: true
 editor: source
