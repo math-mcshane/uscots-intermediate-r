@@ -28,35 +28,35 @@ The focus of this workshop will not be training in intermediate R skills, but ra
 
 ### **Tuesday (1:00 - 4:30pm)**
 
-|    Time     |               Topic               |       Presenter       |
-|:-----------:|:---------------------------------:|:---------------------:|
-| 1:00 - 1:15 |           [Introductions](materials/00-introductions.qmd)           |       Everyone!       |
-| 1:15 - 1:45 |  [Set-up, Installs & Group Norms](materials/01-setup-installs.qmd)   | Kelly, Tyson, Allison |
-| 1:45 - 2:15 |    Activity: Find Data Sources    |         You!          |
-| 2:15 - 2:30 |               Break               |                       |
-| 2:30 - 3:15 |    More Complex Data Pipelines    |         Kelly         |
-| 3:15 - 4:00 |         More Complex Data         |         Tyson         |
-| 4:00 - 4:30 | Activity: Create Your *Project A* |         You!          |
+| Time | Topic | Presenter |
+|:---------------:|:-------------------------------:|:--------------------:|
+| 1:00 - 1:15 | [Introductions](materials/00-introductions.qmd) | Everyone! |
+| 1:15 - 1:45 | [Workshop Installs & Set-up](materials/01-setup-installs.qmd) | Kelly, Tyson, Allison |
+| 1:45 - 2:15 | Activity: Find Data Sources | You! |
+| 2:15 - 2:30 | Break |  |
+| 2:30 - 3:15 | [More Complex Data Pipelines](materials/02-complex-pipeline.qmd) | Kelly |
+| 3:15 - 4:00 | [More Complex Data](materials/03-complex-data.qmd) | Tyson |
+| 4:00 - 4:30 | Activity: Create Your *Project A* | You! |
 
 ### **Wednesday (8:30am - 4:30pm)**
 
-|               |                                    |                       |
-|:-------------:|:----------------------------------:|:---------------------:|
-|  8:30 - 8:45  |  Review, Reset & Share Project A   |       Everyone!       |
-|  8:45 - 9:30  |  Professional Data Visualization   |         Tyson         |
-| 9:30 - 10:00  |          [Magic of Quarto](materials/05-quarto-projects-websites.qmd)           |        Allison        |
-| 10:00 - 10:15 |               Break                |                       |
-| 10:15 - 10:45 |         [Quarto Dashboards](materials/06-quarto-dashboards.qmd)          |        Allison        |
-| 10:45 - 11:30 |               Shiny                |         Kelly         |
-| 11:30 - 12:00 | Activity: Create Your *Project B*  |         You!          |
-| 12:00 - 1:00  |            Lunch Break             |                       |
-|  1:00 - 1:15  |  Review, Reset & Share Project B   |         You!          |
-|  1:15 - 2:30  |     Package Workflow Teaching      |         Kelly         |
-|  2:30 - 2:45  |               Break                |                       |
-|  2:45 - 3:30  |     Thinking Like a Developer      |         Tyson         |
-|  3:00 - 4:00  | Activity: Create Your *Project C*  |         You!          |
-|  4:00 - 4:15  |          Share Project C           |       Everyone!       |
-|  4:15 - 4:30  |              Wrap-up               | Kelly, Tyson, Allison |
+|  |  |  |
+|:---------------:|:-------------------------------:|:-------------------:|
+| 8:30 - 8:45 | Review, Reset & Share Project A | Everyone! |
+| 8:45 - 9:30 | Professional Data Visualization | Tyson |
+| 9:30 - 10:00 | [Magic of Quarto](materials/05-quarto-projects-websites.qmd) | Allison |
+| 10:00 - 10:15 | Break |  |
+| 10:15 - 10:45 | [Quarto Dashboards](materials/06-quarto-dashboards.qmd) | Allison |
+| 10:45 - 11:30 | [Shiny](materials/07-shiny.qmd) | Kelly |
+| 11:30 - 12:00 | Activity: Create Your *Project B* | You! |
+| 12:00 - 1:00 | Lunch Break |  |
+| 1:00 - 1:15 | Review, Reset & Share Project B | You! |
+| 1:15 - 2:30 | [Package Workflow Teaching](materials/08-package_workflow.qmd) | Kelly |
+| 2:30 - 2:45 | Break |  |
+| 2:45 - 3:30 | Thinking Like a Developer | Tyson |
+| 3:00 - 4:00 | Activity: Create Your *Project C* | You! |
+| 4:00 - 4:15 | Share Project C | Everyone! |
+| 4:15 - 4:30 | Wrap-up | Kelly, Tyson, Allison |
 
 # In preparation for the workshop
 

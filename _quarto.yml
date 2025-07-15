@@ -22,9 +22,9 @@ website:
           - href: materials/00-introductions.qmd
             text: "Introductions"
           - href: materials/01-setup-installs.qmd
-            text: "Set-up & Installs"
-         #- href: materials/02-complex-pipeline.qmd
-         #    text: "More Complex Pipelines"
+            text: "Workshop Installs & Set-up"
+          - href: materials/02-complex-pipeline.qmd
+            text: "More Complex Pipelines"
           - href: materials/03-complex-data.qmd
             text: "More Complex Data"
        - text: Wednesday
@@ -35,10 +35,10 @@ website:
             text: "Introduction to Quarto Projects and Websites"
           - href: materials/06-quarto-dashboards.qmd
             text: "Quarto Dashboards (Static & Dynamic)"
-         # - href: materials/07-shiny.qmd
-         #    text: "Introduction to Shiny"
-         #  - href: materials/08-packages.qmd
-         #    text: "Package-based Teaching"
+          - href: materials/07-shiny.qmd
+            text: "Introduction to Shiny"
+          - href: materials/08-package_workflow.qmd
+            text: "Package-based Teaching"
          #  - href: materials/09-developer.qmd
          #    text: "Thinking Like a Developer"
          
