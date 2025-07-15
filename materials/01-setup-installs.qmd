@@ -535,21 +535,6 @@ Your code and/or vignette must:
 
 -   *function writing* can be used to streamline steps in units **A** or **B** 
 
-## Takeaways
-
-::::: columns
-::: column
--   Design your *Intermediate R* class around **projects**
-
--   Separate content into **modular units** organized by *goals*.
-
--   Sign up to be notified when the *Course in a Box* is available!
-:::
-
-::: column
-![](images/10-QR.png)
-:::
-:::::
 
 # Now - let's sketch out our course together!
 
