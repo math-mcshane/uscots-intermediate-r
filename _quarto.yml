@@ -68,6 +68,7 @@ format:
       - cosmo
       - style.scss
     toc: true
+    df-print: paged
 
 callout-appearance: simple
 
