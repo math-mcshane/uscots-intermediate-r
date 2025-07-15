@@ -10,6 +10,8 @@ format:
 editor: source
 editor_options: 
   chunk_output_type: console
+execute: 
+  eval: false
 ---
 
 ## Why Move Beyond CSV?
@@ -342,11 +344,10 @@ Depending on student needs, `data.table` can be a very useful R development pack
 Thousands of R packages use on `data.table` for these reasons!
 :::
 
-
 ## Arrow + DuckDB Integration
 
 ```{r}
-#| eval: true
+#| eval: false
 #| echo: true
 
 # Read large parquet file
