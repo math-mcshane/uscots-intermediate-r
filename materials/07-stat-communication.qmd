@@ -1,4 +1,5 @@
 ---
+title: "Communicating Statistical Results"
 format: 
   revealjs:
     footer: "[Teaching Intermediate R](https://github.com/atheobold/uscots-intermediate-r)"
@@ -7,4 +8,150 @@ format:
 editor: source
 ---
 
-##  
+## The "90/10" rule
+
+> 90% of the work you do will occupy only 10% of your presentation time/space.
+
+* Students tend to make reports and dashboards using **the timeline they experienced** in the analysis
+
+* Instead, focus on **conclusions and takeaways**
+
+* Differentiate between **communicating results** and **documenting a process** (both are important!)
+
+## The "90/10" rule
+
+10%:
+
+* Data **cleaning and wrangling** details
+
+* **Assumption checking** for models or statistical tests
+
+* **Combined results** all in one visual
+
+90%:
+
+* Specific **conclusions** from tests - "we found evidence that..."
+
+* Plots of **model predictions** and **summary statistics**
+
+* Visuals highlighting **individual takeaways** - "California has higher predicted prices than the Midwest"
+
+
+## The "Newspaper Headline" approach
+
+> For each analysis, what is the headline a newspaper would use.
+
+* **NO:** Statements of general accomplishment - "We fit a model to predict prices of fast food items."
+
+* **NO:** Model assessment - "Our model has 93% accuracy on a test set."
+
+* **NO:** Results in technical form - "The variable found to be most significant was location of store."
+
+* **NO:** Unspecific results - "Location of fast food store impacts price."
+
+* **YES:** Results *of public interest* in *plain terms* with *specific knowledge*: "Fast food prices are 50% higher in California than in the Midwest." 
+
+## YOUR TURN
+
+::: {.r-fit-text}
+Brainstorm a list of headlines that could be produced from your data.
+
+Make these specific, not meta, even though the numbers will be made up - e.g. "Fast food prices are 50% higher in California than in the Midwest." not "Find the differences in price by region".
+:::
+
+```{r}
+#| echo: false
+countdown(minutes = 3)
+```
+
+
+## Dashboards as "Q&A"
+
+> The goal of an **interactive** dashboard is to **replace you**, by giving the audience a way to ask and answer questions themselves.
+
+* Anticipate **follow up questions** to the main "headlines".
+
+* Go from **general** to **specific** - e.g. "Here is a plot of the average price of burgers over time.  Use this drop-down to filter by state."
+
+* Keep your dashboard **sanitized** against bad statistical choices - e.g., don't allow users to select "Show logistic regression" for numeric data.
+
+## "Why should I care?"
+
+> Dashboards and presentations are for your target audience, not your peers.
+
+* What is interesting to a **data scientist** might not be interesting to your **target audience**.
+
+* Use **personas**: 
+    + Give your client a name
+    + Why does this client want your analysis?
+    + What is their specific stake in the data?
+    + What level of technical content will they understand and appreciate?
+    
+* Stay focused on how the client **will use the analysis** to make decisions.
+
+## Example
+
+> My client is Nisha, a CEO of a small restaurant chain that competes with local fast food.  She has a degree in business administration, so she understands basic statistics. She has hired me to analyze price trends in the food industry.
+
+* Nisha is a CEO of a small business - she is probably interested in *how to keep her restaurant solvent*
+
+* We can quote *basic statistics*, but we should not go deep into modeling math.
+
+* She has asked specifically about *prices*, so our presentation should focus on that.
+
+* She has asked about *trends*, so our "newspaper headline" should be about changes over time.
+
+* We should state how our analysis will *help her set her prices* at her restaurants.
+
+## YOUR TURN
+
+::: {.r-fit-text}
+Come up with **three different personas** that your students might target with their dashboards.
+
+How would you expect the dashboard to be **different** between these three personas?
+:::
+
+```{r}
+#| echo: false
+countdown(minutes = 3)
+```
+
+## Activity ideas
+
+**Can the data answer this question?**
+
+* Give students a dataset and a list of questions
+
+**Is this conclusion supported?**
+
+* Give a *visualization* or *test result*, and a client quote - "This means I should sell more hamburgers!"
+
+* Ask students if they think the result supports the conclusion.
+
+**"Client" feedback**
+
+* Invent a mock client for *all* student groups to target
+
+* Have student groups swap projects and imagine themselves as the clients
+
+
+## Create your Project B Dashboard Assignment
+
+Things to include:
+
+* Who is the **target audience** that the student should address?
+
+* Will you require any **specific research questions** to be addressed, or is it open-ended?
+
+* Will you require any **specific dashboard elements**, such as interactivity?
+
+* How will you grade:
+    + the **design** elements?
+    + the **technical** elements?
+    + the **communication** elements?
+
+
+
+
+
+

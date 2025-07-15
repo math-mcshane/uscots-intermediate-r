@@ -566,3 +566,16 @@ summary <- customers_tbl %>%
 :::
 
 
+## Create your Project A Data Analysis assignment
+
+Things to include:
+
+* Will you require any **specific research questions** to be addressed, or is it open-ended?
+
+* Will you require any **specific elements**, such as "join at least two datasets" or "use a dataset of at least 10000 rows"?
+
+* How **technical** should the report be - is the audience other data scientists, or general public?
+
+* How will you grade **successful but inefficient pipelines**?
+
+* How will you make sure the pipeline **really accomplishes** what the report claims?
