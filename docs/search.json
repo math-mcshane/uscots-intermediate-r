@@ -382,14 +382,14 @@
     "href": "materials/01-setup-installs.html#download-course-materials",
     "title": "Workshop Installs & Set-up",
     "section": "Download course materials",
-    "text": "Download course materials\n\ninstall.packages(\"usethis\")\n\nusethis::use_course(\"atheobold/uscots-intermediate-r\")"
+    "text": "Download course materials\nOption A: Clone or fork from GitHub: atheobold/uscots-intermediate-r\nOption B:\n\ninstall.packages(\"usethis\")\n\nusethis::use_course(\"atheobold/uscots-intermediate-r\")\n\nOption C: Just use the website!"
   },
   {
     "objectID": "materials/01-setup-installs.html#package-installs",
     "href": "materials/01-setup-installs.html#package-installs",
     "title": "Workshop Installs & Set-up",
     "section": "Package installs",
-    "text": "Package installs\nOption A: In the course project, open installs.R and run all.\nOption B: Copy paste and run:\n\npackages &lt;- c(\n  \"tidyverse\",\n  \"tidymodels\",\n  \"data.table\",\n  \"duckdb\"\n  ### Allison and Tyson add\n)\n\ninstall.packages(packages)"
+    "text": "Package installs\nOption A: In the course project, open installs.R and run all.\nOption B: Copy paste and run:\n\npackages &lt;- c(\n  \"tidyverse\",\n  \"tidymodels\",\n  \"data.table\",\n  \"duckdb\",\n  \"rvest\",\n  \"polite\",\n  \"httr2\",\n  \"jsonlite\",\n  \"xml2\",\n  \"arrow\",\n  \"DBI\",\n  \"RSQLite\",\n  \"RPostgreSQL\",\n  \"RMySQL\",\n  \"dbplyr\"\n)\n\ninstall.packages(packages)"
   },
   {
     "objectID": "materials/01-setup-installs.html#is-it-this",
@@ -445,7 +445,7 @@
     "href": "materials/01-setup-installs.html#intermediate-r-is-non-linear",
     "title": "Workshop Installs & Set-up",
     "section": "Intermediate R is non-linear",
-    "text": "Intermediate R is non-linear\n\nIt is not a bridge between Intro R and Advanced R\nIt is not a set of skills that builds progressively\nIt is a collection of learning paths (sometimes overlapping) towards a specific end goal.\n**Our course has three units that can be rearranged *modularly**"
+    "text": "Intermediate R is non-linear\n\nIt is not a bridge between Intro R and Advanced R\nIt is not a set of skills that builds progressively\nIt is a collection of learning paths (sometimes overlapping) towards a specific end goal.\nOur course has three units that can be rearranged modularly."
   },
   {
     "objectID": "materials/01-setup-installs.html#intermediate-r-is-defined-by-goals",
@@ -683,7 +683,7 @@
     "href": "materials/01-setup-installs.html#activity-find-your-data-sources",
     "title": "Workshop Installs & Set-up",
     "section": "Activity: Find Your Data Sources",
-    "text": "Activity: Find Your Data Sources\nIn pairs, come up with a data context and a few broad research questions.\nFind online as many of the following as you can related to your data context:\n\nClean tabular datasets, e.g. kaggle or tidytuesday\nMessy or non-tabular datasets, e.g. JSONs or tables on a webpage\nAPI sources related to your data\nMassive datasets\n\nWe recommend starting a Google Doc or similar with your group, to collect references to datasets, as well as content from future activities.\n\n\n\n−+\n15:00"
+    "text": "Activity: Find Your Data Sources\n\nIn pairs, come up with a data context and a few broad research questions. Find online as many of the following as you can related to your data context:\n\nClean tabular datasets, e.g. kaggle or tidytuesday\nMessy or non-tabular datasets, e.g. JSONs or tables on a webpage\nAPI sources related to your data\nMassive datasets\n\nWe recommend starting a Google Doc or similar with your group, to collect references to datasets, as well as content from future activities."
   },
   {
     "objectID": "materials/10-wrapup.html#takeaways",
