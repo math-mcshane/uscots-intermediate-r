@@ -322,6 +322,524 @@
     "text": "How are all of these pieces connected?\n\n\nplotOutput('plot') is an empty picture frame in your user interface\n\n\n\n\n\n\nrenderPlot() is the painting you generate in your server\n\n\n\n\n\n\n\noutput$plot places the painting in the frame\n\n\n\n\n\n\n\nplotOutput('plot') places the painting on display"
   },
   {
+    "objectID": "materials/00-introductions.html#welcome",
+    "href": "materials/00-introductions.html#welcome",
+    "title": "Teaching Intermediate R",
+    "section": "Welcome!",
+    "text": "Welcome!\n WiFi\n\nUsername: psu-guest\nPassword: NO PASSWORD!\n\n\nMaterials\nTo access the workshop materials use the following link:\n\nhttps://atheobold.github.io/uscots-intermediate-r/"
+  },
+  {
+    "objectID": "materials/00-introductions.html#your-workshop-leaders",
+    "href": "materials/00-introductions.html#your-workshop-leaders",
+    "title": "Teaching Intermediate R",
+    "section": "Your Workshop Leaders",
+    "text": "Your Workshop Leaders\n\n\n\n\n\n\nKelly Bodwin\n\n\n\nTyson Barrett\n\n\n\nAllison Theobold"
+  },
+  {
+    "objectID": "materials/00-introductions.html#section",
+    "href": "materials/00-introductions.html#section",
+    "title": "Teaching Intermediate R",
+    "section": "",
+    "text": "We are assuming\n\n\n You are familar with introductory R concepts\n  You know a little bit of Markdown and / or Quarto\n\n\n\n\n\nWe’ll help you\n\n \nlearn about potential “intermediate” concepts to incorporate into a course\nbrainstorm ideas for incorporating these ideas into a course project"
+  },
+  {
+    "objectID": "materials/00-introductions.html#workshop-structure",
+    "href": "materials/00-introductions.html#workshop-structure",
+    "title": "Teaching Intermediate R",
+    "section": "Workshop structure",
+    "text": "Workshop structure\n\nTopic Overview: Lecture segments + Project examples\nActivity: Make (incremental) progress toward designing three different projects"
+  },
+  {
+    "objectID": "materials/00-introductions.html#code-of-conduct",
+    "href": "materials/00-introductions.html#code-of-conduct",
+    "title": "Teaching Intermediate R",
+    "section": "Code of Conduct",
+    "text": "Code of Conduct\n\nThe American Statistical Association (ASA) is committed to providing an atmosphere in which personal respect and intellectual growth are valued and the free expression and exchange of ideas are encouraged. Consistent with this commitment, it is the policy of the ASA that all participants in ASA activities enjoy a welcoming environment free from unlawful discrimination, harassment, and retaliation. We strive to be a community that welcomes and supports people of all backgrounds and identities. This includes, but is not limited to, members of any race, ethnicity, culture, national origin, color, immigration status, social and economic class, educational level, sex, sexual orientation, gender identity and expression, age, size, family status, political belief, religion, and mental and physical ability.\n\n\n\nASA Code of Conduct"
+  },
+  {
+    "objectID": "materials/00-introductions.html#expected-behavior",
+    "href": "materials/00-introductions.html#expected-behavior",
+    "title": "Teaching Intermediate R",
+    "section": "Expected Behavior",
+    "text": "Expected Behavior\n\n\n\nModel and support the norms of respect necessary to promote the conditions for healthy exchange of scientific ideas.\nIn speech or conduct, do not insult or disparage other participants.\nBe conscious of hierarchical structures, specifically the existence of stark power differentials between students, early career statisticians and established career statisticians—noting that fear of retaliation from more established statisticians can make it difficult for students and early career statisticians to express discomfort, rebuff unwelcome advances, and report violations of the conduct policy.\nBe sensitive to indications that may suggest that individuals are feeling unwelcome.\n\n\n\n\n\n\n\nASA Code of Conduct"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#make-sure-you-are-up-to-date",
+    "href": "materials/01-setup-installs.html#make-sure-you-are-up-to-date",
+    "title": "Workshop Installs & Set-up",
+    "section": "Make sure you are up to date",
+    "text": "Make sure you are up to date\n\nAre you on the latest version of RStudio: v2025.05.1; we at least require v2023.03.0+386 or later\nAre you on the latest version of Quarto: v1.3.340 or later (This installs with RStudio, so you shouldn’t need to do anything except in unusual cases.)\nAre you on the latest version of R: v4.5.0; we require v4.3.0 or later"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#download-course-materials",
+    "href": "materials/01-setup-installs.html#download-course-materials",
+    "title": "Workshop Installs & Set-up",
+    "section": "Download course materials",
+    "text": "Download course materials\n\ninstall.packages(\"usethis\")\n\nusethis::use_course(\"atheobold/uscots-intermediate-r\")"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#package-installs",
+    "href": "materials/01-setup-installs.html#package-installs",
+    "title": "Workshop Installs & Set-up",
+    "section": "Package installs",
+    "text": "Package installs\nOption A: In the course project, open installs.R and run all.\nOption B: Copy paste and run:\n\npackages &lt;- c(\n  \"tidyverse\",\n  \"tidymodels\",\n  \"data.table\",\n  \"duckdb\"\n  ### Allison and Tyson add\n)\n\ninstall.packages(packages)"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#is-it-this",
+    "href": "materials/01-setup-installs.html#is-it-this",
+    "title": "Workshop Installs & Set-up",
+    "section": "Is it this?",
+    "text": "Is it this?\n\noutput$plot &lt;- renderPlot({\n  req(input$var)\n  ggplot(data(), aes_string(input$var)) +\n    geom_histogram()\n})"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#or-this",
+    "href": "materials/01-setup-installs.html#or-this",
+    "title": "Workshop Installs & Set-up",
+    "section": "… or this?",
+    "text": "… or this?\n\nresult &lt;- dt[\n  score &gt; 50 & !is.na(category),\n  .(mean_score = mean(score), n = .N),\n  by = .(category, region)\n][order(-mean_score)\n ][, rank := .I\n ][n &gt; 10]"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#or-this-1",
+    "href": "materials/01-setup-installs.html#or-this-1",
+    "title": "Workshop Installs & Set-up",
+    "section": "… or this?",
+    "text": "… or this?\n\nresult &lt;- data_main %&gt;%\n  left_join(meta_info, by = \"id\") %&gt;%\n  pivot_longer(cols = starts_with(\"score_\"), names_to = \"metric\", values_to = \"score\") %&gt;%\n  filter(!is.na(score)) %&gt;%\n  group_by(group, metric) %&gt;%\n  summarize(mean_score = mean(score), .groups = \"drop\") %&gt;%\n  pivot_wider(names_from = metric, values_from = mean_score) %&gt;%\n  inner_join(group_labels, by = \"group\") %&gt;%\n  arrange(desc(overall))"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#plenty-of-resources",
+    "href": "materials/01-setup-installs.html#plenty-of-resources",
+    "title": "Workshop Installs & Set-up",
+    "section": "Plenty of resources…",
+    "text": "Plenty of resources…"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#and-generally-agreed-upon-topics.",
+    "href": "materials/01-setup-installs.html#and-generally-agreed-upon-topics.",
+    "title": "Workshop Installs & Set-up",
+    "section": "… and generally agreed-upon topics.",
+    "text": "… and generally agreed-upon topics.\n\nBasics of coding: variables and objects; loops and conditionals; etc.\nInstalling and loading packages\nObject types and structures\nLoading and examining data\nBasic visualization\nData wrangling (“Big 5” tidyverse verbs, or equivalent)"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#is-it-just-programming-of-course-not",
+    "href": "materials/01-setup-installs.html#is-it-just-programming-of-course-not",
+    "title": "Workshop Installs & Set-up",
+    "section": "Is it just programming? Of course not!",
+    "text": "Is it just programming? Of course not!"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#intermediate-r-is-not-intermediate-statistics",
+    "href": "materials/01-setup-installs.html#intermediate-r-is-not-intermediate-statistics",
+    "title": "Workshop Installs & Set-up",
+    "section": "Intermediate R is NOT Intermediate Statistics",
+    "text": "Intermediate R is NOT Intermediate Statistics\n\nThe hardest part of fitting statistical models in R is the statistical concepts and interpretation not the coding.\n“[Statistical Topic] with R” is not the same class!\nOur course focuses on R Skills and requires only second-year statistics knowledge."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#intermediate-r-is-non-linear",
+    "href": "materials/01-setup-installs.html#intermediate-r-is-non-linear",
+    "title": "Workshop Installs & Set-up",
+    "section": "Intermediate R is non-linear",
+    "text": "Intermediate R is non-linear\n\nIt is not a bridge between Intro R and Advanced R\nIt is not a set of skills that builds progressively\nIt is a collection of learning paths (sometimes overlapping) towards a specific end goal.\n**Our course has three units that can be rearranged *modularly**"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#intermediate-r-is-defined-by-goals",
+    "href": "materials/01-setup-installs.html#intermediate-r-is-defined-by-goals",
+    "title": "Workshop Installs & Set-up",
+    "section": "Intermediate R is defined by goals",
+    "text": "Intermediate R is defined by goals\n\nDifferent R learners have wildly different needs.\nThere is no single skill that every Intermediate R user must know!\nInstead, identify a use case and goal that is not achievable with Intro R skills, and fill in the missing skills.\nOur course is project-driven, not exam or assignment based."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#the-structure",
+    "href": "materials/01-setup-installs.html#the-structure",
+    "title": "Workshop Installs & Set-up",
+    "section": "The structure:",
+    "text": "The structure:"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#unit-a-intermediate-r-for-data-science-1",
+    "href": "materials/01-setup-installs.html#unit-a-intermediate-r-for-data-science-1",
+    "title": "Workshop Installs & Set-up",
+    "section": "Unit A: Intermediate R for Data Science",
+    "text": "Unit A: Intermediate R for Data Science"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#learning-objectives",
+    "href": "materials/01-setup-installs.html#learning-objectives",
+    "title": "Workshop Installs & Set-up",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\n\nManage, process, and load data from non-tabular and non-local sources.\nClean and prepare messy and unstructured data, including handling missing values, and the use of regular expressions to extract information from text data.\nUse joins to combine multiple datasets with many-to-many relationships.\nUse complex data wrangling pipelines, including multiple pivots and/or multiple grouping levels, to wrangle data."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#unit-a-project",
+    "href": "materials/01-setup-installs.html#unit-a-project",
+    "title": "Workshop Installs & Set-up",
+    "section": "Unit A Project",
+    "text": "Unit A Project\nStudents will produce a stylized, publication-ready report that performs exploratory data analysis to address specific research questions.\nData for the report will be taken from multiple online and non-csv sources, and will require the use of regular expressions to collect, clean, or wrangle their data.\nResearch questions will be provided that require complex, multi-step data wrangling, and results should be communicated using complex and polished visualizations."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#unit-a-project---example",
+    "href": "materials/01-setup-installs.html#unit-a-project---example",
+    "title": "Workshop Installs & Set-up",
+    "section": "Unit A Project - Example",
+    "text": "Unit A Project - Example\nRegional Differences in Fast Food Preference\n\nData: Refer to this dataset of fast food locations across the US. Then, use Yelp’s open dataset for education to find reviews and other information pertaining to fast food restaurants."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#unit-a-project---example-1",
+    "href": "materials/01-setup-installs.html#unit-a-project---example-1",
+    "title": "Workshop Installs & Set-up",
+    "section": "Unit A Project - Example",
+    "text": "Unit A Project - Example\nRegional Differences in Fast Food Preference\n\nResearch Questions:\n\nAre certain fast food brands more prevalent in different regions of the US than others?\nAre certain fast food chains more highly rated in different regions of the US than others?\nDo reviewers use different language in their reviews in different regions?\nDo customers have different priorities for what they look for in fast food restaurants in different regions?"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#non-tabular-and-non-local-data",
+    "href": "materials/01-setup-installs.html#non-tabular-and-non-local-data",
+    "title": "Workshop Installs & Set-up",
+    "section": "Non-tabular and non-local data",
+    "text": "Non-tabular and non-local data\n\njsonlite and XML packages for hierarchical data structures.\nodbc, DBI, and dbplyr for cloud database-stored data\nduckdb and arrow for local database storage.\ndata.table for large in-memory data"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#messy-and-unstructured-data",
+    "href": "materials/01-setup-installs.html#messy-and-unstructured-data",
+    "title": "Workshop Installs & Set-up",
+    "section": "Messy and unstructured data",
+    "text": "Messy and unstructured data\n\nnaniar for dealing with missing values\nstringr and regular expressions for processing text variables\nBasic content from Text Mining in R and the tidytext package\nData cleaning principles from Reproducible Analysis with R."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#multiple-datasets-joining",
+    "href": "materials/01-setup-installs.html#multiple-datasets-joining",
+    "title": "Workshop Installs & Set-up",
+    "section": "Multiple datasets joining",
+    "text": "Multiple datasets joining\n\n*_join() functions from dplyr\nConcepts of mutating joins and filtering joins (R4DS Chapter 19)\ndbplyr and/or arrow to perform joins at database level"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#complex-data-wrangling-pipelines",
+    "href": "materials/01-setup-installs.html#complex-data-wrangling-pipelines",
+    "title": "Workshop Installs & Set-up",
+    "section": "Complex data wrangling pipelines",
+    "text": "Complex data wrangling pipelines\n\nCreation and matching of keys in relational data\nPivoting with pivot_*() functions from tidyr (content needed!)\ngroup_by() to mutate() pipeline constructions\nUse of vectorized functions or map/apply inside mutate()\nIteration with purrr or apply functions."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#more-advanced-visualizations",
+    "href": "materials/01-setup-installs.html#more-advanced-visualizations",
+    "title": "Workshop Installs & Set-up",
+    "section": "More advanced visualizations",
+    "text": "More advanced visualizations\n\ngeom_text() and geom_annotate() for annotations\nNew plot types from ggplot helpers - e.g. ridgelines from ggridges; alluvial plots with ggsankey, radar plots with fmsb and ggradar.\nChloropleths with leaflet and sf.\nGreat resource: R Graph Gallery"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#learning-goals",
+    "href": "materials/01-setup-installs.html#learning-goals",
+    "title": "Workshop Installs & Set-up",
+    "section": "Learning Goals",
+    "text": "Learning Goals\n\nProduce visualizations beyond basic geometries, including maps and annotated plots.\nIncorporate interactivity into data reports.\nAdopt extensions from peripheral software and packages, such as quarto.\nAdd statistical elements to data analysis pipeline.\nProduce production-quality plots and tables."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#unit-c-project",
+    "href": "materials/01-setup-installs.html#unit-c-project",
+    "title": "Workshop Installs & Set-up",
+    "section": "Unit C Project",
+    "text": "Unit C Project\nStudents will create an interactive dashboard that integrates advanced R features, such as Shiny, Quarto dashboards, or Plotly, to explore and communicate a research question effectively.\nThe dashboard will include statistical results that are well-summarize, well-visualized, and well-interpreted."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#unit-c-project---example",
+    "href": "materials/01-setup-installs.html#unit-c-project---example",
+    "title": "Workshop Installs & Set-up",
+    "section": "Unit C Project - Example",
+    "text": "Unit C Project - Example\nFast Food Preferences at McDonald’s\n\nUsing your Yelp analyses from Unit A and your menu analyses from Unit B, create a dashboard to understand trends and preferences for McDonald’s customers. The dashboard must be deployed for online access."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#unit-c-project---example-1",
+    "href": "materials/01-setup-installs.html#unit-c-project---example-1",
+    "title": "Workshop Installs & Set-up",
+    "section": "Unit C Project - Example",
+    "text": "Unit C Project - Example\nFast Food Preferences at McDonald’s\n\nYour dashboard must be interactive and accessible to non-technical audiences. It should communicate trends in regions as well as connecting Yelp review language to specific menu items.\nYou must include an element of results of a statistical model or test, communicated to non-technical audiences."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#interactivity",
+    "href": "materials/01-setup-installs.html#interactivity",
+    "title": "Workshop Installs & Set-up",
+    "section": "Interactivity",
+    "text": "Interactivity\n\nplotly() for immediately interactive plots\nShiny for user input\nMastering Shiny textbook"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#extensions-and-peripheral-software",
+    "href": "materials/01-setup-installs.html#extensions-and-peripheral-software",
+    "title": "Workshop Installs & Set-up",
+    "section": "Extensions and peripheral software",
+    "text": "Extensions and peripheral software\n\n\nQuarto: Dashboards, themes, websites, etc. etc.\nreactjs for animated visualization\n“Branding” use of css/scss."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#statistical-elements",
+    "href": "materials/01-setup-installs.html#statistical-elements",
+    "title": "Workshop Installs & Set-up",
+    "section": "Statistical elements",
+    "text": "Statistical elements\n\ntidymodels for predictive modeling\ntidyclust for unsupervised learning\nBootstrapping or resampling results"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#production-quality-plots-and-tables",
+    "href": "materials/01-setup-installs.html#production-quality-plots-and-tables",
+    "title": "Workshop Installs & Set-up",
+    "section": "Production-quality plots and tables",
+    "text": "Production-quality plots and tables\n\nWriting custom ggplot themes\nAnnotating plots with geom_text() etc.\ngt() for better tables"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#learning-goals-1",
+    "href": "materials/01-setup-installs.html#learning-goals-1",
+    "title": "Workshop Installs & Set-up",
+    "section": "Learning Goals",
+    "text": "Learning Goals\n\nApply function creation and code design techniques\nEngage in algorithmic thinking, including iteration.\nConsider speed and efficiency concerns in code tasks.\nDevelop a reproducible workflow for code development in R.\nEngage in unit testing and code review, including of others’ code."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#unit-c-project-1",
+    "href": "materials/01-setup-installs.html#unit-c-project-1",
+    "title": "Workshop Installs & Set-up",
+    "section": "Unit C Project",
+    "text": "Unit C Project\nStudents will create a working and installable R package that is well-documented and tracked via version control. The package must include a demonstration document (or “vignette”) and several basic informal unit tests.\nThe package should provide well-designed and user-friendly functions to streamline a data collection, wrangling, and/or analysis task.\nCode design should consider issues of efficiency and should demonstrate both tidyverse and non-tidyverse syntax fluency."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#unit-c-project---example-2",
+    "href": "materials/01-setup-installs.html#unit-c-project---example-2",
+    "title": "Workshop Installs & Set-up",
+    "section": "Unit C Project - Example",
+    "text": "Unit C Project - Example\n\nCreating your own webscraping API\n\n\nCreate an R package that provides functions to scrape, clean, and wrangle data from the McDonald’s menu. Then, provide a vignette document demonstrating use of this package. This package must be hosted on GitHub in proper installable format."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#unit-c-project---example-3",
+    "href": "materials/01-setup-installs.html#unit-c-project---example-3",
+    "title": "Workshop Installs & Set-up",
+    "section": "Unit C Project - Example",
+    "text": "Unit C Project - Example\n\nCreating your own webscraping API\n\n\nYour code and/or vignette must:\n\nInclude at least one use of iteration with purrr\nInclude use of data.table code for large data preparation tasks.\nBe well-commented and code reviewed by peers."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#function-creation-and-code-design",
+    "href": "materials/01-setup-installs.html#function-creation-and-code-design",
+    "title": "Workshop Installs & Set-up",
+    "section": "Function creation and code design",
+    "text": "Function creation and code design\n\nR Packages textbook, first section. (Wickham and Bryan)\nCode Smells and Feels talk by Jenny Bryan\nR4DS Chapter 20"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#algorithmic-thinking-and-iteration",
+    "href": "materials/01-setup-installs.html#algorithmic-thinking-and-iteration",
+    "title": "Workshop Installs & Set-up",
+    "section": "Algorithmic thinking and iteration",
+    "text": "Algorithmic thinking and iteration\n\nR4DS Chapter 26\nR Programming for Data Science\nCS 101 resources for algorithms (content needed!)\nCreate methods from scratch: basic linear regression, kmeans clustering, generative art, bootstrapping or randomization tests."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#speed-and-efficiency",
+    "href": "materials/01-setup-installs.html#speed-and-efficiency",
+    "title": "Workshop Installs & Set-up",
+    "section": "Speed and efficiency",
+    "text": "Speed and efficiency\n\nUse tictoc for informal speed testing; proc.time() for more specific speed testing; or profileR for full profiling.\nAdvanced R Chapter 23\nR Programming for Data Science\ndata.table for many groupings and concise syntax (content coming soon!)"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#reproducible-workflow",
+    "href": "materials/01-setup-installs.html#reproducible-workflow",
+    "title": "Workshop Installs & Set-up",
+    "section": "Reproducible workflow",
+    "text": "Reproducible workflow\n\nHappy Git with R textbook\nTeacher resource: GitHub Classroom for providing skeleton code and controlling student repos.\ntestthat for creating formal unit tests.\nroxygen2 for function documentation"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#unit-testing-and-code-review",
+    "href": "materials/01-setup-installs.html#unit-testing-and-code-review",
+    "title": "Workshop Installs & Set-up",
+    "section": "Unit testing and code review",
+    "text": "Unit testing and code review\n\nR Packages Chapter 13\nFunctional programming and unit testing for data munging with R online textbook\nComputer science resources for code review principles (content needed!)\nCode testing and review content from the Data Carpentries."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#a-few-stretch-goals",
+    "href": "materials/01-setup-installs.html#a-few-stretch-goals",
+    "title": "Workshop Installs & Set-up",
+    "section": "A few stretch goals",
+    "text": "A few stretch goals\n\nPackage passes CRAN checks.\nUse of object-oriented programming\nAdvanced debugging, e.g. with debugonce() or browser()"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#order-of-units",
+    "href": "materials/01-setup-installs.html#order-of-units",
+    "title": "Workshop Installs & Set-up",
+    "section": "Order of Units",
+    "text": "Order of Units\n\nC -&gt; A: Begin with webscraping, then incorporate other data and use it for analysis.\nB -&gt; A: Design a dashboard with simple, Intro R level analyses; then enhance the dashboard with more complex data.\nC -&gt; B: Create webscraping or data anaysis package, then use it underlying a dashboard."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#overlap-in-content",
+    "href": "materials/01-setup-installs.html#overlap-in-content",
+    "title": "Workshop Installs & Set-up",
+    "section": "Overlap in content",
+    "text": "Overlap in content\n\ndata.table and friends can be emphasized in A for wrangling tasks, or in C as an efficiency/syntax skill.\nplotly and friends can be used in A for easy plot upgrade, or in B for interactive dashboards\nGit and GitHub can be introduced in any Unit.\nfunction writing can be used to streamline steps in units A or B"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#takeaways",
+    "href": "materials/01-setup-installs.html#takeaways",
+    "title": "Workshop Installs & Set-up",
+    "section": "Takeaways",
+    "text": "Takeaways\n\n\n\nDesign your Intermediate R class around projects\nSeparate content into modular units organized by goals.\nSign up to be notified when the Course in a Box is available!"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#why-are-you-here",
+    "href": "materials/01-setup-installs.html#why-are-you-here",
+    "title": "Workshop Installs & Set-up",
+    "section": "Why are you here?",
+    "text": "Why are you here?"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#activity-find-your-data-sources",
+    "href": "materials/01-setup-installs.html#activity-find-your-data-sources",
+    "title": "Workshop Installs & Set-up",
+    "section": "Activity: Find Your Data Sources",
+    "text": "Activity: Find Your Data Sources\nIn pairs, come up with a data context and a few broad research questions.\nFind online as many of the following as you can related to your data context:\n\nClean tabular datasets, e.g. kaggle or tidytuesday\nMessy or non-tabular datasets, e.g. JSONs or tables on a webpage\nAPI sources related to your data\nMassive datasets\n\nWe recommend starting a Google Doc or similar with your group, to collect references to datasets, as well as content from future activities.\n\n\n\n−+\n15:00"
+  },
+  {
+    "objectID": "materials/05-quarto-projects-websites.html#section",
+    "href": "materials/05-quarto-projects-websites.html#section",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "",
+    "text": "Quarto Projects & Websites"
+  },
+  {
+    "objectID": "materials/05-quarto-projects-websites.html#quarto-projects",
+    "href": "materials/05-quarto-projects-websites.html#quarto-projects",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "Quarto Projects",
+    "text": "Quarto Projects\nare directories that provide the ability to…\n\n\nrender all or some of the files in a directory with a single command (e.g. quarto render myproject)\nshare a YAML configuration across multiple documents\nredirect output artifacts to another directory\nfreeze rendered output (i.e. don’t re-execute documents unless they have changed)"
+  },
+  {
+    "objectID": "materials/05-quarto-projects-websites.html#types-of-projects",
+    "href": "materials/05-quarto-projects-websites.html#types-of-projects",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "Types of Projects",
+    "text": "Types of Projects\nUse the quarto create project command (in the terminal) to create a new project:\n\n\nTerminal\n\nquarto create project\n\n\nYou will then be given a variety of options for projects:\n\n\nOutput\n\n ? Type\n ❯ default\n   website\n   blog\n   manuscript\n   book\n   confluence"
+  },
+  {
+    "objectID": "materials/05-quarto-projects-websites.html#say-we-chose-to-make-a-website",
+    "href": "materials/05-quarto-projects-websites.html#say-we-chose-to-make-a-website",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "Say we chose to make a website…",
+    "text": "Say we chose to make a website…\n\nOur website would come pre-populated with five initial files:\n\n\n\nLet’s talk about each file!"
+  },
+  {
+    "objectID": "materials/05-quarto-projects-websites.html#rproj-where-does-your-analysis-live",
+    "href": "materials/05-quarto-projects-websites.html#rproj-where-does-your-analysis-live",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": ".Rproj – Where does your analysis live?",
+    "text": ".Rproj – Where does your analysis live?\n\nR has a powerful notion of a working directory–where R looks for files that you ask it to load, and where it will store any files that you ask it to save.\nR for Data Science\n\n\nRStudio shows your current working directory at the top of the console:"
+  },
+  {
+    "objectID": "materials/05-quarto-projects-websites.html#rproj-where-does-your-analysis-live-1",
+    "href": "materials/05-quarto-projects-websites.html#rproj-where-does-your-analysis-live-1",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": ".Rproj – Where does your analysis live?",
+    "text": ".Rproj – Where does your analysis live?\nKeeping all the files associated with a given project (data, R scripts, figures, etc.) together in one directory is such a wise and common practice that RStudio has built-in support for this via RStudio projects (.Rproj)."
+  },
+  {
+    "objectID": "materials/05-quarto-projects-websites.html#file-paths",
+    "href": "materials/05-quarto-projects-websites.html#file-paths",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "File Paths (😩)",
+    "text": "File Paths (😩)\n\nInside a .Rproj, you can access files using a relative path. Absolute paths should never be used!\n\n\n\n\n\n\nIf I wanted to access the students.xlsx file in the data folder of my project, I could use data/students.csv to access these data.\n\n\n\n\n\n\n\n\n\nThis is different from the full path (where the file lives on my computer): /Users/atheobol/Desktop/trial-website/data/students.csv."
+  },
+  {
+    "objectID": "materials/05-quarto-projects-websites.html#yml-files",
+    "href": "materials/05-quarto-projects-websites.html#yml-files",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": ".yml Files",
+    "text": ".yml Files\n\n\n_quarto.yml\n\nproject:\n  type: website\n\nwebsite:\n  title: \"trial-website\"\n  navbar:\n    left:\n      - href: index.qmd\n        text: Home\n      - about.qmd\n\nformat:\n  html:\n    theme: cosmo\n    css: styles.css\n    toc: true\n\neditor: visual"
+  },
+  {
+    "objectID": "materials/05-quarto-projects-websites.html#css",
+    "href": "materials/05-quarto-projects-websites.html#css",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": ".css",
+    "text": ".css\nA Cascading Style Sheets (CSS) file is a style sheet language used in web development to describe the presentation and formatting of documents written in HTML or XML."
+  },
+  {
+    "objectID": "materials/05-quarto-projects-websites.html#index.qmd-about.qmd",
+    "href": "materials/05-quarto-projects-websites.html#index.qmd-about.qmd",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "index.qmd & about.qmd",
+    "text": "index.qmd & about.qmd\n\n\n\n\nThis is the home page for the website!\nWhatever you place in the index.qmd file will be the first page people see!\nThis page is also accessed using the top navigation menu (on the left side) using the link titled “Home.”\n\n\n\n\n\n\nThis is an additional content page!\nThis is accessed through the top navigation menu.\nNotice that the .yml file doesn’t give this page a name, so it defaults to the title included in the about.qmd document."
+  },
+  {
+    "objectID": "materials/05-quarto-projects-websites.html#website-themes",
+    "href": "materials/05-quarto-projects-websites.html#website-themes",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "Website Themes",
+    "text": "Website Themes\nformat:\n  html:\n    theme: cosmo\n    css: styles.css\n    toc: true\n\nHere is a list of every theme available for Quarto websites: https://quarto.org/docs/output-formats/html-themes.html\n\n\n\n\nOptionally, you can set separate “light” and “dark” themes:\n\ntheme:\n  light: flatly\n  dark: darkly"
+  },
+  {
+    "objectID": "materials/07-shiny.html#section",
+    "href": "materials/07-shiny.html#section",
+    "title": "Shiny",
+    "section": "",
+    "text": "Quarto Dashboards"
+  },
+  {
+    "objectID": "materials/07-shiny.html#section-2",
+    "href": "materials/07-shiny.html#section-2",
+    "title": "Shiny",
+    "section": "",
+    "text": "gganimate\nleaflet"
+  },
+  {
+    "objectID": "materials/07-shiny.html#section-3",
+    "href": "materials/07-shiny.html#section-3",
+    "title": "Shiny",
+    "section": "",
+    "text": "leaflet\nplotly"
+  },
+  {
+    "objectID": "materials/09-package_workflow.html#what-is-a-package-workflow",
+    "href": "materials/09-package_workflow.html#what-is-a-package-workflow",
+    "title": "Package-based Workflow",
+    "section": "What is a package workflow?",
+    "text": "What is a package workflow?"
+  },
+  {
+    "objectID": "materials/09-package_workflow.html#skeleton-r-package",
+    "href": "materials/09-package_workflow.html#skeleton-r-package",
+    "title": "Package-based Workflow",
+    "section": "Skeleton R package",
+    "text": "Skeleton R package\n\nusethis::create_package(\"example_skeleton_package\")\nusethis::use_r(\"simple_linear_regression\")\nusethis::use_test(\"simple_linear_regression\")\nNew File &gt; Quarto &gt; slr_demo.qmd"
+  },
+  {
+    "objectID": "materials/09-package_workflow.html#complete-the-function",
+    "href": "materials/09-package_workflow.html#complete-the-function",
+    "title": "Package-based Workflow",
+    "section": "Complete the function",
+    "text": "Complete the function"
+  },
+  {
+    "objectID": "materials/09-package_workflow.html#document-and-build",
+    "href": "materials/09-package_workflow.html#document-and-build",
+    "title": "Package-based Workflow",
+    "section": "Document and build",
+    "text": "Document and build"
+  },
+  {
+    "objectID": "materials/09-package_workflow.html#pass-the-unit-tests",
+    "href": "materials/09-package_workflow.html#pass-the-unit-tests",
+    "title": "Package-based Workflow",
+    "section": "Pass the unit tests",
+    "text": "Pass the unit tests"
+  },
+  {
+    "objectID": "materials/09-package_workflow.html#render-the-demo",
+    "href": "materials/09-package_workflow.html#render-the-demo",
+    "title": "Package-based Workflow",
+    "section": "Render the demo",
+    "text": "Render the demo"
+  },
+  {
+    "objectID": "materials/09-package_workflow.html#what-do-students-turn-in",
+    "href": "materials/09-package_workflow.html#what-do-students-turn-in",
+    "title": "Package-based Workflow",
+    "section": "What do students turn in?",
+    "text": "What do students turn in?\n\nA link to their GitHub of the package.\nThe rendered html of slr_demo.\nA code review of someone else’s package."
+  },
+  {
+    "objectID": "materials/09-package_workflow.html#grading",
+    "href": "materials/09-package_workflow.html#grading",
+    "title": "Package-based Workflow",
+    "section": "Grading",
+    "text": "Grading\n\n`"
+  },
+  {
     "objectID": "materials/04-professional-viz.html#why-professional-data-visualization",
     "href": "materials/04-professional-viz.html#why-professional-data-visualization",
     "title": "Professional Data Visualization",
@@ -490,531 +1008,6 @@
     "text": "Professional Development Resources\n\nVisualization Theory & Principles:\n\nClaus Wilke’s “Fundamentals of Data Visualization” - Modern, comprehensive guide\nAlberto Cairo’s “The Truthful Art” - Ethics and principles\nEdward Tufte’s Works - Classic visualization theory\n\nR-Specific Advanced Techniques:\n\nggplot2: Elegant Graphics for Data Analysis - Hadley Wickham’s comprehensive guide\nR Graphics Cookbook - Practical solutions\nData Visualization: A Practical Introduction - Sociology perspective with R\n\nTeaching Methodology:\n\nData Science Education Resources - Complete course framework\nTeaching Data Science - Pedagogical approaches\nJournal of Statistics Education - Academic research on teaching"
   },
   {
-    "objectID": "materials/05-quarto-projects-websites.html#section",
-    "href": "materials/05-quarto-projects-websites.html#section",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": "",
-    "text": "Quarto Projects & Websites"
-  },
-  {
-    "objectID": "materials/05-quarto-projects-websites.html#quarto-projects",
-    "href": "materials/05-quarto-projects-websites.html#quarto-projects",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": "Quarto Projects",
-    "text": "Quarto Projects\nare directories that provide the ability to…\n\n\nrender all or some of the files in a directory with a single command (e.g. quarto render myproject)\nshare a YAML configuration across multiple documents\nredirect output artifacts to another directory\nfreeze rendered output (i.e. don’t re-execute documents unless they have changed)"
-  },
-  {
-    "objectID": "materials/05-quarto-projects-websites.html#types-of-projects",
-    "href": "materials/05-quarto-projects-websites.html#types-of-projects",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": "Types of Projects",
-    "text": "Types of Projects\nUse the quarto create project command (in the terminal) to create a new project:\n\n\nTerminal\n\nquarto create project\n\n\nYou will then be given a variety of options for projects:\n\n\nOutput\n\n ? Type\n ❯ default\n   website\n   blog\n   manuscript\n   book\n   confluence"
-  },
-  {
-    "objectID": "materials/05-quarto-projects-websites.html#say-we-chose-to-make-a-website",
-    "href": "materials/05-quarto-projects-websites.html#say-we-chose-to-make-a-website",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": "Say we chose to make a website…",
-    "text": "Say we chose to make a website…\n\nOur website would come pre-populated with five initial files:\n\n\n\nLet’s talk about each file!"
-  },
-  {
-    "objectID": "materials/05-quarto-projects-websites.html#rproj-where-does-your-analysis-live",
-    "href": "materials/05-quarto-projects-websites.html#rproj-where-does-your-analysis-live",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": ".Rproj – Where does your analysis live?",
-    "text": ".Rproj – Where does your analysis live?\n\nR has a powerful notion of a working directory–where R looks for files that you ask it to load, and where it will store any files that you ask it to save.\nR for Data Science\n\n\nRStudio shows your current working directory at the top of the console:"
-  },
-  {
-    "objectID": "materials/05-quarto-projects-websites.html#rproj-where-does-your-analysis-live-1",
-    "href": "materials/05-quarto-projects-websites.html#rproj-where-does-your-analysis-live-1",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": ".Rproj – Where does your analysis live?",
-    "text": ".Rproj – Where does your analysis live?\nKeeping all the files associated with a given project (data, R scripts, figures, etc.) together in one directory is such a wise and common practice that RStudio has built-in support for this via RStudio projects (.Rproj)."
-  },
-  {
-    "objectID": "materials/05-quarto-projects-websites.html#file-paths",
-    "href": "materials/05-quarto-projects-websites.html#file-paths",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": "File Paths (😩)",
-    "text": "File Paths (😩)\n\nInside a .Rproj, you can access files using a relative path. Absolute paths should never be used!\n\n\n\n\n\n\nIf I wanted to access the students.xlsx file in the data folder of my project, I could use data/students.csv to access these data.\n\n\n\n\n\n\n\n\n\nThis is different from the full path (where the file lives on my computer): /Users/atheobol/Desktop/trial-website/data/students.csv."
-  },
-  {
-    "objectID": "materials/05-quarto-projects-websites.html#yml-files",
-    "href": "materials/05-quarto-projects-websites.html#yml-files",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": ".yml Files",
-    "text": ".yml Files\n\n\n_quarto.yml\n\nproject:\n  type: website\n\nwebsite:\n  title: \"trial-website\"\n  navbar:\n    left:\n      - href: index.qmd\n        text: Home\n      - about.qmd\n\nformat:\n  html:\n    theme: cosmo\n    css: styles.css\n    toc: true\n\neditor: visual"
-  },
-  {
-    "objectID": "materials/05-quarto-projects-websites.html#css",
-    "href": "materials/05-quarto-projects-websites.html#css",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": ".css",
-    "text": ".css\nA Cascading Style Sheets (CSS) file is a style sheet language used in web development to describe the presentation and formatting of documents written in HTML or XML."
-  },
-  {
-    "objectID": "materials/05-quarto-projects-websites.html#index.qmd-about.qmd",
-    "href": "materials/05-quarto-projects-websites.html#index.qmd-about.qmd",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": "index.qmd & about.qmd",
-    "text": "index.qmd & about.qmd\n\n\n\n\nThis is the home page for the website!\nWhatever you place in the index.qmd file will be the first page people see!\nThis page is also accessed using the top navigation menu (on the left side) using the link titled “Home.”\n\n\n\n\n\n\nThis is an additional content page!\nThis is accessed through the top navigation menu.\nNotice that the .yml file doesn’t give this page a name, so it defaults to the title included in the about.qmd document."
-  },
-  {
-    "objectID": "materials/05-quarto-projects-websites.html#website-themes",
-    "href": "materials/05-quarto-projects-websites.html#website-themes",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": "Website Themes",
-    "text": "Website Themes\nformat:\n  html:\n    theme: cosmo\n    css: styles.css\n    toc: true\n\nHere is a list of every theme available for Quarto websites: https://quarto.org/docs/output-formats/html-themes.html\n\n\n\n\nOptionally, you can set separate “light” and “dark” themes:\n\ntheme:\n  light: flatly\n  dark: darkly"
-  },
-  {
-    "objectID": "materials/08-package_workflow.html#what-is-a-package-workflow",
-    "href": "materials/08-package_workflow.html#what-is-a-package-workflow",
-    "title": "Package-based Workflow",
-    "section": "What is a package workflow?",
-    "text": "What is a package workflow?"
-  },
-  {
-    "objectID": "materials/08-package_workflow.html#skeleton-r-package",
-    "href": "materials/08-package_workflow.html#skeleton-r-package",
-    "title": "Package-based Workflow",
-    "section": "Skeleton R package",
-    "text": "Skeleton R package\n\nusethis::create_package(\"example_skeleton_package\")\nusethis::use_r(\"simple_linear_regression\")\nusethis::use_test(\"simple_linear_regression\")\nNew File &gt; Quarto &gt; slr_demo.qmd"
-  },
-  {
-    "objectID": "materials/08-package_workflow.html#complete-the-function",
-    "href": "materials/08-package_workflow.html#complete-the-function",
-    "title": "Package-based Workflow",
-    "section": "Complete the function",
-    "text": "Complete the function"
-  },
-  {
-    "objectID": "materials/08-package_workflow.html#document-and-build",
-    "href": "materials/08-package_workflow.html#document-and-build",
-    "title": "Package-based Workflow",
-    "section": "Document and build",
-    "text": "Document and build"
-  },
-  {
-    "objectID": "materials/08-package_workflow.html#pass-the-unit-tests",
-    "href": "materials/08-package_workflow.html#pass-the-unit-tests",
-    "title": "Package-based Workflow",
-    "section": "Pass the unit tests",
-    "text": "Pass the unit tests"
-  },
-  {
-    "objectID": "materials/08-package_workflow.html#render-the-demo",
-    "href": "materials/08-package_workflow.html#render-the-demo",
-    "title": "Package-based Workflow",
-    "section": "Render the demo",
-    "text": "Render the demo"
-  },
-  {
-    "objectID": "materials/08-package_workflow.html#what-do-students-turn-in",
-    "href": "materials/08-package_workflow.html#what-do-students-turn-in",
-    "title": "Package-based Workflow",
-    "section": "What do students turn in?",
-    "text": "What do students turn in?\n\nA link to their GitHub of the package.\nThe rendered html of slr_demo.\nA code review of someone else’s package."
-  },
-  {
-    "objectID": "materials/08-package_workflow.html#grading",
-    "href": "materials/08-package_workflow.html#grading",
-    "title": "Package-based Workflow",
-    "section": "Grading",
-    "text": "Grading\n\n`"
-  },
-  {
-    "objectID": "materials/07-shiny.html#section",
-    "href": "materials/07-shiny.html#section",
-    "title": "Shiny",
-    "section": "",
-    "text": "Quarto Dashboards"
-  },
-  {
-    "objectID": "materials/07-shiny.html#section-2",
-    "href": "materials/07-shiny.html#section-2",
-    "title": "Shiny",
-    "section": "",
-    "text": "gganimate\nleaflet"
-  },
-  {
-    "objectID": "materials/07-shiny.html#section-3",
-    "href": "materials/07-shiny.html#section-3",
-    "title": "Shiny",
-    "section": "",
-    "text": "leaflet\nplotly"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#make-sure-you-are-up-to-date",
-    "href": "materials/01-setup-installs.html#make-sure-you-are-up-to-date",
-    "title": "Workshop Installs & Set-up",
-    "section": "Make sure you are up to date",
-    "text": "Make sure you are up to date\n\nAre you on the latest version of RStudio: v2025.05.1; we at least require v2023.03.0+386 or later\nAre you on the latest version of Quarto: v1.3.340 or later (This installs with RStudio, so you shouldn’t need to do anything except in unusual cases.)\nAre you on the latest version of R: v4.5.0; we require v4.3.0 or later"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#download-course-materials",
-    "href": "materials/01-setup-installs.html#download-course-materials",
-    "title": "Workshop Installs & Set-up",
-    "section": "Download course materials",
-    "text": "Download course materials\n\ninstall.packages(\"usethis\")\n\nusethis::use_course(\"atheobold/uscots-intermediate-r\")"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#package-installs",
-    "href": "materials/01-setup-installs.html#package-installs",
-    "title": "Workshop Installs & Set-up",
-    "section": "Package installs",
-    "text": "Package installs\nOption A: In the course project, open installs.R and run all.\nOption B: Copy paste and run:\n\npackages &lt;- c(\n  \"tidyverse\",\n  \"tidymodels\",\n  \"data.table\",\n  \"duckdb\"\n  ### Allison and Tyson add\n)\n\ninstall.packages(packages)"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#is-it-this",
-    "href": "materials/01-setup-installs.html#is-it-this",
-    "title": "Workshop Installs & Set-up",
-    "section": "Is it this?",
-    "text": "Is it this?\n\noutput$plot &lt;- renderPlot({\n  req(input$var)\n  ggplot(data(), aes_string(input$var)) +\n    geom_histogram()\n})"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#or-this",
-    "href": "materials/01-setup-installs.html#or-this",
-    "title": "Workshop Installs & Set-up",
-    "section": "… or this?",
-    "text": "… or this?\n\nresult &lt;- dt[\n  score &gt; 50 & !is.na(category),\n  .(mean_score = mean(score), n = .N),\n  by = .(category, region)\n][order(-mean_score)\n ][, rank := .I\n ][n &gt; 10]"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#or-this-1",
-    "href": "materials/01-setup-installs.html#or-this-1",
-    "title": "Workshop Installs & Set-up",
-    "section": "… or this?",
-    "text": "… or this?\n\nresult &lt;- data_main %&gt;%\n  left_join(meta_info, by = \"id\") %&gt;%\n  pivot_longer(cols = starts_with(\"score_\"), names_to = \"metric\", values_to = \"score\") %&gt;%\n  filter(!is.na(score)) %&gt;%\n  group_by(group, metric) %&gt;%\n  summarize(mean_score = mean(score), .groups = \"drop\") %&gt;%\n  pivot_wider(names_from = metric, values_from = mean_score) %&gt;%\n  inner_join(group_labels, by = \"group\") %&gt;%\n  arrange(desc(overall))"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#plenty-of-resources",
-    "href": "materials/01-setup-installs.html#plenty-of-resources",
-    "title": "Workshop Installs & Set-up",
-    "section": "Plenty of resources…",
-    "text": "Plenty of resources…"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#and-generally-agreed-upon-topics.",
-    "href": "materials/01-setup-installs.html#and-generally-agreed-upon-topics.",
-    "title": "Workshop Installs & Set-up",
-    "section": "… and generally agreed-upon topics.",
-    "text": "… and generally agreed-upon topics.\n\nBasics of coding: variables and objects; loops and conditionals; etc.\nInstalling and loading packages\nObject types and structures\nLoading and examining data\nBasic visualization\nData wrangling (“Big 5” tidyverse verbs, or equivalent)"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#is-it-just-programming-of-course-not",
-    "href": "materials/01-setup-installs.html#is-it-just-programming-of-course-not",
-    "title": "Workshop Installs & Set-up",
-    "section": "Is it just programming? Of course not!",
-    "text": "Is it just programming? Of course not!"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#intermediate-r-is-not-intermediate-statistics",
-    "href": "materials/01-setup-installs.html#intermediate-r-is-not-intermediate-statistics",
-    "title": "Workshop Installs & Set-up",
-    "section": "Intermediate R is NOT Intermediate Statistics",
-    "text": "Intermediate R is NOT Intermediate Statistics\n\nThe hardest part of fitting statistical models in R is the statistical concepts and interpretation not the coding.\n“[Statistical Topic] with R” is not the same class!\nOur course focuses on R Skills and requires only second-year statistics knowledge."
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#intermediate-r-is-non-linear",
-    "href": "materials/01-setup-installs.html#intermediate-r-is-non-linear",
-    "title": "Workshop Installs & Set-up",
-    "section": "Intermediate R is non-linear",
-    "text": "Intermediate R is non-linear\n\nIt is not a bridge between Intro R and Advanced R\nIt is not a set of skills that builds progressively\nIt is a collection of learning paths (sometimes overlapping) towards a specific end goal.\n**Our course has three units that can be rearranged *modularly**"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#intermediate-r-is-defined-by-goals",
-    "href": "materials/01-setup-installs.html#intermediate-r-is-defined-by-goals",
-    "title": "Workshop Installs & Set-up",
-    "section": "Intermediate R is defined by goals",
-    "text": "Intermediate R is defined by goals\n\nDifferent R learners have wildly different needs.\nThere is no single skill that every Intermediate R user must know!\nInstead, identify a use case and goal that is not achievable with Intro R skills, and fill in the missing skills.\nOur course is project-driven, not exam or assignment based."
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#the-structure",
-    "href": "materials/01-setup-installs.html#the-structure",
-    "title": "Workshop Installs & Set-up",
-    "section": "The structure:",
-    "text": "The structure:"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#unit-a-intermediate-r-for-data-science-1",
-    "href": "materials/01-setup-installs.html#unit-a-intermediate-r-for-data-science-1",
-    "title": "Workshop Installs & Set-up",
-    "section": "Unit A: Intermediate R for Data Science",
-    "text": "Unit A: Intermediate R for Data Science"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#learning-objectives",
-    "href": "materials/01-setup-installs.html#learning-objectives",
-    "title": "Workshop Installs & Set-up",
-    "section": "Learning Objectives",
-    "text": "Learning Objectives\n\nManage, process, and load data from non-tabular and non-local sources.\nClean and prepare messy and unstructured data, including handling missing values, and the use of regular expressions to extract information from text data.\nUse joins to combine multiple datasets with many-to-many relationships.\nUse complex data wrangling pipelines, including multiple pivots and/or multiple grouping levels, to wrangle data.\nProduce visualizations beyond basic geometries, including maps and annotated plots."
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#unit-a-project",
-    "href": "materials/01-setup-installs.html#unit-a-project",
-    "title": "Workshop Installs & Set-up",
-    "section": "Unit A Project",
-    "text": "Unit A Project\nStudents will produce a stylized, publication-ready report that performs exploratory data analysis to address specific research questions.\nData for the report will be taken from multiple online and non-csv sources, and will require the use of regular expressions to collect, clean, or wrangle their data.\nResearch questions will be provided that require complex, multi-step data wrangling, and results should be communicated using complex and polished visualizations."
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#unit-a-project---example",
-    "href": "materials/01-setup-installs.html#unit-a-project---example",
-    "title": "Workshop Installs & Set-up",
-    "section": "Unit A Project - Example",
-    "text": "Unit A Project - Example\nRegional Differences in Fast Food Preference\n\nData: Refer to this dataset of fast food locations across the US. Then, use Yelp’s open dataset for education to find reviews and other information pertaining to fast food restaurants."
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#unit-a-project---example-1",
-    "href": "materials/01-setup-installs.html#unit-a-project---example-1",
-    "title": "Workshop Installs & Set-up",
-    "section": "Unit A Project - Example",
-    "text": "Unit A Project - Example\nRegional Differences in Fast Food Preference\n\nResearch Questions:\n\nAre certain fast food brands more prevalent in different regions of the US than others?\nAre certain fast food chains more highly rated in different regions of the US than others?\nDo reviewers use different language in their reviews in different regions?\nDo customers have different priorities for what they look for in fast food restaurants in different regions?"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#non-tabular-and-non-local-data",
-    "href": "materials/01-setup-installs.html#non-tabular-and-non-local-data",
-    "title": "Workshop Installs & Set-up",
-    "section": "Non-tabular and non-local data",
-    "text": "Non-tabular and non-local data\n\njsonlite and XML packages for hierarchical data structures.\nodbc, DBI, and dbplyr for cloud database-stored data\nduckdb and arrow for local database storage.\ndata.table for large in-memory data"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#messy-and-unstructured-data",
-    "href": "materials/01-setup-installs.html#messy-and-unstructured-data",
-    "title": "Workshop Installs & Set-up",
-    "section": "Messy and unstructured data",
-    "text": "Messy and unstructured data\n\nnaniar for dealing with missing values\nstringr and regular expressions for processing text variables\nBasic content from Text Mining in R and the tidytext package\nData cleaning principles from Reproducible Analysis with R."
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#multiple-datasets-joining",
-    "href": "materials/01-setup-installs.html#multiple-datasets-joining",
-    "title": "Workshop Installs & Set-up",
-    "section": "Multiple datasets joining",
-    "text": "Multiple datasets joining\n\n*_join() functions from dplyr\nConcepts of mutating joins and filtering joins (R4DS Chapter 19)\ndbplyr and/or arrow to perform joins at database level"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#complex-data-wrangling-pipelines",
-    "href": "materials/01-setup-installs.html#complex-data-wrangling-pipelines",
-    "title": "Workshop Installs & Set-up",
-    "section": "Complex data wrangling pipelines",
-    "text": "Complex data wrangling pipelines\n\nCreation and matching of keys in relational data\nPivoting with pivot_*() functions from tidyr (content needed!)\ngroup_by() to mutate() pipeline constructions\nUse of vectorized functions or map/apply inside mutate()\nIteration with purrr or apply functions."
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#more-advanced-visualizations",
-    "href": "materials/01-setup-installs.html#more-advanced-visualizations",
-    "title": "Workshop Installs & Set-up",
-    "section": "More advanced visualizations",
-    "text": "More advanced visualizations\n\ngeom_text() and geom_annotate() for annotations\nNew plot types from ggplot helpers - e.g. ridgelines from ggridges; alluvial plots with ggsankey, radar plots with fmsb and ggradar.\nChloropleths with leaflet and sf.\nGreat resource: R Graph Gallery"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#learning-goals",
-    "href": "materials/01-setup-installs.html#learning-goals",
-    "title": "Workshop Installs & Set-up",
-    "section": "Learning Goals",
-    "text": "Learning Goals\n\nIncorporate interactivity into data reports.\nAdopt extensions from peripheral software and packages, such as quarto.\nAdd statistical elements to data analysis pipeline.\nProduce production-quality plots and tables."
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#unit-c-project",
-    "href": "materials/01-setup-installs.html#unit-c-project",
-    "title": "Workshop Installs & Set-up",
-    "section": "Unit C Project",
-    "text": "Unit C Project\nStudents will create an interactive dashboard that integrates advanced R features, such as Shiny, Quarto dashboards, or Plotly, to explore and communicate a research question effectively.\nThe dashboard will include statistical results that are well-summarize, well-visualized, and well-interpreted."
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#unit-c-project---example",
-    "href": "materials/01-setup-installs.html#unit-c-project---example",
-    "title": "Workshop Installs & Set-up",
-    "section": "Unit C Project - Example",
-    "text": "Unit C Project - Example\nFast Food Preferences at McDonald’s\n\nUsing your Yelp analyses from Unit A and your menu analyses from Unit B, create a dashboard to understand trends and preferences for McDonald’s customers. The dashboard must be deployed for online access."
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#unit-c-project---example-1",
-    "href": "materials/01-setup-installs.html#unit-c-project---example-1",
-    "title": "Workshop Installs & Set-up",
-    "section": "Unit C Project - Example",
-    "text": "Unit C Project - Example\nFast Food Preferences at McDonald’s\n\nYour dashboard must be interactive and accessible to non-technical audiences. It should communicate trends in regions as well as connecting Yelp review language to specific menu items.\nYou must include an element of results of a statistical model or test, communicated to non-technical audiences."
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#interactivity",
-    "href": "materials/01-setup-installs.html#interactivity",
-    "title": "Workshop Installs & Set-up",
-    "section": "Interactivity",
-    "text": "Interactivity\n\nplotly() for immediately interactive plots\nShiny for user input\nMastering Shiny textbook"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#extensions-and-peripheral-software",
-    "href": "materials/01-setup-installs.html#extensions-and-peripheral-software",
-    "title": "Workshop Installs & Set-up",
-    "section": "Extensions and peripheral software",
-    "text": "Extensions and peripheral software\n\n\nQuarto: Dashboards, themes, websites, etc. etc.\nreactjs for animated visualization\n“Branding” use of css/scss."
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#statistical-elements",
-    "href": "materials/01-setup-installs.html#statistical-elements",
-    "title": "Workshop Installs & Set-up",
-    "section": "Statistical elements",
-    "text": "Statistical elements\n\ntidymodels for predictive modeling\ntidyclust for unsupervised learning\nBootstrapping or resampling results"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#production-quality-plots-and-tables",
-    "href": "materials/01-setup-installs.html#production-quality-plots-and-tables",
-    "title": "Workshop Installs & Set-up",
-    "section": "Production-quality plots and tables",
-    "text": "Production-quality plots and tables\n\nWriting custom ggplot themes\nAnnotating plots with geom_text() etc.\ngt() for better tables"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#learning-goals-1",
-    "href": "materials/01-setup-installs.html#learning-goals-1",
-    "title": "Workshop Installs & Set-up",
-    "section": "Learning Goals",
-    "text": "Learning Goals\n\nApply function creation and code design techniques\nEngage in algorithmic thinking, including iteration.\nConsider speed and efficiency concerns in code tasks.\nDevelop a reproducible workflow for code development in R.\nEngage in unit testing and code review, including of others’ code."
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#unit-c-project-1",
-    "href": "materials/01-setup-installs.html#unit-c-project-1",
-    "title": "Workshop Installs & Set-up",
-    "section": "Unit C Project",
-    "text": "Unit C Project\nStudents will create a working and installable R package that is well-documented and tracked via version control. The package must include a demonstration document (or “vignette”) and several basic informal unit tests.\nThe package should provide well-designed and user-friendly functions to streamline a data collection, wrangling, and/or analysis task.\nCode design should consider issues of efficiency and should demonstrate both tidyverse and non-tidyverse syntax fluency."
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#unit-c-project---example-2",
-    "href": "materials/01-setup-installs.html#unit-c-project---example-2",
-    "title": "Workshop Installs & Set-up",
-    "section": "Unit C Project - Example",
-    "text": "Unit C Project - Example\n\nCreating your own webscraping API\n\n\nCreate an R package that provides functions to scrape, clean, and wrangle data from the McDonald’s menu. Then, provide a vignette document demonstrating use of this package. This package must be hosted on GitHub in proper installable format."
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#unit-c-project---example-3",
-    "href": "materials/01-setup-installs.html#unit-c-project---example-3",
-    "title": "Workshop Installs & Set-up",
-    "section": "Unit C Project - Example",
-    "text": "Unit C Project - Example\n\nCreating your own webscraping API\n\n\nYour code and/or vignette must:\n\nInclude at least one use of iteration with purrr\nInclude use of data.table code for large data preparation tasks.\nBe well-commented and code reviewed by peers."
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#function-creation-and-code-design",
-    "href": "materials/01-setup-installs.html#function-creation-and-code-design",
-    "title": "Workshop Installs & Set-up",
-    "section": "Function creation and code design",
-    "text": "Function creation and code design\n\nR Packages textbook, first section. (Wickham and Bryan)\nCode Smells and Feels talk by Jenny Bryan\nR4DS Chapter 20"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#algorithmic-thinking-and-iteration",
-    "href": "materials/01-setup-installs.html#algorithmic-thinking-and-iteration",
-    "title": "Workshop Installs & Set-up",
-    "section": "Algorithmic thinking and iteration",
-    "text": "Algorithmic thinking and iteration\n\nR4DS Chapter 26\nR Programming for Data Science\nCS 101 resources for algorithms (content needed!)\nCreate methods from scratch: basic linear regression, kmeans clustering, generative art, bootstrapping or randomization tests."
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#speed-and-efficiency",
-    "href": "materials/01-setup-installs.html#speed-and-efficiency",
-    "title": "Workshop Installs & Set-up",
-    "section": "Speed and efficiency",
-    "text": "Speed and efficiency\n\nUse tictoc for informal speed testing; proc.time() for more specific speed testing; or profileR for full profiling.\nAdvanced R Chapter 23\nR Programming for Data Science\ndata.table for many groupings and concise syntax (content coming soon!)"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#reproducible-workflow",
-    "href": "materials/01-setup-installs.html#reproducible-workflow",
-    "title": "Workshop Installs & Set-up",
-    "section": "Reproducible workflow",
-    "text": "Reproducible workflow\n\nHappy Git with R textbook\nTeacher resource: GitHub Classroom for providing skeleton code and controlling student repos.\ntestthat for creating formal unit tests.\nroxygen2 for function documentation"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#unit-testing-and-code-review",
-    "href": "materials/01-setup-installs.html#unit-testing-and-code-review",
-    "title": "Workshop Installs & Set-up",
-    "section": "Unit testing and code review",
-    "text": "Unit testing and code review\n\nR Packages Chapter 13\nFunctional programming and unit testing for data munging with R online textbook\nComputer science resources for code review principles (content needed!)\nCode testing and review content from the Data Carpentries."
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#a-few-stretch-goals",
-    "href": "materials/01-setup-installs.html#a-few-stretch-goals",
-    "title": "Workshop Installs & Set-up",
-    "section": "A few stretch goals",
-    "text": "A few stretch goals\n\nPackage passes CRAN checks.\nUse of object-oriented programming\nAdvanced debugging, e.g. with debugonce() or browser()"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#order-of-units",
-    "href": "materials/01-setup-installs.html#order-of-units",
-    "title": "Workshop Installs & Set-up",
-    "section": "Order of Units",
-    "text": "Order of Units\n\nC -&gt; A: Begin with webscraping, then incorporate other data and use it for analysis.\nB -&gt; A: Design a dashboard with simple, Intro R level analyses; then enhance the dashboard with more complex data.\nC -&gt; B: Create webscraping or data anaysis package, then use it underlying a dashboard."
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#overlap-in-content",
-    "href": "materials/01-setup-installs.html#overlap-in-content",
-    "title": "Workshop Installs & Set-up",
-    "section": "Overlap in content",
-    "text": "Overlap in content\n\ndata.table and friends can be emphasized in A for wrangling tasks, or in C as an efficiency/syntax skill.\nplotly and friends can be used in A for easy plot upgrade, or in B for interactive dashboards\nGit and GitHub can be introduced in any Unit.\nfunction writing can be used to streamline steps in units A or B"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#takeaways",
-    "href": "materials/01-setup-installs.html#takeaways",
-    "title": "Workshop Installs & Set-up",
-    "section": "Takeaways",
-    "text": "Takeaways\n\n\n\nDesign your Intermediate R class around projects\nSeparate content into modular units organized by goals.\nSign up to be notified when the Course in a Box is available!"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#why-are-you-here",
-    "href": "materials/01-setup-installs.html#why-are-you-here",
-    "title": "Workshop Installs & Set-up",
-    "section": "Why are you here?",
-    "text": "Why are you here?"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#activity-find-your-data-sources",
-    "href": "materials/01-setup-installs.html#activity-find-your-data-sources",
-    "title": "Workshop Installs & Set-up",
-    "section": "Activity: Find Your Data Sources",
-    "text": "Activity: Find Your Data Sources\nIn pairs, come up with a data context and a few broad research questions.\nFind online as many of the following as you can related to your data context:\n\nClean tabular datasets, e.g. kaggle or tidytuesday\nMessy or non-tabular datasets, e.g. JSONs or tables on a webpage\nAPI sources related to your data\nMassive datasets\n\nWe recommend starting a Google Doc or similar with your group, to collect references to datasets, as well as content from future activities.\n\n\n\n−+\n15:00"
-  },
-  {
-    "objectID": "materials/00-introductions.html#welcome",
-    "href": "materials/00-introductions.html#welcome",
-    "title": "Teaching Intermediate R",
-    "section": "Welcome!",
-    "text": "Welcome!\n WiFi\n\nUsername: psu-guest\nPassword: NO PASSWORD!\n\n\nMaterials\nTo access the workshop materials use the following link:\n\nhttps://atheobold.github.io/uscots-intermediate-r/"
-  },
-  {
-    "objectID": "materials/00-introductions.html#your-workshop-leaders",
-    "href": "materials/00-introductions.html#your-workshop-leaders",
-    "title": "Teaching Intermediate R",
-    "section": "Your Workshop Leaders",
-    "text": "Your Workshop Leaders\n\n\n\n\n\n\nKelly Bodwin\n\n\n\nTyson Barrett\n\n\n\nAllison Theobold"
-  },
-  {
-    "objectID": "materials/00-introductions.html#section",
-    "href": "materials/00-introductions.html#section",
-    "title": "Teaching Intermediate R",
-    "section": "",
-    "text": "We are assuming\n\n\n You are familar with introductory R concepts\n  You know a little bit of Markdown and / or Quarto\n\n\n\n\n\nWe’ll help you\n\n \nlearn about potential “intermediate” concepts to incorporate into a course\nbrainstorm ideas for incorporating these ideas into a course project"
-  },
-  {
-    "objectID": "materials/00-introductions.html#workshop-structure",
-    "href": "materials/00-introductions.html#workshop-structure",
-    "title": "Teaching Intermediate R",
-    "section": "Workshop structure",
-    "text": "Workshop structure\n\nTopic Overview: Lecture segments + Project examples\nActivity: Make (incremental) progress toward designing three different projects"
-  },
-  {
-    "objectID": "materials/00-introductions.html#code-of-conduct",
-    "href": "materials/00-introductions.html#code-of-conduct",
-    "title": "Teaching Intermediate R",
-    "section": "Code of Conduct",
-    "text": "Code of Conduct\n\nThe American Statistical Association (ASA) is committed to providing an atmosphere in which personal respect and intellectual growth are valued and the free expression and exchange of ideas are encouraged. Consistent with this commitment, it is the policy of the ASA that all participants in ASA activities enjoy a welcoming environment free from unlawful discrimination, harassment, and retaliation. We strive to be a community that welcomes and supports people of all backgrounds and identities. This includes, but is not limited to, members of any race, ethnicity, culture, national origin, color, immigration status, social and economic class, educational level, sex, sexual orientation, gender identity and expression, age, size, family status, political belief, religion, and mental and physical ability.\n\n\n\nASA Code of Conduct"
-  },
-  {
-    "objectID": "materials/00-introductions.html#expected-behavior",
-    "href": "materials/00-introductions.html#expected-behavior",
-    "title": "Teaching Intermediate R",
-    "section": "Expected Behavior",
-    "text": "Expected Behavior\n\n\n\nModel and support the norms of respect necessary to promote the conditions for healthy exchange of scientific ideas.\nIn speech or conduct, do not insult or disparage other participants.\nBe conscious of hierarchical structures, specifically the existence of stark power differentials between students, early career statisticians and established career statisticians—noting that fear of retaliation from more established statisticians can make it difficult for students and early career statisticians to express discomfort, rebuff unwelcome advances, and report violations of the conduct policy.\nBe sensitive to indications that may suggest that individuals are feeling unwelcome.\n\n\n\n\n\n\n\nASA Code of Conduct"
-  },
-  {
-    "objectID": "materials/02-complex-pipeline.html#setup-data",
-    "href": "materials/02-complex-pipeline.html#setup-data",
-    "title": "Complex Data Pipelines",
-    "section": "Setup: Data",
-    "text": "Setup: Data\n\n\n# A tibble: 515 × 17\n   restaurant item      calories cal_fat total_fat sat_fat trans_fat cholesterol\n   &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;\n 1 Mcdonalds  Artisan …      380      60         7       2       0            95\n 2 Mcdonalds  Single B…      840     410        45      17       1.5         130\n 3 Mcdonalds  Double B…     1130     600        67      27       3           220\n 4 Mcdonalds  Grilled …      750     280        31      10       0.5         155\n 5 Mcdonalds  Crispy B…      920     410        45      12       0.5         120\n 6 Mcdonalds  Big Mac        540     250        28      10       1            80\n 7 Mcdonalds  Cheesebu…      300     100        12       5       0.5          40\n 8 Mcdonalds  Classic …      510     210        24       4       0            65\n 9 Mcdonalds  Double C…      430     190        21      11       1            85\n10 Mcdonalds  Double Q…      770     400        45      21       2.5         175\n# ℹ 505 more rows\n# ℹ 9 more variables: sodium &lt;dbl&gt;, total_carb &lt;dbl&gt;, fiber &lt;dbl&gt;, sugar &lt;dbl&gt;,\n#   protein &lt;dbl&gt;, vit_a &lt;dbl&gt;, vit_c &lt;dbl&gt;, calcium &lt;dbl&gt;, salad &lt;chr&gt;"
-  },
-  {
     "objectID": "materials/02-complex-pipeline.html#background-intro-level-rqs",
     "href": "materials/02-complex-pipeline.html#background-intro-level-rqs",
     "title": "Complex Data Pipelines",
@@ -1022,46 +1015,32 @@
     "text": "Background: Intro level RQs\n\nThe Big Five tidyverse verbs:\n\narrange\nfilter\nmutate\ngroup_by\nsummarize\n\n(Doesn’t have to be tidyverse syntax!)"
   },
   {
-    "objectID": "materials/02-complex-pipeline.html#thing",
-    "href": "materials/02-complex-pipeline.html#thing",
+    "objectID": "materials/02-complex-pipeline.html#dataset-1-fast-food-nutrition",
+    "href": "materials/02-complex-pipeline.html#dataset-1-fast-food-nutrition",
     "title": "Complex Data Pipelines",
-    "section": "thing",
-    "text": "thing\nType of basic questions:\n\narrange What item has the most calories?\nmutate Calculate the saturated fat to total fat ratio of each item.\nsummarize What is the median calorie item?\nfilter How many items have more than 1000 calories?\ngroup_by Same questions, but within each restaurant."
+    "section": "Dataset 1: Fast food nutrition",
+    "text": "Dataset 1: Fast food nutrition\n\n\nCode\ndat_ff\n\n\n# A tibble: 515 × 17\n   restaurant item      calories cal_fat total_fat sat_fat trans_fat cholesterol\n   &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;\n 1 Mcdonalds  Artisan …      380      60         7       2       0            95\n 2 Mcdonalds  Single B…      840     410        45      17       1.5         130\n 3 Mcdonalds  Double B…     1130     600        67      27       3           220\n 4 Mcdonalds  Grilled …      750     280        31      10       0.5         155\n 5 Mcdonalds  Crispy B…      920     410        45      12       0.5         120\n 6 Mcdonalds  Big Mac        540     250        28      10       1            80\n 7 Mcdonalds  Cheesebu…      300     100        12       5       0.5          40\n 8 Mcdonalds  Classic …      510     210        24       4       0            65\n 9 Mcdonalds  Double C…      430     190        21      11       1            85\n10 Mcdonalds  Double Q…      770     400        45      21       2.5         175\n# ℹ 505 more rows\n# ℹ 9 more variables: sodium &lt;dbl&gt;, total_carb &lt;dbl&gt;, fiber &lt;dbl&gt;, sugar &lt;dbl&gt;,\n#   protein &lt;dbl&gt;, vit_a &lt;dbl&gt;, vit_c &lt;dbl&gt;, calcium &lt;dbl&gt;, salad &lt;chr&gt;"
   },
   {
-    "objectID": "materials/02-complex-pipeline.html#intro-pipelines",
-    "href": "materials/02-complex-pipeline.html#intro-pipelines",
+    "objectID": "materials/02-complex-pipeline.html#single-function-rqs",
+    "href": "materials/02-complex-pipeline.html#single-function-rqs",
     "title": "Complex Data Pipelines",
-    "section": "Intro pipelines",
-    "text": "Intro pipelines\n\nmutate -&gt; arrange “What item has the highest saturated fat to total fat ratio?”\nmutate -&gt; filter “How many items have more than 50% of total fat in saturated form?”\ngroup_by -&gt; summarize -&gt; filter “How many restaurants have at least one 2000 calorie item?”\nany -&gt; plot: “Make a boxplot of average saturated fat percentages for items in each restaurant.”"
+    "section": "Single-function RQs",
+    "text": "Single-function RQs\nType of basic questions:\n\narrange What item has the most calories?\nmutate Calculate the saturated fat to total fat ratio of each item.\nsummarize What is the median calorie item?\nfilter How many items have more than 1000 calories?\ngroup_by Same questions, but within each restaurant."
   },
   {
-    "objectID": "materials/02-complex-pipeline.html#sketch-a-plan",
-    "href": "materials/02-complex-pipeline.html#sketch-a-plan",
+    "objectID": "materials/02-complex-pipeline.html#intro-pipeline-rqs",
+    "href": "materials/02-complex-pipeline.html#intro-pipeline-rqs",
     "title": "Complex Data Pipelines",
-    "section": "Sketch a plan",
-    "text": "Sketch a plan"
-  },
-  {
-    "objectID": "materials/02-complex-pipeline.html#reorder-a-pipeline",
-    "href": "materials/02-complex-pipeline.html#reorder-a-pipeline",
-    "title": "Complex Data Pipelines",
-    "section": "Reorder a pipeline",
-    "text": "Reorder a pipeline"
-  },
-  {
-    "objectID": "materials/02-complex-pipeline.html#fill-in-a-blank",
-    "href": "materials/02-complex-pipeline.html#fill-in-a-blank",
-    "title": "Complex Data Pipelines",
-    "section": "Fill in a blank",
-    "text": "Fill in a blank"
+    "section": "Intro pipeline RQs",
+    "text": "Intro pipeline RQs\n\nmutate -&gt; arrange “What item has the highest saturated fat to total fat ratio?”\nmutate -&gt; filter “How many items have more than 50% of total fat in saturated form?”\ngroup_by -&gt; summarize -&gt; filter “How many restaurants have at least one 2000 calorie item?”\nany -&gt; plot: “Make a boxplot of average saturated fat percentages for items in each restaurant.”"
   },
   {
     "objectID": "materials/02-complex-pipeline.html#your-turn",
     "href": "materials/02-complex-pipeline.html#your-turn",
     "title": "Complex Data Pipelines",
     "section": "YOUR TURN",
-    "text": "YOUR TURN\nJot down some RQs for intro-level pipelines.\n[timer]"
+    "text": "YOUR TURN\n\nChoose one of your clean tabular datasets.\nJot down some research questions or tasks that are answerable with intro-level pipelines on that dataset.\n\n\n\n\n−+\n03:00"
   },
   {
     "objectID": "materials/02-complex-pipeline.html#making-it-complex",
@@ -1075,7 +1054,21 @@
     "href": "materials/02-complex-pipeline.html#change-the-casesrows",
     "title": "Complex Data Pipelines",
     "section": "Change the cases/rows",
-    "text": "Change the cases/rows\n\nSummarizing by group: rows become restaurants not items.\nPivoting: rows become nutrition measurement for an item rather than items.\nFilter/distinct: rows become flagship item of each restaurant rather than items.\n(condensing vs filtering)\n\n\n\n# A tibble: 515 × 17\n   restaurant item      calories cal_fat total_fat sat_fat trans_fat cholesterol\n   &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;\n 1 Mcdonalds  Artisan …      380      60         7       2       0            95\n 2 Mcdonalds  Single B…      840     410        45      17       1.5         130\n 3 Mcdonalds  Double B…     1130     600        67      27       3           220\n 4 Mcdonalds  Grilled …      750     280        31      10       0.5         155\n 5 Mcdonalds  Crispy B…      920     410        45      12       0.5         120\n 6 Mcdonalds  Big Mac        540     250        28      10       1            80\n 7 Mcdonalds  Cheesebu…      300     100        12       5       0.5          40\n 8 Mcdonalds  Classic …      510     210        24       4       0            65\n 9 Mcdonalds  Double C…      430     190        21      11       1            85\n10 Mcdonalds  Double Q…      770     400        45      21       2.5         175\n# ℹ 505 more rows\n# ℹ 9 more variables: sodium &lt;dbl&gt;, total_carb &lt;dbl&gt;, fiber &lt;dbl&gt;, sugar &lt;dbl&gt;,\n#   protein &lt;dbl&gt;, vit_a &lt;dbl&gt;, vit_c &lt;dbl&gt;, calcium &lt;dbl&gt;, salad &lt;chr&gt;\n\n\n\n\n# A tibble: 8 × 2\n  restaurant  `mean(calories)`\n  &lt;chr&gt;                  &lt;dbl&gt;\n1 Arbys                   533.\n2 Burger King             609.\n3 Chick Fil-A             384.\n4 Dairy Queen             520.\n5 Mcdonalds               640.\n6 Sonic                   632.\n7 Subway                  503.\n8 Taco Bell               444.\n\n\n\n\n# A tibble: 7,210 × 5\n   restaurant item                             salad nutritional_item amount\n   &lt;chr&gt;      &lt;chr&gt;                            &lt;chr&gt; &lt;chr&gt;             &lt;dbl&gt;\n 1 Mcdonalds  Artisan Grilled Chicken Sandwich Other calories            380\n 2 Mcdonalds  Artisan Grilled Chicken Sandwich Other cal_fat              60\n 3 Mcdonalds  Artisan Grilled Chicken Sandwich Other total_fat             7\n 4 Mcdonalds  Artisan Grilled Chicken Sandwich Other sat_fat               2\n 5 Mcdonalds  Artisan Grilled Chicken Sandwich Other trans_fat             0\n 6 Mcdonalds  Artisan Grilled Chicken Sandwich Other cholesterol          95\n 7 Mcdonalds  Artisan Grilled Chicken Sandwich Other sodium             1110\n 8 Mcdonalds  Artisan Grilled Chicken Sandwich Other total_carb           44\n 9 Mcdonalds  Artisan Grilled Chicken Sandwich Other fiber                 3\n10 Mcdonalds  Artisan Grilled Chicken Sandwich Other sugar                11\n# ℹ 7,200 more rows\n\n\n\n\n# A tibble: 8 × 17\n  restaurant  item      calories cal_fat total_fat sat_fat trans_fat cholesterol\n  &lt;chr&gt;       &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;\n1 Mcdonalds   Big Mac        540     250        28      10       1            80\n2 Chick Fil-A Chicken …      440     171        19       4       0            60\n3 Sonic       Sonic Ba…      870     530        59      20       2           140\n4 Arbys       Classic …      360     120        14       5       0.5          50\n5 Burger King WHOPPER …      760     430        47      16       1           100\n6 Dairy Queen DQ Ultim…      780     430        48      22       2           150\n7 Subway      Footlong…      620      80        10       4       0            80\n8 Taco Bell   Crunchwr…      540     190        21       6       0            30\n# ℹ 9 more variables: sodium &lt;dbl&gt;, total_carb &lt;dbl&gt;, fiber &lt;dbl&gt;, sugar &lt;dbl&gt;,\n#   protein &lt;dbl&gt;, vit_a &lt;dbl&gt;, vit_c &lt;dbl&gt;, calcium &lt;dbl&gt;, salad &lt;chr&gt;"
+    "text": "Change the cases/rows\n\nSummarizing by group: rows become restaurants not items.\n\n\n\nCode\ndat_ff |&gt;\n  group_by(restaurant) |&gt;\n  summarize(mean(calories))\n\n\n# A tibble: 8 × 2\n  restaurant  `mean(calories)`\n  &lt;chr&gt;                  &lt;dbl&gt;\n1 Arbys                   533.\n2 Burger King             609.\n3 Chick Fil-A             384.\n4 Dairy Queen             520.\n5 Mcdonalds               640.\n6 Sonic                   632.\n7 Subway                  503.\n8 Taco Bell               444."
+  },
+  {
+    "objectID": "materials/02-complex-pipeline.html#change-the-casesrows-1",
+    "href": "materials/02-complex-pipeline.html#change-the-casesrows-1",
+    "title": "Complex Data Pipelines",
+    "section": "Change the cases/rows",
+    "text": "Change the cases/rows\n\nPivoting: rows become nutrition measurement for an item rather than items.\n\n\n\nCode\ndat_ff |&gt;\n  pivot_longer(calories:calcium,\n               values_to = \"amount\",\n               names_to = \"nutritional_item\")\n\n\n# A tibble: 7,210 × 5\n   restaurant item                             salad nutritional_item amount\n   &lt;chr&gt;      &lt;chr&gt;                            &lt;chr&gt; &lt;chr&gt;             &lt;dbl&gt;\n 1 Mcdonalds  Artisan Grilled Chicken Sandwich Other calories            380\n 2 Mcdonalds  Artisan Grilled Chicken Sandwich Other cal_fat              60\n 3 Mcdonalds  Artisan Grilled Chicken Sandwich Other total_fat             7\n 4 Mcdonalds  Artisan Grilled Chicken Sandwich Other sat_fat               2\n 5 Mcdonalds  Artisan Grilled Chicken Sandwich Other trans_fat             0\n 6 Mcdonalds  Artisan Grilled Chicken Sandwich Other cholesterol          95\n 7 Mcdonalds  Artisan Grilled Chicken Sandwich Other sodium             1110\n 8 Mcdonalds  Artisan Grilled Chicken Sandwich Other total_carb           44\n 9 Mcdonalds  Artisan Grilled Chicken Sandwich Other fiber                 3\n10 Mcdonalds  Artisan Grilled Chicken Sandwich Other sugar                11\n# ℹ 7,200 more rows"
+  },
+  {
+    "objectID": "materials/02-complex-pipeline.html#change-the-casesrows-2",
+    "href": "materials/02-complex-pipeline.html#change-the-casesrows-2",
+    "title": "Complex Data Pipelines",
+    "section": "Change the cases/rows",
+    "text": "Change the cases/rows\n\nDistinct: rows become restaurants rather than items.\n\n\n\nCode\ndat_ff |&gt;\n  distinct(restaurant, .keep_all = TRUE)\n\n\n# A tibble: 8 × 17\n  restaurant  item      calories cal_fat total_fat sat_fat trans_fat cholesterol\n  &lt;chr&gt;       &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;\n1 Mcdonalds   \"Artisan…      380      60         7       2         0          95\n2 Chick Fil-A \"Chargri…      430     144        16       8         0          85\n3 Sonic       \"Hatch G…      710     380        43      17         2         120\n4 Arbys       \"Arby's …      330     100        11       4         0          30\n5 Burger King \"America…     1550    1134       126      47         8         805\n6 Dairy Queen \"1/2 lb.…     1000     660        74      26         2         170\n7 Subway      \"6\\\" B.L…      320      80         9       4         0          20\n8 Taco Bell   \"1/2 lb.…      540     230        26       7         1          45\n# ℹ 9 more variables: sodium &lt;dbl&gt;, total_carb &lt;dbl&gt;, fiber &lt;dbl&gt;, sugar &lt;dbl&gt;,\n#   protein &lt;dbl&gt;, vit_a &lt;dbl&gt;, vit_c &lt;dbl&gt;, calcium &lt;dbl&gt;, salad &lt;chr&gt;"
   },
   {
     "objectID": "materials/02-complex-pipeline.html#do-more-with-mutate",
@@ -1089,119 +1082,182 @@
     "href": "materials/02-complex-pipeline.html#group_by-mutate",
     "title": "Complex Data Pipelines",
     "section": "group_by |> mutate",
-    "text": "group_by |&gt; mutate\nWhat is the highest-calorie single item at each restaurant?\n\n\n# A tibble: 515 × 19\n# Groups:   restaurant [8]\n   restaurant item      calories cal_fat total_fat sat_fat trans_fat cholesterol\n   &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;\n 1 Mcdonalds  Artisan …      380      60         7       2       0            95\n 2 Mcdonalds  Single B…      840     410        45      17       1.5         130\n 3 Mcdonalds  Double B…     1130     600        67      27       3           220\n 4 Mcdonalds  Grilled …      750     280        31      10       0.5         155\n 5 Mcdonalds  Crispy B…      920     410        45      12       0.5         120\n 6 Mcdonalds  Big Mac        540     250        28      10       1            80\n 7 Mcdonalds  Cheesebu…      300     100        12       5       0.5          40\n 8 Mcdonalds  Classic …      510     210        24       4       0            65\n 9 Mcdonalds  Double C…      430     190        21      11       1            85\n10 Mcdonalds  Double Q…      770     400        45      21       2.5         175\n# ℹ 505 more rows\n# ℹ 11 more variables: sodium &lt;dbl&gt;, total_carb &lt;dbl&gt;, fiber &lt;dbl&gt;,\n#   sugar &lt;dbl&gt;, protein &lt;dbl&gt;, vit_a &lt;dbl&gt;, vit_c &lt;dbl&gt;, calcium &lt;dbl&gt;,\n#   salad &lt;chr&gt;, max_calories &lt;dbl&gt;, prop_of_max_cal &lt;dbl&gt;"
+    "text": "group_by |&gt; mutate\nWhat is the highest-calorie single item at each restaurant?\n\n\nCode\ndat_ff |&gt;\n  group_by(restaurant) |&gt;\n  mutate(\n    max_calories = max(calories),\n    prop_of_max_cal = calories/max_calories\n  ) \n\n\n# A tibble: 515 × 19\n# Groups:   restaurant [8]\n   restaurant item      calories cal_fat total_fat sat_fat trans_fat cholesterol\n   &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;\n 1 Mcdonalds  Artisan …      380      60         7       2       0            95\n 2 Mcdonalds  Single B…      840     410        45      17       1.5         130\n 3 Mcdonalds  Double B…     1130     600        67      27       3           220\n 4 Mcdonalds  Grilled …      750     280        31      10       0.5         155\n 5 Mcdonalds  Crispy B…      920     410        45      12       0.5         120\n 6 Mcdonalds  Big Mac        540     250        28      10       1            80\n 7 Mcdonalds  Cheesebu…      300     100        12       5       0.5          40\n 8 Mcdonalds  Classic …      510     210        24       4       0            65\n 9 Mcdonalds  Double C…      430     190        21      11       1            85\n10 Mcdonalds  Double Q…      770     400        45      21       2.5         175\n# ℹ 505 more rows\n# ℹ 11 more variables: sodium &lt;dbl&gt;, total_carb &lt;dbl&gt;, fiber &lt;dbl&gt;,\n#   sugar &lt;dbl&gt;, protein &lt;dbl&gt;, vit_a &lt;dbl&gt;, vit_c &lt;dbl&gt;, calcium &lt;dbl&gt;,\n#   salad &lt;chr&gt;, max_calories &lt;dbl&gt;, prop_of_max_cal &lt;dbl&gt;"
   },
   {
     "objectID": "materials/02-complex-pipeline.html#your-turn-1",
     "href": "materials/02-complex-pipeline.html#your-turn-1",
     "title": "Complex Data Pipelines",
     "section": "YOUR TURN",
-    "text": "YOUR TURN\nThink of a measurement by category that you might want to add to every additional row of your dataset, for purposes of comparing."
-  },
-  {
-    "objectID": "materials/02-complex-pipeline.html#pipelines-inside-mutate",
-    "href": "materials/02-complex-pipeline.html#pipelines-inside-mutate",
-    "title": "Complex Data Pipelines",
-    "section": "Pipelines inside mutate",
-    "text": "Pipelines inside mutate\n\n\nError in `mutate()`:\nℹ In argument: `flagship_calories = pull(filter(.data, item %in%\n  flagships), calories)`.\nℹ In group 1: `restaurant = \"Arbys\"`.\nCaused by error in `UseMethod()`:\n! no applicable method for 'filter' applied to an object of class \"rlang_data_pronoun\""
+    "text": "YOUR TURN\n\nThink of a measurement by category that you might want to add to every additional row of your dataset, for purposes of comparing.\n\n\n\nCode\n#| echo: false\ncountdown(minutes = 3)\n\n\n\n−+\n03:00"
   },
   {
     "objectID": "materials/02-complex-pipeline.html#string-parsing",
     "href": "materials/02-complex-pipeline.html#string-parsing",
     "title": "Complex Data Pipelines",
     "section": "String parsing",
-    "text": "String parsing\nFind the median calories for a burger at each restaurant.\n\n\n# A tibble: 4 × 2\n  restaurant  `median(calories)`\n  &lt;chr&gt;                    &lt;dbl&gt;\n1 Burger King                360\n2 Dairy Queen                470\n3 Mcdonalds                  300\n4 Sonic                      800\n\n\n-&gt; RegEx Opportunity"
+    "text": "String parsing\nFind the median calories for a burger at each restaurant.\n\n\nCode\ndat_ff |&gt;\n  mutate(\n    is_burger = str_detect(item, \"burger\")\n  ) |&gt;\n  filter(is_burger) |&gt;\n  group_by(restaurant) |&gt;\n  summarize(median(calories))\n\n\n# A tibble: 4 × 2\n  restaurant  `median(calories)`\n  &lt;chr&gt;                    &lt;dbl&gt;\n1 Burger King                360\n2 Dairy Queen                470\n3 Mcdonalds                  300\n4 Sonic                      800"
+  },
+  {
+    "objectID": "materials/02-complex-pipeline.html#regular-expressions",
+    "href": "materials/02-complex-pipeline.html#regular-expressions",
+    "title": "Complex Data Pipelines",
+    "section": "Regular expressions",
+    "text": "Regular expressions\nOptional: Level up this task with regular expressions!\nFind the median calories for a CHEESE burger at each restaurant.\n\n\nCode\ndat_ff |&gt;\n  mutate(\n    is_cheese_burger = str_detect(item, \"[Ch]ee(z|se) ?[bB]urger\")\n  ) |&gt;\n  filter(is_cheese_burger) |&gt;\n  group_by(restaurant) |&gt;\n  summarize(median(calories))\n\n\n# A tibble: 4 × 2\n  restaurant  `median(calories)`\n  &lt;chr&gt;                    &lt;dbl&gt;\n1 Burger King                450\n2 Dairy Queen                515\n3 Mcdonalds                  365\n4 Sonic                      800"
   },
   {
     "objectID": "materials/02-complex-pipeline.html#your-turn-2",
     "href": "materials/02-complex-pipeline.html#your-turn-2",
     "title": "Complex Data Pipelines",
     "section": "YOUR TURN",
-    "text": "YOUR TURN\nFind a string column in your dataset, jot down 1-3 new non-string columns you might want to make by parsing that string."
+    "text": "YOUR TURN\n\nFind a string column in your dataset, jot down 1-3 new non-string columns you might want to make by parsing that string.\n\n\n\n\n−+\n03:00"
   },
   {
-    "objectID": "materials/02-complex-pipeline.html#customcomplicated-functions-and-mapping",
-    "href": "materials/02-complex-pipeline.html#customcomplicated-functions-and-mapping",
+    "objectID": "materials/02-complex-pipeline.html#complexunvectorized-functions-and-mapping",
+    "href": "materials/02-complex-pipeline.html#complexunvectorized-functions-and-mapping",
     "title": "Complex Data Pipelines",
-    "section": "Custom/complicated functions and mapping",
-    "text": "Custom/complicated functions and mapping\nYOUR TURN!\n\nYour city has just passed a law that fast food items need to contain a warning note if they have over 40% calories from fat, over 40% saturated fat, or any trans fats at all.\n\n\nWrite a function that creates a warning note based on an items nutritional information.\n\n\nThen, use that function inside of mutate to add a warning label for each item.\n\ntimer"
+    "section": "Complex/unvectorized functions and mapping",
+    "text": "Complex/unvectorized functions and mapping\nFor each item, give the amount of saturated fat or of trans fat, whichever is larger\n\n\nCode\n## This won't work!\n\ndat_ff |&gt;\n  mutate(\n    bad_fat = max(sat_fat, trans_fat)\n  )\n\n\n# A tibble: 515 × 18\n   restaurant item      calories cal_fat total_fat sat_fat trans_fat cholesterol\n   &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;\n 1 Mcdonalds  Artisan …      380      60         7       2       0            95\n 2 Mcdonalds  Single B…      840     410        45      17       1.5         130\n 3 Mcdonalds  Double B…     1130     600        67      27       3           220\n 4 Mcdonalds  Grilled …      750     280        31      10       0.5         155\n 5 Mcdonalds  Crispy B…      920     410        45      12       0.5         120\n 6 Mcdonalds  Big Mac        540     250        28      10       1            80\n 7 Mcdonalds  Cheesebu…      300     100        12       5       0.5          40\n 8 Mcdonalds  Classic …      510     210        24       4       0            65\n 9 Mcdonalds  Double C…      430     190        21      11       1            85\n10 Mcdonalds  Double Q…      770     400        45      21       2.5         175\n# ℹ 505 more rows\n# ℹ 10 more variables: sodium &lt;dbl&gt;, total_carb &lt;dbl&gt;, fiber &lt;dbl&gt;,\n#   sugar &lt;dbl&gt;, protein &lt;dbl&gt;, vit_a &lt;dbl&gt;, vit_c &lt;dbl&gt;, calcium &lt;dbl&gt;,\n#   salad &lt;chr&gt;, bad_fat &lt;dbl&gt;"
+  },
+  {
+    "objectID": "materials/02-complex-pipeline.html#complexunvectorized-functions-and-mapping-1",
+    "href": "materials/02-complex-pipeline.html#complexunvectorized-functions-and-mapping-1",
+    "title": "Complex Data Pipelines",
+    "section": "Complex/unvectorized functions and mapping",
+    "text": "Complex/unvectorized functions and mapping\nFor each item, give the amount of saturated fat or of trans fat, whichever is larger\n\n\nCode\n## This will!\n\ndat_ff |&gt;\n  mutate(\n    bad_fat = pmap_dbl(list(sat_fat, trans_fat), max)\n  )\n\n\n# A tibble: 515 × 18\n   restaurant item      calories cal_fat total_fat sat_fat trans_fat cholesterol\n   &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;\n 1 Mcdonalds  Artisan …      380      60         7       2       0            95\n 2 Mcdonalds  Single B…      840     410        45      17       1.5         130\n 3 Mcdonalds  Double B…     1130     600        67      27       3           220\n 4 Mcdonalds  Grilled …      750     280        31      10       0.5         155\n 5 Mcdonalds  Crispy B…      920     410        45      12       0.5         120\n 6 Mcdonalds  Big Mac        540     250        28      10       1            80\n 7 Mcdonalds  Cheesebu…      300     100        12       5       0.5          40\n 8 Mcdonalds  Classic …      510     210        24       4       0            65\n 9 Mcdonalds  Double C…      430     190        21      11       1            85\n10 Mcdonalds  Double Q…      770     400        45      21       2.5         175\n# ℹ 505 more rows\n# ℹ 10 more variables: sodium &lt;dbl&gt;, total_carb &lt;dbl&gt;, fiber &lt;dbl&gt;,\n#   sugar &lt;dbl&gt;, protein &lt;dbl&gt;, vit_a &lt;dbl&gt;, vit_c &lt;dbl&gt;, calcium &lt;dbl&gt;,\n#   salad &lt;chr&gt;, bad_fat &lt;dbl&gt;"
+  },
+  {
+    "objectID": "materials/02-complex-pipeline.html#your-turn---try-an-activity",
+    "href": "materials/02-complex-pipeline.html#your-turn---try-an-activity",
+    "title": "Complex Data Pipelines",
+    "section": "YOUR TURN - Try an activity",
+    "text": "YOUR TURN - Try an activity\n\n\nYour city has just passed a law that fast food items need to contain a warning note if they have over 40% calories from fat, over 40% saturated fat, or any trans fats at all.\n\n\nWrite a function that creates a warning note based on an items nutritional information.\n\n\nThen, use that function inside of mutate to add a warning label for each item.\n\nAs you work on this, make note of any pain points, confusions, or complexities that differentiate this task from an “Intro level” one.\n\n\n\n\n−+\n10:00"
   },
   {
     "objectID": "materials/02-complex-pipeline.html#answer",
     "href": "materials/02-complex-pipeline.html#answer",
     "title": "Complex Data Pipelines",
     "section": "Answer",
-    "text": "Answer"
+    "text": "Answer\n\n\nCode\ncheck_healthy_fat &lt;- function(calories, cal_fat, total_fat, sat_fat, trans_fat) {\n  \n  cal_fat_pct &lt;- cal_fat/calories\n  sat_fat_pct &lt;- sat_fat/total_fat\n  \n  warning &lt;- \"\"\n  \n  if (!is.na(cal_fat_pct) & cal_fat_pct &gt; 0.4) {\n    warning &lt;- paste(warning, \"Calories from fat is high.\")\n  }\n  \n  if (!is.na(sat_fat_pct) & sat_fat_pct &gt; 0.4) {\n    warning &lt;- paste(warning, \"High saturated fat percent.\")\n  }\n  \n  if (!is.na(trans_fat) & trans_fat &gt; 0) {\n    warning &lt;- paste(warning, \"Contains trans fat.\")\n  }\n  \n  return(warning)\n  \n}"
   },
   {
     "objectID": "materials/02-complex-pipeline.html#answer-1",
     "href": "materials/02-complex-pipeline.html#answer-1",
     "title": "Complex Data Pipelines",
     "section": "Answer",
-    "text": "Answer\n\n\n# A tibble: 515 × 18\n   restaurant item      calories cal_fat total_fat sat_fat trans_fat cholesterol\n   &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;\n 1 Mcdonalds  Artisan …      380      60         7       2       0            95\n 2 Mcdonalds  Single B…      840     410        45      17       1.5         130\n 3 Mcdonalds  Double B…     1130     600        67      27       3           220\n 4 Mcdonalds  Grilled …      750     280        31      10       0.5         155\n 5 Mcdonalds  Crispy B…      920     410        45      12       0.5         120\n 6 Mcdonalds  Big Mac        540     250        28      10       1            80\n 7 Mcdonalds  Cheesebu…      300     100        12       5       0.5          40\n 8 Mcdonalds  Classic …      510     210        24       4       0            65\n 9 Mcdonalds  Double C…      430     190        21      11       1            85\n10 Mcdonalds  Double Q…      770     400        45      21       2.5         175\n# ℹ 505 more rows\n# ℹ 10 more variables: sodium &lt;dbl&gt;, total_carb &lt;dbl&gt;, fiber &lt;dbl&gt;,\n#   sugar &lt;dbl&gt;, protein &lt;dbl&gt;, vit_a &lt;dbl&gt;, vit_c &lt;dbl&gt;, calcium &lt;dbl&gt;,\n#   salad &lt;chr&gt;, healthy_fat_warning &lt;chr&gt;"
+    "text": "Answer\n\n\nCode\ndat_ff |&gt;\n  mutate(\n    healthy_fat_warning = pmap_chr(list(calories, cal_fat, total_fat, sat_fat, trans_fat), check_healthy_fat)\n  )\n\n\n# A tibble: 515 × 18\n   restaurant item      calories cal_fat total_fat sat_fat trans_fat cholesterol\n   &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;\n 1 Mcdonalds  Artisan …      380      60         7       2       0            95\n 2 Mcdonalds  Single B…      840     410        45      17       1.5         130\n 3 Mcdonalds  Double B…     1130     600        67      27       3           220\n 4 Mcdonalds  Grilled …      750     280        31      10       0.5         155\n 5 Mcdonalds  Crispy B…      920     410        45      12       0.5         120\n 6 Mcdonalds  Big Mac        540     250        28      10       1            80\n 7 Mcdonalds  Cheesebu…      300     100        12       5       0.5          40\n 8 Mcdonalds  Classic …      510     210        24       4       0            65\n 9 Mcdonalds  Double C…      430     190        21      11       1            85\n10 Mcdonalds  Double Q…      770     400        45      21       2.5         175\n# ℹ 505 more rows\n# ℹ 10 more variables: sodium &lt;dbl&gt;, total_carb &lt;dbl&gt;, fiber &lt;dbl&gt;,\n#   sugar &lt;dbl&gt;, protein &lt;dbl&gt;, vit_a &lt;dbl&gt;, vit_c &lt;dbl&gt;, calcium &lt;dbl&gt;,\n#   salad &lt;chr&gt;, healthy_fat_warning &lt;chr&gt;"
   },
   {
     "objectID": "materials/02-complex-pipeline.html#non-one-to-one-joins",
     "href": "materials/02-complex-pipeline.html#non-one-to-one-joins",
     "title": "Complex Data Pipelines",
-    "section": "Non-one-to-one Joins",
-    "text": "Non-one-to-one Joins"
+    "section": "Non one-to-one Joins",
+    "text": "Non one-to-one Joins\nConsider this additional dataset:\n\n\nCode\ndat_loc\n\n\n# A tibble: 10,000 × 11\n    ...1 address    categories city  country latitude longitude name  postalCode\n   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     \n 1     0 800 N Can… American … Thib… US          29.8     -90.8 SONI… 70301     \n 2     1 800 N Can… Fast Food… Thib… US          29.8     -90.8 SONI… 70301     \n 3     2 206 Wears… Fast Food… Pige… US          35.8     -83.6 Taco… 37863     \n 4     3 3652 Park… Fast Food  Pige… US          35.8     -83.6 Arby… 37863     \n 5     4 2118 Mt Z… Fast Food… Morr… US          33.6     -84.3 Stea… 30260     \n 6     5 9768 Gran… Fast Food… Detr… US          42.4     -83.1 Wend… 48204     \n 7     6 13600 W M… Fast Food… Detr… US          42.4     -83.2 Burg… 48235     \n 8     7 4111 Ocea… Fast Food  Ocea… US          33.2    -117.  Chip… 92056     \n 9     8 162 Old C… Fast Food… Rive… US          40.9     -72.7 7-El… 11901     \n10     9 1407 S St… Fast Food… Mona… US          31.6    -103.  Dair… 79756     \n# ℹ 9,990 more rows\n# ℹ 2 more variables: province &lt;chr&gt;, websites &lt;chr&gt;"
+  },
+  {
+    "objectID": "materials/02-complex-pipeline.html#complex-joins",
+    "href": "materials/02-complex-pipeline.html#complex-joins",
+    "title": "Complex Data Pipelines",
+    "section": "Complex joins",
+    "text": "Complex joins\nThere are some complications in joining this data to our nutritional data…\n\nThe restaurants aren’t named consistently, e.g. “Sonic” vs “SONIC Drive-In”.\nSometimes there are multiple matches - “Dairy Queen”, “Wolf’s Dairy Queen”, “Dairy Heaven”, “Dairy Queen (Treat Only)”\nMany restaurants appear in dat_loc but not dat_ff.\nEach restaurant appears multiple times in both dat_loc and dat_ff."
+  },
+  {
+    "objectID": "materials/02-complex-pipeline.html#filtering-joins",
+    "href": "materials/02-complex-pipeline.html#filtering-joins",
+    "title": "Complex Data Pipelines",
+    "section": "Filtering Joins",
+    "text": "Filtering Joins\nanti_join can be used to check which keys don’t match:\n\n\nCode\ndat_ff |&gt;\n  anti_join(dat_loc,\n            by = c(\"restaurant\" = \"name\")) |&gt;\n  distinct(restaurant)\n\n\n# A tibble: 1 × 1\n  restaurant \n  &lt;chr&gt;      \n1 Chick Fil-A"
+  },
+  {
+    "objectID": "materials/02-complex-pipeline.html#mutating-joins",
+    "href": "materials/02-complex-pipeline.html#mutating-joins",
+    "title": "Complex Data Pipelines",
+    "section": "Mutating Joins",
+    "text": "Mutating Joins\n“Where can I get a burger?”\n\n\nCode\ndat_ff |&gt;\n  filter(str_detect(item, \"burger\")) |&gt;\n  distinct(restaurant) |&gt;\n  left_join(dat_loc,\n            by = c(\"restaurant\" = \"name\"))\n\n\n# A tibble: 1,075 × 11\n   restaurant  ...1 address          categories city  country latitude longitude\n   &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt;\n 1 Mcdonalds   8688 3926 52nd St     Fast Food  Keno… US          42.6     -87.9\n 2 Mcdonalds   8950 116 E Sr 200     Fast Food  Yulee US          30.6     -81.6\n 3 Mcdonalds   9034 3009 Hwy 190 W   Fast Food… Hamm… US          30.5     -90.5\n 4 Mcdonalds   9080 200 Jonesboro Rd Fast Food… McDo… US          33.5     -84.2\n 5 Sonic       1563 1211 S Union St  Fast Food… Opel… US          30.5     -92.1\n 6 Sonic       4083 4403 S Tamarac … Fast Food  Denv… US          39.6    -105. \n 7 Sonic       4084 11658 E Colfax … Fast Food  Auro… US          39.7    -105. \n 8 Sonic       4140 1805 E William … Fast Food  Aust… US          30.2     -97.8\n 9 Sonic       5186 103 Niagara St   Burger Jo… East… US          38.9     -90.1\n10 Sonic       5187 1205 Parkway Dr  Fast Food… Blac… US          43.2    -112. \n# ℹ 1,065 more rows\n# ℹ 3 more variables: postalCode &lt;chr&gt;, province &lt;chr&gt;, websites &lt;chr&gt;"
+  },
+  {
+    "objectID": "materials/02-complex-pipeline.html#mutating-joins-1",
+    "href": "materials/02-complex-pipeline.html#mutating-joins-1",
+    "title": "Complex Data Pipelines",
+    "section": "Mutating Joins",
+    "text": "Mutating Joins\nNotice:\n\nWe used distinct on dat_ff first. This makes it a one-to-many join instead of a many-to-many. Why is this good/what if we didn’t?\ndat_ff had 515 rows. dat_loc had 10000. The result of our pipeline has 1075. When a join is not one-to-one, you can’t predict the number of rows easily!\nWhat if we had used full_join? right_join?"
   },
   {
     "objectID": "materials/02-complex-pipeline.html#your-turn-3",
     "href": "materials/02-complex-pipeline.html#your-turn-3",
     "title": "Complex Data Pipelines",
     "section": "YOUR TURN",
-    "text": "YOUR TURN\nLook at your collection of data - where are there keys to match? Are any of them not one-to-one, or otherwise complex?"
+    "text": "YOUR TURN\n\nLook at your collection of data - where are there keys to match? Are any of them not one-to-one, or otherwise complex?\n\n\n\n\n−+\n03:00"
   },
   {
     "objectID": "materials/02-complex-pipeline.html#multiple-pivots",
     "href": "materials/02-complex-pipeline.html#multiple-pivots",
     "title": "Complex Data Pipelines",
     "section": "Multiple Pivots",
-    "text": "Multiple Pivots"
+    "text": "Multiple Pivots\nA common pipeline with multiple pivots might be:\n\nDo a calculation\nPivot longer\nJoin\nCalculate some summary by groups\nPivot back wider"
+  },
+  {
+    "objectID": "materials/02-complex-pipeline.html#example",
+    "href": "materials/02-complex-pipeline.html#example",
+    "title": "Complex Data Pipelines",
+    "section": "Example",
+    "text": "Example\n\nWhat city has the most burgers?\n\n\n\nCode\nburger_counts &lt;- dat_ff |&gt; \n  mutate(\n    is_burger = str_detect(item, \"burger\")\n  ) |&gt;\n  group_by(restaurant) |&gt; \n  count(is_burger) |&gt;\n  pivot_wider(names_from = is_burger,\n              values_from = n,\n              names_prefix = \"burger_\")\n\nburger_counts\n\n\n# A tibble: 8 × 3\n# Groups:   restaurant [8]\n  restaurant  burger_FALSE burger_TRUE\n  &lt;chr&gt;              &lt;int&gt;       &lt;int&gt;\n1 Arbys                 55          NA\n2 Burger King           61           9\n3 Chick Fil-A           27          NA\n4 Dairy Queen           36           6\n5 Mcdonalds             54           3\n6 Sonic                 40          13\n7 Subway                96          NA\n8 Taco Bell            115          NA"
+  },
+  {
+    "objectID": "materials/02-complex-pipeline.html#example-1",
+    "href": "materials/02-complex-pipeline.html#example-1",
+    "title": "Complex Data Pipelines",
+    "section": "Example",
+    "text": "Example\n\nWhat city has the most burgers?\n\n\n\nCode\nburger_counts |&gt;\n  left_join(dat_loc,\n            by = c(\"restaurant\" = \"name\")) |&gt;\n  group_by(city) |&gt;\n  summarize(\n    total_burgers = sum(burger_TRUE, na.rm = TRUE)\n  ) |&gt;\n  arrange(desc(total_burgers))\n\n\n# A tibble: 1,502 × 2\n   city        total_burgers\n   &lt;chr&gt;               &lt;int&gt;\n 1 Los Angeles           108\n 2 Houston                99\n 3 Detroit                81\n 4 Chicago                78\n 5 Miami                  63\n 6 Minneapolis            63\n 7 Omaha                  63\n 8 Dallas                 53\n 9 Phoenix                48\n10 Saint Paul             48\n# ℹ 1,492 more rows"
   },
   {
     "objectID": "materials/02-complex-pipeline.html#your-turn-4",
     "href": "materials/02-complex-pipeline.html#your-turn-4",
     "title": "Complex Data Pipelines",
     "section": "YOUR TURN",
-    "text": "YOUR TURN\nSketch a summary table that might be interesting for your data, then “flip it”."
+    "text": "YOUR TURN\n\nSketch a summary table that might be interesting for your data, then reverse engineer the pivots and joins needed to achieve it.\n\n\n\n\n−+\n05:00"
   },
   {
-    "objectID": "materials/02-complex-pipeline.html#regex",
-    "href": "materials/02-complex-pipeline.html#regex",
+    "objectID": "materials/02-complex-pipeline.html#transition-or-scaffold-activities",
+    "href": "materials/02-complex-pipeline.html#transition-or-scaffold-activities",
     "title": "Complex Data Pipelines",
-    "section": "RegEx",
-    "text": "RegEx"
+    "section": "“Transition” or “Scaffold” activities",
+    "text": "“Transition” or “Scaffold” activities\nSome suggested “scaffold” activities:\n\nSketch a plan\nReorder a pipeline\nFill in a blank"
   },
   {
-    "objectID": "materials/02-complex-pipeline.html#mapapply-inside-and-outside",
-    "href": "materials/02-complex-pipeline.html#mapapply-inside-and-outside",
+    "objectID": "materials/02-complex-pipeline.html#sketch-a-plan",
+    "href": "materials/02-complex-pipeline.html#sketch-a-plan",
     "title": "Complex Data Pipelines",
-    "section": "Map/apply inside and outside",
-    "text": "Map/apply inside and outside"
+    "section": "Sketch a plan",
+    "text": "Sketch a plan\n\nBegin with pen-and-paper only - no computer, no code\nPlan out the steps needed to address the RQ\nInclude “sketches” of the how the dataset should look after each step"
   },
   {
-    "objectID": "materials/02-complex-pipeline.html#custom-functions-for-pipeline-problems",
-    "href": "materials/02-complex-pipeline.html#custom-functions-for-pipeline-problems",
+    "objectID": "materials/02-complex-pipeline.html#reorder-a-pipeline",
+    "href": "materials/02-complex-pipeline.html#reorder-a-pipeline",
     "title": "Complex Data Pipelines",
-    "section": "Custom functions for pipeline problems",
-    "text": "Custom functions for pipeline problems"
+    "section": "Reorder a pipeline",
+    "text": "Reorder a pipeline\nProvide all the pipeline elements, ask students to put them in proper order.\nburger_counts |&gt;\n\na) summarize(\n    total_burgers = sum(burger_TRUE, na.rm = TRUE)\n  )\nb) group_by(city)\nc) left_join(dat_loc,\n            by = c(\"restaurant\" = \"name\"))\nd) arrange(desc(total_burgers))\n  \nAnswer: c-b-a-d"
   },
   {
-    "objectID": "materials/02-complex-pipeline.html#list-cols",
-    "href": "materials/02-complex-pipeline.html#list-cols",
+    "objectID": "materials/02-complex-pipeline.html#fill-in-a-blank",
+    "href": "materials/02-complex-pipeline.html#fill-in-a-blank",
     "title": "Complex Data Pipelines",
-    "section": "List-cols",
-    "text": "List-cols"
+    "section": "Fill in a blank",
+    "text": "Fill in a blank\nThis could mean fill in a blank in code to achieve a goal …\nburger_counts |&gt;\n  left_join(dat_loc,\n            by = c(\"restaurant\" = \"name\")) |&gt;\n  ___________ |&gt;\n  summarize(\n    total_burgers = sum(burger_TRUE, na.rm = TRUE)\n  ) |&gt;\n  arrange(desc(total_burgers))"
+  },
+  {
+    "objectID": "materials/02-complex-pipeline.html#fill-in-a-blank-1",
+    "href": "materials/02-complex-pipeline.html#fill-in-a-blank-1",
+    "title": "Complex Data Pipelines",
+    "section": "Fill in a blank",
+    "text": "Fill in a blank\nThis could also mean fill in an intermediate dataset step:\n[Original Data Sketch]\n-&gt;\n[Joined Data Sketch]\n-&gt;\nSTUDENTS FILL IN THIS SKETCH\n-&gt;\n[Final output]"
   },
   {
     "objectID": "materials/02-complex-pipeline.html#your-turn-5",
     "href": "materials/02-complex-pipeline.html#your-turn-5",
     "title": "Complex Data Pipelines",
     "section": "YOUR TURN",
-    "text": "YOUR TURN\nFor your dataset, come up with some research questions that require a complicated pipeline to address.\nSketch out the steps needed to answer a research question.\nJot down some ideas about how you would make transitional student questions out of these - e.g., which steps would you show and which would you leave blank?\ntimer"
+    "text": "YOUR TURN\n\nFor your dataset, come up with some research questions that require a complicated pipeline to address.\nSketch out the steps needed to answer a research question.\nJot down some ideas about how you would make transitional student questions out of these - e.g., which steps would you show and which would you leave blank?\n\n\n\n\n−+\n10:00"
   },
   {
     "objectID": "index.html",
