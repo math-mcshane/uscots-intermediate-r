@@ -35,7 +35,7 @@ website:
             text: "Introduction to Quarto Projects and Websites"
           - href: materials/06-quarto-dashboards.qmd
             text: "Quarto Dashboards (Static & Dynamic)"
-          - href: materials/07-stat-communications.qmd
+          - href: materials/07-stat-communication.qmd
             text: "Introduction to Shiny"
           # - href: materials/08-developer.qmd
           #   text: "Thinking Like a Developer"
