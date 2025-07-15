@@ -8,6 +8,11 @@ format:
 editor: source
 ---
 
+```{r}
+#| include: false
+library(countdown)
+```
+
 ## The "90/10" rule
 
 > 90% of the work you do will occupy only 10% of your presentation time/space.
