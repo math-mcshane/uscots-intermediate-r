@@ -1,0 +1,467 @@
+---
+title: "Professional Data Visualization"
+subtitle: "Beyond Basic ggplot2"
+format: 
+  revealjs:
+    footer: "[USCOTS Intermediate R Workshop](https://atheobold.github.io/uscots-intermediate-r/)"
+    theme: [simple, styles.scss]
+    embed-resources: true
+    scrollable: true
+editor: source
+---
+
+## Why Professional Data Visualization?
+
+Moving from "making plots" to "effective communication":
+
+::: {.incremental}
+- **Process vs. Product**: Teaching students to evaluate their own work
+- **Advanced techniques**: Extensions, theming, interactivity
+- **Professional standards**: Publication-ready graphics
+- **Assessment strategies**: Clear grading principles
+:::
+
+
+## Learning Objectives
+
+By the end of this session, you will:
+
+::: {.incremental}
+1. Understand grading principles for "good" data visualization (process vs. product)
+2. Know current ggplot2 extensions and advanced theming techniques
+3. Be familiar with interactive visualization tools (plotly, htmlwidgets)
+:::
+
+. . .
+
+::: {style="font-size: 1.1em; color: #2E7D32;"}
+**Focus: Comprehensive resources to teach professional data visualization**
+:::
+
+# Grading Principles {background-color="#0F4C81"}
+
+## Process vs. Product Assessment
+
+Teaching visualization requires evaluating **both**:
+
+::: {.incremental}
+- **Process**: Design thinking, iteration, justification
+- **Product**: Technical execution, clarity, aesthetics
+- **Reflection**: Understanding of design choices
+- **Critique**: Ability to evaluate others' work
+:::
+
+. . .
+
+::: {style="font-size: 1.1em; color: #2E7D32;"}
+**Goal: Students learn to self-assess, iterate, and improve**
+:::
+
+## What Makes a "Good" Visualization?
+
+::: {.small}
+**Technical Accuracy:**
+
+- Appropriate chart type for data
+- Correct use of scales and axes
+- Accurate representation of relationships
+
+**Design Principles:**
+
+- Clear, informative titles and labels
+- Appropriate color choices and accessibility
+- Effective use of visual hierarchy
+- Minimal cognitive load
+
+**Communication:**
+
+- Clear message or insight
+- Appropriate for target audience
+- Context and interpretation provided
+:::
+
+## Grading Rubric for Visualizations
+
+:::{.large}
+⁇ **After considering some of the principles of "good" viz, what features should we be grading for?**
+:::
+
+. . . 
+
+:::{.large}
+⁇ **What message do we want to tell by the rubric?**
+:::
+
+
+## Example Grading Rubric Framework
+
+::: {.small}
+| **Criteria** | **Excellent (4)** | **Good (3)** | **Needs Work (2)** | **Poor (1)** |
+|:-------------|:------------------|:-------------|:-------------------|:-------------|
+| **Chart Type** | Match for data & message | Appropriate choice | Questionable fit | Wrong choice |
+| **Design** | Polished, clean, accessible | Good design principles | Some issues | Many problems |
+| **Message** | Compelling insight | Good communication | Unclear message | No clear point |
+| **Process** | Shows iteration/ reflection | Evidence of thinking | Some documentation | No process shown |
+:::
+
+::: {style="font-size: 0.9em; color: #666;"}
+**Teaching Tip:** Have students grade example visualizations using your rubric before using it on their own work
+:::
+
+## Sometimes Bad Is The Way
+
+[](04-mando.png]
+
+## Sometimes Bad Is The Way
+
+::: {style="font-size: 1em; color: #666;"}
+**Challenge students to create a data visual that does well in only one of the 4 criteria**
+:::
+
+* Can encourage them to think through the criteria without being too routine or safe
+* Sharing within the class (e.g., on the class message board) can expand the learning
+* Ask the students which ceriteria it appears to do well
+* If a little competition makes sense: vote for best of the bad
+
+
+## Teaching Resources
+
+::: {.small}
+**Rubric Examples:**
+
+- [Penn State Data Visualization Rubric](https://libraries.psu.edu/about/departments/research-informatics-and-publishing/data-learning-center/data-visualization-1) - Award judging criteria
+- [Georgetown Assessment Guide](https://guides.library.georgetown.edu/c.php?g=75874&p=490360) - Student evaluation framework
+- [ASA Poster Judging Rubric](https://www.amstat.org/asa/files/pdfs/EDU-PosterJudgingRubric.pdf) - Professional standards
+
+**Design Principle Resources:**
+
+- Alberto Cairo's "The Truthful Art" - Comprehensive visualization principles
+- Edward Tufte's principles - Classic design guidelines  
+- Claus Wilke's "Fundamentals of Data Visualization" - Modern, R-focused approach
+
+**Teaching Examples:**
+
+- [UMass Visualization Assessment](https://scholarworks.umass.edu/cgi/viewcontent.cgi?article=1073&context=librarian_pubs) - Academic research
+- [IU Visualization Rubric](https://scholarworks.iu.edu/dspace/bitstream/handle/2022/16814/VisualizationAssessmentRubric.pdf) - Complete framework
+:::
+
+
+# `ggplot2` Extensions {background-color="#0F4C81"}
+
+## The Extension Ecosystem
+
+ggplot2 is designed to be extensible:
+
+::: {.incremental}
+- **50+ extension packages** for specialized needs
+- **Consistent grammar** across extensions
+- **Professional-quality** output
+- **Active development** community
+:::
+
+. . .
+
+::: {style="font-size: 1.1em; color: #2E7D32;"}
+**Teaching advantage: Students learn one grammar, unlock dozens of tools**
+:::
+
+## Essential Extensions for Teaching
+
+```{r}
+#| eval: true
+#| echo: true
+
+# Install key extensions
+# pak::pak(c("patchwork", "gganimate", "ggtext", "plotly",
+#            "ggforce", "ggh4x", "ggrepel", "palmerpenguins"))
+
+# Core packages
+library(ggplot2)
+library(palmerpenguins)
+library(patchwork)  # Combining plots
+library(gganimate)  # Animations  
+library(ggtext)     # Enhanced text
+library(plotly)     # interactive plots
+```
+
+## Patchwork: Combining Plots
+
+```{r}
+#| eval: true
+#| echo: true
+
+# Create individual plots
+p1 <- ggplot(penguins, aes(bill_length_mm, body_mass_g, color = species)) + 
+  geom_point()
+
+p2 <- ggplot(penguins, aes(species)) + 
+  geom_bar()
+
+p3 <- ggplot(penguins, aes(body_mass_g)) + 
+  geom_histogram()
+
+# Combine with operators
+(p1 + p2) / p3    # Side by side and stacked 
+```
+
+::: {.midi}
+**Teaching value**: Students learn composition principles and complex figure creation for publications
+:::
+
+## gganimate: Bringing Data to Life
+
+```{r}
+#| eval: false
+#| echo: true
+
+library(gapminder)
+
+# Create animated plot
+ggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, color = continent)) +
+  geom_point(alpha = 0.7) +
+  scale_x_log10() +
+  # Animation components
+  transition_time(year) +
+  labs(title = "Year: {closest_state}")
+```
+
+::: {style="font-size: 0.9em; color: #666;"}
+**Student Exercise**: Create before/after static vs. animated versions to show communication differences
+:::
+
+## ggtext: Professional Text Formatting
+
+```{r}
+#| eval: true
+#| echo: true
+
+library(ggtext)
+
+ggplot(penguins, aes(bill_length_mm, body_mass_g, color = species)) +
+  geom_point() +
+  labs(
+    title = "Bill length vs. **Body mass**",
+    subtitle = "Data colored by <span style='color:blue;'>penguin species</span>",
+    caption = "*Source: Palmer Station Antarctica LTER*"
+  ) +
+  theme(
+    plot.title = element_markdown(),
+    plot.subtitle = element_markdown(),
+    plot.caption = element_markdown()
+  )
+```
+
+## Advanced Theming Techniques
+
+```{r}
+#| eval: false
+#| echo: true
+
+# Custom theme for consistency
+my_theme <- theme_minimal() +
+  theme(
+    text = element_text(family = "Arial"),
+    plot.title = element_text(size = 16, face = "bold"),
+    panel.grid.minor = element_blank(),
+    legend.position = "bottom"
+  )
+
+# Apply to all plots
+theme_set(my_theme)
+```
+
+::: {style="font-size: 0.9em; color: #666;"}
+**Teaching Strategy**: Have students develop their own theme as a semester project
+:::
+
+## ggplot2 Extension Teaching Resources
+
+::: {.small}
+**Comprehensive Guides:**
+
+- [Awesome ggplot2](https://github.com/erikgahner/awesome-ggplot2) - Curated list of extensions and tutorials
+- [ggplot2 Extensions Gallery](https://exts.ggplot2.tidyverse.org/) - Official showcase with examples
+- [Albert Rapp's Extension Guide](https://albert-rapp.de/posts/ggplot2-tips/20_ggplot_extensions/ggplot_extensions) - 5 powerful extensions tutorial
+- [Data Visualization Conservation Book](https://bookdown.org/gavinmasterson/dvfc/extensions-of-ggplot2.html) - Academic session on extensions
+
+**Package-Specific Resources:**
+
+- [Patchwork Documentation](https://patchwork.data-imaginist.com/) - Complete guide to plot composition
+- [gganimate Documentation](https://gganimate.com/) - Animation tutorials and examples
+- [ggtext Package Guide](https://wilkelab.org/ggtext/) - Enhanced text formatting
+
+**Teaching Materials:**
+
+- [Mode Analytics Extension Guide](https://mode.com/blog/r-ggplot-extension-packages/) - 12 extensions for more powerful visualizations
+- [InfoWorld ggplot Extensions](https://www.infoworld.com/article/2336125/12-ggplot-extensions-for-snazzier-r-graphics.html) - Practical examples
+- [Medical Research Extensions](https://bookdown.org/pdr_higgins/rmrwr/extensions-to-ggplot.html) - Domain-specific applications
+:::
+
+# Interactive Visualization {background-color="#0F4C81"}
+
+## Why Interactive Visualization?
+
+Interactive plots enable:
+
+::: {.incremental}
+- **Exploration**: Users can discover patterns themselves
+- **Engagement**: More compelling than static plots
+- **Detail**: Tooltips and zoom for complex data
+- **Storytelling**: Guided narratives through data
+:::
+
+. . .
+
+::: {style="font-size: 1.1em; color: #2E7D32;"}
+**Teaching opportunity: Students learn both exploration and communication**
+:::
+
+## The htmlwidgets Ecosystem
+
+```{r}
+#| eval: false
+#| echo: true
+
+# Install interactive packages
+# pak::pak(c("plotly", "DT", "leaflet", "ggiraph"))
+
+# Core interactive tools
+library(plotly)     # Interactive plots
+library(DT)         # Interactive tables
+library(leaflet)    # Interactive maps
+library(ggiraph)    # Interactive ggplot2
+```
+
+::: {.midi}
+**htmlwidgets**: R bindings to JavaScript libraries that work in multiple contexts (console, RStudio, Rmarkdown, Shiny)
+:::
+
+## From ggplot2 to plotly
+
+```{r}
+#| eval: true
+#| echo: true
+
+# Create ggplot
+p <- ggplot(penguins, aes(bill_length_mm, body_mass_g, 
+             color = species, text = paste("Species:", species))) +
+  geom_point(size = 3) +
+  labs(title = "Bill Length vs. Body Mass")
+
+# Make it interactive
+ggplotly(p, tooltip = "text")
+```
+
+::: {style="font-size: 0.9em; color: #666;"}
+**Teaching Win**: Students can make existing ggplot2 plots interactive with one function call
+:::
+
+## Custom plotly Interactions
+
+```{r}
+#| eval: true
+#| echo: true
+
+# Native plotly syntax
+plot_ly(penguins, x = ~bill_length_mm, y = ~body_mass_g, color = ~species,
+        text = ~paste("Species:", species), 
+        hovertemplate = "%{text}<br>Bill Length: %{x}mm<br>Body Mass: %{y}g") %>%
+  add_markers(size = ~bill_depth_mm) %>%
+  layout(title = "Interactive Penguin Data",
+         xaxis = list(title = "Bill Length (mm)"),
+         yaxis = list(title = "Body Mass (g)"))
+```
+
+## ggiraph: Interactive ggplot2
+
+```{r}
+#| eval: true
+#| echo: true
+
+library(ggiraph)
+
+# Add interactivity to ggplot2
+p <- ggplot(penguins, aes(bill_length_mm, body_mass_g, 
+             tooltip = paste("Species:", species),
+             data_id = species)) +
+  geom_point_interactive(aes(color = species), size = 3) +
+  theme_minimal()
+
+# Render as interactive
+girafe(ggobj = p)
+```
+
+::: {style="font-size: 0.9em; color: #666;"}
+**Student-Friendly**: Uses familiar ggplot2 syntax with `_interactive` suffix
+:::
+
+## Interactive Visualization Teaching Resources
+
+::: {.small}
+**Comprehensive Learning:**
+
+- [Interactive Web-based Data Visualization with R](https://plotly-r.com/) - Complete plotly R guide
+- [DataCamp Plotly Course](https://www.datacamp.com/courses/interactive-data-visualization-with-plotly-in-r) - Structured learning path
+- [Plotly R Documentation](https://plotly.com/r/) - Official reference and examples
+
+**htmlwidgets Ecosystem:**
+
+- [htmlwidgets.org](http://www.htmlwidgets.org/) - Gallery of available packages
+- [Interactive Widgets in R](https://www.datanovia.com/learn/interactive/r/widgets.html) - Comprehensive guide
+- [University of Sheffield Guide](https://dataviz.shef.ac.uk/blog/27/01/2021/Interactive-Visualisations-In-R/) - Academic perspective
+
+**Teaching-Specific Resources:**
+
+- [GeeksforGeeks Plotly Tutorial](https://www.geeksforgeeks.org/interactive-charts-using-plotly-in-r/) - Step-by-step examples
+- [ggiraph Documentation](https://davidgohel.github.io/ggiraph/) - Interactive ggplot2 extensions
+- [Linking Multiple Widgets](https://plotly-r.com/linking-views-without-shiny.html) - Advanced techniques
+
+**Integration Examples:**
+
+- Saving and embedding HTML widgets in reports
+- Using interactive plots in Rmarkdown documents
+- Combining multiple widgets for dashboards
+:::
+
+## Course Integration Strategies
+
+::: {.midi}
+**Scaffolded Learning Approach:**
+
+1. **Week 1-2**: ggplot2 fundamentals and design principles
+2. **Week 3-4**: Extensions (patchwork, themes, ggtext)
+3. **Week 5-6**: Animation with gganimate
+4. **Week 7-8**: Interactive visualization with plotly
+
+**Assessment Progression:**
+
+- Start with static plot improvement exercises
+- Move to extension-based enhancement projects
+- Culminate with interactive storytelling assignments
+- Portfolio showing evolution from basic to professional
+:::
+
+## Professional Development Resources
+
+::: {.small}
+**Visualization Theory & Principles:**
+
+- [Claus Wilke's "Fundamentals of Data Visualization"](https://clauswilke.com/dataviz/) - Modern, comprehensive guide
+- [Alberto Cairo's "The Truthful Art"](http://www.thefunctionalart.com/p/the-truthful-art-book.html) - Ethics and principles
+- [Edward Tufte's Works](https://www.edwardtufte.com/) - Classic visualization theory
+
+**R-Specific Advanced Techniques:**
+
+- [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/) - Hadley Wickham's comprehensive guide
+- [R Graphics Cookbook](https://r-graphics.org/) - Practical solutions
+- [Data Visualization: A Practical Introduction](https://socviz.co/) - Sociology perspective with R
+
+**Teaching Methodology:**
+
+- [Data Science Education Resources](https://datasciencebox.org/) - Complete course framework
+- [Teaching Data Science](https://teachdatascience.com/) - Pedagogical approaches
+- [Journal of Statistics Education](https://www.tandfonline.com/toc/ujse20/current) - Academic research on teaching
+:::
+
+
+

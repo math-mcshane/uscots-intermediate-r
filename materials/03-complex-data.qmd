@@ -8,19 +8,19 @@ format:
     embed-resources: true
     scrollable: true
 editor: source
-editor_options: 
-  chunk_output_type: console
 ---
 
 ## Why Move Beyond CSV?
+
+. . .
 
 Real-world data comes in many forms:
 
 ::: {.incremental}
 - **Web data**: HTML tables, JSON APIs, XML feeds
+- **Real-time data**: APIs that update continuously
 - **Large datasets**: Files too big for memory
 - **Structured databases**: Relational data with foreign keys
-- **Real-time data**: APIs that update continuously
 :::
 
 . . .
@@ -29,9 +29,7 @@ Real-world data comes in many forms:
 Today: Tools and techniques for handling complex data sources
 :::
 
-## Learning Objectives
-
-Why these four topics?
+## Why Integrate Other Data Sources?
 
 ::: {.incremental}
 1. Real-world data are rarely nicely formatted
@@ -39,8 +37,6 @@ Why these four topics?
 3. Much of these data are large and (continuously) updating
 4. Simple data sets like `gapminder` and `palmerpenguins` are sometimes not adequate for students to gain practical experience
 :::
-
-. . .
 
 
 
@@ -53,16 +49,19 @@ Web scraping extracts data from websites programmatically
 ::: {.incremental}
 - **`rvest`**: Core web scraping package for R
 - **`polite`**: Ethical scraping practices
-- **`httr2`**: HTTP requests and authentication
+- **`httr2`**: HTTP requests and authentication (we'll get into this with APIs)
 :::
 
 . . .
 
-::: {style="font-size: 1.1em; color: #D32F2F;"}
+::: {style="font-size: 0.9em; color: #D32F2F;"}
 **Always check robots.txt and respect rate limits!**
 
-**Teaching Ethics:** Use [robots.txt checker](https://www.robotstxt.org/robotstxt.html) as classroom demo
+**Web Scraping Ethics:** Use [robots.txt checker](https://www.robotstxt.org/robotstxt.html) to review the "language" of this file
+
+**Example:** [Google's robot.txt](https://www.google.com/robots.txt)
 :::
+
 
 ## Essential Web Scraping Packages
 
@@ -70,10 +69,9 @@ Web scraping extracts data from websites programmatically
 #| eval: true
 #| echo: true
 
-# pak::pak(c("rvest", "polite", "httr2"))
+# pak::pak(c("rvest", "polite"))
 library(rvest)
 library(polite)
-library(dplyr)
 ```
 
 . . .
@@ -85,6 +83,37 @@ library(dplyr)
 - Respect rate limits automatically  
 - Cache requests to avoid redundancy
 :::
+
+## Polite Web Scraping Workflow
+
+```{r}
+#| eval: true
+#| echo: true
+
+# 1. Bow and introduce yourself
+session <- bow(
+  "https://example.com", 
+  user_agent = "Your Name <email@example.com>"
+)
+
+# 2. Scrape politely
+scraped_data <- scrape(session) %>%
+  html_elements("title") %>%
+  html_text()
+```
+
+What would you expect `scraped_data` to contain?
+
+
+
+## Polite Web Scraping Workflow
+
+```{r}
+#| eval: true
+#| echo: true
+
+scraped_data
+```
 
 ## Polite Web Scraping Workflow
 
@@ -102,34 +131,10 @@ session <- bow(
 scraped_data <- scrape(session) %>%
   html_elements("title") %>%
   html_text()
-
-scraped_data
 ```
-
-
-## Polite Web Scraping Workflow
-
-```{r}
-#| eval: false
-#| echo: true
-
-session <- bow(
-  "https://example.com", 
-  user_agent = "Your Name <email@example.com>"
-)
-
-scraped_data <- scrape(session) %>%
-  html_elements("title") %>%
-  html_text()
-```
-
 
 ::: {.midi}
 This workflow automatically: 1) Checks robots.txt, 2) Introduces your scraper and 3) Respects crawl delays
-
-::: {style="font-size: 0.9em; color: #666;"}
-**Tip:** Have students practice on [httpbin.org](https://httpbin.org/) first - it's designed for testing HTTP requests
-:::
 :::
 
 ## Web Scraping Resources for Teaching
@@ -163,7 +168,7 @@ APIs (Application Programming Interfaces) provide:
 . . .
 
 ::: {style="font-size: 1.1em; color: #2E7D32;"}
-**Always prefer APIs over web scraping when available!**
+**NOTE: Always prefer APIs over web scraping when available! But why??**
 
 ::: {style="font-size: 0.9em; color: #666;"}
 **Student Exercise 💡** Compare same data via API vs scraping ([OpenWeather API](https://openweathermap.org/api) vs weather websites)
@@ -206,7 +211,7 @@ library(xml2)     # XML handling
 ## `httr2` API Workflow
 
 ```{r}
-#| eval: false
+#| eval: true
 #| echo: true
 
 # Create and execute request 
@@ -222,11 +227,6 @@ data %>%
   purrr::pluck("675", "AT") %>% 
   as_tibble() %>% 
   mutate(day = 675)
-
-data %>%
-  purrr::pluck("676", "AT") %>% 
-  as_tibble() %>% 
-  mutate(day = 676)
 ```
 
 :::{.small}
@@ -270,6 +270,8 @@ df[["users"]]
 - [MockUp Blog JSON Parsing](https://themockup.blog/posts/2020-05-22-parsing-json-in-r-with-jsonlite/) - Real-world data
 :::
 
+
+
 # Large Data Performance {background-color="#0F4C81"}
 
 ## When Data Gets Big
@@ -292,7 +294,7 @@ Traditional R tools struggle with:
 ## The Performance Trio
 
 ```{r}
-#| eval: false
+#| eval: true
 #| echo: true
 
 # Install if needed
@@ -321,7 +323,7 @@ library(duckdb)      # In-process analytics
 #| echo: true
 
 # Read large parquet file
-large_data <- arrow::open_dataset("huge_file.parquet")
+large_data <- data.table::fread(here::here("materials", "Data", "large_file.csv"))
 
 # data.table
 setDT(large_data)
@@ -329,8 +331,10 @@ large_data[year == 2023, .(avg_value = mean(value)), by = category]
 ```
 
 ::: {.midi}
-**Extremely fast aggregation, grouped calculations, and filtering**
+Based on this code alone, can you guess what is happening to `large_data`?
 :::
+
+## `data.table`
 
 ::: {style="font-size: 0.9em; color: #666;"}
 Depending on student needs, `data.table` can be a very useful R development package:
@@ -350,10 +354,10 @@ Thousands of R packages use on `data.table` for these reasons!
 #| echo: true
 
 # Read large parquet file
-large_data <- arrow::open_dataset("huge_file.parquet")
+huge_data <- arrow::open_dataset(here::here("materials", "Data", "huge_file.parquet"))
 
 # Query with DuckDB (SQL or dplyr syntax)
-result <- large_data %>%
+result <- huge_data %>%
   arrow::to_duckdb() %>%
   filter(year == 2023) %>%
   group_by(category) %>%
@@ -377,7 +381,7 @@ result <- large_data %>%
 . . .
 
 ::: {style="font-size: 1.1em; color: #2E7D32;"}
-**Result: 33.8 GB data analyzed in 16 GB RAM**
+**This means that 33.8 GB data analyzed in 16 GB RAM**
 :::
 
 ## Large Data Teaching Resources
@@ -425,16 +429,11 @@ Databases provide:
 # Install if needed
 # pak::pak(c("DBI", "RSQLite", "RPostgreSQL", "RMySQL", "dbplyr"))
 
-# Core database interface
-library(DBI)
-
-# Specific database drivers
-library(RSQLite)    # SQLite (embedded)
+library(DBI)         # core database interface
+library(RSQLite)     # SQLite (embedded)
 library(RPostgreSQL) # PostgreSQL
-library(RMySQL)     # MySQL/MariaDB
-
-# Database-aware dplyr
-library(dbplyr)
+library(RMySQL)      # MySQL/MariaDB
+library(dbplyr)      # Database-aware dplyr
 ```
 
 ## Basic Database Workflow
@@ -521,22 +520,19 @@ summary <- customers_tbl %>%
 
 ::: {style="font-size: 1.2em; color: #0F4C81;"}
 **Choose the right tool for your data source and size!**
+:::
 
-## Course Integration Strategies
+
+## Ideas for Projects
 
 ::: {.midi}
-**Scaffolded Approach (Recommended):**
+**BRAINSTORM:** What kinds of projects could you include that:
 
-1. **Week 1-2:** Start with APIs (structured, documented)
-2. **Week 3-4:** Introduce ethical web scraping  
-3. **Week 5-6:** Scale up with large data tools
-4. **Week 7-8:** Databases for persistence and collaboration
-
-**Project-Based Learning:**
-- Students find their own data sources
-- Progress from simple to complex data types
-- Build cumulative portfolio of data acquisition skills
+1. Gives students exposure to these data sources
+2. While continuing to focus on the topic of your course
 :::
+
+
 
 ## Additional Teaching Resources
 
@@ -560,25 +556,4 @@ summary <- customers_tbl %>%
 - [API Terms of Service Examples](https://tosdr.org/) - Teaching about data use agreements
 :::
 
-## Assessment Ideas
 
-::: {.midi}
-**Formative Assessment:**
-
-- Compare API vs. scraping
-- Debug broken scraping code (robots.txt violations)
-- Optimize slow data processing with performance tools
-
-**Summative Projects:**
-
-- Build data pipeline from multiple sources
-- Create reproducible research workflow
-- Document data provenance and ethics considerations
-
-**Peer Review Components:**
-
-- Code review for ethical scraping practices
-- Performance benchmarking comparisons
-- API documentation quality assessment
-:::
-:::

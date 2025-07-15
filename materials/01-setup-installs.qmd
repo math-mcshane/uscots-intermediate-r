@@ -1,5 +1,5 @@
 ---
-title: "Workshop Set-up & Installs"
+title: "Workshop Installs & Set-up"
 subtitle: ""
 format: 
   revealjs:
@@ -29,6 +29,8 @@ library(countdown)
 
 ```{r}
 #| eval: false
+#| echo: true
+#| label: package-option-a
 
 install.packages("usethis")
 
@@ -44,6 +46,10 @@ usethis::use_course("atheobold/uscots-intermediate-r")
 **Option B:** Copy paste and run:
 
 ```{r}
+#| eval: false
+#| echo: true
+#| label: package-option-b
+
 packages <- c(
   "tidyverse",
   "tidymodels",
@@ -116,11 +122,11 @@ result <- data_main %>%
 
 ::::: {.columns layout-ncol="2"}
 ::: column
-![](images/01-r4ds.jpg)
+![](images/00-r4ds.jpg)
 :::
 
 ::: column
-![](images/01-book_of_r.jpg)
+![](images/00-book-of-r.jpg)
 :::
 :::::
 
@@ -142,7 +148,7 @@ result <- data_main %>%
 
 ## Is it *just* programming? Of course not!
 
-![](images/01-advR.jpg){fig-align="center"}
+![](images/00-advR.jpg){fig-align="center"}
 
 # What is *Intermediate R*?
 
@@ -380,7 +386,7 @@ You must include an element of results of a *statistical model or test*, communi
 
 ## Extensions and peripheral software
 
-![](logo-quarto.png)
+![](images/00-logo-quarto.png)
 
 -   `Quarto`: Dashboards, themes, websites, etc. etc.
 
@@ -541,12 +547,11 @@ Your code and/or vignette must:
 :::
 
 ::: column
-![](images/QR.png)
+![](images/10-QR.png)
 :::
 :::::
 
 # Now - let's sketch out our course together!
-
 
 ## Why are you here?
 

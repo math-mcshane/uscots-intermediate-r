@@ -7,6 +7,195 @@
     "text": "Kelly Bodwin\n\n\n\nTyson Barrett\n\n\n\nAllison Theobold is an Assistant Professor of Statistics at Cal Poly. Allison’s work focuses on innovation in statistics and data science education, with an emphasis on equitable pedagogy and learning trajectories. Allison is also interested in exploring pedagogical approaches for enhancing retention of under-represented students in STEM, including creating inclusive discoursive spaces and equitable group collaborations."
   },
   {
+    "objectID": "materials/03-complex-data.html#why-move-beyond-csv",
+    "href": "materials/03-complex-data.html#why-move-beyond-csv",
+    "title": "More Complex Data",
+    "section": "Why Move Beyond CSV?",
+    "text": "Why Move Beyond CSV?\nReal-world data comes in many forms:\n\n\nWeb data: HTML tables, JSON APIs, XML feeds\nLarge datasets: Files too big for memory\nStructured databases: Relational data with foreign keys\nReal-time data: APIs that update continuously\n\n\n\n\nToday: Tools and techniques for handling complex data sources"
+  },
+  {
+    "objectID": "materials/03-complex-data.html#learning-objectives",
+    "href": "materials/03-complex-data.html#learning-objectives",
+    "title": "More Complex Data",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\nWhy these four topics?\n\n\nReal-world data are rarely nicely formatted\nKnowing how to access and format data is crucial\nMuch of these data are large and (continuously) updating\nSimple data sets like gapminder and palmerpenguins are sometimes not adequate for students to gain practical experience"
+  },
+  {
+    "objectID": "materials/03-complex-data.html#web-scraping-fundamentals",
+    "href": "materials/03-complex-data.html#web-scraping-fundamentals",
+    "title": "More Complex Data",
+    "section": "Web Scraping Fundamentals",
+    "text": "Web Scraping Fundamentals\nWeb scraping extracts data from websites programmatically\n\n\nrvest: Core web scraping package for R\npolite: Ethical scraping practices\nhttr2: HTTP requests and authentication\n\n\n\n\nAlways check robots.txt and respect rate limits!\nTeaching Ethics: Use robots.txt checker as classroom demo"
+  },
+  {
+    "objectID": "materials/03-complex-data.html#essential-web-scraping-packages",
+    "href": "materials/03-complex-data.html#essential-web-scraping-packages",
+    "title": "More Complex Data",
+    "section": "Essential Web Scraping Packages",
+    "text": "Essential Web Scraping Packages\n\n# pak::pak(c(\"rvest\", \"polite\", \"httr2\"))\nlibrary(rvest)\nlibrary(polite)\nlibrary(dplyr)\n\n\n\npolite ensures you:\n\nCheck robots.txt permissions\nRespect rate limits automatically\n\nCache requests to avoid redundancy"
+  },
+  {
+    "objectID": "materials/03-complex-data.html#polite-web-scraping-workflow",
+    "href": "materials/03-complex-data.html#polite-web-scraping-workflow",
+    "title": "More Complex Data",
+    "section": "Polite Web Scraping Workflow",
+    "text": "Polite Web Scraping Workflow\n\n# 1. Bow and introduce yourself\nsession &lt;- bow(\n  \"https://example.com\", \n  user_agent = \"Your Name &lt;email@example.com&gt;\"\n)\n\n# 2. Scrape politely\nscraped_data &lt;- scrape(session) %&gt;%\n  html_elements(\"title\") %&gt;%\n  html_text()\n\nscraped_data"
+  },
+  {
+    "objectID": "materials/03-complex-data.html#polite-web-scraping-workflow-1",
+    "href": "materials/03-complex-data.html#polite-web-scraping-workflow-1",
+    "title": "More Complex Data",
+    "section": "Polite Web Scraping Workflow",
+    "text": "Polite Web Scraping Workflow\n\nsession &lt;- bow(\n  \"https://example.com\", \n  user_agent = \"Your Name &lt;email@example.com&gt;\"\n)\n\nscraped_data &lt;- scrape(session) %&gt;%\n  html_elements(\"title\") %&gt;%\n  html_text()\n\n\nThis workflow automatically: 1) Checks robots.txt, 2) Introduces your scraper and 3) Respects crawl delays\n\nTip: Have students practice on httpbin.org first - it’s designed for testing HTTP requests"
+  },
+  {
+    "objectID": "materials/03-complex-data.html#web-scraping-resources-for-teaching",
+    "href": "materials/03-complex-data.html#web-scraping-resources-for-teaching",
+    "title": "More Complex Data",
+    "section": "Web Scraping Resources for Teaching",
+    "text": "Web Scraping Resources for Teaching\n\nEssential Learning Materials:\n\nR for Data Science (2e) - Web Scraping Chapter - Comprehensive beginner tutorial\nrvest Package Documentation - Official rvest reference with examples\nWeb Scraping the Polite Way - Ethics-focused tutorial\nZenRows Complete Guide 2025 - Step-by-step practical guide\nCrime by Numbers Chapter 19 - Real-world examples\nAutomated Web Scraping Workshop - Complete lesson plan (187 slides)"
+  },
+  {
+    "objectID": "materials/03-complex-data.html#apis-a-better-way-to-get-data",
+    "href": "materials/03-complex-data.html#apis-a-better-way-to-get-data",
+    "title": "More Complex Data",
+    "section": "APIs: A Better Way to Get Data",
+    "text": "APIs: A Better Way to Get Data\nAPIs (Application Programming Interfaces) provide:\n\n\nStructured access to data\nRate limiting built-in\nAuthentication systems\nDocumentation and support\n\n\n\n\nAlways prefer APIs over web scraping when available!\n\nStudent Exercise 💡 Compare same data via API vs scraping (OpenWeather API vs weather websites)"
+  },
+  {
+    "objectID": "materials/03-complex-data.html#modern-r-api-tools",
+    "href": "materials/03-complex-data.html#modern-r-api-tools",
+    "title": "More Complex Data",
+    "section": "Modern R API Tools",
+    "text": "Modern R API Tools\n\n# Install if needed\n# pak::pak(c(\"httr2\", \"jsonlite\", \"xml2\"))\n\nlibrary(httr2)    # Modern HTTP client\nlibrary(jsonlite) # JSON parsing\nlibrary(xml2)     # XML handling\n\n\n\nhttr2 features:\n\n\n\nPipe-friendly syntax\nBuilt-in retry logic\n\n\n\nAutomatic request throttling\nBetter error handling than httr"
+  },
+  {
+    "objectID": "materials/03-complex-data.html#httr2-api-workflow",
+    "href": "materials/03-complex-data.html#httr2-api-workflow",
+    "title": "More Complex Data",
+    "section": "httr2 API Workflow",
+    "text": "httr2 API Workflow\n\n# Create and execute request \nresponse &lt;- request(\"https://api.nasa.gov/insight_weather/\") %&gt;%\n  req_url_query(api_key = \"DEMO_KEY\", feedtype = \"json\", ver = \"1.0\") %&gt;%\n  req_perform()\n\n# Parse JSON response\ndata &lt;- response %&gt;%\n  resp_body_json() \n\ndata %&gt;%\n  purrr::pluck(\"675\", \"AT\") %&gt;% \n  as_tibble() %&gt;% \n  mutate(day = 675)\n\ndata %&gt;%\n  purrr::pluck(\"676\", \"AT\") %&gt;% \n  as_tibble() %&gt;% \n  mutate(day = 676)\n\n\nStudent Exercise 💡 NASA has a lot of APIs to play with!"
+  },
+  {
+    "objectID": "materials/03-complex-data.html#working-with-json-data",
+    "href": "materials/03-complex-data.html#working-with-json-data",
+    "title": "More Complex Data",
+    "section": "Working with JSON Data",
+    "text": "Working with JSON Data\n\n# Convert JSON to data frame\njson_data &lt;- '{\n  \"users\": [\n    {\"name\": \"Alice\", \"age\": 25},\n    {\"name\": \"Bob\", \"age\": 30}\n  ]\n}'\n\n# Parse with jsonlite\ndf &lt;- jsonlite::fromJSON(json_data)\ndf\n\n$users\n   name age\n1 Alice  25\n2   Bob  30\n\ndf[[\"users\"]]\n\n   name age\n1 Alice  25\n2   Bob  30"
+  },
+  {
+    "objectID": "materials/03-complex-data.html#api-jsonxml-teaching-resources",
+    "href": "materials/03-complex-data.html#api-jsonxml-teaching-resources",
+    "title": "More Complex Data",
+    "section": "API & JSON/XML Teaching Resources",
+    "text": "API & JSON/XML Teaching Resources\n\nCore Documentation & Tutorials:\n\nhttr2 Package Documentation - Official reference\nWrapping APIs with httr2 - Advanced techniques\njsonlite: JSON APIs Vignette - JSON parsing examples\nWorking with Web Data APIs (R-bloggers) - Conceptual overview\n\nStudent-Friendly Tutorials:\n\nDataScience+ API Tutorial - Step-by-step guide\nRPubs REST API Tutorial - Practical examples\nMockUp Blog JSON Parsing - Real-world data"
+  },
+  {
+    "objectID": "materials/03-complex-data.html#when-data-gets-big",
+    "href": "materials/03-complex-data.html#when-data-gets-big",
+    "title": "More Complex Data",
+    "section": "When Data Gets Big",
+    "text": "When Data Gets Big\nTraditional R tools struggle with:\n\n\nFiles larger than RAM\nMillions of rows\nComplex joins across tables\nRepeated analysis on same data\n\n\n\n\nSolution: Modern high-performance tools"
+  },
+  {
+    "objectID": "materials/03-complex-data.html#the-performance-trio",
+    "href": "materials/03-complex-data.html#the-performance-trio",
+    "title": "More Complex Data",
+    "section": "The Performance Trio",
+    "text": "The Performance Trio\n\n# Install if needed\n# pak::pak(c(\"data.table\", \"arrow\", \"duckdb\"))\n\n# High-performance data processing\nlibrary(data.table)  # In-memory speed\nlibrary(arrow)       # Columnar storage and data transfer\nlibrary(duckdb)      # In-process analytics\n\n\n\nPerformance gains:\n\ndata.table: 10-100x faster than base R\narrow + duckdb: Handle larger-than-memory data\nCombined: Up to 20x faster pipelines"
+  },
+  {
+    "objectID": "materials/03-complex-data.html#data.table",
+    "href": "materials/03-complex-data.html#data.table",
+    "title": "More Complex Data",
+    "section": "data.table",
+    "text": "data.table\n\n# Read large parquet file\nlarge_data &lt;- arrow::open_dataset(\"huge_file.parquet\")\n\n# data.table\nsetDT(large_data)\nlarge_data[year == 2023, .(avg_value = mean(value)), by = category]\n\n\nExtremely fast aggregation, grouped calculations, and filtering\n\n\nDepending on student needs, data.table can be a very useful R development package:\n\ncareful dev cycle\nconcise syntax\nefficient and fast in memory data\n\nThousands of R packages use on data.table for these reasons!"
+  },
+  {
+    "objectID": "materials/03-complex-data.html#arrow-duckdb-integration",
+    "href": "materials/03-complex-data.html#arrow-duckdb-integration",
+    "title": "More Complex Data",
+    "section": "Arrow + DuckDB Integration",
+    "text": "Arrow + DuckDB Integration\n\n# Read large parquet file\nlarge_data &lt;- arrow::open_dataset(\"huge_file.parquet\")\n\n# Query with DuckDB (SQL or dplyr syntax)\nresult &lt;- large_data %&gt;%\n  arrow::to_duckdb() %&gt;%\n  filter(year == 2023) %&gt;%\n  group_by(category) %&gt;%\n  summarise(avg_value = mean(value)) %&gt;%\n  collect()\n\n\nZero-copy integration between Arrow and DuckDB!"
+  },
+  {
+    "objectID": "materials/03-complex-data.html#why-this-approach-works",
+    "href": "materials/03-complex-data.html#why-this-approach-works",
+    "title": "More Complex Data",
+    "section": "Why This Approach Works",
+    "text": "Why This Approach Works\n\n\nArrow: Columnar format, efficient I/O\nDuckDB: In-process OLAP database\nZero-copy: No serialization overhead\nFamiliar syntax: Works with dplyr\n\n\n\n\nResult: 33.8 GB data analyzed in 16 GB RAM"
+  },
+  {
+    "objectID": "materials/03-complex-data.html#large-data-teaching-resources",
+    "href": "materials/03-complex-data.html#large-data-teaching-resources",
+    "title": "More Complex Data",
+    "section": "Large Data Teaching Resources",
+    "text": "Large Data Teaching Resources\n\nTechnical Documentation:\n\nThe Raft - data.table community blog\nArrow + DuckDB Integration Guide - Zero-copy concepts\nArrow R Package Documentation - Complete reference\nDuckDB R Documentation - SQL in R examples\n\nTeaching-Focused Materials:\n\nNCEAS Arctic Research Tutorial - Academic workshop\nChristophe Nicault’s Tutorial - Step-by-step guide\nThomas Mock’s Bigger Data Tutorial - Practical examples\n\nPerformance Comparisons for Context:\n\nAppsilon Performance Study - Benchmarking results\nR-bloggers Larger-than-Memory Guide - Practical approach"
+  },
+  {
+    "objectID": "materials/03-complex-data.html#why-use-databases",
+    "href": "materials/03-complex-data.html#why-use-databases",
+    "title": "More Complex Data",
+    "section": "Why Use Databases?",
+    "text": "Why Use Databases?\nDatabases provide:\n\n\nStructured storage with relationships\nACID compliance for data integrity\nConcurrent access for teams\nScalability beyond single machines\nSQL ecosystem and tools"
+  },
+  {
+    "objectID": "materials/03-complex-data.html#r-database-ecosystem",
+    "href": "materials/03-complex-data.html#r-database-ecosystem",
+    "title": "More Complex Data",
+    "section": "R Database Ecosystem",
+    "text": "R Database Ecosystem\n\n# Install if needed\n# pak::pak(c(\"DBI\", \"RSQLite\", \"RPostgreSQL\", \"RMySQL\", \"dbplyr\"))\n\n# Core database interface\nlibrary(DBI)\n\n# Specific database drivers\nlibrary(RSQLite)    # SQLite (embedded)\nlibrary(RPostgreSQL) # PostgreSQL\nlibrary(RMySQL)     # MySQL/MariaDB\n\n# Database-aware dplyr\nlibrary(dbplyr)"
+  },
+  {
+    "objectID": "materials/03-complex-data.html#basic-database-workflow",
+    "href": "materials/03-complex-data.html#basic-database-workflow",
+    "title": "More Complex Data",
+    "section": "Basic Database Workflow",
+    "text": "Basic Database Workflow\n\n# Connect to database\ncon &lt;- dbConnect(RSQLite::SQLite(), \"mydata.db\")\n\n# Write data to database\ndbWriteTable(con, \"customers\", customer_data)\n\n# Query with SQL\nresult &lt;- dbGetQuery(con, \"\n  SELECT customer_id, SUM(amount) as total\n  FROM orders \n  GROUP BY customer_id\n\")\n\n# Always disconnect\ndbDisconnect(con)"
+  },
+  {
+    "objectID": "materials/03-complex-data.html#database-with-dplyr-syntax",
+    "href": "materials/03-complex-data.html#database-with-dplyr-syntax",
+    "title": "More Complex Data",
+    "section": "Database with dplyr Syntax",
+    "text": "Database with dplyr Syntax\n\n# Connect to table as dplyr object\ncustomers_tbl &lt;- tbl(con, \"customers\")\n\n# Use familiar dplyr syntax\nsummary &lt;- customers_tbl %&gt;%\n  filter(status == \"active\") %&gt;%\n  group_by(region) %&gt;%\n  summarise(avg_value = mean(lifetime_value)) %&gt;%\n  collect()  # Execute and bring to R\n\n\ndbplyr translates dplyr code to SQL automatically!\n\nTeaching Moment: Use show_query() to reveal the generated SQL - great for connecting R to SQL concepts"
+  },
+  {
+    "objectID": "materials/03-complex-data.html#database-teaching-resources",
+    "href": "materials/03-complex-data.html#database-teaching-resources",
+    "title": "More Complex Data",
+    "section": "Database Teaching Resources",
+    "text": "Database Teaching Resources\n\nCore Textbook Materials:\n\nR for Data Science (2e) - Databases Chapter - Student-friendly introduction\nDBI Package Documentation - Complete reference guide\nRSQLite Tutorial & Vignette - Embedded database examples\n\nTeaching-Ready Tutorials:\n\nR-Coder SQL Tutorial - Step-by-step with code\nSQL Docs R Tutorial - Interactive workflows\nAWS R and Databases Tutorial - Cloud perspective\n\nOfficial Package Documentation:\n\ndbplyr Documentation - dplyr translation to SQL\nDatabases using R (RStudio) - Best practices"
+  },
+  {
+    "objectID": "materials/03-complex-data.html#summary-your-complex-data-toolkit",
+    "href": "materials/03-complex-data.html#summary-your-complex-data-toolkit",
+    "title": "More Complex Data",
+    "section": "Summary: Your Complex Data Toolkit",
+    "text": "Summary: Your Complex Data Toolkit\n\n\n\n\nData Source\nPrimary Tools\nBest For\n\n\n\n\nWeb Pages\nrvest, polite\nStructured web data\n\n\nAPIs\nhttr2, jsonlite\nReal-time, authenticated data\n\n\nLarge Files\narrow, duckdb\nBigger-than-memory analysis\n\n\nDatabases\nDBI, dbplyr\nStructured, relational data\n\n\n\n\n\n\nChoose the right tool for your data source and size!\n\nCourse Integration Strategies\n\nScaffolded Approach (Recommended):\n\nWeek 1-2: Start with APIs (structured, documented)\nWeek 3-4: Introduce ethical web scraping\n\nWeek 5-6: Scale up with large data tools\nWeek 7-8: Databases for persistence and collaboration\n\nProject-Based Learning: - Students find their own data sources - Progress from simple to complex data types - Build cumulative portfolio of data acquisition skills\n\n\n\nAdditional Teaching Resources\n\nCourse Syllabi & Examples:\n\nUC Davis STA 141C - Complete web scraping course\nData Science in a Box - Includes web data modules\n\nPractice Datasets & APIs:\n\nJSONPlaceholder - Fake REST API for testing\nhttpbin.org - HTTP request/response service\nOpenWeather API - Real weather data with free tier\nREST Countries API - Country data, no auth required\n\nEthics & Legal Resources:\n\nrobots.txt Specification - Official standard\nWeb Scraping Ethics Guide - Legal considerations\nAPI Terms of Service Examples - Teaching about data use agreements\n\n\n\n\nAssessment Ideas\n\nFormative Assessment:\n\nCompare API vs. scraping\nDebug broken scraping code (robots.txt violations)\nOptimize slow data processing with performance tools\n\nSummative Projects:\n\nBuild data pipeline from multiple sources\nCreate reproducible research workflow\nDocument data provenance and ethics considerations\n\nPeer Review Components:\n\nCode review for ethical scraping practices\nPerformance benchmarking comparisons\nAPI documentation quality assessment"
+  },
+  {
+    "objectID": "materials/03-complex-data.html#course-integration-strategies",
+    "href": "materials/03-complex-data.html#course-integration-strategies",
+    "title": "More Complex Data",
+    "section": "Course Integration Strategies",
+    "text": "Course Integration Strategies\n\nScaffolded Approach (Recommended):\n\nWeek 1-2: Start with APIs (structured, documented)\nWeek 3-4: Introduce ethical web scraping\n\nWeek 5-6: Scale up with large data tools\nWeek 7-8: Databases for persistence and collaboration\n\nProject-Based Learning: - Students find their own data sources - Progress from simple to complex data types - Build cumulative portfolio of data acquisition skills"
+  },
+  {
+    "objectID": "materials/03-complex-data.html#additional-teaching-resources",
+    "href": "materials/03-complex-data.html#additional-teaching-resources",
+    "title": "More Complex Data",
+    "section": "Additional Teaching Resources",
+    "text": "Additional Teaching Resources\n\nCourse Syllabi & Examples:\n\nUC Davis STA 141C - Complete web scraping course\nData Science in a Box - Includes web data modules\n\nPractice Datasets & APIs:\n\nJSONPlaceholder - Fake REST API for testing\nhttpbin.org - HTTP request/response service\nOpenWeather API - Real weather data with free tier\nREST Countries API - Country data, no auth required\n\nEthics & Legal Resources:\n\nrobots.txt Specification - Official standard\nWeb Scraping Ethics Guide - Legal considerations\nAPI Terms of Service Examples - Teaching about data use agreements"
+  },
+  {
+    "objectID": "materials/03-complex-data.html#assessment-ideas",
+    "href": "materials/03-complex-data.html#assessment-ideas",
+    "title": "More Complex Data",
+    "section": "Assessment Ideas",
+    "text": "Assessment Ideas\n\nFormative Assessment:\n\nCompare API vs. scraping\nDebug broken scraping code (robots.txt violations)\nOptimize slow data processing with performance tools\n\nSummative Projects:\n\nBuild data pipeline from multiple sources\nCreate reproducible research workflow\nDocument data provenance and ethics considerations\n\nPeer Review Components:\n\nCode review for ethical scraping practices\nPerformance benchmarking comparisons\nAPI documentation quality assessment"
+  },
+  {
     "objectID": "materials/06-quarto-dashboards.html#section",
     "href": "materials/06-quarto-dashboards.html#section",
     "title": "USCOTS 2025 Intermediate R Workshop",
@@ -126,32 +315,403 @@
     "text": "How are all of these pieces connected?\n\n\nplotOutput('plot') is an empty picture frame in your user interface\n\n\n\n\n\n\nrenderPlot() is the painting you generate in your server\n\n\n\n\n\n\n\noutput$plot places the painting in the frame\n\n\n\n\n\n\n\nplotOutput('plot') places the painting on display"
   },
   {
-    "objectID": "materials/01-setup-installs.html#workshop-prep",
-    "href": "materials/01-setup-installs.html#workshop-prep",
-    "title": "Workshop Set-up & Installs",
-    "section": "Workshop Prep",
-    "text": "Workshop Prep\n\nAre you on the latest version of RStudio i.e. v2023.03.0+386 or later?\nAre you on the latest version of Quarto i.e. v1.3.340 or later?\nAre you on the latest version of R i.e. v4.3.0 or later?"
+    "objectID": "materials/01-setup-installs.html#make-sure-you-are-up-to-date",
+    "href": "materials/01-setup-installs.html#make-sure-you-are-up-to-date",
+    "title": "Workshop Installs & Set-up",
+    "section": "Make sure you are up to date",
+    "text": "Make sure you are up to date\n\nAre you on the latest version of RStudio: v2025.05.1; we at least require v2023.03.0+386 or later\nAre you on the latest version of Quarto: v1.3.340 or later (This installs with RStudio, so you shouldn’t need to do anything except in unusual cases.)\nAre you on the latest version of R: v4.5.0; we require v4.3.0 or later"
   },
   {
-    "objectID": "materials/01-setup-installs.html#overview-of-a-project-based-course",
-    "href": "materials/01-setup-installs.html#overview-of-a-project-based-course",
-    "title": "Workshop Set-up & Installs",
-    "section": "Overview of a project-based course",
-    "text": "Overview of a project-based course"
+    "objectID": "materials/01-setup-installs.html#download-course-materials",
+    "href": "materials/01-setup-installs.html#download-course-materials",
+    "title": "Workshop Installs & Set-up",
+    "section": "Download course materials",
+    "text": "Download course materials\n\ninstall.packages(\"usethis\")\n\nusethis::use_course(\"atheobold/uscots-intermediate-r\")"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#package-installs",
+    "href": "materials/01-setup-installs.html#package-installs",
+    "title": "Workshop Installs & Set-up",
+    "section": "Package installs",
+    "text": "Package installs\nOption A: In the course project, open installs.R and run all.\nOption B: Copy paste and run:\n\npackages &lt;- c(\n  \"tidyverse\",\n  \"tidymodels\",\n  \"data.table\",\n  \"duckdb\"\n  ### Allison and Tyson add\n)\n\ninstall.packages(packages)"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#is-it-this",
+    "href": "materials/01-setup-installs.html#is-it-this",
+    "title": "Workshop Installs & Set-up",
+    "section": "Is it this?",
+    "text": "Is it this?\n\noutput$plot &lt;- renderPlot({\n  req(input$var)\n  ggplot(data(), aes_string(input$var)) +\n    geom_histogram()\n})"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#or-this",
+    "href": "materials/01-setup-installs.html#or-this",
+    "title": "Workshop Installs & Set-up",
+    "section": "… or this?",
+    "text": "… or this?\n\nresult &lt;- dt[\n  score &gt; 50 & !is.na(category),\n  .(mean_score = mean(score), n = .N),\n  by = .(category, region)\n][order(-mean_score)\n ][, rank := .I\n ][n &gt; 10]"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#or-this-1",
+    "href": "materials/01-setup-installs.html#or-this-1",
+    "title": "Workshop Installs & Set-up",
+    "section": "… or this?",
+    "text": "… or this?\n\nresult &lt;- data_main %&gt;%\n  left_join(meta_info, by = \"id\") %&gt;%\n  pivot_longer(cols = starts_with(\"score_\"), names_to = \"metric\", values_to = \"score\") %&gt;%\n  filter(!is.na(score)) %&gt;%\n  group_by(group, metric) %&gt;%\n  summarize(mean_score = mean(score), .groups = \"drop\") %&gt;%\n  pivot_wider(names_from = metric, values_from = mean_score) %&gt;%\n  inner_join(group_labels, by = \"group\") %&gt;%\n  arrange(desc(overall))"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#plenty-of-resources",
+    "href": "materials/01-setup-installs.html#plenty-of-resources",
+    "title": "Workshop Installs & Set-up",
+    "section": "Plenty of resources…",
+    "text": "Plenty of resources…"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#and-generally-agreed-upon-topics.",
+    "href": "materials/01-setup-installs.html#and-generally-agreed-upon-topics.",
+    "title": "Workshop Installs & Set-up",
+    "section": "… and generally agreed-upon topics.",
+    "text": "… and generally agreed-upon topics.\n\nBasics of coding: variables and objects; loops and conditionals; etc.\nInstalling and loading packages\nObject types and structures\nLoading and examining data\nBasic visualization\nData wrangling (“Big 5” tidyverse verbs, or equivalent)"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#is-it-just-programming-of-course-not",
+    "href": "materials/01-setup-installs.html#is-it-just-programming-of-course-not",
+    "title": "Workshop Installs & Set-up",
+    "section": "Is it just programming? Of course not!",
+    "text": "Is it just programming? Of course not!"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#intermediate-r-is-not-intermediate-statistics",
+    "href": "materials/01-setup-installs.html#intermediate-r-is-not-intermediate-statistics",
+    "title": "Workshop Installs & Set-up",
+    "section": "Intermediate R is NOT Intermediate Statistics",
+    "text": "Intermediate R is NOT Intermediate Statistics\n\nThe hardest part of fitting statistical models in R is the statistical concepts and interpretation not the coding.\n“[Statistical Topic] with R” is not the same class!\nOur course focuses on R Skills and requires only second-year statistics knowledge."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#intermediate-r-is-non-linear",
+    "href": "materials/01-setup-installs.html#intermediate-r-is-non-linear",
+    "title": "Workshop Installs & Set-up",
+    "section": "Intermediate R is non-linear",
+    "text": "Intermediate R is non-linear\n\nIt is not a bridge between Intro R and Advanced R\nIt is not a set of skills that builds progressively\nIt is a collection of learning paths (sometimes overlapping) towards a specific end goal.\n**Our course has three units that can be rearranged *modularly**"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#intermediate-r-is-defined-by-goals",
+    "href": "materials/01-setup-installs.html#intermediate-r-is-defined-by-goals",
+    "title": "Workshop Installs & Set-up",
+    "section": "Intermediate R is defined by goals",
+    "text": "Intermediate R is defined by goals\n\nDifferent R learners have wildly different needs.\nThere is no single skill that every Intermediate R user must know!\nInstead, identify a use case and goal that is not achievable with Intro R skills, and fill in the missing skills.\nOur course is project-driven, not exam or assignment based."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#the-structure",
+    "href": "materials/01-setup-installs.html#the-structure",
+    "title": "Workshop Installs & Set-up",
+    "section": "The structure:",
+    "text": "The structure:"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#unit-a-intermediate-r-for-data-science-1",
+    "href": "materials/01-setup-installs.html#unit-a-intermediate-r-for-data-science-1",
+    "title": "Workshop Installs & Set-up",
+    "section": "Unit A: Intermediate R for Data Science",
+    "text": "Unit A: Intermediate R for Data Science"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#learning-objectives",
+    "href": "materials/01-setup-installs.html#learning-objectives",
+    "title": "Workshop Installs & Set-up",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\n\nManage, process, and load data from non-tabular and non-local sources.\nClean and prepare messy and unstructured data, including handling missing values, and the use of regular expressions to extract information from text data.\nUse joins to combine multiple datasets with many-to-many relationships.\nUse complex data wrangling pipelines, including multiple pivots and/or multiple grouping levels, to wrangle data.\nProduce visualizations beyond basic geometries, including maps and annotated plots."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#unit-a-project",
+    "href": "materials/01-setup-installs.html#unit-a-project",
+    "title": "Workshop Installs & Set-up",
+    "section": "Unit A Project",
+    "text": "Unit A Project\nStudents will produce a stylized, publication-ready report that performs exploratory data analysis to address specific research questions.\nData for the report will be taken from multiple online and non-csv sources, and will require the use of regular expressions to collect, clean, or wrangle their data.\nResearch questions will be provided that require complex, multi-step data wrangling, and results should be communicated using complex and polished visualizations."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#unit-a-project---example",
+    "href": "materials/01-setup-installs.html#unit-a-project---example",
+    "title": "Workshop Installs & Set-up",
+    "section": "Unit A Project - Example",
+    "text": "Unit A Project - Example\nRegional Differences in Fast Food Preference\n\nData: Refer to this dataset of fast food locations across the US. Then, use Yelp’s open dataset for education to find reviews and other information pertaining to fast food restaurants."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#unit-a-project---example-1",
+    "href": "materials/01-setup-installs.html#unit-a-project---example-1",
+    "title": "Workshop Installs & Set-up",
+    "section": "Unit A Project - Example",
+    "text": "Unit A Project - Example\nRegional Differences in Fast Food Preference\n\nResearch Questions:\n\nAre certain fast food brands more prevalent in different regions of the US than others?\nAre certain fast food chains more highly rated in different regions of the US than others?\nDo reviewers use different language in their reviews in different regions?\nDo customers have different priorities for what they look for in fast food restaurants in different regions?"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#non-tabular-and-non-local-data",
+    "href": "materials/01-setup-installs.html#non-tabular-and-non-local-data",
+    "title": "Workshop Installs & Set-up",
+    "section": "Non-tabular and non-local data",
+    "text": "Non-tabular and non-local data\n\njsonlite and XML packages for hierarchical data structures.\nodbc, DBI, and dbplyr for cloud database-stored data\nduckdb and arrow for local database storage.\ndata.table for large in-memory data"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#messy-and-unstructured-data",
+    "href": "materials/01-setup-installs.html#messy-and-unstructured-data",
+    "title": "Workshop Installs & Set-up",
+    "section": "Messy and unstructured data",
+    "text": "Messy and unstructured data\n\nnaniar for dealing with missing values\nstringr and regular expressions for processing text variables\nBasic content from Text Mining in R and the tidytext package\nData cleaning principles from Reproducible Analysis with R."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#multiple-datasets-joining",
+    "href": "materials/01-setup-installs.html#multiple-datasets-joining",
+    "title": "Workshop Installs & Set-up",
+    "section": "Multiple datasets joining",
+    "text": "Multiple datasets joining\n\n*_join() functions from dplyr\nConcepts of mutating joins and filtering joins (R4DS Chapter 19)\ndbplyr and/or arrow to perform joins at database level"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#complex-data-wrangling-pipelines",
+    "href": "materials/01-setup-installs.html#complex-data-wrangling-pipelines",
+    "title": "Workshop Installs & Set-up",
+    "section": "Complex data wrangling pipelines",
+    "text": "Complex data wrangling pipelines\n\nCreation and matching of keys in relational data\nPivoting with pivot_*() functions from tidyr (content needed!)\ngroup_by() to mutate() pipeline constructions\nUse of vectorized functions or map/apply inside mutate()\nIteration with purrr or apply functions."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#more-advanced-visualizations",
+    "href": "materials/01-setup-installs.html#more-advanced-visualizations",
+    "title": "Workshop Installs & Set-up",
+    "section": "More advanced visualizations",
+    "text": "More advanced visualizations\n\ngeom_text() and geom_annotate() for annotations\nNew plot types from ggplot helpers - e.g. ridgelines from ggridges; alluvial plots with ggsankey, radar plots with fmsb and ggradar.\nChloropleths with leaflet and sf.\nGreat resource: R Graph Gallery"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#learning-goals",
+    "href": "materials/01-setup-installs.html#learning-goals",
+    "title": "Workshop Installs & Set-up",
+    "section": "Learning Goals",
+    "text": "Learning Goals\n\nIncorporate interactivity into data reports.\nAdopt extensions from peripheral software and packages, such as quarto.\nAdd statistical elements to data analysis pipeline.\nProduce production-quality plots and tables."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#unit-c-project",
+    "href": "materials/01-setup-installs.html#unit-c-project",
+    "title": "Workshop Installs & Set-up",
+    "section": "Unit C Project",
+    "text": "Unit C Project\nStudents will create an interactive dashboard that integrates advanced R features, such as Shiny, Quarto dashboards, or Plotly, to explore and communicate a research question effectively.\nThe dashboard will include statistical results that are well-summarize, well-visualized, and well-interpreted."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#unit-c-project---example",
+    "href": "materials/01-setup-installs.html#unit-c-project---example",
+    "title": "Workshop Installs & Set-up",
+    "section": "Unit C Project - Example",
+    "text": "Unit C Project - Example\nFast Food Preferences at McDonald’s\n\nUsing your Yelp analyses from Unit A and your menu analyses from Unit B, create a dashboard to understand trends and preferences for McDonald’s customers. The dashboard must be deployed for online access."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#unit-c-project---example-1",
+    "href": "materials/01-setup-installs.html#unit-c-project---example-1",
+    "title": "Workshop Installs & Set-up",
+    "section": "Unit C Project - Example",
+    "text": "Unit C Project - Example\nFast Food Preferences at McDonald’s\n\nYour dashboard must be interactive and accessible to non-technical audiences. It should communicate trends in regions as well as connecting Yelp review language to specific menu items.\nYou must include an element of results of a statistical model or test, communicated to non-technical audiences."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#interactivity",
+    "href": "materials/01-setup-installs.html#interactivity",
+    "title": "Workshop Installs & Set-up",
+    "section": "Interactivity",
+    "text": "Interactivity\n\nplotly() for immediately interactive plots\nShiny for user input\nMastering Shiny textbook"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#extensions-and-peripheral-software",
+    "href": "materials/01-setup-installs.html#extensions-and-peripheral-software",
+    "title": "Workshop Installs & Set-up",
+    "section": "Extensions and peripheral software",
+    "text": "Extensions and peripheral software\n\n\nQuarto: Dashboards, themes, websites, etc. etc.\nreactjs for animated visualization\n“Branding” use of css/scss."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#statistical-elements",
+    "href": "materials/01-setup-installs.html#statistical-elements",
+    "title": "Workshop Installs & Set-up",
+    "section": "Statistical elements",
+    "text": "Statistical elements\n\ntidymodels for predictive modeling\ntidyclust for unsupervised learning\nBootstrapping or resampling results"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#production-quality-plots-and-tables",
+    "href": "materials/01-setup-installs.html#production-quality-plots-and-tables",
+    "title": "Workshop Installs & Set-up",
+    "section": "Production-quality plots and tables",
+    "text": "Production-quality plots and tables\n\nWriting custom ggplot themes\nAnnotating plots with geom_text() etc.\ngt() for better tables"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#learning-goals-1",
+    "href": "materials/01-setup-installs.html#learning-goals-1",
+    "title": "Workshop Installs & Set-up",
+    "section": "Learning Goals",
+    "text": "Learning Goals\n\nApply function creation and code design techniques\nEngage in algorithmic thinking, including iteration.\nConsider speed and efficiency concerns in code tasks.\nDevelop a reproducible workflow for code development in R.\nEngage in unit testing and code review, including of others’ code."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#unit-c-project-1",
+    "href": "materials/01-setup-installs.html#unit-c-project-1",
+    "title": "Workshop Installs & Set-up",
+    "section": "Unit C Project",
+    "text": "Unit C Project\nStudents will create a working and installable R package that is well-documented and tracked via version control. The package must include a demonstration document (or “vignette”) and several basic informal unit tests.\nThe package should provide well-designed and user-friendly functions to streamline a data collection, wrangling, and/or analysis task.\nCode design should consider issues of efficiency and should demonstrate both tidyverse and non-tidyverse syntax fluency."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#unit-c-project---example-2",
+    "href": "materials/01-setup-installs.html#unit-c-project---example-2",
+    "title": "Workshop Installs & Set-up",
+    "section": "Unit C Project - Example",
+    "text": "Unit C Project - Example\n\nCreating your own webscraping API\n\n\nCreate an R package that provides functions to scrape, clean, and wrangle data from the McDonald’s menu. Then, provide a vignette document demonstrating use of this package. This package must be hosted on GitHub in proper installable format."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#unit-c-project---example-3",
+    "href": "materials/01-setup-installs.html#unit-c-project---example-3",
+    "title": "Workshop Installs & Set-up",
+    "section": "Unit C Project - Example",
+    "text": "Unit C Project - Example\n\nCreating your own webscraping API\n\n\nYour code and/or vignette must:\n\nInclude at least one use of iteration with purrr\nInclude use of data.table code for large data preparation tasks.\nBe well-commented and code reviewed by peers."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#function-creation-and-code-design",
+    "href": "materials/01-setup-installs.html#function-creation-and-code-design",
+    "title": "Workshop Installs & Set-up",
+    "section": "Function creation and code design",
+    "text": "Function creation and code design\n\nR Packages textbook, first section. (Wickham and Bryan)\nCode Smells and Feels talk by Jenny Bryan\nR4DS Chapter 20"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#algorithmic-thinking-and-iteration",
+    "href": "materials/01-setup-installs.html#algorithmic-thinking-and-iteration",
+    "title": "Workshop Installs & Set-up",
+    "section": "Algorithmic thinking and iteration",
+    "text": "Algorithmic thinking and iteration\n\nR4DS Chapter 26\nR Programming for Data Science\nCS 101 resources for algorithms (content needed!)\nCreate methods from scratch: basic linear regression, kmeans clustering, generative art, bootstrapping or randomization tests."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#speed-and-efficiency",
+    "href": "materials/01-setup-installs.html#speed-and-efficiency",
+    "title": "Workshop Installs & Set-up",
+    "section": "Speed and efficiency",
+    "text": "Speed and efficiency\n\nUse tictoc for informal speed testing; proc.time() for more specific speed testing; or profileR for full profiling.\nAdvanced R Chapter 23\nR Programming for Data Science\ndata.table for many groupings and concise syntax (content coming soon!)"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#reproducible-workflow",
+    "href": "materials/01-setup-installs.html#reproducible-workflow",
+    "title": "Workshop Installs & Set-up",
+    "section": "Reproducible workflow",
+    "text": "Reproducible workflow\n\nHappy Git with R textbook\nTeacher resource: GitHub Classroom for providing skeleton code and controlling student repos.\ntestthat for creating formal unit tests.\nroxygen2 for function documentation"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#unit-testing-and-code-review",
+    "href": "materials/01-setup-installs.html#unit-testing-and-code-review",
+    "title": "Workshop Installs & Set-up",
+    "section": "Unit testing and code review",
+    "text": "Unit testing and code review\n\nR Packages Chapter 13\nFunctional programming and unit testing for data munging with R online textbook\nComputer science resources for code review principles (content needed!)\nCode testing and review content from the Data Carpentries."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#a-few-stretch-goals",
+    "href": "materials/01-setup-installs.html#a-few-stretch-goals",
+    "title": "Workshop Installs & Set-up",
+    "section": "A few stretch goals",
+    "text": "A few stretch goals\n\nPackage passes CRAN checks.\nUse of object-oriented programming\nAdvanced debugging, e.g. with debugonce() or browser()"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#order-of-units",
+    "href": "materials/01-setup-installs.html#order-of-units",
+    "title": "Workshop Installs & Set-up",
+    "section": "Order of Units",
+    "text": "Order of Units\n\nC -&gt; A: Begin with webscraping, then incorporate other data and use it for analysis.\nB -&gt; A: Design a dashboard with simple, Intro R level analyses; then enhance the dashboard with more complex data.\nC -&gt; B: Create webscraping or data anaysis package, then use it underlying a dashboard."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#overlap-in-content",
+    "href": "materials/01-setup-installs.html#overlap-in-content",
+    "title": "Workshop Installs & Set-up",
+    "section": "Overlap in content",
+    "text": "Overlap in content\n\ndata.table and friends can be emphasized in A for wrangling tasks, or in C as an efficiency/syntax skill.\nplotly and friends can be used in A for easy plot upgrade, or in B for interactive dashboards\nGit and GitHub can be introduced in any Unit.\nfunction writing can be used to streamline steps in units A or B"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#takeaways",
+    "href": "materials/01-setup-installs.html#takeaways",
+    "title": "Workshop Installs & Set-up",
+    "section": "Takeaways",
+    "text": "Takeaways\n\n\n\nDesign your Intermediate R class around projects\nSeparate content into modular units organized by goals.\nSign up to be notified when the Course in a Box is available!"
   },
   {
     "objectID": "materials/01-setup-installs.html#why-are-you-here",
     "href": "materials/01-setup-installs.html#why-are-you-here",
-    "title": "Workshop Set-up & Installs",
+    "title": "Workshop Installs & Set-up",
     "section": "Why are you here?",
     "text": "Why are you here?"
   },
   {
     "objectID": "materials/01-setup-installs.html#activity-find-your-data-sources",
     "href": "materials/01-setup-installs.html#activity-find-your-data-sources",
-    "title": "Workshop Set-up & Installs",
+    "title": "Workshop Installs & Set-up",
     "section": "Activity: Find Your Data Sources",
-    "text": "Activity: Find Your Data Sources\nIn pairs, come up with a data context and broad research questions.\nFind online as many of the following as you can related to your data context:\n\nClean tabular datasets, e.g. kaggle or tidytuesday\nMessy or non-tabular datasets, e.g. JSONs or tables on a webpage\nAPI sources"
+    "text": "Activity: Find Your Data Sources\nIn pairs, come up with a data context and a few broad research questions.\nFind online as many of the following as you can related to your data context:\n\nClean tabular datasets, e.g. kaggle or tidytuesday\nMessy or non-tabular datasets, e.g. JSONs or tables on a webpage\nAPI sources related to your data\nMassive datasets\n\nWe recommend starting a Google Doc or similar with your group, to collect references to datasets, as well as content from future activities.\n\n\n\n−+\n15:00"
+  },
+  {
+    "objectID": "materials/07-shiny.html#section",
+    "href": "materials/07-shiny.html#section",
+    "title": "Shiny",
+    "section": "",
+    "text": "Quarto Dashboards"
+  },
+  {
+    "objectID": "materials/07-shiny.html#section-2",
+    "href": "materials/07-shiny.html#section-2",
+    "title": "Shiny",
+    "section": "",
+    "text": "gganimate\nleaflet"
+  },
+  {
+    "objectID": "materials/07-shiny.html#section-3",
+    "href": "materials/07-shiny.html#section-3",
+    "title": "Shiny",
+    "section": "",
+    "text": "leaflet\nplotly"
+  },
+  {
+    "objectID": "materials/08-package_workflow.html#what-is-a-package-workflow",
+    "href": "materials/08-package_workflow.html#what-is-a-package-workflow",
+    "title": "Package-based Workflow",
+    "section": "What is a package workflow?",
+    "text": "What is a package workflow?"
+  },
+  {
+    "objectID": "materials/08-package_workflow.html#skeleton-r-package",
+    "href": "materials/08-package_workflow.html#skeleton-r-package",
+    "title": "Package-based Workflow",
+    "section": "Skeleton R package",
+    "text": "Skeleton R package\n\nusethis::create_package(\"example_skeleton_package\")\nusethis::use_r(\"simple_linear_regression\")\nusethis::use_test(\"simple_linear_regression\")\nNew File &gt; Quarto &gt; slr_demo.qmd"
+  },
+  {
+    "objectID": "materials/08-package_workflow.html#complete-the-function",
+    "href": "materials/08-package_workflow.html#complete-the-function",
+    "title": "Package-based Workflow",
+    "section": "Complete the function",
+    "text": "Complete the function"
+  },
+  {
+    "objectID": "materials/08-package_workflow.html#document-and-build",
+    "href": "materials/08-package_workflow.html#document-and-build",
+    "title": "Package-based Workflow",
+    "section": "Document and build",
+    "text": "Document and build"
+  },
+  {
+    "objectID": "materials/08-package_workflow.html#pass-the-unit-tests",
+    "href": "materials/08-package_workflow.html#pass-the-unit-tests",
+    "title": "Package-based Workflow",
+    "section": "Pass the unit tests",
+    "text": "Pass the unit tests"
+  },
+  {
+    "objectID": "materials/08-package_workflow.html#render-the-demo",
+    "href": "materials/08-package_workflow.html#render-the-demo",
+    "title": "Package-based Workflow",
+    "section": "Render the demo",
+    "text": "Render the demo"
+  },
+  {
+    "objectID": "materials/08-package_workflow.html#what-do-students-turn-in",
+    "href": "materials/08-package_workflow.html#what-do-students-turn-in",
+    "title": "Package-based Workflow",
+    "section": "What do students turn in?",
+    "text": "What do students turn in?\n\nA link to their GitHub of the package.\nThe rendered html of slr_demo.\nA code review of someone else’s package."
+  },
+  {
+    "objectID": "materials/08-package_workflow.html#grading",
+    "href": "materials/08-package_workflow.html#grading",
+    "title": "Package-based Workflow",
+    "section": "Grading",
+    "text": "Grading\n\n`"
   },
   {
     "objectID": "materials/05-quarto-projects-websites.html#section",
@@ -271,6 +831,202 @@
     "title": "Teaching Intermediate R",
     "section": "Expected Behavior",
     "text": "Expected Behavior\n\n\n\nModel and support the norms of respect necessary to promote the conditions for healthy exchange of scientific ideas.\nIn speech or conduct, do not insult or disparage other participants.\nBe conscious of hierarchical structures, specifically the existence of stark power differentials between students, early career statisticians and established career statisticians—noting that fear of retaliation from more established statisticians can make it difficult for students and early career statisticians to express discomfort, rebuff unwelcome advances, and report violations of the conduct policy.\nBe sensitive to indications that may suggest that individuals are feeling unwelcome.\n\n\n\n\n\n\n\nASA Code of Conduct"
+  },
+  {
+    "objectID": "materials/02-complex-pipeline.html#setup-data",
+    "href": "materials/02-complex-pipeline.html#setup-data",
+    "title": "Complex Data Pipelines",
+    "section": "Setup: Data",
+    "text": "Setup: Data\n\n\n# A tibble: 515 × 17\n   restaurant item      calories cal_fat total_fat sat_fat trans_fat cholesterol\n   &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;\n 1 Mcdonalds  Artisan …      380      60         7       2       0            95\n 2 Mcdonalds  Single B…      840     410        45      17       1.5         130\n 3 Mcdonalds  Double B…     1130     600        67      27       3           220\n 4 Mcdonalds  Grilled …      750     280        31      10       0.5         155\n 5 Mcdonalds  Crispy B…      920     410        45      12       0.5         120\n 6 Mcdonalds  Big Mac        540     250        28      10       1            80\n 7 Mcdonalds  Cheesebu…      300     100        12       5       0.5          40\n 8 Mcdonalds  Classic …      510     210        24       4       0            65\n 9 Mcdonalds  Double C…      430     190        21      11       1            85\n10 Mcdonalds  Double Q…      770     400        45      21       2.5         175\n# ℹ 505 more rows\n# ℹ 9 more variables: sodium &lt;dbl&gt;, total_carb &lt;dbl&gt;, fiber &lt;dbl&gt;, sugar &lt;dbl&gt;,\n#   protein &lt;dbl&gt;, vit_a &lt;dbl&gt;, vit_c &lt;dbl&gt;, calcium &lt;dbl&gt;, salad &lt;chr&gt;"
+  },
+  {
+    "objectID": "materials/02-complex-pipeline.html#background-intro-level-rqs",
+    "href": "materials/02-complex-pipeline.html#background-intro-level-rqs",
+    "title": "Complex Data Pipelines",
+    "section": "Background: Intro level RQs",
+    "text": "Background: Intro level RQs\n\nThe Big Five tidyverse verbs:\n\narrange\nfilter\nmutate\ngroup_by\nsummarize\n\n(Doesn’t have to be tidyverse syntax!)"
+  },
+  {
+    "objectID": "materials/02-complex-pipeline.html#thing",
+    "href": "materials/02-complex-pipeline.html#thing",
+    "title": "Complex Data Pipelines",
+    "section": "thing",
+    "text": "thing\nType of basic questions:\n\narrange What item has the most calories?\nmutate Calculate the saturated fat to total fat ratio of each item.\nsummarize What is the median calorie item?\nfilter How many items have more than 1000 calories?\ngroup_by Same questions, but within each restaurant."
+  },
+  {
+    "objectID": "materials/02-complex-pipeline.html#intro-pipelines",
+    "href": "materials/02-complex-pipeline.html#intro-pipelines",
+    "title": "Complex Data Pipelines",
+    "section": "Intro pipelines",
+    "text": "Intro pipelines\n\nmutate -&gt; arrange “What item has the highest saturated fat to total fat ratio?”\nmutate -&gt; filter “How many items have more than 50% of total fat in saturated form?”\ngroup_by -&gt; summarize -&gt; filter “How many restaurants have at least one 2000 calorie item?”\nany -&gt; plot: “Make a boxplot of average saturated fat percentages for items in each restaurant.”"
+  },
+  {
+    "objectID": "materials/02-complex-pipeline.html#sketch-a-plan",
+    "href": "materials/02-complex-pipeline.html#sketch-a-plan",
+    "title": "Complex Data Pipelines",
+    "section": "Sketch a plan",
+    "text": "Sketch a plan"
+  },
+  {
+    "objectID": "materials/02-complex-pipeline.html#reorder-a-pipeline",
+    "href": "materials/02-complex-pipeline.html#reorder-a-pipeline",
+    "title": "Complex Data Pipelines",
+    "section": "Reorder a pipeline",
+    "text": "Reorder a pipeline"
+  },
+  {
+    "objectID": "materials/02-complex-pipeline.html#fill-in-a-blank",
+    "href": "materials/02-complex-pipeline.html#fill-in-a-blank",
+    "title": "Complex Data Pipelines",
+    "section": "Fill in a blank",
+    "text": "Fill in a blank"
+  },
+  {
+    "objectID": "materials/02-complex-pipeline.html#your-turn",
+    "href": "materials/02-complex-pipeline.html#your-turn",
+    "title": "Complex Data Pipelines",
+    "section": "YOUR TURN",
+    "text": "YOUR TURN\nJot down some RQs for intro-level pipelines.\n[timer]"
+  },
+  {
+    "objectID": "materials/02-complex-pipeline.html#making-it-complex",
+    "href": "materials/02-complex-pipeline.html#making-it-complex",
+    "title": "Complex Data Pipelines",
+    "section": "Making it complex",
+    "text": "Making it complex\nWays to level up pipeline complexity of the RQs:\n\nChanging the cases/rows (esp for visualization)\nOperations inside mutate or with group_by\nMany pivots, especially for summary tables\nMultiple datasets and joins"
+  },
+  {
+    "objectID": "materials/02-complex-pipeline.html#change-the-casesrows",
+    "href": "materials/02-complex-pipeline.html#change-the-casesrows",
+    "title": "Complex Data Pipelines",
+    "section": "Change the cases/rows",
+    "text": "Change the cases/rows\n\nSummarizing by group: rows become restaurants not items.\nPivoting: rows become nutrition measurement for an item rather than items.\nFilter/distinct: rows become flagship item of each restaurant rather than items.\n(condensing vs filtering)\n\n\n\n# A tibble: 515 × 17\n   restaurant item      calories cal_fat total_fat sat_fat trans_fat cholesterol\n   &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;\n 1 Mcdonalds  Artisan …      380      60         7       2       0            95\n 2 Mcdonalds  Single B…      840     410        45      17       1.5         130\n 3 Mcdonalds  Double B…     1130     600        67      27       3           220\n 4 Mcdonalds  Grilled …      750     280        31      10       0.5         155\n 5 Mcdonalds  Crispy B…      920     410        45      12       0.5         120\n 6 Mcdonalds  Big Mac        540     250        28      10       1            80\n 7 Mcdonalds  Cheesebu…      300     100        12       5       0.5          40\n 8 Mcdonalds  Classic …      510     210        24       4       0            65\n 9 Mcdonalds  Double C…      430     190        21      11       1            85\n10 Mcdonalds  Double Q…      770     400        45      21       2.5         175\n# ℹ 505 more rows\n# ℹ 9 more variables: sodium &lt;dbl&gt;, total_carb &lt;dbl&gt;, fiber &lt;dbl&gt;, sugar &lt;dbl&gt;,\n#   protein &lt;dbl&gt;, vit_a &lt;dbl&gt;, vit_c &lt;dbl&gt;, calcium &lt;dbl&gt;, salad &lt;chr&gt;\n\n\n\n\n# A tibble: 8 × 2\n  restaurant  `mean(calories)`\n  &lt;chr&gt;                  &lt;dbl&gt;\n1 Arbys                   533.\n2 Burger King             609.\n3 Chick Fil-A             384.\n4 Dairy Queen             520.\n5 Mcdonalds               640.\n6 Sonic                   632.\n7 Subway                  503.\n8 Taco Bell               444.\n\n\n\n\n# A tibble: 7,210 × 5\n   restaurant item                             salad nutritional_item amount\n   &lt;chr&gt;      &lt;chr&gt;                            &lt;chr&gt; &lt;chr&gt;             &lt;dbl&gt;\n 1 Mcdonalds  Artisan Grilled Chicken Sandwich Other calories            380\n 2 Mcdonalds  Artisan Grilled Chicken Sandwich Other cal_fat              60\n 3 Mcdonalds  Artisan Grilled Chicken Sandwich Other total_fat             7\n 4 Mcdonalds  Artisan Grilled Chicken Sandwich Other sat_fat               2\n 5 Mcdonalds  Artisan Grilled Chicken Sandwich Other trans_fat             0\n 6 Mcdonalds  Artisan Grilled Chicken Sandwich Other cholesterol          95\n 7 Mcdonalds  Artisan Grilled Chicken Sandwich Other sodium             1110\n 8 Mcdonalds  Artisan Grilled Chicken Sandwich Other total_carb           44\n 9 Mcdonalds  Artisan Grilled Chicken Sandwich Other fiber                 3\n10 Mcdonalds  Artisan Grilled Chicken Sandwich Other sugar                11\n# ℹ 7,200 more rows\n\n\n\n\n# A tibble: 8 × 17\n  restaurant  item      calories cal_fat total_fat sat_fat trans_fat cholesterol\n  &lt;chr&gt;       &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;\n1 Mcdonalds   Big Mac        540     250        28      10       1            80\n2 Chick Fil-A Chicken …      440     171        19       4       0            60\n3 Sonic       Sonic Ba…      870     530        59      20       2           140\n4 Arbys       Classic …      360     120        14       5       0.5          50\n5 Burger King WHOPPER …      760     430        47      16       1           100\n6 Dairy Queen DQ Ultim…      780     430        48      22       2           150\n7 Subway      Footlong…      620      80        10       4       0            80\n8 Taco Bell   Crunchwr…      540     190        21       6       0            30\n# ℹ 9 more variables: sodium &lt;dbl&gt;, total_carb &lt;dbl&gt;, fiber &lt;dbl&gt;, sugar &lt;dbl&gt;,\n#   protein &lt;dbl&gt;, vit_a &lt;dbl&gt;, vit_c &lt;dbl&gt;, calcium &lt;dbl&gt;, salad &lt;chr&gt;"
+  },
+  {
+    "objectID": "materials/02-complex-pipeline.html#do-more-with-mutate",
+    "href": "materials/02-complex-pipeline.html#do-more-with-mutate",
+    "title": "Complex Data Pipelines",
+    "section": "Do more with mutate",
+    "text": "Do more with mutate"
+  },
+  {
+    "objectID": "materials/02-complex-pipeline.html#group_by-mutate",
+    "href": "materials/02-complex-pipeline.html#group_by-mutate",
+    "title": "Complex Data Pipelines",
+    "section": "group_by |> mutate",
+    "text": "group_by |&gt; mutate\nWhat is the highest-calorie single item at each restaurant?\n\n\n# A tibble: 515 × 19\n# Groups:   restaurant [8]\n   restaurant item      calories cal_fat total_fat sat_fat trans_fat cholesterol\n   &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;\n 1 Mcdonalds  Artisan …      380      60         7       2       0            95\n 2 Mcdonalds  Single B…      840     410        45      17       1.5         130\n 3 Mcdonalds  Double B…     1130     600        67      27       3           220\n 4 Mcdonalds  Grilled …      750     280        31      10       0.5         155\n 5 Mcdonalds  Crispy B…      920     410        45      12       0.5         120\n 6 Mcdonalds  Big Mac        540     250        28      10       1            80\n 7 Mcdonalds  Cheesebu…      300     100        12       5       0.5          40\n 8 Mcdonalds  Classic …      510     210        24       4       0            65\n 9 Mcdonalds  Double C…      430     190        21      11       1            85\n10 Mcdonalds  Double Q…      770     400        45      21       2.5         175\n# ℹ 505 more rows\n# ℹ 11 more variables: sodium &lt;dbl&gt;, total_carb &lt;dbl&gt;, fiber &lt;dbl&gt;,\n#   sugar &lt;dbl&gt;, protein &lt;dbl&gt;, vit_a &lt;dbl&gt;, vit_c &lt;dbl&gt;, calcium &lt;dbl&gt;,\n#   salad &lt;chr&gt;, max_calories &lt;dbl&gt;, prop_of_max_cal &lt;dbl&gt;"
+  },
+  {
+    "objectID": "materials/02-complex-pipeline.html#your-turn-1",
+    "href": "materials/02-complex-pipeline.html#your-turn-1",
+    "title": "Complex Data Pipelines",
+    "section": "YOUR TURN",
+    "text": "YOUR TURN\nThink of a measurement by category that you might want to add to every additional row of your dataset, for purposes of comparing."
+  },
+  {
+    "objectID": "materials/02-complex-pipeline.html#pipelines-inside-mutate",
+    "href": "materials/02-complex-pipeline.html#pipelines-inside-mutate",
+    "title": "Complex Data Pipelines",
+    "section": "Pipelines inside mutate",
+    "text": "Pipelines inside mutate\n\n\nError in `mutate()`:\nℹ In argument: `flagship_calories = pull(filter(.data, item %in%\n  flagships), calories)`.\nℹ In group 1: `restaurant = \"Arbys\"`.\nCaused by error in `UseMethod()`:\n! no applicable method for 'filter' applied to an object of class \"rlang_data_pronoun\""
+  },
+  {
+    "objectID": "materials/02-complex-pipeline.html#string-parsing",
+    "href": "materials/02-complex-pipeline.html#string-parsing",
+    "title": "Complex Data Pipelines",
+    "section": "String parsing",
+    "text": "String parsing\nFind the median calories for a burger at each restaurant.\n\n\n# A tibble: 4 × 2\n  restaurant  `median(calories)`\n  &lt;chr&gt;                    &lt;dbl&gt;\n1 Burger King                360\n2 Dairy Queen                470\n3 Mcdonalds                  300\n4 Sonic                      800\n\n\n-&gt; RegEx Opportunity"
+  },
+  {
+    "objectID": "materials/02-complex-pipeline.html#your-turn-2",
+    "href": "materials/02-complex-pipeline.html#your-turn-2",
+    "title": "Complex Data Pipelines",
+    "section": "YOUR TURN",
+    "text": "YOUR TURN\nFind a string column in your dataset, jot down 1-3 new non-string columns you might want to make by parsing that string."
+  },
+  {
+    "objectID": "materials/02-complex-pipeline.html#customcomplicated-functions-and-mapping",
+    "href": "materials/02-complex-pipeline.html#customcomplicated-functions-and-mapping",
+    "title": "Complex Data Pipelines",
+    "section": "Custom/complicated functions and mapping",
+    "text": "Custom/complicated functions and mapping\nYOUR TURN!\n\nYour city has just passed a law that fast food items need to contain a warning note if they have over 40% calories from fat, over 40% saturated fat, or any trans fats at all.\n\n\nWrite a function that creates a warning note based on an items nutritional information.\n\n\nThen, use that function inside of mutate to add a warning label for each item.\n\ntimer"
+  },
+  {
+    "objectID": "materials/02-complex-pipeline.html#answer",
+    "href": "materials/02-complex-pipeline.html#answer",
+    "title": "Complex Data Pipelines",
+    "section": "Answer",
+    "text": "Answer"
+  },
+  {
+    "objectID": "materials/02-complex-pipeline.html#answer-1",
+    "href": "materials/02-complex-pipeline.html#answer-1",
+    "title": "Complex Data Pipelines",
+    "section": "Answer",
+    "text": "Answer\n\n\n# A tibble: 515 × 18\n   restaurant item      calories cal_fat total_fat sat_fat trans_fat cholesterol\n   &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;\n 1 Mcdonalds  Artisan …      380      60         7       2       0            95\n 2 Mcdonalds  Single B…      840     410        45      17       1.5         130\n 3 Mcdonalds  Double B…     1130     600        67      27       3           220\n 4 Mcdonalds  Grilled …      750     280        31      10       0.5         155\n 5 Mcdonalds  Crispy B…      920     410        45      12       0.5         120\n 6 Mcdonalds  Big Mac        540     250        28      10       1            80\n 7 Mcdonalds  Cheesebu…      300     100        12       5       0.5          40\n 8 Mcdonalds  Classic …      510     210        24       4       0            65\n 9 Mcdonalds  Double C…      430     190        21      11       1            85\n10 Mcdonalds  Double Q…      770     400        45      21       2.5         175\n# ℹ 505 more rows\n# ℹ 10 more variables: sodium &lt;dbl&gt;, total_carb &lt;dbl&gt;, fiber &lt;dbl&gt;,\n#   sugar &lt;dbl&gt;, protein &lt;dbl&gt;, vit_a &lt;dbl&gt;, vit_c &lt;dbl&gt;, calcium &lt;dbl&gt;,\n#   salad &lt;chr&gt;, healthy_fat_warning &lt;chr&gt;"
+  },
+  {
+    "objectID": "materials/02-complex-pipeline.html#non-one-to-one-joins",
+    "href": "materials/02-complex-pipeline.html#non-one-to-one-joins",
+    "title": "Complex Data Pipelines",
+    "section": "Non-one-to-one Joins",
+    "text": "Non-one-to-one Joins"
+  },
+  {
+    "objectID": "materials/02-complex-pipeline.html#your-turn-3",
+    "href": "materials/02-complex-pipeline.html#your-turn-3",
+    "title": "Complex Data Pipelines",
+    "section": "YOUR TURN",
+    "text": "YOUR TURN\nLook at your collection of data - where are there keys to match? Are any of them not one-to-one, or otherwise complex?"
+  },
+  {
+    "objectID": "materials/02-complex-pipeline.html#multiple-pivots",
+    "href": "materials/02-complex-pipeline.html#multiple-pivots",
+    "title": "Complex Data Pipelines",
+    "section": "Multiple Pivots",
+    "text": "Multiple Pivots"
+  },
+  {
+    "objectID": "materials/02-complex-pipeline.html#your-turn-4",
+    "href": "materials/02-complex-pipeline.html#your-turn-4",
+    "title": "Complex Data Pipelines",
+    "section": "YOUR TURN",
+    "text": "YOUR TURN\nSketch a summary table that might be interesting for your data, then “flip it”."
+  },
+  {
+    "objectID": "materials/02-complex-pipeline.html#regex",
+    "href": "materials/02-complex-pipeline.html#regex",
+    "title": "Complex Data Pipelines",
+    "section": "RegEx",
+    "text": "RegEx"
+  },
+  {
+    "objectID": "materials/02-complex-pipeline.html#mapapply-inside-and-outside",
+    "href": "materials/02-complex-pipeline.html#mapapply-inside-and-outside",
+    "title": "Complex Data Pipelines",
+    "section": "Map/apply inside and outside",
+    "text": "Map/apply inside and outside"
+  },
+  {
+    "objectID": "materials/02-complex-pipeline.html#custom-functions-for-pipeline-problems",
+    "href": "materials/02-complex-pipeline.html#custom-functions-for-pipeline-problems",
+    "title": "Complex Data Pipelines",
+    "section": "Custom functions for pipeline problems",
+    "text": "Custom functions for pipeline problems"
+  },
+  {
+    "objectID": "materials/02-complex-pipeline.html#list-cols",
+    "href": "materials/02-complex-pipeline.html#list-cols",
+    "title": "Complex Data Pipelines",
+    "section": "List-cols",
+    "text": "List-cols"
+  },
+  {
+    "objectID": "materials/02-complex-pipeline.html#your-turn-5",
+    "href": "materials/02-complex-pipeline.html#your-turn-5",
+    "title": "Complex Data Pipelines",
+    "section": "YOUR TURN",
+    "text": "YOUR TURN\nFor your dataset, come up with some research questions that require a complicated pipeline to address.\nSketch out the steps needed to answer a research question.\nJot down some ideas about how you would make transitional student questions out of these - e.g., which steps would you show and which would you leave blank?\ntimer"
   },
   {
     "objectID": "index.html",

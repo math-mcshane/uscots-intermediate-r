@@ -1,5 +1,5 @@
 ---
-title: "1.1 - Complex Data Pipelines"
+title: "Complex Data Pipelines"
 subtitle: ""
 format: 
   revealjs:
@@ -16,7 +16,7 @@ execute:
 #| include: false
 library(tidyverse)
 library(countdown)
-dat_ff <- read_csv(here::here("data", "fastfood.csv"))
+dat_ff <- read_csv(here::here("materials", "data", "fastfood.csv"))
 ```
 
 
@@ -142,6 +142,12 @@ flagships <- c("Mcdonalds" = "Big Mac",
 
 dat_ff |>
   filter(item %in% flagships)
+
+dat_ff |>
+  group_by(restaurant) |>
+  mutate(
+    flagship_calories = .data |> filter(item %in% flagships) |> pull(calories)
+  )
 ```
 
 
@@ -170,6 +176,7 @@ Think of a measurement *by category* that you might want to add to *every additi
 :::
 
 ```{r}
+
 #| echo: false
 countdown(minutes = 3)
 ```
@@ -308,7 +315,7 @@ Consider this additional dataset:
 
 ```{r}
 #| echo: false
-dat_loc <- read_csv(here::here("data", "Fast_Food_Restaurants_US.csv"))
+dat_loc <- read_csv(here::here("materials", "data", "Fast_Food_Restaurants_US.csv"))
 ```
 
 ```{r}
