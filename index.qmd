@@ -51,7 +51,7 @@ The focus of this workshop will not be training in intermediate R skills, but ra
 | 11:30 - 12:00 | Activity: Create Your *Project B* | You! |
 | 12:00 - 1:00 | Lunch Break |  |
 | 1:00 - 1:15 | Review, Reset & Share Project B | You! |
-| 1:15 - 2:00 | [Thinking Like a Developer] | Tyson |
+| 1:15 - 2:00 | [Thinking Like a Developer](materials/08-developer.qmd) | Tyson |
 | 2:00 - 2:30 | [Package Workflow Teaching](materials/09-package_workflow.qmd) | Kelly |
 | 2:30 - 2:45 | Break |  |
 | 2:45 - 4:00 | [Activity: Create your Project C](materials/09-package_workflow.qmd) | Kelly and you! |
