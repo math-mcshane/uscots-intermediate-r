@@ -37,8 +37,8 @@ website:
             text: "Quarto Dashboards (Static & Dynamic)"
           - href: materials/07-stat-communication.qmd
             text: "Introduction to Shiny"
-          # - href: materials/08-developer.qmd
-          #   text: "Thinking Like a Developer"
+          - href: materials/08-developer.qmd
+            text: "Thinking Like a Developer"
           - href: materials/09-package_workflow.qmd
             text: "Package-Based Teaching"
           - href: materials/10-wrapup.qmd
