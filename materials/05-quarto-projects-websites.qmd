@@ -85,7 +85,7 @@ RStudio projects (`.Rproj`).
 </br> 
 
 ::: {.centered}
-![](images/05-rstudio-project.png){fig-alt="A translucent blue cube with a capital R in the center. The image is the logo of an RStudio project." width=40%}
+![](images/05-rstudio-project.png){fig-alt="A translucent blue cube with a capital R in the center. The image is the logo of an RStudio project." width=30%}
 
 :::
 
@@ -151,11 +151,13 @@ A Cascading Style Sheets (CSS) file is a style sheet language used in web develo
 {{< video https://www.youtube.com/embed/pAN2Hiq0XGs?si=9Tzzqst1PRMw3qwd width="800" height="400">}}
 :::
 
-## `index.qmd` & `about.qmd`
+##
 
 ::: {.midi}
 ::: columns
 ::: {.column width="47%"}
+[`index.qmd`]{.large}
+
 - This is the home page for the website! 
 
 - Whatever you place in the `index.qmd` file will be the first page people see! 
@@ -168,6 +170,8 @@ A Cascading Style Sheets (CSS) file is a style sheet language used in web develo
 
 ::: {.column width="50%"}
 ::: {.fragment}
+[`about.qmd`]{.large}
+
 - This is an additional content page! 
 - This is accessed through the top navigation menu. 
 - Notice that the `.yml` file doesn't give this page a name, so it defaults to the title included in the `about.qmd` document. 
@@ -204,3 +208,31 @@ theme:
   dark: darkly
 ```
 
+## How would you integrate websites into a course?
+
+::: columns
+::: {.column width="40%"}
+**Projects**
+
+Are students already completing a project that includes R? 
+
+Why not transform this project into something they can publish?
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="55%"}
+::: {.fragment}
+**Personal Websites**
+
+Giving students a way to advertise themselves! 
+
+<https://mattbabb737.github.io/>
+
+<https://alisa-krasilnikov.github.io/>
+
+<https://lilypcook.github.io>
+:::
+:::
+:::

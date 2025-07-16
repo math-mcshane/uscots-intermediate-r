@@ -1538,5 +1538,19 @@
     "title": "USCOTS 2025 Workshop",
     "section": "Intended Audience and Level",
     "text": "Intended Audience and Level\nWe expect attendees to have R fluency at the level of a typical introductory course, such as the textbook R for Data Science (Wickham, Çetinkaya-Rundel, & Grolemund 2023); as well as familiarity with some scattered intermediate to advanced topics, interpreted broadly.\nThe focus of this workshop will not be training in intermediate R skills, but rather in preparing educators to deliver higher-level R courses. We will provide resources, examples, and frameworks to empower attendees to expand their R knowledge and design a meaningful hands-on classroom experience."
+  },
+  {
+    "objectID": "materials/05-quarto-projects-websites.html#section-1",
+    "href": "materials/05-quarto-projects-websites.html#section-1",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "",
+    "text": "index.qmd\n\nThis is the home page for the website!\nWhatever you place in the index.qmd file will be the first page people see!\nThis page is also accessed using the top navigation menu (on the left side) using the link titled “Home.”\n\n\n\n\n\nabout.qmd\n\nThis is an additional content page!\nThis is accessed through the top navigation menu.\nNotice that the .yml file doesn’t give this page a name, so it defaults to the title included in the about.qmd document."
+  },
+  {
+    "objectID": "materials/05-quarto-projects-websites.html#how-would-you-integrate-websites-into-a-course",
+    "href": "materials/05-quarto-projects-websites.html#how-would-you-integrate-websites-into-a-course",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "How would you integrate websites into a course?",
+    "text": "How would you integrate websites into a course?\n\n\nProjects\nAre students already completing a project that includes R?\nWhy not transform this project into something they can publish?\n\n\n\n\nPersonal Websites\nGiving students a way to advertise themselves!\nhttps://mattbabb737.github.io/\nhttps://alisa-krasilnikov.github.io/\nhttps://lilypcook.github.io"
   }
 ]
