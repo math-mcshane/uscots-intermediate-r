@@ -4,6 +4,7 @@ format:
   revealjs:
     footer: "[Teaching Intermediate R](https://github.com/atheobold/uscots-intermediate-r)"
     theme: [simple, styles.scss]
+    scrollable: true
     embed-resources: true
 editor: source
 ---
