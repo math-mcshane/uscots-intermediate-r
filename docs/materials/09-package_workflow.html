@@ -1158,60 +1158,71 @@ library(example_skeleton_package)
 test_check(&quot;example_skeleton_package&quot;)</code></pre>
 <p>… and run it!</p>
 </section>
-<section id="speed-tests-etc." class="slide level2">
-<h2>Speed Tests, etc.</h2>
-<p>Download all the <strong>zip files</strong> and…</p>
-<pre><code>submissions &lt;- list.files(&quot;./submissions&quot;)
-
-all_test_results &lt;- tibble()
-all_time_results &lt;- tibble()
-
-for (i in 1::length(submissions)){
-  
-    student &lt;- submissions[i]
-  
-    unloadNamespace(&quot;example_skeleton_package&quot;)
-    remove.packages(&quot;example_skeleton_package&quot;, &quot;.&quot;)
-    
-    devtools::build(paste0(&quot;./submissions/&quot;, student))
-
-    library(example_skeleton_package)
-
-    lr_test &lt;- testthat::test_dir(&quot;./tests/testthat&quot;,
-               reporter = &quot;minimal&quot;,
-               stop_on_failure = FALSE)
-
-    benches &lt;- bench::mark(
-      slr = safely(simple_linear_regression)(big_dat, price, gearbox),
-      memory = FALSE,
-      check = FALSE,
-      time_unit = &quot;ms&quot;,
-      min_time = Inf,
-      max_iterations = 20,
-      filter_gc = FALSE
-    ) %&gt;%
-      select(
-        expression, median
-      ) 
-      
-      ## save output
-    
-}</code></pre>
-</section>
 <section id="working-with-github" class="slide level2">
 <h2>Working with GitHub</h2>
 <p>If student work is on GitHub rather than in folders…</p>
 <pre><code>remotes::install_github(&quot;imastudent/example_skeleton_package&quot;)</code></pre>
 <p>… and loop through each.</p>
 </section>
-<section id="ways-to-level-up" class="slide level2">
-<h2>Ways to level up</h2>
+<section id="automation" class="slide level2">
+<h2>Automation</h2>
+<pre><code>urls &lt;- # list of student repos
+
+all_test_results &lt;- tibble()
+all_time_results &lt;- tibble()
+
+for (url in submissions){
+  
+    unloadNamespace(&quot;example_skeleton_package&quot;)
+    remove.packages(&quot;example_skeleton_package&quot;, &quot;.&quot;)
+    
+    remotes::install_github(submissions)
+
+    library(example_skeleton_package)
+
+    lr_test &lt;- testthat::test_dir(&quot;./tests/testthat&quot;,
+               reporter = &quot;minimal&quot;,
+               stop_on_failure = FALSE)
+      
+      ## save output however you prefer
+    
+}</code></pre>
+</section></section>
+<section>
+<section id="leveling-up" class="title-slide slide level1 center" data-background-color="#0F4C81">
+<h1>Leveling up</h1>
+
+</section>
+<section id="function-designdevelopment" class="slide level2">
+<h2>Function design/development</h2>
 <ul>
-<li><p>Tidy eval</p></li>
-<li><p>Package creation/design</p></li>
-<li><p>Implementing stat algorithms</p></li>
-<li><p>Speed and memory tests using secret unit tests</p></li>
+<li><p>Remove inputs and output from scaffolding</p></li>
+<li><p>Require <em>tidy eval</em> and unquoted variables (<a href="https://dcl-prog.stanford.edu/tidy-eval-detailed.html">Starting Point</a>)</p></li>
+<li><p>Emphasize code review (<a href="https://www.youtube.com/watch?v=IzRn-QnOhug">“Code Smells and Feels” talk</a>)</p></li>
+<li><p>Emphasize responsible use of Git and GitHub</p></li>
 </ul>
+</section>
+<section id="package-creation" class="slide level2">
+<h2>Package creation</h2>
+<ul>
+<li><p>Don’t provide <code>roxygen2</code> documentation; require students do it.</p></li>
+<li><p>Require additional unit tests</p></li>
+<li><p>Require multiple <code>.R</code> files and multiple functions per file.</p></li>
+<li><p>Practice CRAN submission?</p></li>
+<li><p><a href="https://r-pkgs.org/">R Packages Textbook</a></p></li>
+</ul>
+</section>
+<section id="statistical-computing" class="slide level2">
+<h2>Statistical computing</h2>
+<ul>
+<li><p>Matrix operations, e.g. for <em>multiple regression</em></p></li>
+<li><p>Iteration to convergence, e.g. <em>kmeans</em></p></li>
+<li><p>Model fitting via gradient descent</p></li>
+<li><p>Emphasize speed/efficiency</p></li>
+</ul>
+</section>
+<section id="speedmemory-tests" class="slide level2">
+<h2>Speed/memory tests</h2>
 
 
 </section></section>

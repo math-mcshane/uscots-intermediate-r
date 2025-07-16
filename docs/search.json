@@ -784,13 +784,6 @@
     "text": "Auto-grading with secret tests\nOpen the script “testthat.R” …\nlibrary(testthat)\nlibrary(example_skeleton_package)\n\ntest_check(\"example_skeleton_package\")\n… and run it!"
   },
   {
-    "objectID": "materials/09-package_workflow.html#speed-tests-etc.",
-    "href": "materials/09-package_workflow.html#speed-tests-etc.",
-    "title": "Package-based Workflow",
-    "section": "Speed Tests, etc.",
-    "text": "Speed Tests, etc.\nDownload all the zip files and…\nsubmissions &lt;- list.files(\"./submissions\")\n\nall_test_results &lt;- tibble()\nall_time_results &lt;- tibble()\n\nfor (i in 1::length(submissions)){\n  \n    student &lt;- submissions[i]\n  \n    unloadNamespace(\"example_skeleton_package\")\n    remove.packages(\"example_skeleton_package\", \".\")\n    \n    devtools::build(paste0(\"./submissions/\", student))\n\n    library(example_skeleton_package)\n\n    lr_test &lt;- testthat::test_dir(\"./tests/testthat\",\n               reporter = \"minimal\",\n               stop_on_failure = FALSE)\n\n    benches &lt;- bench::mark(\n      slr = safely(simple_linear_regression)(big_dat, price, gearbox),\n      memory = FALSE,\n      check = FALSE,\n      time_unit = \"ms\",\n      min_time = Inf,\n      max_iterations = 20,\n      filter_gc = FALSE\n    ) %&gt;%\n      select(\n        expression, median\n      ) \n      \n      ## save output\n    \n}"
-  },
-  {
     "objectID": "materials/09-package_workflow.html#working-with-github",
     "href": "materials/09-package_workflow.html#working-with-github",
     "title": "Package-based Workflow",
@@ -798,11 +791,39 @@
     "text": "Working with GitHub\nIf student work is on GitHub rather than in folders…\nremotes::install_github(\"imastudent/example_skeleton_package\")\n… and loop through each."
   },
   {
-    "objectID": "materials/09-package_workflow.html#ways-to-level-up",
-    "href": "materials/09-package_workflow.html#ways-to-level-up",
+    "objectID": "materials/09-package_workflow.html#automation",
+    "href": "materials/09-package_workflow.html#automation",
     "title": "Package-based Workflow",
-    "section": "Ways to level up",
-    "text": "Ways to level up\n\nTidy eval\nPackage creation/design\nImplementing stat algorithms\nSpeed and memory tests using secret unit tests"
+    "section": "Automation",
+    "text": "Automation\nurls &lt;- # list of student repos\n\nall_test_results &lt;- tibble()\nall_time_results &lt;- tibble()\n\nfor (url in submissions){\n  \n    unloadNamespace(\"example_skeleton_package\")\n    remove.packages(\"example_skeleton_package\", \".\")\n    \n    remotes::install_github(submissions)\n\n    library(example_skeleton_package)\n\n    lr_test &lt;- testthat::test_dir(\"./tests/testthat\",\n               reporter = \"minimal\",\n               stop_on_failure = FALSE)\n      \n      ## save output however you prefer\n    \n}"
+  },
+  {
+    "objectID": "materials/09-package_workflow.html#function-designdevelopment",
+    "href": "materials/09-package_workflow.html#function-designdevelopment",
+    "title": "Package-based Workflow",
+    "section": "Function design/development",
+    "text": "Function design/development\n\nRemove inputs and output from scaffolding\nRequire tidy eval and unquoted variables (Starting Point)\nEmphasize code review (“Code Smells and Feels” talk)\nEmphasize responsible use of Git and GitHub"
+  },
+  {
+    "objectID": "materials/09-package_workflow.html#package-creation",
+    "href": "materials/09-package_workflow.html#package-creation",
+    "title": "Package-based Workflow",
+    "section": "Package creation",
+    "text": "Package creation\n\nDon’t provide roxygen2 documentation; require students do it.\nRequire additional unit tests\nRequire multiple .R files and multiple functions per file.\nPractice CRAN submission?\nR Packages Textbook"
+  },
+  {
+    "objectID": "materials/09-package_workflow.html#statistical-computing",
+    "href": "materials/09-package_workflow.html#statistical-computing",
+    "title": "Package-based Workflow",
+    "section": "Statistical computing",
+    "text": "Statistical computing\n\nMatrix operations, e.g. for multiple regression\nIteration to convergence, e.g. kmeans\nModel fitting via gradient descent\nEmphasize speed/efficiency"
+  },
+  {
+    "objectID": "materials/09-package_workflow.html#speedmemory-tests",
+    "href": "materials/09-package_workflow.html#speedmemory-tests",
+    "title": "Package-based Workflow",
+    "section": "Speed/memory tests",
+    "text": "Speed/memory tests"
   },
   {
     "objectID": "materials/05-quarto-projects-websites.html#section",
@@ -893,7 +914,7 @@
     "href": "materials/10-wrapup.html#takeaways",
     "title": "Wrap-Up",
     "section": "Takeaways",
-    "text": "Takeaways\n\n\n\nDesign your Intermediate R class around projects\nSeparate content into modular units organized by goals.\nSign up to be notified when the Course in a Box is available!"
+    "text": "Takeaways\n\n\n\nDesign your Intermediate R class around projects\nSeparate content into modular units organized by goals.\nSign up to be notified when the Course in a Box is available!\nTake the USCOTS feedback survey."
   },
   {
     "objectID": "materials/10-wrapup.html#reflections",
