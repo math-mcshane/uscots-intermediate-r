@@ -4,6 +4,7 @@ format:
     footer: "[Teaching Intermediate R](https://github.com/atheobold/uscots-intermediate-r)"
     theme: [simple, styles.scss]
     embed-resources: true
+    auto-stretch: true
 editor: source
 ---
 
@@ -210,13 +211,19 @@ theme:
 
 ## How would you integrate websites into a course?
 
+. . .
+
 ::: columns
 ::: {.column width="40%"}
 **Projects**
 
+::: {.midi}
 Are students already completing a project that includes R? 
 
 Why not transform this project into something they can publish?
+
+<https://sta199-s24.github.io/project/description.html>
+:::
 :::
 
 ::: {.column width="5%"}
@@ -226,6 +233,7 @@ Why not transform this project into something they can publish?
 ::: {.fragment}
 **Personal Websites**
 
+::: {.midi}
 Giving students a way to advertise themselves! 
 
 <https://mattbabb737.github.io/>
@@ -233,6 +241,7 @@ Giving students a way to advertise themselves!
 <https://alisa-krasilnikov.github.io/>
 
 <https://lilypcook.github.io>
+:::
 :::
 :::
 :::

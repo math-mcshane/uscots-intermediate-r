@@ -4,6 +4,7 @@ format:
     footer: "[Teaching Intermediate R](https://github.com/atheobold/uscots-intermediate-r)"
     theme: [simple, styles.scss]
     embed-resources: true
+    auto-stretch: true
 editor: source
 ---
 
