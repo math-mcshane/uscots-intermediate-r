@@ -9,9 +9,9 @@ format:
 editor: source
 ---
 
-## What is a package workflow?
+# What is a package workflow?
 
-# Why a package workflow?
+## Why a package workflow?
 
 * Ease students into *developer* mindset.
 
@@ -23,7 +23,7 @@ editor: source
 
 * Grading via automatic tests.
 
-# How-to
+## How-to
 
 1. Create a **skeleton R package** on GitHub.
 
@@ -35,37 +35,238 @@ editor: source
 
 5. Require **code review** as part of assignment.
 
-# Setup
+## Student Assignment
 
-## Skeleton R package
+1. Complete the functions.
 
-1. `usethis::create_package("example_skeleton_package")`
+2. Document the functions.
 
-2. `usethis::use_r("simple_linear_regression")`
+3. Build the package.
 
-3. `usethis::use_test("simple_linear_regression")`
+4. Run the unit tests.
 
-4. New File > Quarto > `slr_demo.qmd`
-
-# Student Assignment
-
-## Complete the function
-
-## Document and build
-
-## Pass the unit tests
-
-## Render the demo
+5. Render the demo document.
 
 ## What do students turn in?
 
-1. A link to their GitHub of the package.
+1. A link to their GitHub of the package.  [I recommend GitHub Classroom for this.](https://classroom.github.com/)
 
-2. The rendered html of `slr_demo`.
+2. A rendered html, showing the functions being run on data.
 
 3. A code review of someone else's package.
 
 ## Grading
 
-1. `
+Four grading elements to combine:
+
+* Does the package **properly build and install** or are there errors?
+
+* Does the package pass the **provided unit tests**?
+
+* Do the package functions behave as expected in the **demo document**?
+
+* Are the **peer code reviews** positive?
+
+* Does the package pass the **secret unit tests**?
+
+
+# OUR TURN
+
+# Setup
+
+## Make a sandbox for yourself
+
+1. Make a folder somewhere called "Package Assignment Practice" or similar.
+
+2. Run `usethis::create_package("YOUR PATH/Package Assignment Practice/example_skeleton_package")`.  This will open a new R Project.
+
+3. In the new project, run `usethis::use_r("simple_linear_regression")`
+
+4. Run `usethis::use_test("simple_linear_regression")`
+
+5. New File > Quarto > `slr_demo.qmd`
+
+
+## Create the demo document *first*
+
+Include code that you hope will work properly...
+
+```{r}
+simple_linear_regression(data = mtcars,
+                         explanatory = "gear",
+                         response = "mpg")
+```
+
+... and code you hope will error in a reasonable way.
+
+```{r}
+simple_linear_regression(data = mtcars,
+                         explanatory = "gear",
+                         response = "not a variable")
+```
+
+
+
+## Sketch out the function
+
+How much detail you provide depends on the level of your students.
+
+For the first pass, I recommend:
+
+* Include *all* the `roxygen`-style documentation
+
+* Include the **inputs** and names.
+
+* Give them **a few lines** to get started.
+
+* Use **comments** to show where you want them to edit.
+
+* Provide the **object structure of the expected output**.
+
+* Make sure the code is all **runnable as-is**.  (But not fully correct yet!)
+
+## Example
+
+```
+#' Implements simple linear regression by hand
+#'
+#' @param dat A data frame
+#' @param response The name of a response variable in the data frame.
+#' @param explanatory The name of the explanatory variable in the data frame.
+#'
+#' @return A data frame of coefficients
+#'
+#' @import dplyr
+#'
+#' @export
+simple_linear_regression <- function(dat, response, explanatory){
+
+  x <- dat[[explanatory]]
+  y <- dat[[response]]
+
+  x_bar <- mean(x)
+  y_bar <- mean(y)
+
+  ### Edit code after here
+
+  sd_x <- 1
+  sd_y <- 1
+
+  beta_0 <- 1
+  beta_1 <- 1
+
+  results <- tibble::tibble(
+    Intercept = 0,
+    Slope = 1
+  )
+
+  return(results)
+
+}
+```
+
+## Unit tests
+
+```
+test_that("simple linear regression is correct", {
+
+  my_result <- simple_linear_regression(mtcars, "mpg", "hp")
+
+  mass_result <- lm(mpg ~ hp, data = mtcars)
+
+  expect_equal(coef(mass_result)[['hp']], my_result$Slope,
+               tolerance = 0.05)
+  expect_equal(coef(mass_result)[[1]], my_result$Intercept,
+               tolerance = 0.05)
+
+})
+```
+
+## Secret Unit Tests
+
+* Make a **copy** of the `tests` folder in your package.
+
+* Save that copy **outside the package folder**, in your "Package Assignment Practice" folder.
+
+* Change the unit test code to use a **different dataset** or **different variables**.
+
+# Activity: Be the student
+
+## Auto-grading with secret tests
+
+Open the script "testthat.R" ...
+
+```
+library(testthat)
+library(example_skeleton_package)
+
+test_check("example_skeleton_package")
+```
+
+... and run it!
+
+## Speed Tests, etc.
+
+Download all the **zip files** and...
+
+```
+submissions <- list.files("./submissions")
+
+all_test_results <- tibble()
+all_time_results <- tibble()
+
+for (i in 1::length(submissions)){
+  
+    student <- submissions[i]
+  
+    unloadNamespace("example_skeleton_package")
+    remove.packages("example_skeleton_package", ".")
+    
+    devtools::build(paste0("./submissions/", student))
+
+    library(example_skeleton_package)
+
+    lr_test <- testthat::test_dir("./tests/testthat",
+               reporter = "minimal",
+               stop_on_failure = FALSE)
+
+    benches <- bench::mark(
+      slr = safely(simple_linear_regression)(big_dat, price, gearbox),
+      memory = FALSE,
+      check = FALSE,
+      time_unit = "ms",
+      min_time = Inf,
+      max_iterations = 20,
+      filter_gc = FALSE
+    ) %>%
+      select(
+        expression, median
+      ) 
+      
+      ## save output
+    
+}
+```
+
+## Working with GitHub
+
+If student work is on GitHub rather than in folders...
+
+```
+remotes::install_github("imastudent/example_skeleton_package")
+```
+
+... and loop through each.
+
+## Ways to level up
+
+* Tidy eval
+
+* Package creation/design
+
+* Implementing stat algorithms
+
+* Speed and memory tests using secret unit tests
+
+
 
