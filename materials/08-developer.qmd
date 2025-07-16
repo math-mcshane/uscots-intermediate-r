@@ -64,7 +64,7 @@ By the end of this session, you will:
 ## Essential Performance Testing Tools
 
 ```{r}
-#| eval: false
+#| eval: true
 #| echo: true
 
 # Install performance tools
