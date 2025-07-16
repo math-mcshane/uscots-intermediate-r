@@ -991,11 +991,13 @@ margin-right: 0; }
 </div>
 
 </section>
-<section id="what-is-a-package-workflow" class="slide level2">
-<h2>What is a package workflow?</h2>
+<section>
+<section id="what-is-a-package-workflow" class="title-slide slide level1 center">
+<h1>What is a package workflow?</h1>
+
 </section>
-<section id="why-a-package-workflow" class="title-slide slide level1 center">
-<h1>Why a package workflow?</h1>
+<section id="why-a-package-workflow" class="slide level2">
+<h2>Why a package workflow?</h2>
 <ul>
 <li><p>Ease students into <em>developer</em> mindset.</p></li>
 <li><p>Emphasize <em>unit-testing</em> and <em>documentation</em> frameworks.</p></li>
@@ -1004,9 +1006,8 @@ margin-right: 0; }
 <li><p>Grading via automatic tests.</p></li>
 </ul>
 </section>
-
-<section id="how-to" class="title-slide slide level1 center">
-<h1>How-to</h1>
+<section id="how-to" class="slide level2">
+<h2>How-to</h2>
 <ol type="1">
 <li><p>Create a <strong>skeleton R package</strong> on GitHub.</p></li>
 <li><p>Include <strong>pre-written unit tests</strong>.</p></li>
@@ -1015,51 +1016,202 @@ margin-right: 0; }
 <li><p>Require <strong>code review</strong> as part of assignment.</p></li>
 </ol>
 </section>
+<section id="student-assignment" class="slide level2">
+<h2>Student Assignment</h2>
+<ol type="1">
+<li><p>Complete the functions.</p></li>
+<li><p>Document the functions.</p></li>
+<li><p>Build the package.</p></li>
+<li><p>Run the unit tests.</p></li>
+<li><p>Render the demo document.</p></li>
+</ol>
+</section>
+<section id="what-do-students-turn-in" class="slide level2">
+<h2>What do students turn in?</h2>
+<ol type="1">
+<li><p>A link to their GitHub of the package. <a href="https://classroom.github.com/">I recommend GitHub Classroom for this.</a></p></li>
+<li><p>A rendered html, showing the functions being run on data.</p></li>
+<li><p>A code review of someone else’s package.</p></li>
+</ol>
+</section>
+<section id="grading" class="slide level2">
+<h2>Grading</h2>
+<p>Four grading elements to combine:</p>
+<ul>
+<li><p>Does the package <strong>properly build and install</strong> or are there errors?</p></li>
+<li><p>Does the package pass the <strong>provided unit tests</strong>?</p></li>
+<li><p>Do the package functions behave as expected in the <strong>demo document</strong>?</p></li>
+<li><p>Are the <strong>peer code reviews</strong> positive?</p></li>
+<li><p>Does the package pass the <strong>secret unit tests</strong>?</p></li>
+</ul>
+</section></section>
+<section id="our-turn" class="title-slide slide level1 center">
+<h1>OUR TURN</h1>
+
+</section>
 
 <section>
 <section id="setup" class="title-slide slide level1 center">
 <h1>Setup</h1>
 
 </section>
-<section id="skeleton-r-package" class="slide level2">
-<h2>Skeleton R package</h2>
+<section id="make-a-sandbox-for-yourself" class="slide level2">
+<h2>Make a sandbox for yourself</h2>
 <ol type="1">
-<li><p><code>usethis::create_package(&quot;example_skeleton_package&quot;)</code></p></li>
-<li><p><code>usethis::use_r(&quot;simple_linear_regression&quot;)</code></p></li>
-<li><p><code>usethis::use_test(&quot;simple_linear_regression&quot;)</code></p></li>
+<li><p>Make a folder somewhere called “Package Assignment Practice” or similar.</p></li>
+<li><p>Run <code>usethis::create_package(&quot;YOUR PATH/Package Assignment Practice/example_skeleton_package&quot;)</code>. This will open a new R Project.</p></li>
+<li><p>In the new project, run <code>usethis::use_r(&quot;simple_linear_regression&quot;)</code></p></li>
+<li><p>Run <code>usethis::use_test(&quot;simple_linear_regression&quot;)</code></p></li>
 <li><p>New File &gt; Quarto &gt; <code>slr_demo.qmd</code></p></li>
 </ol>
+</section>
+<section id="create-the-demo-document-first" class="slide level2">
+<h2>Create the demo document <em>first</em></h2>
+<p>Include code that you hope will work properly…</p>
+<p>… and code you hope will error in a reasonable way.</p>
+</section>
+<section id="sketch-out-the-function" class="slide level2">
+<h2>Sketch out the function</h2>
+<p>How much detail you provide depends on the level of your students.</p>
+<p>For the first pass, I recommend:</p>
+<ul>
+<li><p>Include <em>all</em> the <code>roxygen</code>-style documentation</p></li>
+<li><p>Include the <strong>inputs</strong> and names.</p></li>
+<li><p>Give them <strong>a few lines</strong> to get started.</p></li>
+<li><p>Use <strong>comments</strong> to show where you want them to edit.</p></li>
+<li><p>Provide the <strong>object structure of the expected output</strong>.</p></li>
+<li><p>Make sure the code is all <strong>runnable as-is</strong>. (But not fully correct yet!)</p></li>
+</ul>
+</section>
+<section id="example" class="slide level2">
+<h2>Example</h2>
+<pre><code>#&#39; Implements simple linear regression by hand
+#&#39;
+#&#39; @param dat A data frame
+#&#39; @param response The name of a response variable in the data frame.
+#&#39; @param explanatory The name of the explanatory variable in the data frame.
+#&#39;
+#&#39; @return A data frame of coefficients
+#&#39;
+#&#39; @import dplyr
+#&#39;
+#&#39; @export
+simple_linear_regression &lt;- function(dat, response, explanatory){
+
+  x &lt;- dat[[explanatory]]
+  y &lt;- dat[[response]]
+
+  x_bar &lt;- mean(x)
+  y_bar &lt;- mean(y)
+
+  ### Edit code after here
+
+  sd_x &lt;- 1
+  sd_y &lt;- 1
+
+  beta_0 &lt;- 1
+  beta_1 &lt;- 1
+
+  results &lt;- tibble::tibble(
+    Intercept = 0,
+    Slope = 1
+  )
+
+  return(results)
+
+}</code></pre>
+</section>
+<section id="unit-tests" class="slide level2">
+<h2>Unit tests</h2>
+<pre><code>test_that(&quot;simple linear regression is correct&quot;, {
+
+  my_result &lt;- simple_linear_regression(mtcars, &quot;mpg&quot;, &quot;hp&quot;)
+
+  mass_result &lt;- lm(mpg ~ hp, data = mtcars)
+
+  expect_equal(coef(mass_result)[[&#39;hp&#39;]], my_result$Slope,
+               tolerance = 0.05)
+  expect_equal(coef(mass_result)[[1]], my_result$Intercept,
+               tolerance = 0.05)
+
+})</code></pre>
+</section>
+<section id="secret-unit-tests" class="slide level2">
+<h2>Secret Unit Tests</h2>
+<ul>
+<li><p>Make a <strong>copy</strong> of the <code>tests</code> folder in your package.</p></li>
+<li><p>Save that copy <strong>outside the package folder</strong>, in your “Package Assignment Practice” folder.</p></li>
+<li><p>Change the unit test code to use a <strong>different dataset</strong> or <strong>different variables</strong>.</p></li>
+</ul>
 </section></section>
 <section>
-<section id="student-assignment" class="title-slide slide level1 center">
-<h1>Student Assignment</h1>
+<section id="activity-be-the-student" class="title-slide slide level1 center">
+<h1>Activity: Be the student</h1>
 
 </section>
-<section id="complete-the-function" class="slide level2">
-<h2>Complete the function</h2>
+<section id="auto-grading-with-secret-tests" class="slide level2">
+<h2>Auto-grading with secret tests</h2>
+<p>Open the script “testthat.R” …</p>
+<pre><code>library(testthat)
+library(example_skeleton_package)
+
+test_check(&quot;example_skeleton_package&quot;)</code></pre>
+<p>… and run it!</p>
 </section>
-<section id="document-and-build" class="slide level2">
-<h2>Document and build</h2>
+<section id="speed-tests-etc." class="slide level2">
+<h2>Speed Tests, etc.</h2>
+<p>Download all the <strong>zip files</strong> and…</p>
+<pre><code>submissions &lt;- list.files(&quot;./submissions&quot;)
+
+all_test_results &lt;- tibble()
+all_time_results &lt;- tibble()
+
+for (i in 1::length(submissions)){
+  
+    student &lt;- submissions[i]
+  
+    unloadNamespace(&quot;example_skeleton_package&quot;)
+    remove.packages(&quot;example_skeleton_package&quot;, &quot;.&quot;)
+    
+    devtools::build(paste0(&quot;./submissions/&quot;, student))
+
+    library(example_skeleton_package)
+
+    lr_test &lt;- testthat::test_dir(&quot;./tests/testthat&quot;,
+               reporter = &quot;minimal&quot;,
+               stop_on_failure = FALSE)
+
+    benches &lt;- bench::mark(
+      slr = safely(simple_linear_regression)(big_dat, price, gearbox),
+      memory = FALSE,
+      check = FALSE,
+      time_unit = &quot;ms&quot;,
+      min_time = Inf,
+      max_iterations = 20,
+      filter_gc = FALSE
+    ) %&gt;%
+      select(
+        expression, median
+      ) 
+      
+      ## save output
+    
+}</code></pre>
 </section>
-<section id="pass-the-unit-tests" class="slide level2">
-<h2>Pass the unit tests</h2>
+<section id="working-with-github" class="slide level2">
+<h2>Working with GitHub</h2>
+<p>If student work is on GitHub rather than in folders…</p>
+<pre><code>remotes::install_github(&quot;imastudent/example_skeleton_package&quot;)</code></pre>
+<p>… and loop through each.</p>
 </section>
-<section id="render-the-demo" class="slide level2">
-<h2>Render the demo</h2>
-</section>
-<section id="what-do-students-turn-in" class="slide level2">
-<h2>What do students turn in?</h2>
-<ol type="1">
-<li><p>A link to their GitHub of the package.</p></li>
-<li><p>The rendered html of <code>slr_demo</code>.</p></li>
-<li><p>A code review of someone else’s package.</p></li>
-</ol>
-</section>
-<section id="grading" class="slide level2">
-<h2>Grading</h2>
-<ol type="1">
-<li>`</li>
-</ol>
+<section id="ways-to-level-up" class="slide level2">
+<h2>Ways to level up</h2>
+<ul>
+<li><p>Tidy eval</p></li>
+<li><p>Package creation/design</p></li>
+<li><p>Implementing stat algorithms</p></li>
+<li><p>Speed and memory tests using secret unit tests</p></li>
+</ul>
 
 
 </section></section>
@@ -2225,6 +2377,44 @@ window.QuartoSupport = function () {
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

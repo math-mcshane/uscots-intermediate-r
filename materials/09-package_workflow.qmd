@@ -92,6 +92,8 @@ Four grading elements to combine:
 Include code that you hope will work properly...
 
 ```{r}
+#| eval: false
+
 simple_linear_regression(data = mtcars,
                          explanatory = "gear",
                          response = "mpg")
@@ -100,6 +102,8 @@ simple_linear_regression(data = mtcars,
 ... and code you hope will error in a reasonable way.
 
 ```{r}
+#| eval: false
+
 simple_linear_regression(data = mtcars,
                          explanatory = "gear",
                          response = "not a variable")
