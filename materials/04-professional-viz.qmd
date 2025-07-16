@@ -42,7 +42,7 @@ By the end of this session, you will:
 
 ## Process vs. Product Assessment
 
-Teaching visualization requires evaluating **both**:
+Teaching visualization requires evaluating:
 
 ::: {.incremental}
 - **Process**: Design thinking, iteration, justification
@@ -91,6 +91,18 @@ Teaching visualization requires evaluating **both**:
 :::{.large}
 ⁇ **What message do we want to tell by the rubric?**
 :::
+
+. . .
+
+:::{.large}
+Take just 60 seconds to consider what elements would go into the rubric.
+:::
+
+```{r}
+#| echo: false
+countdown::countdown(minutes = 1)
+```
+
 
 
 ## Example Grading Rubric Framework
@@ -150,7 +162,7 @@ Teaching visualization requires evaluating **both**:
 
 ## The Extension Ecosystem
 
-ggplot2 is designed to be extensible:
+`ggplot2` is designed to be extensible:
 
 ::: {.incremental}
 - **50+ extension packages** for specialized needs
@@ -208,7 +220,7 @@ p3 <- ggplot(penguins, aes(body_mass_g)) +
 **Teaching value**: Students learn composition principles and complex figure creation for publications
 :::
 
-## gganimate: Bringing Data to Life
+## `gganimate`: Bringing Data to Life
 
 ```{r}
 #| eval: false
@@ -229,7 +241,7 @@ ggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, color = continent)) +
 **Student Exercise**: Create before/after static vs. animated versions to show communication differences
 :::
 
-## ggtext: Professional Text Formatting
+## `ggtext`: Professional Text Formatting
 
 ```{r}
 #| eval: true
@@ -274,7 +286,7 @@ theme_set(my_theme)
 **Teaching Strategy**: Have students develop their own theme as a semester project
 :::
 
-## ggplot2 Extension Teaching Resources
+## `ggplot2` Extension Teaching Resources
 
 ::: {.small}
 **Comprehensive Guides:**
@@ -336,7 +348,7 @@ library(ggiraph)    # Interactive ggplot2
 **htmlwidgets**: R bindings to JavaScript libraries that work in multiple contexts (console, RStudio, Rmarkdown, Shiny)
 :::
 
-## From ggplot2 to plotly
+## From `ggplot2` to plotly
 
 ```{r}
 #| eval: true
@@ -352,9 +364,7 @@ p <- ggplot(penguins, aes(bill_length_mm, body_mass_g,
 ggplotly(p, tooltip = "text")
 ```
 
-::: {style="font-size: 0.9em; color: #666;"}
-**Teaching Win**: Students can make existing ggplot2 plots interactive with one function call
-:::
+
 
 ## Custom plotly Interactions
 
@@ -372,7 +382,7 @@ plot_ly(penguins, x = ~bill_length_mm, y = ~body_mass_g, color = ~species,
          yaxis = list(title = "Body Mass (g)"))
 ```
 
-## ggiraph: Interactive ggplot2
+## `ggiraph`: Interactive `ggplot2`
 
 ```{r}
 #| eval: true
@@ -392,7 +402,7 @@ girafe(ggobj = p)
 ```
 
 ::: {style="font-size: 0.9em; color: #666;"}
-**Student-Friendly**: Uses familiar ggplot2 syntax with `_interactive` suffix
+**Student-Friendly**: Uses familiar `ggplot2` syntax with `_interactive` suffix
 :::
 
 ## Interactive Visualization Teaching Resources
