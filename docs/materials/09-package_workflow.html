@@ -1133,7 +1133,17 @@ margin-right: 0; }
 <section id="create-the-demo-document-first" class="slide level2">
 <h2>Create the demo document <em>first</em></h2>
 <p>Include code that you hope will work properly…</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">simple_linear_regression</span>(<span class="at">data =</span> mtcars,</span>
+<span id="cb1-2"><a></a>                         <span class="at">explanatory =</span> <span class="st">&quot;gear&quot;</span>,</span>
+<span id="cb1-3"><a></a>                         <span class="at">response =</span> <span class="st">&quot;mpg&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>… and code you hope will error in a reasonable way.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">simple_linear_regression</span>(<span class="at">data =</span> mtcars,</span>
+<span id="cb2-2"><a></a>                         <span class="at">explanatory =</span> <span class="st">&quot;gear&quot;</span>,</span>
+<span id="cb2-3"><a></a>                         <span class="at">response =</span> <span class="st">&quot;not a variable&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="sketch-out-the-function" class="slide level2">
 <h2>Sketch out the function</h2>
@@ -1289,31 +1299,31 @@ for (url in submissions){
 <section id="speedmemory-tests" class="slide level2">
 <h2>Speed/memory tests</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>big_dat <span class="ot">&lt;-</span> <span class="co">#some large dataset</span></span>
-<span id="cb6-2"><a></a>  </span>
-<span id="cb6-3"><a></a><span class="cf">for</span> (url <span class="cf">in</span> submissions){</span>
-<span id="cb6-4"><a></a>  </span>
-<span id="cb6-5"><a></a>    <span class="fu">unloadNamespace</span>(<span class="st">&quot;example_skeleton_package&quot;</span>)</span>
-<span id="cb6-6"><a></a>    <span class="fu">remove.packages</span>(<span class="st">&quot;example_skeleton_package&quot;</span>, <span class="st">&quot;.&quot;</span>)</span>
-<span id="cb6-7"><a></a>    </span>
-<span id="cb6-8"><a></a>    remotes<span class="sc">::</span><span class="fu">install_github</span>(submissions)</span>
-<span id="cb6-9"><a></a></span>
-<span id="cb6-10"><a></a>    <span class="fu">library</span>(example_skeleton_package)</span>
-<span id="cb6-11"><a></a></span>
-<span id="cb6-12"><a></a>    benches <span class="ot">&lt;-</span> bench<span class="sc">::</span><span class="fu">mark</span>(</span>
-<span id="cb6-13"><a></a>      <span class="at">slr =</span> <span class="fu">safely</span>(simple_linear_regression)(big_dat, price, gearbox),</span>
-<span id="cb6-14"><a></a>      <span class="at">memory =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb6-15"><a></a>      <span class="at">check =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb6-16"><a></a>      <span class="at">time_unit =</span> <span class="st">&quot;ms&quot;</span>,</span>
-<span id="cb6-17"><a></a>      <span class="at">min_time =</span> <span class="cn">Inf</span>,</span>
-<span id="cb6-18"><a></a>      <span class="at">max_iterations =</span> <span class="dv">20</span>,</span>
-<span id="cb6-19"><a></a>      <span class="at">filter_gc =</span> <span class="cn">FALSE</span></span>
-<span id="cb6-20"><a></a>    ) <span class="sc">%&gt;%</span></span>
-<span id="cb6-21"><a></a>      <span class="fu">select</span>(</span>
-<span id="cb6-22"><a></a>        expression, median</span>
-<span id="cb6-23"><a></a>      ) </span>
-<span id="cb6-24"><a></a>    </span>
-<span id="cb6-25"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>big_dat <span class="ot">&lt;-</span> <span class="co">#some large dataset</span></span>
+<span id="cb8-2"><a></a>  </span>
+<span id="cb8-3"><a></a><span class="cf">for</span> (url <span class="cf">in</span> submissions){</span>
+<span id="cb8-4"><a></a>  </span>
+<span id="cb8-5"><a></a>    <span class="fu">unloadNamespace</span>(<span class="st">&quot;example_skeleton_package&quot;</span>)</span>
+<span id="cb8-6"><a></a>    <span class="fu">remove.packages</span>(<span class="st">&quot;example_skeleton_package&quot;</span>, <span class="st">&quot;.&quot;</span>)</span>
+<span id="cb8-7"><a></a>    </span>
+<span id="cb8-8"><a></a>    remotes<span class="sc">::</span><span class="fu">install_github</span>(submissions)</span>
+<span id="cb8-9"><a></a></span>
+<span id="cb8-10"><a></a>    <span class="fu">library</span>(example_skeleton_package)</span>
+<span id="cb8-11"><a></a></span>
+<span id="cb8-12"><a></a>    benches <span class="ot">&lt;-</span> bench<span class="sc">::</span><span class="fu">mark</span>(</span>
+<span id="cb8-13"><a></a>      <span class="at">slr =</span> <span class="fu">safely</span>(simple_linear_regression)(big_dat, price, gearbox),</span>
+<span id="cb8-14"><a></a>      <span class="at">memory =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb8-15"><a></a>      <span class="at">check =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb8-16"><a></a>      <span class="at">time_unit =</span> <span class="st">&quot;ms&quot;</span>,</span>
+<span id="cb8-17"><a></a>      <span class="at">min_time =</span> <span class="cn">Inf</span>,</span>
+<span id="cb8-18"><a></a>      <span class="at">max_iterations =</span> <span class="dv">20</span>,</span>
+<span id="cb8-19"><a></a>      <span class="at">filter_gc =</span> <span class="cn">FALSE</span></span>
+<span id="cb8-20"><a></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb8-21"><a></a>      <span class="fu">select</span>(</span>
+<span id="cb8-22"><a></a>        expression, median</span>
+<span id="cb8-23"><a></a>      ) </span>
+<span id="cb8-24"><a></a>    </span>
+<span id="cb8-25"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 

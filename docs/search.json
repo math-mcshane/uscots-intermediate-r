@@ -746,7 +746,7 @@
     "href": "materials/09-package_workflow.html#create-the-demo-document-first",
     "title": "Package-based Workflow",
     "section": "Create the demo document first",
-    "text": "Create the demo document first\nInclude code that you hope will work properly…\n… and code you hope will error in a reasonable way."
+    "text": "Create the demo document first\nInclude code that you hope will work properly…\n\nsimple_linear_regression(data = mtcars,\n                         explanatory = \"gear\",\n                         response = \"mpg\")\n\n… and code you hope will error in a reasonable way.\n\nsimple_linear_regression(data = mtcars,\n                         explanatory = \"gear\",\n                         response = \"not a variable\")"
   },
   {
     "objectID": "materials/09-package_workflow.html#sketch-out-the-function",
