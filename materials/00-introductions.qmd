@@ -13,7 +13,7 @@ editor: source
 
 `r fontawesome::fa("wifi")` WiFi
 
--   Username: `psu-guest`
+-   Username: `IASTATE-Guest`
 -   Password: NO PASSWORD!
 
 </br>

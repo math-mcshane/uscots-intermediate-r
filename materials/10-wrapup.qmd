@@ -44,13 +44,16 @@ editor: source
 ::: {.columns layout-ncol=3}
 
 ::: {.column}
-![Allison Theobold](images/00-allison-headshot.png){height=200px}
+**Allison Theobold**
+![](images/00-allison-headshot.png){height=300px}
 
 [🌐 Github](https://github.com/atheobold)  
+[🔗 Website](https://atheobold.github.io/)  
 :::
 
 ::: {.column}
-![Kelly Bodwin](images/00-kelly-headshot.png){height=200px}
+**Kelly Bodwin**
+![](images/00-kelly-headshot.png){height=300px}
 
 [🌐 GitHub](https://github.com/kbodwin)  
 [🦋 BlueSky](https://https://bsky.app/profile/kellybodwin.com)  
@@ -59,7 +62,8 @@ editor: source
 :::
 
 ::: {.column}
-![Tyson Barrett](images/00-tyson-headshot.png){height=200px}
+**Tyson Barrett**
+![](images/00-tyson-headshot.png){height=300px}
 
 
 [🌐 GitHub](https://github.com/tysonstanley)  

@@ -210,874 +210,6 @@
     "text": "Create your Project A Data Analysis assignment\nThings to include:\n\nWill you require any specific research questions to be addressed, or is it open-ended?\nWill you require any specific elements, such as “join at least two datasets” or “use a dataset of at least 10000 rows”?\nHow technical should the report be - is the audience other data scientists, or general public?\nHow will you grade successful but inefficient pipelines?\nHow will you make sure the pipeline really accomplishes what the report claims?"
   },
   {
-    "objectID": "materials/06-quarto-dashboards.html#section",
-    "href": "materials/06-quarto-dashboards.html#section",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": "",
-    "text": "Quarto Dashboards"
-  },
-  {
-    "objectID": "materials/06-quarto-dashboards.html#creating-a-quarto-dashboard",
-    "href": "materials/06-quarto-dashboards.html#creating-a-quarto-dashboard",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": "Creating a Quarto Dashboard",
-    "text": "Creating a Quarto Dashboard\n\nTo create a dashboard you need to use format: dashboard in the YAML:\n\n\n\ndashboard.qmd\n\n--- \ntitle: \"Palmer Penguins\"\nauthor: \"Cobblepot Analytics\"\nformat: dashboard\n---\n\n\n\nWe can add further details to the dashboard:\n\n\n\ndashboard.qmd\n\n--- \ntitle: \"Palmer Penguins\"\nauthor: \"Cobblepot Analytics\"\nformat: \n  dashboard:\n    logo: images/penguins.png\n    nav-buttons: [linkedin, twitter, github]\n---"
-  },
-  {
-    "objectID": "materials/06-quarto-dashboards.html#quarto-dashboard-components",
-    "href": "materials/06-quarto-dashboards.html#quarto-dashboard-components",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": "Quarto Dashboard Components",
-    "text": "Quarto Dashboard Components\n\n\n\nNavigation Bar — Icon, title, author, links to sub-pages\n\n\n\nPages, Rows, Columns, and Tabsets\n\n\n\nCards, Sidebars, and Toolbars"
-  },
-  {
-    "objectID": "materials/06-quarto-dashboards.html#default-layout-in-rows",
-    "href": "materials/06-quarto-dashboards.html#default-layout-in-rows",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": "Default Layout (in Rows)",
-    "text": "Default Layout (in Rows)\n\n\n\n\n---\ntitle: \"Palmer Penguins\"\nauthor: \"Allison Theobold\"\nformat: dashboard\n---\n    \n## Row {height=70%}\n\n```{r}\n```\n\n## Row {height=30%}\n\n```{r}\n```\n\n```{r}\n```"
-  },
-  {
-    "objectID": "materials/06-quarto-dashboards.html#changing-orientation-to-columns",
-    "href": "materials/06-quarto-dashboards.html#changing-orientation-to-columns",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": "Changing Orientation (to Columns)",
-    "text": "Changing Orientation (to Columns)\n\n\n\n\n---\ntitle: \"Palmer Penguins\"\nauthor: \"Allison Theobold\"\nformat: \n  dashboard:\n    orientation: columns\n---\n    \n## Column {width=60%}\n\n```{r}\n```\n\n## Column {width=40%}\n\n```{r}\n```\n\n```{r}\n```"
-  },
-  {
-    "objectID": "materials/06-quarto-dashboards.html#adding-more-pages",
-    "href": "materials/06-quarto-dashboards.html#adding-more-pages",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": "Adding More Pages",
-    "text": "Adding More Pages\n---\ntitle: \"Palmer Penguins\"\nauthor: \"Allison Theobold\"\nformat: dashboard\n---\n    \n# Bills \n\n```{r}\n```\n\n# Flippers {orientation=\"columns\"}\n\n## Column\n\n```{r}\n```\n\n```{r}\n```\n\n## Column \n\n```{r}\n```\n\n\n\n\n\n\n\nWhat orientation will the Bills page use?"
-  },
-  {
-    "objectID": "materials/06-quarto-dashboards.html#tabsets",
-    "href": "materials/06-quarto-dashboards.html#tabsets",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": "Tabsets",
-    "text": "Tabsets\nare created by adding the .tabset class to a row or column.\n\n\n\n---\ntitle: \"Palmer Penguins\"\nformat: dashboard\n---\n    \n## Row\n\n```{r}\n```\n\n## Row {.tabset}\n\n```{r}\n#| title: Chart 2\n```\n\n```{r}\n#| title: Chart 3\n```"
-  },
-  {
-    "objectID": "materials/06-quarto-dashboards.html#deeply-nested-tabsets",
-    "href": "materials/06-quarto-dashboards.html#deeply-nested-tabsets",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": "Deeply Nested Tabsets",
-    "text": "Deeply Nested Tabsets\n\n\n\n---\ntitle: \"Palmer Penguins\"\nformat: dashboard\n---\n    \n## Row {height=70%}\n\n```{r}\n```\n\n## Row {height=30%}\n\n### Column {.tabset}\n\n```{r}\n#| title: Chart 2\n```\n\n```{r}\n#| title: Chart 3\n```\n\n### Column\n\n```{r}\n```"
-  },
-  {
-    "objectID": "materials/06-quarto-dashboards.html#value-boxes",
-    "href": "materials/06-quarto-dashboards.html#value-boxes",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": "Value Boxes",
-    "text": "Value Boxes\n\n\n## Column - Medals by country {width=35%}\n\n### Row - Value boxes {height=30%}\n\n```{r}\n#| label: summer-calculate-most-medals\n\nsummer_most_golds &lt;- summer_olympics |&gt;\n  filter(medal == \"Gold\") |&gt;\n  count(team, sort = TRUE) |&gt;\n  slice_head(n = 1)\n\nsummer_most_silvers &lt;- summer_olympics |&gt;\n  filter(medal == \"Silver\") |&gt;\n  count(team, sort = TRUE) |&gt;\n  slice_head(n = 1)\n\nsummer_most_bronzes &lt;- summer_olympics |&gt;\n  filter(medal == \"Bronze\") |&gt;\n  count(team, sort = TRUE) |&gt;\n  slice_head(n = 1)\n```\n\n::: {.valuebox icon=\"award-fill\" color=\"#d4af37\"}\nMost golds:\n\n`{{r}} summer_most_golds$n`\n\n`{{r}} summer_most_golds$team`\n:::\n\n::: {.valuebox icon=\"award-fill\" color=\"#c0c0c0\"}\nMost silvers:\n\n`{{r}} summer_most_silvers$n`\n\n`{{r}} summer_most_silvers$team`\n:::\n\n::: {.valuebox icon=\"award-fill\" color=\"#cd7f32\"}\nMost bronzes:\n\n`{{r}} summer_most_bronzes$n`\n\n`{{r}} summer_most_bronzes$team`"
-  },
-  {
-    "objectID": "materials/06-quarto-dashboards.html#creating-a-shiny-dashboard",
-    "href": "materials/06-quarto-dashboards.html#creating-a-shiny-dashboard",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": "Creating a Shiny Dashboard",
-    "text": "Creating a Shiny Dashboard\n\n\ndashboard.qmd\n\n--- \ntitle: \"Palmer Penguins\"\nauthor: \"Cobblepot Analytics\"\nformat: dashboard\nserver: shiny\n---"
-  },
-  {
-    "objectID": "materials/06-quarto-dashboards.html#interactive-dashboard-components",
-    "href": "materials/06-quarto-dashboards.html#interactive-dashboard-components",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": "Interactive Dashboard Components",
-    "text": "Interactive Dashboard Components\n\nThe format of interactive dashboards are similar to a “standard” dashboard. The difference lies in how the outputs (e.g., plots, tables) are created.\n\n\nThe user is given a set of controls that influence the output that is seen.\nThere are code chunks that “react” to these user inputs.\nThe outputs displayed in the app depend on these user inputs.\n\n\n\n\n\n\n\n\n\n\nThere are three main #| context: values that code chunks can have: data, setup, server."
-  },
-  {
-    "objectID": "materials/06-quarto-dashboards.html#context-setup",
-    "href": "materials/06-quarto-dashboards.html#context-setup",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": "#| context: setup",
-    "text": "#| context: setup\n\n\n\ndashboard.qmd\n\n---\ntitle: \"Diamonds Explorer\"\nauthor: \"Barkamian Analytics\"\nformat: dashboard\nserver: shiny\n---\n\n```{r}\n#| context: setup\n\nlibrary(ggplot2)\ndataset &lt;- diamonds\n```\n\n\n\n\n\n\n\n\n\n\nThis could have been broken apart into two code chunks, one with a setup context and one with a data context. Using the data context is helpful because any R objects created in that chunk will be saved to an .RData file, which will then be loaded during Shiny server startup."
-  },
-  {
-    "objectID": "materials/06-quarto-dashboards.html#sidebar-content",
-    "href": "materials/06-quarto-dashboards.html#sidebar-content",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": ".sidebar Content",
-    "text": ".sidebar Content\n\n\n\ndashboard.qmd\n\n---\ntitle: \"Diamonds Explorer\"\nauthor: \"Barkamian Analytics\"\nformat: dashboard\nserver: shiny\n---\n\n```{r}\n#| context: setup\n\nlibrary(ggplot2)\ndataset &lt;- diamonds\n```\n\n\n# {.sidebar}\n\n```{r}\nsliderInput('sampleSize', 'Sample Size', \n            min = 1, max = nrow(dataset),\n            value = min(1000, nrow(dataset)), \n            step = 500, round = 0)\nbr()\ncheckboxInput('jitter', 'Jitter')\ncheckboxInput('smooth', 'Smooth')\n```\n\n```{r}\nselectInput('x', 'X', names(dataset)) \nselectInput('y', 'Y', names(dataset), names(dataset)[[2]])\nselectInput('color', 'Color', c('None', names(dataset)))\n```\n\n```{r}\nselectInput('facet_row', 'Facet Row',\n  c(None = '.', names(diamonds[sapply(diamonds, is.factor)])))\nselectInput('facet_col', 'Facet Column',\n  c(None = '.', names(diamonds[sapply(diamonds, is.factor)])))\n```"
-  },
-  {
-    "objectID": "materials/06-quarto-dashboards.html#whats-with-the-formatting",
-    "href": "materials/06-quarto-dashboards.html#whats-with-the-formatting",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": "What’s with the formatting?",
-    "text": "What’s with the formatting?\n\n\nsliderInput('sampleSize', 'Sample Size', min = 1, max = nrow(dataset),\n            value = min(1000, nrow(dataset)), step = 500, round = 0)\n\n\n\n\n\n'sampleSize': the name of the object that stores the value (to be used later in other code chunks)\n'Sample Size': the title (for the slider) that is displayed on the dashboard\nmin = 1: the starting value of the slider\nmax = nrow(dataset): the ending value of the slider\nvalue = min(1000, nrow(dataset)): sets the initial (default) value of the slider\nstep = 500: how big of increments should be displayed\nround = 0: specifies there should be 0 decimals places used\n\n\n\n\n\n\n\n\n\n\n\nWhy do these say dataset instead of diamonds? This makes the app usable for any dataset!"
-  },
-  {
-    "objectID": "materials/06-quarto-dashboards.html#how-are-these-inputs-used",
-    "href": "materials/06-quarto-dashboards.html#how-are-these-inputs-used",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": "How are these inputs used?",
-    "text": "How are these inputs used?\n\n\n\ndashboard.qmd\n\n---\ntitle: \"Diamonds Explorer\"\nauthor: \"Barkamian Analytics\"\nformat: dashboard\nserver: shiny\n---\n\n```{r}\n#| context: setup\nlibrary(ggplot2)\ndataset &lt;- diamonds\n```\n\n# {.sidebar}\n\n```{r}\nsliderInput('sampleSize', 'Sample Size', \n            min=1, max=nrow(dataset),\n            value=min(1000, nrow(dataset)), \n            step=500, round=0)\nbr()\ncheckboxInput('jitter', 'Jitter')\ncheckboxInput('smooth', 'Smooth')\n```\n\n```{r}\nselectInput('x', 'X', names(dataset)) \nselectInput('y', 'Y', names(dataset), names(dataset)[[2]])\nselectInput('color', 'Color', c('None', names(dataset)))\n```\n\n```{r}\nselectInput('facet_row', 'Facet Row',\n  c(None='.', names(diamonds[sapply(diamonds, is.factor)])))\nselectInput('facet_col', 'Facet Column',\n  c(None='.', names(diamonds[sapply(diamonds, is.factor)])))\n```\n\n# Plot\n\n```{r}\nplotOutput('plot')\n```\n\n# Data\n\n```{r}\ntableOutput('data')\n```"
-  },
-  {
-    "objectID": "materials/06-quarto-dashboards.html#what-about-plot-and-data",
-    "href": "materials/06-quarto-dashboards.html#what-about-plot-and-data",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": "What about 'plot' and 'data'?",
-    "text": "What about 'plot' and 'data'?\n\n\ndashboard.qmd\n\n```{r}\n#| context: server\n\ndataset &lt;- reactive({\n  diamonds[sample(nrow(diamonds), input$sampleSize),]\n})\n \noutput$plot &lt;- renderPlot({\n  \n  p &lt;- ggplot(\n    dataset(), \n    aes_string(x=input$x, y=input$y)) + geom_point()\n  \n  if (input$color != 'None')\n    p &lt;- p + aes_string(color=input$color)\n  \n  facets &lt;- paste(input$facet_row, '~', input$facet_col)\n  if (facets != '. ~ .')\n    p &lt;- p + facet_grid(facets)\n  \n  if (input$jitter)\n    p &lt;- p + geom_jitter()\n  if (input$smooth)\n    p &lt;- p + geom_smooth()\n  \n  p\n  \n})\n\noutput$data &lt;- renderTable({\n  dataset()\n})\n```"
-  },
-  {
-    "objectID": "materials/06-quarto-dashboards.html#how-are-all-of-these-pieces-connected",
-    "href": "materials/06-quarto-dashboards.html#how-are-all-of-these-pieces-connected",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": "How are all of these pieces connected?",
-    "text": "How are all of these pieces connected?\n\n\nplotOutput('plot') is an empty picture frame in your user interface\n\n\n\n\n\n\nrenderPlot() is the painting you generate in your server\n\n\n\n\n\n\n\noutput$plot places the painting in the frame\n\n\n\n\n\n\n\nplotOutput('plot') places the painting on display"
-  },
-  {
-    "objectID": "materials/00-introductions.html#welcome",
-    "href": "materials/00-introductions.html#welcome",
-    "title": "Teaching Intermediate R",
-    "section": "Welcome!",
-    "text": "Welcome!\n WiFi\n\nUsername: psu-guest\nPassword: NO PASSWORD!\n\n\nMaterials\nTo access the workshop materials use the following link:\n\nhttps://atheobold.github.io/uscots-intermediate-r/"
-  },
-  {
-    "objectID": "materials/00-introductions.html#your-workshop-leaders",
-    "href": "materials/00-introductions.html#your-workshop-leaders",
-    "title": "Teaching Intermediate R",
-    "section": "Your Workshop Leaders",
-    "text": "Your Workshop Leaders\n\n\n\n\n\n\nKelly Bodwin\n\n\n\nTyson Barrett\n\n\n\nAllison Theobold"
-  },
-  {
-    "objectID": "materials/00-introductions.html#section",
-    "href": "materials/00-introductions.html#section",
-    "title": "Teaching Intermediate R",
-    "section": "",
-    "text": "We are assuming\n\n\n You are familar with introductory R concepts\n  You know a little bit of Markdown and / or Quarto\n\n\n\n\n\nWe’ll help you\n\n \nlearn about potential “intermediate” concepts to incorporate into a course\nbrainstorm ideas for incorporating these ideas into a course project"
-  },
-  {
-    "objectID": "materials/00-introductions.html#workshop-structure",
-    "href": "materials/00-introductions.html#workshop-structure",
-    "title": "Teaching Intermediate R",
-    "section": "Workshop structure",
-    "text": "Workshop structure\n\nTopic Overview: Lecture segments + Project examples\nActivity: Make (incremental) progress toward designing three different projects"
-  },
-  {
-    "objectID": "materials/00-introductions.html#code-of-conduct",
-    "href": "materials/00-introductions.html#code-of-conduct",
-    "title": "Teaching Intermediate R",
-    "section": "Code of Conduct",
-    "text": "Code of Conduct\n\nThe American Statistical Association (ASA) is committed to providing an atmosphere in which personal respect and intellectual growth are valued and the free expression and exchange of ideas are encouraged. Consistent with this commitment, it is the policy of the ASA that all participants in ASA activities enjoy a welcoming environment free from unlawful discrimination, harassment, and retaliation. We strive to be a community that welcomes and supports people of all backgrounds and identities. This includes, but is not limited to, members of any race, ethnicity, culture, national origin, color, immigration status, social and economic class, educational level, sex, sexual orientation, gender identity and expression, age, size, family status, political belief, religion, and mental and physical ability.\n\n\n\nASA Code of Conduct"
-  },
-  {
-    "objectID": "materials/00-introductions.html#expected-behavior",
-    "href": "materials/00-introductions.html#expected-behavior",
-    "title": "Teaching Intermediate R",
-    "section": "Expected Behavior",
-    "text": "Expected Behavior\n\n\n\nModel and support the norms of respect necessary to promote the conditions for healthy exchange of scientific ideas.\nIn speech or conduct, do not insult or disparage other participants.\nBe conscious of hierarchical structures, specifically the existence of stark power differentials between students, early career statisticians and established career statisticians—noting that fear of retaliation from more established statisticians can make it difficult for students and early career statisticians to express discomfort, rebuff unwelcome advances, and report violations of the conduct policy.\nBe sensitive to indications that may suggest that individuals are feeling unwelcome.\n\n\n\n\n\n\n\nASA Code of Conduct"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#make-sure-you-are-up-to-date",
-    "href": "materials/01-setup-installs.html#make-sure-you-are-up-to-date",
-    "title": "Workshop Installs & Set-up",
-    "section": "Make sure you are up to date",
-    "text": "Make sure you are up to date\n\nAre you on the latest version of RStudio: v2025.05.1; we at least require v2023.03.0+386 or later\nAre you on the latest version of Quarto: v1.3.340 or later (This installs with RStudio, so you shouldn’t need to do anything except in unusual cases.)\nAre you on the latest version of R: v4.5.0; we require v4.3.0 or later"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#download-course-materials",
-    "href": "materials/01-setup-installs.html#download-course-materials",
-    "title": "Workshop Installs & Set-up",
-    "section": "Download course materials",
-    "text": "Download course materials\n\ninstall.packages(\"usethis\")\n\nusethis::use_course(\"atheobold/uscots-intermediate-r\")"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#package-installs",
-    "href": "materials/01-setup-installs.html#package-installs",
-    "title": "Workshop Installs & Set-up",
-    "section": "Package installs",
-    "text": "Package installs\nOption A: In the course project, open installs.R and run all.\nOption B: Copy paste and run:\n\npackages &lt;- c(\n  \"tidyverse\",\n  \"tidymodels\",\n  \"data.table\",\n  \"duckdb\"\n  ### Allison and Tyson add\n)\n\ninstall.packages(packages)"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#is-it-this",
-    "href": "materials/01-setup-installs.html#is-it-this",
-    "title": "Workshop Installs & Set-up",
-    "section": "Is it this?",
-    "text": "Is it this?\n\noutput$plot &lt;- renderPlot({\n  req(input$var)\n  ggplot(data(), aes_string(input$var)) +\n    geom_histogram()\n})"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#or-this",
-    "href": "materials/01-setup-installs.html#or-this",
-    "title": "Workshop Installs & Set-up",
-    "section": "… or this?",
-    "text": "… or this?\n\nresult &lt;- dt[\n  score &gt; 50 & !is.na(category),\n  .(mean_score = mean(score), n = .N),\n  by = .(category, region)\n][order(-mean_score)\n ][, rank := .I\n ][n &gt; 10]"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#or-this-1",
-    "href": "materials/01-setup-installs.html#or-this-1",
-    "title": "Workshop Installs & Set-up",
-    "section": "… or this?",
-    "text": "… or this?\n\nresult &lt;- data_main %&gt;%\n  left_join(meta_info, by = \"id\") %&gt;%\n  pivot_longer(cols = starts_with(\"score_\"), names_to = \"metric\", values_to = \"score\") %&gt;%\n  filter(!is.na(score)) %&gt;%\n  group_by(group, metric) %&gt;%\n  summarize(mean_score = mean(score), .groups = \"drop\") %&gt;%\n  pivot_wider(names_from = metric, values_from = mean_score) %&gt;%\n  inner_join(group_labels, by = \"group\") %&gt;%\n  arrange(desc(overall))"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#plenty-of-resources",
-    "href": "materials/01-setup-installs.html#plenty-of-resources",
-    "title": "Workshop Installs & Set-up",
-    "section": "Plenty of resources…",
-    "text": "Plenty of resources…"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#and-generally-agreed-upon-topics.",
-    "href": "materials/01-setup-installs.html#and-generally-agreed-upon-topics.",
-    "title": "Workshop Installs & Set-up",
-    "section": "… and generally agreed-upon topics.",
-    "text": "… and generally agreed-upon topics.\n\nBasics of coding: variables and objects; loops and conditionals; etc.\nInstalling and loading packages\nObject types and structures\nLoading and examining data\nBasic visualization\nData wrangling (“Big 5” tidyverse verbs, or equivalent)"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#is-it-just-programming-of-course-not",
-    "href": "materials/01-setup-installs.html#is-it-just-programming-of-course-not",
-    "title": "Workshop Installs & Set-up",
-    "section": "Is it just programming? Of course not!",
-    "text": "Is it just programming? Of course not!"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#intermediate-r-is-not-intermediate-statistics",
-    "href": "materials/01-setup-installs.html#intermediate-r-is-not-intermediate-statistics",
-    "title": "Workshop Installs & Set-up",
-    "section": "Intermediate R is NOT Intermediate Statistics",
-    "text": "Intermediate R is NOT Intermediate Statistics\n\nThe hardest part of fitting statistical models in R is the statistical concepts and interpretation not the coding.\n“[Statistical Topic] with R” is not the same class!\nOur course focuses on R Skills and requires only second-year statistics knowledge."
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#intermediate-r-is-non-linear",
-    "href": "materials/01-setup-installs.html#intermediate-r-is-non-linear",
-    "title": "Workshop Installs & Set-up",
-    "section": "Intermediate R is non-linear",
-    "text": "Intermediate R is non-linear\n\nIt is not a bridge between Intro R and Advanced R\nIt is not a set of skills that builds progressively\nIt is a collection of learning paths (sometimes overlapping) towards a specific end goal.\n**Our course has three units that can be rearranged *modularly**"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#intermediate-r-is-defined-by-goals",
-    "href": "materials/01-setup-installs.html#intermediate-r-is-defined-by-goals",
-    "title": "Workshop Installs & Set-up",
-    "section": "Intermediate R is defined by goals",
-    "text": "Intermediate R is defined by goals\n\nDifferent R learners have wildly different needs.\nThere is no single skill that every Intermediate R user must know!\nInstead, identify a use case and goal that is not achievable with Intro R skills, and fill in the missing skills.\nOur course is project-driven, not exam or assignment based."
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#the-structure",
-    "href": "materials/01-setup-installs.html#the-structure",
-    "title": "Workshop Installs & Set-up",
-    "section": "The structure:",
-    "text": "The structure:"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#unit-a-intermediate-r-for-data-science-1",
-    "href": "materials/01-setup-installs.html#unit-a-intermediate-r-for-data-science-1",
-    "title": "Workshop Installs & Set-up",
-    "section": "Unit A: Intermediate R for Data Science",
-    "text": "Unit A: Intermediate R for Data Science"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#learning-objectives",
-    "href": "materials/01-setup-installs.html#learning-objectives",
-    "title": "Workshop Installs & Set-up",
-    "section": "Learning Objectives",
-    "text": "Learning Objectives\n\nManage, process, and load data from non-tabular and non-local sources.\nClean and prepare messy and unstructured data, including handling missing values, and the use of regular expressions to extract information from text data.\nUse joins to combine multiple datasets with many-to-many relationships.\nUse complex data wrangling pipelines, including multiple pivots and/or multiple grouping levels, to wrangle data."
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#unit-a-project",
-    "href": "materials/01-setup-installs.html#unit-a-project",
-    "title": "Workshop Installs & Set-up",
-    "section": "Unit A Project",
-    "text": "Unit A Project\nStudents will produce a stylized, publication-ready report that performs exploratory data analysis to address specific research questions.\nData for the report will be taken from multiple online and non-csv sources, and will require the use of regular expressions to collect, clean, or wrangle their data.\nResearch questions will be provided that require complex, multi-step data wrangling, and results should be communicated using complex and polished visualizations."
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#unit-a-project---example",
-    "href": "materials/01-setup-installs.html#unit-a-project---example",
-    "title": "Workshop Installs & Set-up",
-    "section": "Unit A Project - Example",
-    "text": "Unit A Project - Example\nRegional Differences in Fast Food Preference\n\nData: Refer to this dataset of fast food locations across the US. Then, use Yelp’s open dataset for education to find reviews and other information pertaining to fast food restaurants."
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#unit-a-project---example-1",
-    "href": "materials/01-setup-installs.html#unit-a-project---example-1",
-    "title": "Workshop Installs & Set-up",
-    "section": "Unit A Project - Example",
-    "text": "Unit A Project - Example\nRegional Differences in Fast Food Preference\n\nResearch Questions:\n\nAre certain fast food brands more prevalent in different regions of the US than others?\nAre certain fast food chains more highly rated in different regions of the US than others?\nDo reviewers use different language in their reviews in different regions?\nDo customers have different priorities for what they look for in fast food restaurants in different regions?"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#non-tabular-and-non-local-data",
-    "href": "materials/01-setup-installs.html#non-tabular-and-non-local-data",
-    "title": "Workshop Installs & Set-up",
-    "section": "Non-tabular and non-local data",
-    "text": "Non-tabular and non-local data\n\njsonlite and XML packages for hierarchical data structures.\nodbc, DBI, and dbplyr for cloud database-stored data\nduckdb and arrow for local database storage.\ndata.table for large in-memory data"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#messy-and-unstructured-data",
-    "href": "materials/01-setup-installs.html#messy-and-unstructured-data",
-    "title": "Workshop Installs & Set-up",
-    "section": "Messy and unstructured data",
-    "text": "Messy and unstructured data\n\nnaniar for dealing with missing values\nstringr and regular expressions for processing text variables\nBasic content from Text Mining in R and the tidytext package\nData cleaning principles from Reproducible Analysis with R."
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#multiple-datasets-joining",
-    "href": "materials/01-setup-installs.html#multiple-datasets-joining",
-    "title": "Workshop Installs & Set-up",
-    "section": "Multiple datasets joining",
-    "text": "Multiple datasets joining\n\n*_join() functions from dplyr\nConcepts of mutating joins and filtering joins (R4DS Chapter 19)\ndbplyr and/or arrow to perform joins at database level"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#complex-data-wrangling-pipelines",
-    "href": "materials/01-setup-installs.html#complex-data-wrangling-pipelines",
-    "title": "Workshop Installs & Set-up",
-    "section": "Complex data wrangling pipelines",
-    "text": "Complex data wrangling pipelines\n\nCreation and matching of keys in relational data\nPivoting with pivot_*() functions from tidyr (content needed!)\ngroup_by() to mutate() pipeline constructions\nUse of vectorized functions or map/apply inside mutate()\nIteration with purrr or apply functions."
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#more-advanced-visualizations",
-    "href": "materials/01-setup-installs.html#more-advanced-visualizations",
-    "title": "Workshop Installs & Set-up",
-    "section": "More advanced visualizations",
-    "text": "More advanced visualizations\n\ngeom_text() and geom_annotate() for annotations\nNew plot types from ggplot helpers - e.g. ridgelines from ggridges; alluvial plots with ggsankey, radar plots with fmsb and ggradar.\nChloropleths with leaflet and sf.\nGreat resource: R Graph Gallery"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#learning-goals",
-    "href": "materials/01-setup-installs.html#learning-goals",
-    "title": "Workshop Installs & Set-up",
-    "section": "Learning Goals",
-    "text": "Learning Goals\n\nProduce visualizations beyond basic geometries, including maps and annotated plots.\nIncorporate interactivity into data reports.\nAdopt extensions from peripheral software and packages, such as quarto.\nAdd statistical elements to data analysis pipeline.\nProduce production-quality plots and tables."
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#unit-c-project",
-    "href": "materials/01-setup-installs.html#unit-c-project",
-    "title": "Workshop Installs & Set-up",
-    "section": "Unit C Project",
-    "text": "Unit C Project\nStudents will create an interactive dashboard that integrates advanced R features, such as Shiny, Quarto dashboards, or Plotly, to explore and communicate a research question effectively.\nThe dashboard will include statistical results that are well-summarize, well-visualized, and well-interpreted."
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#unit-c-project---example",
-    "href": "materials/01-setup-installs.html#unit-c-project---example",
-    "title": "Workshop Installs & Set-up",
-    "section": "Unit C Project - Example",
-    "text": "Unit C Project - Example\nFast Food Preferences at McDonald’s\n\nUsing your Yelp analyses from Unit A and your menu analyses from Unit B, create a dashboard to understand trends and preferences for McDonald’s customers. The dashboard must be deployed for online access."
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#unit-c-project---example-1",
-    "href": "materials/01-setup-installs.html#unit-c-project---example-1",
-    "title": "Workshop Installs & Set-up",
-    "section": "Unit C Project - Example",
-    "text": "Unit C Project - Example\nFast Food Preferences at McDonald’s\n\nYour dashboard must be interactive and accessible to non-technical audiences. It should communicate trends in regions as well as connecting Yelp review language to specific menu items.\nYou must include an element of results of a statistical model or test, communicated to non-technical audiences."
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#interactivity",
-    "href": "materials/01-setup-installs.html#interactivity",
-    "title": "Workshop Installs & Set-up",
-    "section": "Interactivity",
-    "text": "Interactivity\n\nplotly() for immediately interactive plots\nShiny for user input\nMastering Shiny textbook"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#extensions-and-peripheral-software",
-    "href": "materials/01-setup-installs.html#extensions-and-peripheral-software",
-    "title": "Workshop Installs & Set-up",
-    "section": "Extensions and peripheral software",
-    "text": "Extensions and peripheral software\n\n\nQuarto: Dashboards, themes, websites, etc. etc.\nreactjs for animated visualization\n“Branding” use of css/scss."
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#statistical-elements",
-    "href": "materials/01-setup-installs.html#statistical-elements",
-    "title": "Workshop Installs & Set-up",
-    "section": "Statistical elements",
-    "text": "Statistical elements\n\ntidymodels for predictive modeling\ntidyclust for unsupervised learning\nBootstrapping or resampling results"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#production-quality-plots-and-tables",
-    "href": "materials/01-setup-installs.html#production-quality-plots-and-tables",
-    "title": "Workshop Installs & Set-up",
-    "section": "Production-quality plots and tables",
-    "text": "Production-quality plots and tables\n\nWriting custom ggplot themes\nAnnotating plots with geom_text() etc.\ngt() for better tables"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#learning-goals-1",
-    "href": "materials/01-setup-installs.html#learning-goals-1",
-    "title": "Workshop Installs & Set-up",
-    "section": "Learning Goals",
-    "text": "Learning Goals\n\nApply function creation and code design techniques\nEngage in algorithmic thinking, including iteration.\nConsider speed and efficiency concerns in code tasks.\nDevelop a reproducible workflow for code development in R.\nEngage in unit testing and code review, including of others’ code."
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#unit-c-project-1",
-    "href": "materials/01-setup-installs.html#unit-c-project-1",
-    "title": "Workshop Installs & Set-up",
-    "section": "Unit C Project",
-    "text": "Unit C Project\nStudents will create a working and installable R package that is well-documented and tracked via version control. The package must include a demonstration document (or “vignette”) and several basic informal unit tests.\nThe package should provide well-designed and user-friendly functions to streamline a data collection, wrangling, and/or analysis task.\nCode design should consider issues of efficiency and should demonstrate both tidyverse and non-tidyverse syntax fluency."
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#unit-c-project---example-2",
-    "href": "materials/01-setup-installs.html#unit-c-project---example-2",
-    "title": "Workshop Installs & Set-up",
-    "section": "Unit C Project - Example",
-    "text": "Unit C Project - Example\n\nCreating your own webscraping API\n\n\nCreate an R package that provides functions to scrape, clean, and wrangle data from the McDonald’s menu. Then, provide a vignette document demonstrating use of this package. This package must be hosted on GitHub in proper installable format."
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#unit-c-project---example-3",
-    "href": "materials/01-setup-installs.html#unit-c-project---example-3",
-    "title": "Workshop Installs & Set-up",
-    "section": "Unit C Project - Example",
-    "text": "Unit C Project - Example\n\nCreating your own webscraping API\n\n\nYour code and/or vignette must:\n\nInclude at least one use of iteration with purrr\nInclude use of data.table code for large data preparation tasks.\nBe well-commented and code reviewed by peers."
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#function-creation-and-code-design",
-    "href": "materials/01-setup-installs.html#function-creation-and-code-design",
-    "title": "Workshop Installs & Set-up",
-    "section": "Function creation and code design",
-    "text": "Function creation and code design\n\nR Packages textbook, first section. (Wickham and Bryan)\nCode Smells and Feels talk by Jenny Bryan\nR4DS Chapter 20"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#algorithmic-thinking-and-iteration",
-    "href": "materials/01-setup-installs.html#algorithmic-thinking-and-iteration",
-    "title": "Workshop Installs & Set-up",
-    "section": "Algorithmic thinking and iteration",
-    "text": "Algorithmic thinking and iteration\n\nR4DS Chapter 26\nR Programming for Data Science\nCS 101 resources for algorithms (content needed!)\nCreate methods from scratch: basic linear regression, kmeans clustering, generative art, bootstrapping or randomization tests."
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#speed-and-efficiency",
-    "href": "materials/01-setup-installs.html#speed-and-efficiency",
-    "title": "Workshop Installs & Set-up",
-    "section": "Speed and efficiency",
-    "text": "Speed and efficiency\n\nUse tictoc for informal speed testing; proc.time() for more specific speed testing; or profileR for full profiling.\nAdvanced R Chapter 23\nR Programming for Data Science\ndata.table for many groupings and concise syntax (content coming soon!)"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#reproducible-workflow",
-    "href": "materials/01-setup-installs.html#reproducible-workflow",
-    "title": "Workshop Installs & Set-up",
-    "section": "Reproducible workflow",
-    "text": "Reproducible workflow\n\nHappy Git with R textbook\nTeacher resource: GitHub Classroom for providing skeleton code and controlling student repos.\ntestthat for creating formal unit tests.\nroxygen2 for function documentation"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#unit-testing-and-code-review",
-    "href": "materials/01-setup-installs.html#unit-testing-and-code-review",
-    "title": "Workshop Installs & Set-up",
-    "section": "Unit testing and code review",
-    "text": "Unit testing and code review\n\nR Packages Chapter 13\nFunctional programming and unit testing for data munging with R online textbook\nComputer science resources for code review principles (content needed!)\nCode testing and review content from the Data Carpentries."
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#a-few-stretch-goals",
-    "href": "materials/01-setup-installs.html#a-few-stretch-goals",
-    "title": "Workshop Installs & Set-up",
-    "section": "A few stretch goals",
-    "text": "A few stretch goals\n\nPackage passes CRAN checks.\nUse of object-oriented programming\nAdvanced debugging, e.g. with debugonce() or browser()"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#order-of-units",
-    "href": "materials/01-setup-installs.html#order-of-units",
-    "title": "Workshop Installs & Set-up",
-    "section": "Order of Units",
-    "text": "Order of Units\n\nC -&gt; A: Begin with webscraping, then incorporate other data and use it for analysis.\nB -&gt; A: Design a dashboard with simple, Intro R level analyses; then enhance the dashboard with more complex data.\nC -&gt; B: Create webscraping or data anaysis package, then use it underlying a dashboard."
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#overlap-in-content",
-    "href": "materials/01-setup-installs.html#overlap-in-content",
-    "title": "Workshop Installs & Set-up",
-    "section": "Overlap in content",
-    "text": "Overlap in content\n\ndata.table and friends can be emphasized in A for wrangling tasks, or in C as an efficiency/syntax skill.\nplotly and friends can be used in A for easy plot upgrade, or in B for interactive dashboards\nGit and GitHub can be introduced in any Unit.\nfunction writing can be used to streamline steps in units A or B"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#why-are-you-here",
-    "href": "materials/01-setup-installs.html#why-are-you-here",
-    "title": "Workshop Installs & Set-up",
-    "section": "Why are you here?",
-    "text": "Why are you here?\nWhat inspired you to sign-up for this workshop?\nWhat are two goals you have related to teaching intermediate R?\n\n\n\n\n\n\nMake SMART goals!\n\n\nFind goals that are specific, that you can measure, that you can achieve in the next 1.5 days, and that are relevant to your teaching!"
-  },
-  {
-    "objectID": "materials/01-setup-installs.html#activity-find-your-data-sources",
-    "href": "materials/01-setup-installs.html#activity-find-your-data-sources",
-    "title": "Workshop Installs & Set-up",
-    "section": "Activity: Find Your Data Sources",
-    "text": "Activity: Find Your Data Sources\nIn pairs, come up with a data context and a few broad research questions.\nFind online as many of the following as you can related to your data context:\n\nClean tabular datasets, e.g. kaggle or tidytuesday\nMessy or non-tabular datasets, e.g. JSONs or tables on a webpage\nAPI sources related to your data\nMassive datasets\n\nWe recommend starting a Google Doc or similar with your group, to collect references to datasets, as well as content from future activities.\n\n\n\n−+\n15:00"
-  },
-  {
-    "objectID": "materials/10-wrapup.html#takeaways",
-    "href": "materials/10-wrapup.html#takeaways",
-    "title": "Wrap-Up",
-    "section": "Takeaways",
-    "text": "Takeaways\n\n\n\nDesign your Intermediate R class around projects\nSeparate content into modular units organized by goals.\nSign up to be notified when the Course in a Box is available!"
-  },
-  {
-    "objectID": "materials/10-wrapup.html#reflections",
-    "href": "materials/10-wrapup.html#reflections",
-    "title": "Wrap-Up",
-    "section": "Reflections",
-    "text": "Reflections\n\nWhat from this workshop are you excited to incorporate into your class?\nWhat from this workshop will you probably not include in your class?\nAre there any skills you want to learn better, so that you can eventually teach them in your class?\nWhat will you commit to creating before your next class?\nHow can we help you going forward?"
-  },
-  {
-    "objectID": "materials/10-wrapup.html#find-us",
-    "href": "materials/10-wrapup.html#find-us",
-    "title": "Wrap-Up",
-    "section": "Find us!",
-    "text": "Find us!\n\n\n\n\n\n\n\n\n\nAllison Theobold\n\n\n🌐 Github\n\n\n\n\nKelly Bodwin\n\n\n🌐 GitHub\n🦋 BlueSky\n🔗 LinkedIn\n🐘 Fosstodon\n\n\n\n\nTyson Barrett\n\n\n🌐 GitHub\n🦋 BlueSky\n🔗 LinkedIn\n🐘 Fosstodon"
-  },
-  {
-    "objectID": "materials/05-quarto-projects-websites.html#section",
-    "href": "materials/05-quarto-projects-websites.html#section",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": "",
-    "text": "Quarto Projects & Websites"
-  },
-  {
-    "objectID": "materials/05-quarto-projects-websites.html#quarto-projects",
-    "href": "materials/05-quarto-projects-websites.html#quarto-projects",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": "Quarto Projects",
-    "text": "Quarto Projects\nare directories that provide the ability to…\n\n\nrender all or some of the files in a directory with a single command (e.g. quarto render myproject)\nshare a YAML configuration across multiple documents\nredirect output artifacts to another directory\nfreeze rendered output (i.e. don’t re-execute documents unless they have changed)"
-  },
-  {
-    "objectID": "materials/05-quarto-projects-websites.html#types-of-projects",
-    "href": "materials/05-quarto-projects-websites.html#types-of-projects",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": "Types of Projects",
-    "text": "Types of Projects\nUse the quarto create project command (in the terminal) to create a new project:\n\n\nTerminal\n\nquarto create project\n\n\nYou will then be given a variety of options for projects:\n\n\nOutput\n\n ? Type\n ❯ default\n   website\n   blog\n   manuscript\n   book\n   confluence"
-  },
-  {
-    "objectID": "materials/05-quarto-projects-websites.html#say-we-chose-to-make-a-website",
-    "href": "materials/05-quarto-projects-websites.html#say-we-chose-to-make-a-website",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": "Say we chose to make a website…",
-    "text": "Say we chose to make a website…\n\nOur website would come pre-populated with five initial files:\n\n\n\nLet’s talk about each file!"
-  },
-  {
-    "objectID": "materials/05-quarto-projects-websites.html#rproj-where-does-your-analysis-live",
-    "href": "materials/05-quarto-projects-websites.html#rproj-where-does-your-analysis-live",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": ".Rproj – Where does your analysis live?",
-    "text": ".Rproj – Where does your analysis live?\n\nR has a powerful notion of a working directory–where R looks for files that you ask it to load, and where it will store any files that you ask it to save.\nR for Data Science\n\n\nRStudio shows your current working directory at the top of the console:"
-  },
-  {
-    "objectID": "materials/05-quarto-projects-websites.html#rproj-where-does-your-analysis-live-1",
-    "href": "materials/05-quarto-projects-websites.html#rproj-where-does-your-analysis-live-1",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": ".Rproj – Where does your analysis live?",
-    "text": ".Rproj – Where does your analysis live?\nKeeping all the files associated with a given project (data, R scripts, figures, etc.) together in one directory is such a wise and common practice that RStudio has built-in support for this via RStudio projects (.Rproj)."
-  },
-  {
-    "objectID": "materials/05-quarto-projects-websites.html#file-paths",
-    "href": "materials/05-quarto-projects-websites.html#file-paths",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": "File Paths (😩)",
-    "text": "File Paths (😩)\n\nInside a .Rproj, you can access files using a relative path. Absolute paths should never be used!\n\n\n\n\n\n\nIf I wanted to access the students.xlsx file in the data folder of my project, I could use data/students.csv to access these data.\n\n\n\n\n\n\n\n\n\nThis is different from the full path (where the file lives on my computer): /Users/atheobol/Desktop/trial-website/data/students.csv."
-  },
-  {
-    "objectID": "materials/05-quarto-projects-websites.html#yml-files",
-    "href": "materials/05-quarto-projects-websites.html#yml-files",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": ".yml Files",
-    "text": ".yml Files\n\n\n_quarto.yml\n\nproject:\n  type: website\n\nwebsite:\n  title: \"trial-website\"\n  navbar:\n    left:\n      - href: index.qmd\n        text: Home\n      - about.qmd\n\nformat:\n  html:\n    theme: cosmo\n    css: styles.css\n    toc: true\n\neditor: visual"
-  },
-  {
-    "objectID": "materials/05-quarto-projects-websites.html#css",
-    "href": "materials/05-quarto-projects-websites.html#css",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": ".css",
-    "text": ".css\nA Cascading Style Sheets (CSS) file is a style sheet language used in web development to describe the presentation and formatting of documents written in HTML or XML."
-  },
-  {
-    "objectID": "materials/05-quarto-projects-websites.html#index.qmd-about.qmd",
-    "href": "materials/05-quarto-projects-websites.html#index.qmd-about.qmd",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": "index.qmd & about.qmd",
-    "text": "index.qmd & about.qmd\n\n\n\n\nThis is the home page for the website!\nWhatever you place in the index.qmd file will be the first page people see!\nThis page is also accessed using the top navigation menu (on the left side) using the link titled “Home.”\n\n\n\n\n\n\nThis is an additional content page!\nThis is accessed through the top navigation menu.\nNotice that the .yml file doesn’t give this page a name, so it defaults to the title included in the about.qmd document."
-  },
-  {
-    "objectID": "materials/05-quarto-projects-websites.html#website-themes",
-    "href": "materials/05-quarto-projects-websites.html#website-themes",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": "Website Themes",
-    "text": "Website Themes\nformat:\n  html:\n    theme: cosmo\n    css: styles.css\n    toc: true\n\nHere is a list of every theme available for Quarto websites: https://quarto.org/docs/output-formats/html-themes.html\n\n\n\n\nOptionally, you can set separate “light” and “dark” themes:\n\ntheme:\n  light: flatly\n  dark: darkly"
-  },
-  {
-    "objectID": "materials/09-package_workflow.html#what-is-a-package-workflow",
-    "href": "materials/09-package_workflow.html#what-is-a-package-workflow",
-    "title": "Package-based Workflow",
-    "section": "What is a package workflow?",
-    "text": "What is a package workflow?"
-  },
-  {
-    "objectID": "materials/09-package_workflow.html#skeleton-r-package",
-    "href": "materials/09-package_workflow.html#skeleton-r-package",
-    "title": "Package-based Workflow",
-    "section": "Skeleton R package",
-    "text": "Skeleton R package\n\nusethis::create_package(\"example_skeleton_package\")\nusethis::use_r(\"simple_linear_regression\")\nusethis::use_test(\"simple_linear_regression\")\nNew File &gt; Quarto &gt; slr_demo.qmd"
-  },
-  {
-    "objectID": "materials/09-package_workflow.html#complete-the-function",
-    "href": "materials/09-package_workflow.html#complete-the-function",
-    "title": "Package-based Workflow",
-    "section": "Complete the function",
-    "text": "Complete the function"
-  },
-  {
-    "objectID": "materials/09-package_workflow.html#document-and-build",
-    "href": "materials/09-package_workflow.html#document-and-build",
-    "title": "Package-based Workflow",
-    "section": "Document and build",
-    "text": "Document and build"
-  },
-  {
-    "objectID": "materials/09-package_workflow.html#pass-the-unit-tests",
-    "href": "materials/09-package_workflow.html#pass-the-unit-tests",
-    "title": "Package-based Workflow",
-    "section": "Pass the unit tests",
-    "text": "Pass the unit tests"
-  },
-  {
-    "objectID": "materials/09-package_workflow.html#render-the-demo",
-    "href": "materials/09-package_workflow.html#render-the-demo",
-    "title": "Package-based Workflow",
-    "section": "Render the demo",
-    "text": "Render the demo"
-  },
-  {
-    "objectID": "materials/09-package_workflow.html#what-do-students-turn-in",
-    "href": "materials/09-package_workflow.html#what-do-students-turn-in",
-    "title": "Package-based Workflow",
-    "section": "What do students turn in?",
-    "text": "What do students turn in?\n\nA link to their GitHub of the package.\nThe rendered html of slr_demo.\nA code review of someone else’s package."
-  },
-  {
-    "objectID": "materials/09-package_workflow.html#grading",
-    "href": "materials/09-package_workflow.html#grading",
-    "title": "Package-based Workflow",
-    "section": "Grading",
-    "text": "Grading\n\n`"
-  },
-  {
-    "objectID": "materials/04-professional-viz.html#why-professional-data-visualization",
-    "href": "materials/04-professional-viz.html#why-professional-data-visualization",
-    "title": "Professional Data Visualization",
-    "section": "Why Professional Data Visualization?",
-    "text": "Why Professional Data Visualization?\nMoving from “making plots” to “effective communication”:\n\n\nProcess vs. Product: Teaching students to evaluate their own work\nAdvanced techniques: Extensions, theming, interactivity\nProfessional standards: Publication-ready graphics\nAssessment strategies: Clear grading principles"
-  },
-  {
-    "objectID": "materials/04-professional-viz.html#learning-objectives",
-    "href": "materials/04-professional-viz.html#learning-objectives",
-    "title": "Professional Data Visualization",
-    "section": "Learning Objectives",
-    "text": "Learning Objectives\nBy the end of this session, you will:\n\n\nUnderstand grading principles for “good” data visualization (process vs. product)\nKnow current ggplot2 extensions and advanced theming techniques\nBe familiar with interactive visualization tools (plotly, htmlwidgets)\n\n\n\n\nFocus: Comprehensive resources to teach professional data visualization"
-  },
-  {
-    "objectID": "materials/04-professional-viz.html#process-vs.-product-assessment",
-    "href": "materials/04-professional-viz.html#process-vs.-product-assessment",
-    "title": "Professional Data Visualization",
-    "section": "Process vs. Product Assessment",
-    "text": "Process vs. Product Assessment\nTeaching visualization requires evaluating both:\n\n\nProcess: Design thinking, iteration, justification\nProduct: Technical execution, clarity, aesthetics\nReflection: Understanding of design choices\nCritique: Ability to evaluate others’ work\n\n\n\n\nGoal: Students learn to self-assess, iterate, and improve"
-  },
-  {
-    "objectID": "materials/04-professional-viz.html#what-makes-a-good-visualization",
-    "href": "materials/04-professional-viz.html#what-makes-a-good-visualization",
-    "title": "Professional Data Visualization",
-    "section": "What Makes a “Good” Visualization?",
-    "text": "What Makes a “Good” Visualization?\n\nTechnical Accuracy:\n\nAppropriate chart type for data\nCorrect use of scales and axes\nAccurate representation of relationships\n\nDesign Principles:\n\nClear, informative titles and labels\nAppropriate color choices and accessibility\nEffective use of visual hierarchy\nMinimal cognitive load\n\nCommunication:\n\nClear message or insight\nAppropriate for target audience\nContext and interpretation provided"
-  },
-  {
-    "objectID": "materials/04-professional-viz.html#grading-rubric-for-visualizations",
-    "href": "materials/04-professional-viz.html#grading-rubric-for-visualizations",
-    "title": "Professional Data Visualization",
-    "section": "Grading Rubric for Visualizations",
-    "text": "Grading Rubric for Visualizations\n\n⁇ After considering some of the principles of “good” viz, what features should we be grading for?\n\n\n\n⁇ What message do we want to tell by the rubric?"
-  },
-  {
-    "objectID": "materials/04-professional-viz.html#example-grading-rubric-framework",
-    "href": "materials/04-professional-viz.html#example-grading-rubric-framework",
-    "title": "Professional Data Visualization",
-    "section": "Example Grading Rubric Framework",
-    "text": "Example Grading Rubric Framework\n\n\n\n\n\n\n\n\n\n\n\nCriteria\nExcellent (4)\nGood (3)\nNeeds Work (2)\nPoor (1)\n\n\n\n\nChart Type\nMatch for data & message\nAppropriate choice\nQuestionable fit\nWrong choice\n\n\nDesign\nPolished, clean, accessible\nGood design principles\nSome issues\nMany problems\n\n\nMessage\nCompelling insight\nGood communication\nUnclear message\nNo clear point\n\n\nProcess\nShows iteration/ reflection\nEvidence of thinking\nSome documentation\nNo process shown\n\n\n\n\n\nTeaching Tip: Have students grade example visualizations using your rubric before using it on their own work"
-  },
-  {
-    "objectID": "materials/04-professional-viz.html#sometimes-bad-is-the-way",
-    "href": "materials/04-professional-viz.html#sometimes-bad-is-the-way",
-    "title": "Professional Data Visualization",
-    "section": "Sometimes Bad Is The Way",
-    "text": "Sometimes Bad Is The Way\n[](04-mando.png]"
-  },
-  {
-    "objectID": "materials/04-professional-viz.html#sometimes-bad-is-the-way-1",
-    "href": "materials/04-professional-viz.html#sometimes-bad-is-the-way-1",
-    "title": "Professional Data Visualization",
-    "section": "Sometimes Bad Is The Way",
-    "text": "Sometimes Bad Is The Way\n\nChallenge students to create a data visual that does well in only one of the 4 criteria\n\n\nCan encourage them to think through the criteria without being too routine or safe\nSharing within the class (e.g., on the class message board) can expand the learning\nAsk the students which ceriteria it appears to do well\nIf a little competition makes sense: vote for best of the bad"
-  },
-  {
-    "objectID": "materials/04-professional-viz.html#teaching-resources",
-    "href": "materials/04-professional-viz.html#teaching-resources",
-    "title": "Professional Data Visualization",
-    "section": "Teaching Resources",
-    "text": "Teaching Resources\n\nRubric Examples:\n\nPenn State Data Visualization Rubric - Award judging criteria\nGeorgetown Assessment Guide - Student evaluation framework\nASA Poster Judging Rubric - Professional standards\n\nDesign Principle Resources:\n\nAlberto Cairo’s “The Truthful Art” - Comprehensive visualization principles\nEdward Tufte’s principles - Classic design guidelines\n\nClaus Wilke’s “Fundamentals of Data Visualization” - Modern, R-focused approach\n\nTeaching Examples:\n\nUMass Visualization Assessment - Academic research\nIU Visualization Rubric - Complete framework"
-  },
-  {
-    "objectID": "materials/04-professional-viz.html#the-extension-ecosystem",
-    "href": "materials/04-professional-viz.html#the-extension-ecosystem",
-    "title": "Professional Data Visualization",
-    "section": "The Extension Ecosystem",
-    "text": "The Extension Ecosystem\nggplot2 is designed to be extensible:\n\n\n50+ extension packages for specialized needs\nConsistent grammar across extensions\nProfessional-quality output\nActive development community\n\n\n\n\nTeaching advantage: Students learn one grammar, unlock dozens of tools"
-  },
-  {
-    "objectID": "materials/04-professional-viz.html#essential-extensions-for-teaching",
-    "href": "materials/04-professional-viz.html#essential-extensions-for-teaching",
-    "title": "Professional Data Visualization",
-    "section": "Essential Extensions for Teaching",
-    "text": "Essential Extensions for Teaching\n\n# Install key extensions\n# pak::pak(c(\"patchwork\", \"gganimate\", \"ggtext\", \"plotly\",\n#            \"ggforce\", \"ggh4x\", \"ggrepel\", \"palmerpenguins\"))\n\n# Core packages\nlibrary(ggplot2)\nlibrary(palmerpenguins)\nlibrary(patchwork)  # Combining plots\nlibrary(gganimate)  # Animations  \nlibrary(ggtext)     # Enhanced text\nlibrary(plotly)     # interactive plots"
-  },
-  {
-    "objectID": "materials/04-professional-viz.html#patchwork-combining-plots",
-    "href": "materials/04-professional-viz.html#patchwork-combining-plots",
-    "title": "Professional Data Visualization",
-    "section": "Patchwork: Combining Plots",
-    "text": "Patchwork: Combining Plots\n\n# Create individual plots\np1 &lt;- ggplot(penguins, aes(bill_length_mm, body_mass_g, color = species)) + \n  geom_point()\n\np2 &lt;- ggplot(penguins, aes(species)) + \n  geom_bar()\n\np3 &lt;- ggplot(penguins, aes(body_mass_g)) + \n  geom_histogram()\n\n# Combine with operators\n(p1 + p2) / p3    # Side by side and stacked \n\n\n\nTeaching value: Students learn composition principles and complex figure creation for publications"
-  },
-  {
-    "objectID": "materials/04-professional-viz.html#gganimate-bringing-data-to-life",
-    "href": "materials/04-professional-viz.html#gganimate-bringing-data-to-life",
-    "title": "Professional Data Visualization",
-    "section": "gganimate: Bringing Data to Life",
-    "text": "gganimate: Bringing Data to Life\n\nlibrary(gapminder)\n\n# Create animated plot\nggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, color = continent)) +\n  geom_point(alpha = 0.7) +\n  scale_x_log10() +\n  # Animation components\n  transition_time(year) +\n  labs(title = \"Year: {closest_state}\")\n\n\nStudent Exercise: Create before/after static vs. animated versions to show communication differences"
-  },
-  {
-    "objectID": "materials/04-professional-viz.html#ggtext-professional-text-formatting",
-    "href": "materials/04-professional-viz.html#ggtext-professional-text-formatting",
-    "title": "Professional Data Visualization",
-    "section": "ggtext: Professional Text Formatting",
-    "text": "ggtext: Professional Text Formatting\n\nlibrary(ggtext)\n\nggplot(penguins, aes(bill_length_mm, body_mass_g, color = species)) +\n  geom_point() +\n  labs(\n    title = \"Bill length vs. **Body mass**\",\n    subtitle = \"Data colored by &lt;span style='color:blue;'&gt;penguin species&lt;/span&gt;\",\n    caption = \"*Source: Palmer Station Antarctica LTER*\"\n  ) +\n  theme(\n    plot.title = element_markdown(),\n    plot.subtitle = element_markdown(),\n    plot.caption = element_markdown()\n  )"
-  },
-  {
-    "objectID": "materials/04-professional-viz.html#advanced-theming-techniques",
-    "href": "materials/04-professional-viz.html#advanced-theming-techniques",
-    "title": "Professional Data Visualization",
-    "section": "Advanced Theming Techniques",
-    "text": "Advanced Theming Techniques\n\n# Custom theme for consistency\nmy_theme &lt;- theme_minimal() +\n  theme(\n    text = element_text(family = \"Arial\"),\n    plot.title = element_text(size = 16, face = \"bold\"),\n    panel.grid.minor = element_blank(),\n    legend.position = \"bottom\"\n  )\n\n# Apply to all plots\ntheme_set(my_theme)\n\n\nTeaching Strategy: Have students develop their own theme as a semester project"
-  },
-  {
-    "objectID": "materials/04-professional-viz.html#ggplot2-extension-teaching-resources",
-    "href": "materials/04-professional-viz.html#ggplot2-extension-teaching-resources",
-    "title": "Professional Data Visualization",
-    "section": "ggplot2 Extension Teaching Resources",
-    "text": "ggplot2 Extension Teaching Resources\n\nComprehensive Guides:\n\nAwesome ggplot2 - Curated list of extensions and tutorials\nggplot2 Extensions Gallery - Official showcase with examples\nAlbert Rapp’s Extension Guide - 5 powerful extensions tutorial\nData Visualization Conservation Book - Academic session on extensions\n\nPackage-Specific Resources:\n\nPatchwork Documentation - Complete guide to plot composition\ngganimate Documentation - Animation tutorials and examples\nggtext Package Guide - Enhanced text formatting\n\nTeaching Materials:\n\nMode Analytics Extension Guide - 12 extensions for more powerful visualizations\nInfoWorld ggplot Extensions - Practical examples\nMedical Research Extensions - Domain-specific applications"
-  },
-  {
-    "objectID": "materials/04-professional-viz.html#why-interactive-visualization",
-    "href": "materials/04-professional-viz.html#why-interactive-visualization",
-    "title": "Professional Data Visualization",
-    "section": "Why Interactive Visualization?",
-    "text": "Why Interactive Visualization?\nInteractive plots enable:\n\n\nExploration: Users can discover patterns themselves\nEngagement: More compelling than static plots\nDetail: Tooltips and zoom for complex data\nStorytelling: Guided narratives through data\n\n\n\n\nTeaching opportunity: Students learn both exploration and communication"
-  },
-  {
-    "objectID": "materials/04-professional-viz.html#the-htmlwidgets-ecosystem",
-    "href": "materials/04-professional-viz.html#the-htmlwidgets-ecosystem",
-    "title": "Professional Data Visualization",
-    "section": "The htmlwidgets Ecosystem",
-    "text": "The htmlwidgets Ecosystem\n\n# Install interactive packages\n# pak::pak(c(\"plotly\", \"DT\", \"leaflet\", \"ggiraph\"))\n\n# Core interactive tools\nlibrary(plotly)     # Interactive plots\nlibrary(DT)         # Interactive tables\nlibrary(leaflet)    # Interactive maps\nlibrary(ggiraph)    # Interactive ggplot2\n\n\nhtmlwidgets: R bindings to JavaScript libraries that work in multiple contexts (console, RStudio, Rmarkdown, Shiny)"
-  },
-  {
-    "objectID": "materials/04-professional-viz.html#from-ggplot2-to-plotly",
-    "href": "materials/04-professional-viz.html#from-ggplot2-to-plotly",
-    "title": "Professional Data Visualization",
-    "section": "From ggplot2 to plotly",
-    "text": "From ggplot2 to plotly\n\n# Create ggplot\np &lt;- ggplot(penguins, aes(bill_length_mm, body_mass_g, \n             color = species, text = paste(\"Species:\", species))) +\n  geom_point(size = 3) +\n  labs(title = \"Bill Length vs. Body Mass\")\n\n# Make it interactive\nggplotly(p, tooltip = \"text\")\n\n\n\n\n\n\nTeaching Win: Students can make existing ggplot2 plots interactive with one function call"
-  },
-  {
-    "objectID": "materials/04-professional-viz.html#custom-plotly-interactions",
-    "href": "materials/04-professional-viz.html#custom-plotly-interactions",
-    "title": "Professional Data Visualization",
-    "section": "Custom plotly Interactions",
-    "text": "Custom plotly Interactions\n\n# Native plotly syntax\nplot_ly(penguins, x = ~bill_length_mm, y = ~body_mass_g, color = ~species,\n        text = ~paste(\"Species:\", species), \n        hovertemplate = \"%{text}&lt;br&gt;Bill Length: %{x}mm&lt;br&gt;Body Mass: %{y}g\") %&gt;%\n  add_markers(size = ~bill_depth_mm) %&gt;%\n  layout(title = \"Interactive Penguin Data\",\n         xaxis = list(title = \"Bill Length (mm)\"),\n         yaxis = list(title = \"Body Mass (g)\"))"
-  },
-  {
-    "objectID": "materials/04-professional-viz.html#ggiraph-interactive-ggplot2",
-    "href": "materials/04-professional-viz.html#ggiraph-interactive-ggplot2",
-    "title": "Professional Data Visualization",
-    "section": "ggiraph: Interactive ggplot2",
-    "text": "ggiraph: Interactive ggplot2\n\nlibrary(ggiraph)\n\n# Add interactivity to ggplot2\np &lt;- ggplot(penguins, aes(bill_length_mm, body_mass_g, \n             tooltip = paste(\"Species:\", species),\n             data_id = species)) +\n  geom_point_interactive(aes(color = species), size = 3) +\n  theme_minimal()\n\n# Render as interactive\ngirafe(ggobj = p)\n\n\n\n\n\n\nStudent-Friendly: Uses familiar ggplot2 syntax with _interactive suffix"
-  },
-  {
-    "objectID": "materials/04-professional-viz.html#interactive-visualization-teaching-resources",
-    "href": "materials/04-professional-viz.html#interactive-visualization-teaching-resources",
-    "title": "Professional Data Visualization",
-    "section": "Interactive Visualization Teaching Resources",
-    "text": "Interactive Visualization Teaching Resources\n\nComprehensive Learning:\n\nInteractive Web-based Data Visualization with R - Complete plotly R guide\nDataCamp Plotly Course - Structured learning path\nPlotly R Documentation - Official reference and examples\n\nhtmlwidgets Ecosystem:\n\nhtmlwidgets.org - Gallery of available packages\nInteractive Widgets in R - Comprehensive guide\nUniversity of Sheffield Guide - Academic perspective\n\nTeaching-Specific Resources:\n\nGeeksforGeeks Plotly Tutorial - Step-by-step examples\nggiraph Documentation - Interactive ggplot2 extensions\nLinking Multiple Widgets - Advanced techniques\n\nIntegration Examples:\n\nSaving and embedding HTML widgets in reports\nUsing interactive plots in Rmarkdown documents\nCombining multiple widgets for dashboards"
-  },
-  {
-    "objectID": "materials/04-professional-viz.html#course-integration-strategies",
-    "href": "materials/04-professional-viz.html#course-integration-strategies",
-    "title": "Professional Data Visualization",
-    "section": "Course Integration Strategies",
-    "text": "Course Integration Strategies\n\nScaffolded Learning Approach:\n\nWeek 1-2: ggplot2 fundamentals and design principles\nWeek 3-4: Extensions (patchwork, themes, ggtext)\nWeek 5-6: Animation with gganimate\nWeek 7-8: Interactive visualization with plotly\n\nAssessment Progression:\n\nStart with static plot improvement exercises\nMove to extension-based enhancement projects\nCulminate with interactive storytelling assignments\nPortfolio showing evolution from basic to professional"
-  },
-  {
-    "objectID": "materials/04-professional-viz.html#professional-development-resources",
-    "href": "materials/04-professional-viz.html#professional-development-resources",
-    "title": "Professional Data Visualization",
-    "section": "Professional Development Resources",
-    "text": "Professional Development Resources\n\nVisualization Theory & Principles:\n\nClaus Wilke’s “Fundamentals of Data Visualization” - Modern, comprehensive guide\nAlberto Cairo’s “The Truthful Art” - Ethics and principles\nEdward Tufte’s Works - Classic visualization theory\n\nR-Specific Advanced Techniques:\n\nggplot2: Elegant Graphics for Data Analysis - Hadley Wickham’s comprehensive guide\nR Graphics Cookbook - Practical solutions\nData Visualization: A Practical Introduction - Sociology perspective with R\n\nTeaching Methodology:\n\nData Science Education Resources - Complete course framework\nTeaching Data Science - Pedagogical approaches\nJournal of Statistics Education - Academic research on teaching"
-  },
-  {
-    "objectID": "materials/07-stat-communication.html#the-9010-rule",
-    "href": "materials/07-stat-communication.html#the-9010-rule",
-    "title": "Communicating Statistical Results",
-    "section": "The “90/10” rule",
-    "text": "The “90/10” rule\n\n90% of the work you do will occupy only 10% of your presentation time/space.\n\n\nStudents tend to make reports and dashboards using the timeline they experienced in the analysis\nInstead, focus on conclusions and takeaways\nDifferentiate between communicating results and documenting a process (both are important!)"
-  },
-  {
-    "objectID": "materials/07-stat-communication.html#the-9010-rule-1",
-    "href": "materials/07-stat-communication.html#the-9010-rule-1",
-    "title": "Communicating Statistical Results",
-    "section": "The “90/10” rule",
-    "text": "The “90/10” rule\n10%:\n\nData cleaning and wrangling details\nAssumption checking for models or statistical tests\nCombined results all in one visual\n\n90%:\n\nSpecific conclusions from tests - “we found evidence that…”\nPlots of model predictions and summary statistics\nVisuals highlighting individual takeaways - “California has higher predicted prices than the Midwest”"
-  },
-  {
-    "objectID": "materials/07-stat-communication.html#the-newspaper-headline-approach",
-    "href": "materials/07-stat-communication.html#the-newspaper-headline-approach",
-    "title": "Communicating Statistical Results",
-    "section": "The “Newspaper Headline” approach",
-    "text": "The “Newspaper Headline” approach\n\nFor each analysis, what is the headline a newspaper would use.\n\n\nNO: Statements of general accomplishment - “We fit a model to predict prices of fast food items.”\nNO: Model assessment - “Our model has 93% accuracy on a test set.”\nNO: Results in technical form - “The variable found to be most significant was location of store.”\nNO: Unspecific results - “Location of fast food store impacts price.”\nYES: Results of public interest in plain terms with specific knowledge: “Fast food prices are 50% higher in California than in the Midwest.”"
-  },
-  {
-    "objectID": "materials/07-stat-communication.html#your-turn",
-    "href": "materials/07-stat-communication.html#your-turn",
-    "title": "Communicating Statistical Results",
-    "section": "YOUR TURN",
-    "text": "YOUR TURN\n\nBrainstorm a list of headlines that could be produced from your data.\nMake these specific, not meta, even though the numbers will be made up - e.g. “Fast food prices are 50% higher in California than in the Midwest.” not “Find the differences in price by region”.\n\n\n\n\n−+\n03:00"
-  },
-  {
-    "objectID": "materials/07-stat-communication.html#dashboards-as-qa",
-    "href": "materials/07-stat-communication.html#dashboards-as-qa",
-    "title": "Communicating Statistical Results",
-    "section": "Dashboards as “Q&A”",
-    "text": "Dashboards as “Q&A”\n\nThe goal of an interactive dashboard is to replace you, by giving the audience a way to ask and answer questions themselves.\n\n\nAnticipate follow up questions to the main “headlines”.\nGo from general to specific - e.g. “Here is a plot of the average price of burgers over time. Use this drop-down to filter by state.”\nKeep your dashboard sanitized against bad statistical choices - e.g., don’t allow users to select “Show logistic regression” for numeric data."
-  },
-  {
-    "objectID": "materials/07-stat-communication.html#why-should-i-care",
-    "href": "materials/07-stat-communication.html#why-should-i-care",
-    "title": "Communicating Statistical Results",
-    "section": "“Why should I care?”",
-    "text": "“Why should I care?”\n\nDashboards and presentations are for your target audience, not your peers.\n\n\nWhat is interesting to a data scientist might not be interesting to your target audience.\nUse personas:\n\nGive your client a name\nWhy does this client want your analysis?\nWhat is their specific stake in the data?\nWhat level of technical content will they understand and appreciate?\n\nStay focused on how the client will use the analysis to make decisions."
-  },
-  {
-    "objectID": "materials/07-stat-communication.html#example",
-    "href": "materials/07-stat-communication.html#example",
-    "title": "Communicating Statistical Results",
-    "section": "Example",
-    "text": "Example\n\nMy client is Nisha, a CEO of a small restaurant chain that competes with local fast food. She has a degree in business administration, so she understands basic statistics. She has hired me to analyze price trends in the food industry.\n\n\nNisha is a CEO of a small business - she is probably interested in how to keep her restaurant solvent\nWe can quote basic statistics, but we should not go deep into modeling math.\nShe has asked specifically about prices, so our presentation should focus on that.\nShe has asked about trends, so our “newspaper headline” should be about changes over time.\nWe should state how our analysis will help her set her prices at her restaurants."
-  },
-  {
-    "objectID": "materials/07-stat-communication.html#your-turn-1",
-    "href": "materials/07-stat-communication.html#your-turn-1",
-    "title": "Communicating Statistical Results",
-    "section": "YOUR TURN",
-    "text": "YOUR TURN\n\nCome up with three different personas that your students might target with their dashboards.\nHow would you expect the dashboard to be different between these three personas?\n\n\n\n\n−+\n03:00"
-  },
-  {
-    "objectID": "materials/07-stat-communication.html#activity-ideas",
-    "href": "materials/07-stat-communication.html#activity-ideas",
-    "title": "Communicating Statistical Results",
-    "section": "Activity ideas",
-    "text": "Activity ideas\nCan the data answer this question?\n\nGive students a dataset and a list of questions\n\nIs this conclusion supported?\n\nGive a visualization or test result, and a client quote - “This means I should sell more hamburgers!”\nAsk students if they think the result supports the conclusion.\n\n“Client” feedback\n\nInvent a mock client for all student groups to target\nHave student groups swap projects and imagine themselves as the clients"
-  },
-  {
-    "objectID": "materials/07-stat-communication.html#create-your-project-b-dashboard-assignment",
-    "href": "materials/07-stat-communication.html#create-your-project-b-dashboard-assignment",
-    "title": "Communicating Statistical Results",
-    "section": "Create your Project B Dashboard Assignment",
-    "text": "Create your Project B Dashboard Assignment\nThings to include:\n\nWho is the target audience that the student should address?\nWill you require any specific research questions to be addressed, or is it open-ended?\nWill you require any specific dashboard elements, such as interactivity?\nHow will you grade:\n\nthe design elements?\nthe technical elements?\nthe communication elements?"
-  },
-  {
     "objectID": "materials/02-complex-pipeline.html#background-intro-level-rqs",
     "href": "materials/02-complex-pipeline.html#background-intro-level-rqs",
     "title": "Complex Data Pipelines",
@@ -1328,6 +460,1063 @@
     "title": "Complex Data Pipelines",
     "section": "YOUR TURN",
     "text": "YOUR TURN\n\nFor your dataset, come up with some research questions that require a complicated pipeline to address.\nSketch out the steps needed to answer a research question.\nJot down some ideas about how you would make transitional student questions out of these - e.g., which steps would you show and which would you leave blank?\n\n\n\n\n−+\n10:00"
+  },
+  {
+    "objectID": "materials/07-stat-communication.html#the-9010-rule",
+    "href": "materials/07-stat-communication.html#the-9010-rule",
+    "title": "Communicating Statistical Results",
+    "section": "The “90/10” rule",
+    "text": "The “90/10” rule\n\n90% of the work you do will occupy only 10% of your presentation time/space.\n\n\nStudents tend to make reports and dashboards using the timeline they experienced in the analysis\nInstead, focus on conclusions and takeaways\nDifferentiate between communicating results and documenting a process (both are important!)"
+  },
+  {
+    "objectID": "materials/07-stat-communication.html#the-9010-rule-1",
+    "href": "materials/07-stat-communication.html#the-9010-rule-1",
+    "title": "Communicating Statistical Results",
+    "section": "The “90/10” rule",
+    "text": "The “90/10” rule\n10%:\n\nData cleaning and wrangling details\nAssumption checking for models or statistical tests\nCombined results all in one visual\n\n90%:\n\nSpecific conclusions from tests - “we found evidence that…”\nPlots of model predictions and summary statistics\nVisuals highlighting individual takeaways - “California has higher predicted prices than the Midwest”"
+  },
+  {
+    "objectID": "materials/07-stat-communication.html#the-newspaper-headline-approach",
+    "href": "materials/07-stat-communication.html#the-newspaper-headline-approach",
+    "title": "Communicating Statistical Results",
+    "section": "The “Newspaper Headline” approach",
+    "text": "The “Newspaper Headline” approach\n\nFor each analysis, what is the headline a newspaper would use.\n\n\nNO: Statements of general accomplishment - “We fit a model to predict prices of fast food items.”\nNO: Model assessment - “Our model has 93% accuracy on a test set.”\nNO: Results in technical form - “The variable found to be most significant was location of store.”\nNO: Unspecific results - “Location of fast food store impacts price.”\nYES: Results of public interest in plain terms with specific knowledge: “Fast food prices are 50% higher in California than in the Midwest.”"
+  },
+  {
+    "objectID": "materials/07-stat-communication.html#your-turn",
+    "href": "materials/07-stat-communication.html#your-turn",
+    "title": "Communicating Statistical Results",
+    "section": "YOUR TURN",
+    "text": "YOUR TURN\n\nBrainstorm a list of headlines that could be produced from your data.\nMake these specific, not meta, even though the numbers will be made up - e.g. “Fast food prices are 50% higher in California than in the Midwest.” not “Find the differences in price by region”.\n\n\n\n\n−+\n03:00"
+  },
+  {
+    "objectID": "materials/07-stat-communication.html#dashboards-as-qa",
+    "href": "materials/07-stat-communication.html#dashboards-as-qa",
+    "title": "Communicating Statistical Results",
+    "section": "Dashboards as “Q&A”",
+    "text": "Dashboards as “Q&A”\n\nThe goal of an interactive dashboard is to replace you, by giving the audience a way to ask and answer questions themselves.\n\n\nAnticipate follow up questions to the main “headlines”.\nGo from general to specific - e.g. “Here is a plot of the average price of burgers over time. Use this drop-down to filter by state.”\nKeep your dashboard sanitized against bad statistical choices - e.g., don’t allow users to select “Show logistic regression” for numeric data."
+  },
+  {
+    "objectID": "materials/07-stat-communication.html#why-should-i-care",
+    "href": "materials/07-stat-communication.html#why-should-i-care",
+    "title": "Communicating Statistical Results",
+    "section": "“Why should I care?”",
+    "text": "“Why should I care?”\n\nDashboards and presentations are for your target audience, not your peers.\n\n\nWhat is interesting to a data scientist might not be interesting to your target audience.\nUse personas:\n\nGive your client a name\nWhy does this client want your analysis?\nWhat is their specific stake in the data?\nWhat level of technical content will they understand and appreciate?\n\nStay focused on how the client will use the analysis to make decisions."
+  },
+  {
+    "objectID": "materials/07-stat-communication.html#example",
+    "href": "materials/07-stat-communication.html#example",
+    "title": "Communicating Statistical Results",
+    "section": "Example",
+    "text": "Example\n\nMy client is Nisha, a CEO of a small restaurant chain that competes with local fast food. She has a degree in business administration, so she understands basic statistics. She has hired me to analyze price trends in the food industry.\n\n\nNisha is a CEO of a small business - she is probably interested in how to keep her restaurant solvent\nWe can quote basic statistics, but we should not go deep into modeling math.\nShe has asked specifically about prices, so our presentation should focus on that.\nShe has asked about trends, so our “newspaper headline” should be about changes over time.\nWe should state how our analysis will help her set her prices at her restaurants."
+  },
+  {
+    "objectID": "materials/07-stat-communication.html#your-turn-1",
+    "href": "materials/07-stat-communication.html#your-turn-1",
+    "title": "Communicating Statistical Results",
+    "section": "YOUR TURN",
+    "text": "YOUR TURN\n\nCome up with three different personas that your students might target with their dashboards.\nHow would you expect the dashboard to be different between these three personas?\n\n\n\n\n−+\n03:00"
+  },
+  {
+    "objectID": "materials/07-stat-communication.html#activity-ideas",
+    "href": "materials/07-stat-communication.html#activity-ideas",
+    "title": "Communicating Statistical Results",
+    "section": "Activity ideas",
+    "text": "Activity ideas\nCan the data answer this question?\n\nGive students a dataset and a list of questions\n\nIs this conclusion supported?\n\nGive a visualization or test result, and a client quote - “This means I should sell more hamburgers!”\nAsk students if they think the result supports the conclusion.\n\n“Client” feedback\n\nInvent a mock client for all student groups to target\nHave student groups swap projects and imagine themselves as the clients"
+  },
+  {
+    "objectID": "materials/07-stat-communication.html#create-your-project-b-dashboard-assignment",
+    "href": "materials/07-stat-communication.html#create-your-project-b-dashboard-assignment",
+    "title": "Communicating Statistical Results",
+    "section": "Create your Project B Dashboard Assignment",
+    "text": "Create your Project B Dashboard Assignment\nThings to include:\n\nWho is the target audience that the student should address?\nWill you require any specific research questions to be addressed, or is it open-ended?\nWill you require any specific dashboard elements, such as interactivity?\nHow will you grade:\n\nthe design elements?\nthe technical elements?\nthe communication elements?"
+  },
+  {
+    "objectID": "materials/04-professional-viz.html#why-professional-data-visualization",
+    "href": "materials/04-professional-viz.html#why-professional-data-visualization",
+    "title": "Professional Data Visualization",
+    "section": "Why Professional Data Visualization?",
+    "text": "Why Professional Data Visualization?\nMoving from “making plots” to “effective communication”:\n\n\nProcess vs. Product: Teaching students to evaluate their own work\nAdvanced techniques: Extensions, theming, interactivity\nProfessional standards: Publication-ready graphics\nAssessment strategies: Clear grading principles"
+  },
+  {
+    "objectID": "materials/04-professional-viz.html#learning-objectives",
+    "href": "materials/04-professional-viz.html#learning-objectives",
+    "title": "Professional Data Visualization",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\nBy the end of this session, you will:\n\n\nUnderstand grading principles for “good” data visualization (process vs. product)\nKnow current ggplot2 extensions and advanced theming techniques\nBe familiar with interactive visualization tools (plotly, htmlwidgets)\n\n\n\n\nFocus: Comprehensive resources to teach professional data visualization"
+  },
+  {
+    "objectID": "materials/04-professional-viz.html#process-vs.-product-assessment",
+    "href": "materials/04-professional-viz.html#process-vs.-product-assessment",
+    "title": "Professional Data Visualization",
+    "section": "Process vs. Product Assessment",
+    "text": "Process vs. Product Assessment\nTeaching visualization requires evaluating:\n\n\nProcess: Design thinking, iteration, justification\nProduct: Technical execution, clarity, aesthetics\nReflection: Understanding of design choices\nCritique: Ability to evaluate others’ work\n\n\n\n\nGoal: Students learn to self-assess, iterate, and improve"
+  },
+  {
+    "objectID": "materials/04-professional-viz.html#what-makes-a-good-visualization",
+    "href": "materials/04-professional-viz.html#what-makes-a-good-visualization",
+    "title": "Professional Data Visualization",
+    "section": "What Makes a “Good” Visualization?",
+    "text": "What Makes a “Good” Visualization?\n\nTechnical Accuracy:\n\nAppropriate chart type for data\nCorrect use of scales and axes\nAccurate representation of relationships\n\nDesign Principles:\n\nClear, informative titles and labels\nAppropriate color choices and accessibility\nEffective use of visual hierarchy\nMinimal cognitive load\n\nCommunication:\n\nClear message or insight\nAppropriate for target audience\nContext and interpretation provided"
+  },
+  {
+    "objectID": "materials/04-professional-viz.html#grading-rubric-for-visualizations",
+    "href": "materials/04-professional-viz.html#grading-rubric-for-visualizations",
+    "title": "Professional Data Visualization",
+    "section": "Grading Rubric for Visualizations",
+    "text": "Grading Rubric for Visualizations\n\n⁇ After considering some of the principles of “good” viz, what features should we be grading for?\n\n\n\n⁇ What message do we want to tell by the rubric?\n\n\n\n\nTake just 60 seconds to consider what elements would go into the rubric.\n\n\n\n\n−+\n01:00"
+  },
+  {
+    "objectID": "materials/04-professional-viz.html#example-grading-rubric-framework",
+    "href": "materials/04-professional-viz.html#example-grading-rubric-framework",
+    "title": "Professional Data Visualization",
+    "section": "Example Grading Rubric Framework",
+    "text": "Example Grading Rubric Framework\n\n\n\n\n\n\n\n\n\n\n\nCriteria\nExcellent (4)\nGood (3)\nNeeds Work (2)\nPoor (1)\n\n\n\n\nChart Type\nMatch for data & message\nAppropriate choice\nQuestionable fit\nWrong choice\n\n\nDesign\nPolished, clean, accessible\nGood design principles\nSome issues\nMany problems\n\n\nMessage\nCompelling insight\nGood communication\nUnclear message\nNo clear point\n\n\nProcess\nShows iteration/ reflection\nEvidence of thinking\nSome documentation\nNo process shown\n\n\n\n\n\nTeaching Tip: Have students grade example visualizations using your rubric before using it on their own work"
+  },
+  {
+    "objectID": "materials/04-professional-viz.html#sometimes-bad-is-the-way",
+    "href": "materials/04-professional-viz.html#sometimes-bad-is-the-way",
+    "title": "Professional Data Visualization",
+    "section": "Sometimes Bad Is The Way",
+    "text": "Sometimes Bad Is The Way"
+  },
+  {
+    "objectID": "materials/04-professional-viz.html#sometimes-bad-is-the-way-1",
+    "href": "materials/04-professional-viz.html#sometimes-bad-is-the-way-1",
+    "title": "Professional Data Visualization",
+    "section": "Sometimes Bad Is The Way",
+    "text": "Sometimes Bad Is The Way\n\nChallenge students to create a data visual that does well in only one of the 4 criteria\n\n\nCan encourage them to think through the criteria without being too routine or safe\nSharing within the class (e.g., on the class message board) can expand the learning\nAsk the students which ceriteria it appears to do well\nIf a little competition makes sense: vote for best of the bad"
+  },
+  {
+    "objectID": "materials/04-professional-viz.html#teaching-resources",
+    "href": "materials/04-professional-viz.html#teaching-resources",
+    "title": "Professional Data Visualization",
+    "section": "Teaching Resources",
+    "text": "Teaching Resources\n\nRubric Examples:\n\nPenn State Data Visualization Rubric - Award judging criteria\nGeorgetown Assessment Guide - Student evaluation framework\nASA Poster Judging Rubric - Professional standards\n\nDesign Principle Resources:\n\nAlberto Cairo’s “The Truthful Art” - Comprehensive visualization principles\nEdward Tufte’s principles - Classic design guidelines\n\nClaus Wilke’s “Fundamentals of Data Visualization” - Modern, R-focused approach\n\nTeaching Examples:\n\nUMass Visualization Assessment - Academic research\nIU Visualization Rubric - Complete framework"
+  },
+  {
+    "objectID": "materials/04-professional-viz.html#the-extension-ecosystem",
+    "href": "materials/04-professional-viz.html#the-extension-ecosystem",
+    "title": "Professional Data Visualization",
+    "section": "The Extension Ecosystem",
+    "text": "The Extension Ecosystem\nggplot2 is designed to be extensible:\n\n\n50+ extension packages for specialized needs\nConsistent grammar across extensions\nProfessional-quality output\nActive development community\n\n\n\n\nTeaching advantage: Students learn one grammar, unlock dozens of tools"
+  },
+  {
+    "objectID": "materials/04-professional-viz.html#essential-extensions-for-teaching",
+    "href": "materials/04-professional-viz.html#essential-extensions-for-teaching",
+    "title": "Professional Data Visualization",
+    "section": "Essential Extensions for Teaching",
+    "text": "Essential Extensions for Teaching\n\n# Install key extensions\n# pak::pak(c(\"patchwork\", \"gganimate\", \"ggtext\", \"plotly\",\n#            \"ggforce\", \"ggh4x\", \"ggrepel\", \"palmerpenguins\"))\n\n# Core packages\nlibrary(ggplot2)\nlibrary(palmerpenguins)\nlibrary(patchwork)  # Combining plots\nlibrary(gganimate)  # Animations  \nlibrary(ggtext)     # Enhanced text\nlibrary(plotly)     # interactive plots"
+  },
+  {
+    "objectID": "materials/04-professional-viz.html#patchwork-combining-plots",
+    "href": "materials/04-professional-viz.html#patchwork-combining-plots",
+    "title": "Professional Data Visualization",
+    "section": "Patchwork: Combining Plots",
+    "text": "Patchwork: Combining Plots\n\n# Create individual plots\np1 &lt;- ggplot(penguins, aes(bill_length_mm, body_mass_g, color = species)) + \n  geom_point()\n\np2 &lt;- ggplot(penguins, aes(species)) + \n  geom_bar()\n\np3 &lt;- ggplot(penguins, aes(body_mass_g)) + \n  geom_histogram()\n\n# Combine with operators\n(p1 + p2) / p3    # Side by side and stacked \n\n\n\nTeaching value: Students learn composition principles and complex figure creation for publications"
+  },
+  {
+    "objectID": "materials/04-professional-viz.html#gganimate-bringing-data-to-life",
+    "href": "materials/04-professional-viz.html#gganimate-bringing-data-to-life",
+    "title": "Professional Data Visualization",
+    "section": "gganimate: Bringing Data to Life",
+    "text": "gganimate: Bringing Data to Life\n\nlibrary(gapminder)\n\n# Create animated plot\nggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, color = continent)) +\n  geom_point(alpha = 0.7) +\n  scale_x_log10() +\n  # Animation components\n  transition_time(year) +\n  labs(title = \"Year: {closest_state}\")\n\n\nStudent Exercise: Create before/after static vs. animated versions to show communication differences"
+  },
+  {
+    "objectID": "materials/04-professional-viz.html#ggtext-professional-text-formatting",
+    "href": "materials/04-professional-viz.html#ggtext-professional-text-formatting",
+    "title": "Professional Data Visualization",
+    "section": "ggtext: Professional Text Formatting",
+    "text": "ggtext: Professional Text Formatting\n\nlibrary(ggtext)\n\nggplot(penguins, aes(bill_length_mm, body_mass_g, color = species)) +\n  geom_point() +\n  labs(\n    title = \"Bill length vs. **Body mass**\",\n    subtitle = \"Data colored by &lt;span style='color:blue;'&gt;penguin species&lt;/span&gt;\",\n    caption = \"*Source: Palmer Station Antarctica LTER*\"\n  ) +\n  theme(\n    plot.title = element_markdown(),\n    plot.subtitle = element_markdown(),\n    plot.caption = element_markdown()\n  )"
+  },
+  {
+    "objectID": "materials/04-professional-viz.html#advanced-theming-techniques",
+    "href": "materials/04-professional-viz.html#advanced-theming-techniques",
+    "title": "Professional Data Visualization",
+    "section": "Advanced Theming Techniques",
+    "text": "Advanced Theming Techniques\n\n# Custom theme for consistency\nmy_theme &lt;- theme_minimal() +\n  theme(\n    text = element_text(family = \"Arial\"),\n    plot.title = element_text(size = 16, face = \"bold\"),\n    panel.grid.minor = element_blank(),\n    legend.position = \"bottom\"\n  )\n\n# Apply to all plots\ntheme_set(my_theme)\n\n\nTeaching Strategy: Have students develop their own theme as a semester project"
+  },
+  {
+    "objectID": "materials/04-professional-viz.html#ggplot2-extension-teaching-resources",
+    "href": "materials/04-professional-viz.html#ggplot2-extension-teaching-resources",
+    "title": "Professional Data Visualization",
+    "section": "ggplot2 Extension Teaching Resources",
+    "text": "ggplot2 Extension Teaching Resources\n\nComprehensive Guides:\n\nAwesome ggplot2 - Curated list of extensions and tutorials\nggplot2 Extensions Gallery - Official showcase with examples\nAlbert Rapp’s Extension Guide - 5 powerful extensions tutorial\nData Visualization Conservation Book - Academic session on extensions\n\nPackage-Specific Resources:\n\nPatchwork Documentation - Complete guide to plot composition\ngganimate Documentation - Animation tutorials and examples\nggtext Package Guide - Enhanced text formatting\n\nTeaching Materials:\n\nMode Analytics Extension Guide - 12 extensions for more powerful visualizations\nInfoWorld ggplot Extensions - Practical examples\nMedical Research Extensions - Domain-specific applications"
+  },
+  {
+    "objectID": "materials/04-professional-viz.html#why-interactive-visualization",
+    "href": "materials/04-professional-viz.html#why-interactive-visualization",
+    "title": "Professional Data Visualization",
+    "section": "Why Interactive Visualization?",
+    "text": "Why Interactive Visualization?\nInteractive plots enable:\n\n\nExploration: Users can discover patterns themselves\nEngagement: More compelling than static plots\nDetail: Tooltips and zoom for complex data\nStorytelling: Guided narratives through data\n\n\n\n\nTeaching opportunity: Students learn both exploration and communication"
+  },
+  {
+    "objectID": "materials/04-professional-viz.html#the-htmlwidgets-ecosystem",
+    "href": "materials/04-professional-viz.html#the-htmlwidgets-ecosystem",
+    "title": "Professional Data Visualization",
+    "section": "The htmlwidgets Ecosystem",
+    "text": "The htmlwidgets Ecosystem\n\n# Install interactive packages\n# pak::pak(c(\"plotly\", \"DT\", \"leaflet\", \"ggiraph\"))\n\n# Core interactive tools\nlibrary(plotly)     # Interactive plots\nlibrary(DT)         # Interactive tables\nlibrary(leaflet)    # Interactive maps\nlibrary(ggiraph)    # Interactive ggplot2\n\n\nhtmlwidgets: R bindings to JavaScript libraries that work in multiple contexts (console, RStudio, Rmarkdown, Shiny)"
+  },
+  {
+    "objectID": "materials/04-professional-viz.html#from-ggplot2-to-plotly",
+    "href": "materials/04-professional-viz.html#from-ggplot2-to-plotly",
+    "title": "Professional Data Visualization",
+    "section": "From ggplot2 to plotly",
+    "text": "From ggplot2 to plotly\n\n# Create ggplot\np &lt;- ggplot(penguins, aes(bill_length_mm, body_mass_g, \n             color = species, text = paste(\"Species:\", species))) +\n  geom_point(size = 3) +\n  labs(title = \"Bill Length vs. Body Mass\")\n\n# Make it interactive\nggplotly(p, tooltip = \"text\")"
+  },
+  {
+    "objectID": "materials/04-professional-viz.html#custom-plotly-interactions",
+    "href": "materials/04-professional-viz.html#custom-plotly-interactions",
+    "title": "Professional Data Visualization",
+    "section": "Custom plotly Interactions",
+    "text": "Custom plotly Interactions\n\n# Native plotly syntax\nplot_ly(penguins, x = ~bill_length_mm, y = ~body_mass_g, color = ~species,\n        text = ~paste(\"Species:\", species), \n        hovertemplate = \"%{text}&lt;br&gt;Bill Length: %{x}mm&lt;br&gt;Body Mass: %{y}g\") %&gt;%\n  add_markers(size = ~bill_depth_mm) %&gt;%\n  layout(title = \"Interactive Penguin Data\",\n         xaxis = list(title = \"Bill Length (mm)\"),\n         yaxis = list(title = \"Body Mass (g)\"))"
+  },
+  {
+    "objectID": "materials/04-professional-viz.html#ggiraph-interactive-ggplot2",
+    "href": "materials/04-professional-viz.html#ggiraph-interactive-ggplot2",
+    "title": "Professional Data Visualization",
+    "section": "ggiraph: Interactive ggplot2",
+    "text": "ggiraph: Interactive ggplot2\n\nlibrary(ggiraph)\n\n# Add interactivity to ggplot2\np &lt;- ggplot(penguins, aes(bill_length_mm, body_mass_g, \n             tooltip = paste(\"Species:\", species),\n             data_id = species)) +\n  geom_point_interactive(aes(color = species), size = 3) +\n  theme_minimal()\n\n# Render as interactive\ngirafe(ggobj = p)\n\n\n\n\n\n\nStudent-Friendly: Uses familiar ggplot2 syntax with _interactive suffix"
+  },
+  {
+    "objectID": "materials/04-professional-viz.html#interactive-visualization-teaching-resources",
+    "href": "materials/04-professional-viz.html#interactive-visualization-teaching-resources",
+    "title": "Professional Data Visualization",
+    "section": "Interactive Visualization Teaching Resources",
+    "text": "Interactive Visualization Teaching Resources\n\nComprehensive Learning:\n\nInteractive Web-based Data Visualization with R - Complete plotly R guide\nDataCamp Plotly Course - Structured learning path\nPlotly R Documentation - Official reference and examples\n\nhtmlwidgets Ecosystem:\n\nhtmlwidgets.org - Gallery of available packages\nInteractive Widgets in R - Comprehensive guide\nUniversity of Sheffield Guide - Academic perspective\n\nTeaching-Specific Resources:\n\nGeeksforGeeks Plotly Tutorial - Step-by-step examples\nggiraph Documentation - Interactive ggplot2 extensions\nLinking Multiple Widgets - Advanced techniques\n\nIntegration Examples:\n\nSaving and embedding HTML widgets in reports\nUsing interactive plots in Rmarkdown documents\nCombining multiple widgets for dashboards"
+  },
+  {
+    "objectID": "materials/04-professional-viz.html#course-integration-strategies",
+    "href": "materials/04-professional-viz.html#course-integration-strategies",
+    "title": "Professional Data Visualization",
+    "section": "Course Integration Strategies",
+    "text": "Course Integration Strategies\n\nScaffolded Learning Approach:\n\nWeek 1-2: ggplot2 fundamentals and design principles\nWeek 3-4: Extensions (patchwork, themes, ggtext)\nWeek 5-6: Animation with gganimate\nWeek 7-8: Interactive visualization with plotly\n\nAssessment Progression:\n\nStart with static plot improvement exercises\nMove to extension-based enhancement projects\nCulminate with interactive storytelling assignments\nPortfolio showing evolution from basic to professional"
+  },
+  {
+    "objectID": "materials/04-professional-viz.html#professional-development-resources",
+    "href": "materials/04-professional-viz.html#professional-development-resources",
+    "title": "Professional Data Visualization",
+    "section": "Professional Development Resources",
+    "text": "Professional Development Resources\n\nVisualization Theory & Principles:\n\nClaus Wilke’s “Fundamentals of Data Visualization” - Modern, comprehensive guide\nAlberto Cairo’s “The Truthful Art” - Ethics and principles\nEdward Tufte’s Works - Classic visualization theory\n\nR-Specific Advanced Techniques:\n\nggplot2: Elegant Graphics for Data Analysis - Hadley Wickham’s comprehensive guide\nR Graphics Cookbook - Practical solutions\nData Visualization: A Practical Introduction - Sociology perspective with R\n\nTeaching Methodology:\n\nData Science Education Resources - Complete course framework\nTeaching Data Science - Pedagogical approaches\nJournal of Statistics Education - Academic research on teaching"
+  },
+  {
+    "objectID": "materials/09-package_workflow.html#what-is-a-package-workflow",
+    "href": "materials/09-package_workflow.html#what-is-a-package-workflow",
+    "title": "Package-based Workflow",
+    "section": "What is a package workflow?",
+    "text": "What is a package workflow?"
+  },
+  {
+    "objectID": "materials/09-package_workflow.html#skeleton-r-package",
+    "href": "materials/09-package_workflow.html#skeleton-r-package",
+    "title": "Package-based Workflow",
+    "section": "Skeleton R package",
+    "text": "Skeleton R package\n\nusethis::create_package(\"example_skeleton_package\")\nusethis::use_r(\"simple_linear_regression\")\nusethis::use_test(\"simple_linear_regression\")\nNew File &gt; Quarto &gt; slr_demo.qmd"
+  },
+  {
+    "objectID": "materials/09-package_workflow.html#complete-the-function",
+    "href": "materials/09-package_workflow.html#complete-the-function",
+    "title": "Package-based Workflow",
+    "section": "Complete the function",
+    "text": "Complete the function"
+  },
+  {
+    "objectID": "materials/09-package_workflow.html#document-and-build",
+    "href": "materials/09-package_workflow.html#document-and-build",
+    "title": "Package-based Workflow",
+    "section": "Document and build",
+    "text": "Document and build"
+  },
+  {
+    "objectID": "materials/09-package_workflow.html#pass-the-unit-tests",
+    "href": "materials/09-package_workflow.html#pass-the-unit-tests",
+    "title": "Package-based Workflow",
+    "section": "Pass the unit tests",
+    "text": "Pass the unit tests"
+  },
+  {
+    "objectID": "materials/09-package_workflow.html#render-the-demo",
+    "href": "materials/09-package_workflow.html#render-the-demo",
+    "title": "Package-based Workflow",
+    "section": "Render the demo",
+    "text": "Render the demo"
+  },
+  {
+    "objectID": "materials/09-package_workflow.html#what-do-students-turn-in",
+    "href": "materials/09-package_workflow.html#what-do-students-turn-in",
+    "title": "Package-based Workflow",
+    "section": "What do students turn in?",
+    "text": "What do students turn in?\n\nA link to their GitHub of the package.\nThe rendered html of slr_demo.\nA code review of someone else’s package."
+  },
+  {
+    "objectID": "materials/09-package_workflow.html#grading",
+    "href": "materials/09-package_workflow.html#grading",
+    "title": "Package-based Workflow",
+    "section": "Grading",
+    "text": "Grading\n\n`"
+  },
+  {
+    "objectID": "materials/05-quarto-projects-websites.html#section",
+    "href": "materials/05-quarto-projects-websites.html#section",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "",
+    "text": "Quarto Projects & Websites"
+  },
+  {
+    "objectID": "materials/05-quarto-projects-websites.html#quarto-projects",
+    "href": "materials/05-quarto-projects-websites.html#quarto-projects",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "Quarto Projects",
+    "text": "Quarto Projects\nare directories that provide the ability to…\n\n\nrender all or some of the files in a directory with a single command (e.g. quarto render myproject)\nshare a YAML configuration across multiple documents\nredirect output artifacts to another directory\nfreeze rendered output (i.e. don’t re-execute documents unless they have changed)"
+  },
+  {
+    "objectID": "materials/05-quarto-projects-websites.html#types-of-projects",
+    "href": "materials/05-quarto-projects-websites.html#types-of-projects",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "Types of Projects",
+    "text": "Types of Projects\nUse the quarto create project command (in the terminal) to create a new project:\n\n\nTerminal\n\nquarto create project\n\n\nYou will then be given a variety of options for projects:\n\n\nOutput\n\n ? Type\n ❯ default\n   website\n   blog\n   manuscript\n   book\n   confluence"
+  },
+  {
+    "objectID": "materials/05-quarto-projects-websites.html#say-we-chose-to-make-a-website",
+    "href": "materials/05-quarto-projects-websites.html#say-we-chose-to-make-a-website",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "Say we chose to make a website…",
+    "text": "Say we chose to make a website…\n\nOur website would come pre-populated with five initial files:\n\n\n\nLet’s talk about each file!"
+  },
+  {
+    "objectID": "materials/05-quarto-projects-websites.html#rproj-where-does-your-analysis-live",
+    "href": "materials/05-quarto-projects-websites.html#rproj-where-does-your-analysis-live",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": ".Rproj – Where does your analysis live?",
+    "text": ".Rproj – Where does your analysis live?\n\nR has a powerful notion of a working directory–where R looks for files that you ask it to load, and where it will store any files that you ask it to save.\nR for Data Science\n\n\nRStudio shows your current working directory at the top of the console:"
+  },
+  {
+    "objectID": "materials/05-quarto-projects-websites.html#rproj-where-does-your-analysis-live-1",
+    "href": "materials/05-quarto-projects-websites.html#rproj-where-does-your-analysis-live-1",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": ".Rproj – Where does your analysis live?",
+    "text": ".Rproj – Where does your analysis live?\nKeeping all the files associated with a given project (data, R scripts, figures, etc.) together in one directory is such a wise and common practice that RStudio has built-in support for this via RStudio projects (.Rproj)."
+  },
+  {
+    "objectID": "materials/05-quarto-projects-websites.html#file-paths",
+    "href": "materials/05-quarto-projects-websites.html#file-paths",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "File Paths (😩)",
+    "text": "File Paths (😩)\n\nInside a .Rproj, you can access files using a relative path. Absolute paths should never be used!\n\n\n\n\n\n\nIf I wanted to access the students.xlsx file in the data folder of my project, I could use data/students.csv to access these data.\n\n\n\n\n\n\n\n\n\nThis is different from the full path (where the file lives on my computer): /Users/atheobol/Desktop/trial-website/data/students.csv."
+  },
+  {
+    "objectID": "materials/05-quarto-projects-websites.html#yml-files",
+    "href": "materials/05-quarto-projects-websites.html#yml-files",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": ".yml Files",
+    "text": ".yml Files\n\n\n_quarto.yml\n\nproject:\n  type: website\n\nwebsite:\n  title: \"trial-website\"\n  navbar:\n    left:\n      - href: index.qmd\n        text: Home\n      - about.qmd\n\nformat:\n  html:\n    theme: cosmo\n    css: styles.css\n    toc: true\n\neditor: visual"
+  },
+  {
+    "objectID": "materials/05-quarto-projects-websites.html#css",
+    "href": "materials/05-quarto-projects-websites.html#css",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": ".css",
+    "text": ".css\nA Cascading Style Sheets (CSS) file is a style sheet language used in web development to describe the presentation and formatting of documents written in HTML or XML."
+  },
+  {
+    "objectID": "materials/05-quarto-projects-websites.html#section-1",
+    "href": "materials/05-quarto-projects-websites.html#section-1",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "",
+    "text": "index.qmd\n\nThis is the home page for the website!\nWhatever you place in the index.qmd file will be the first page people see!\nThis page is also accessed using the top navigation menu (on the left side) using the link titled “Home.”\n\n\n\n\n\nabout.qmd\n\nThis is an additional content page!\nThis is accessed through the top navigation menu.\nNotice that the .yml file doesn’t give this page a name, so it defaults to the title included in the about.qmd document."
+  },
+  {
+    "objectID": "materials/05-quarto-projects-websites.html#website-themes",
+    "href": "materials/05-quarto-projects-websites.html#website-themes",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "Website Themes",
+    "text": "Website Themes\nformat:\n  html:\n    theme: cosmo\n    css: styles.css\n    toc: true\n\nHere is a list of every theme available for Quarto websites: https://quarto.org/docs/output-formats/html-themes.html\n\n\n\n\nOptionally, you can set separate “light” and “dark” themes:\n\ntheme:\n  light: flatly\n  dark: darkly"
+  },
+  {
+    "objectID": "materials/05-quarto-projects-websites.html#how-would-you-integrate-websites-into-a-course",
+    "href": "materials/05-quarto-projects-websites.html#how-would-you-integrate-websites-into-a-course",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "How would you integrate websites into a course?",
+    "text": "How would you integrate websites into a course?\n\n\n\nProjects\n\nAre students already completing a project that includes R?\nWhy not transform this project into something they can publish?\nhttps://sta199-s24.github.io/project/description.html\n\n\n\n\n\nPersonal Websites\n\nGiving students a way to advertise themselves!\nhttps://mattbabb737.github.io/\nhttps://alisa-krasilnikov.github.io/\nhttps://lilypcook.github.io"
+  },
+  {
+    "objectID": "materials/10-wrapup.html#takeaways",
+    "href": "materials/10-wrapup.html#takeaways",
+    "title": "Wrap-Up",
+    "section": "Takeaways",
+    "text": "Takeaways\n\n\n\nDesign your Intermediate R class around projects\nSeparate content into modular units organized by goals.\nSign up to be notified when the Course in a Box is available!"
+  },
+  {
+    "objectID": "materials/10-wrapup.html#reflections",
+    "href": "materials/10-wrapup.html#reflections",
+    "title": "Wrap-Up",
+    "section": "Reflections",
+    "text": "Reflections\n\nWhat from this workshop are you excited to incorporate into your class?\nWhat from this workshop will you probably not include in your class?\nAre there any skills you want to learn better, so that you can eventually teach them in your class?\nWhat will you commit to creating before your next class?\nHow can we help you going forward?"
+  },
+  {
+    "objectID": "materials/10-wrapup.html#find-us",
+    "href": "materials/10-wrapup.html#find-us",
+    "title": "Wrap-Up",
+    "section": "Find us!",
+    "text": "Find us!\n\n\n\n\n\n\nAllison Theobold \n🌐 Github\n🔗 Website\n\nKelly Bodwin \n🌐 GitHub\n🦋 BlueSky\n🔗 LinkedIn\n🐘 Fosstodon\n\nTyson Barrett \n🌐 GitHub\n🦋 BlueSky\n🔗 LinkedIn\n🐘 Fosstodon"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#make-sure-you-are-up-to-date",
+    "href": "materials/01-setup-installs.html#make-sure-you-are-up-to-date",
+    "title": "Workshop Installs & Set-up",
+    "section": "Make sure you are up to date",
+    "text": "Make sure you are up to date\n\nAre you on the latest version of RStudio: v2025.05.1; we at least require v2023.03.0+386 or later\nAre you on the latest version of Quarto: v1.3.340 or later (This installs with RStudio, so you shouldn’t need to do anything except in unusual cases.)\nAre you on the latest version of R: v4.5.0; we require v4.3.0 or later"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#download-course-materials",
+    "href": "materials/01-setup-installs.html#download-course-materials",
+    "title": "Workshop Installs & Set-up",
+    "section": "Download course materials",
+    "text": "Download course materials\nOption A: Clone or fork from GitHub: atheobold/uscots-intermediate-r\nOption B:\n\ninstall.packages(\"usethis\")\n\nusethis::use_course(\"atheobold/uscots-intermediate-r\")\n\nOption C: Just use the website!"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#package-installs",
+    "href": "materials/01-setup-installs.html#package-installs",
+    "title": "Workshop Installs & Set-up",
+    "section": "Package installs",
+    "text": "Package installs\nOption A: In the course project, open installs.R and run all.\nOption B: Copy paste and run:\n\npackages &lt;- c(\n  \"tidyverse\",\n  \"tidymodels\",\n  \"data.table\",\n  \"duckdb\",\n  \"rvest\",\n  \"polite\",\n  \"httr2\",\n  \"jsonlite\",\n  \"xml2\",\n  \"arrow\",\n  \"DBI\",\n  \"RSQLite\",\n  \"RPostgreSQL\",\n  \"RMySQL\",\n  \"dbplyr\"\n)\n\ninstall.packages(packages)"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#is-it-this",
+    "href": "materials/01-setup-installs.html#is-it-this",
+    "title": "Workshop Installs & Set-up",
+    "section": "Is it this?",
+    "text": "Is it this?\n\noutput$plot &lt;- renderPlot({\n  req(input$var)\n  ggplot(data(), aes_string(input$var)) +\n    geom_histogram()\n})"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#or-this",
+    "href": "materials/01-setup-installs.html#or-this",
+    "title": "Workshop Installs & Set-up",
+    "section": "… or this?",
+    "text": "… or this?\n\nresult &lt;- dt[\n  score &gt; 50 & !is.na(category),\n  .(mean_score = mean(score), n = .N),\n  by = .(category, region)\n][order(-mean_score)\n ][, rank := .I\n ][n &gt; 10]"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#or-this-1",
+    "href": "materials/01-setup-installs.html#or-this-1",
+    "title": "Workshop Installs & Set-up",
+    "section": "… or this?",
+    "text": "… or this?\n\nresult &lt;- data_main %&gt;%\n  left_join(meta_info, by = \"id\") %&gt;%\n  pivot_longer(cols = starts_with(\"score_\"), names_to = \"metric\", values_to = \"score\") %&gt;%\n  filter(!is.na(score)) %&gt;%\n  group_by(group, metric) %&gt;%\n  summarize(mean_score = mean(score), .groups = \"drop\") %&gt;%\n  pivot_wider(names_from = metric, values_from = mean_score) %&gt;%\n  inner_join(group_labels, by = \"group\") %&gt;%\n  arrange(desc(overall))"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#plenty-of-resources",
+    "href": "materials/01-setup-installs.html#plenty-of-resources",
+    "title": "Workshop Installs & Set-up",
+    "section": "Plenty of resources…",
+    "text": "Plenty of resources…"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#and-generally-agreed-upon-topics.",
+    "href": "materials/01-setup-installs.html#and-generally-agreed-upon-topics.",
+    "title": "Workshop Installs & Set-up",
+    "section": "… and generally agreed-upon topics.",
+    "text": "… and generally agreed-upon topics.\n\nBasics of coding: variables and objects; loops and conditionals; etc.\nInstalling and loading packages\nObject types and structures\nLoading and examining data\nBasic visualization\nData wrangling (“Big 5” tidyverse verbs, or equivalent)"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#is-it-just-programming-of-course-not",
+    "href": "materials/01-setup-installs.html#is-it-just-programming-of-course-not",
+    "title": "Workshop Installs & Set-up",
+    "section": "Is it just programming? Of course not!",
+    "text": "Is it just programming? Of course not!"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#intermediate-r-is-not-intermediate-statistics",
+    "href": "materials/01-setup-installs.html#intermediate-r-is-not-intermediate-statistics",
+    "title": "Workshop Installs & Set-up",
+    "section": "Intermediate R is NOT Intermediate Statistics",
+    "text": "Intermediate R is NOT Intermediate Statistics\n\nThe hardest part of fitting statistical models in R is the statistical concepts and interpretation not the coding.\n“[Statistical Topic] with R” is not the same class!\nOur course focuses on R Skills and requires only second-year statistics knowledge."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#intermediate-r-is-non-linear",
+    "href": "materials/01-setup-installs.html#intermediate-r-is-non-linear",
+    "title": "Workshop Installs & Set-up",
+    "section": "Intermediate R is non-linear",
+    "text": "Intermediate R is non-linear\n\nIt is not a bridge between Intro R and Advanced R\nIt is not a set of skills that builds progressively\nIt is a collection of learning paths (sometimes overlapping) towards a specific end goal.\nOur course has three units that can be rearranged modularly."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#intermediate-r-is-defined-by-goals",
+    "href": "materials/01-setup-installs.html#intermediate-r-is-defined-by-goals",
+    "title": "Workshop Installs & Set-up",
+    "section": "Intermediate R is defined by goals",
+    "text": "Intermediate R is defined by goals\n\nDifferent R learners have wildly different needs.\nThere is no single skill that every Intermediate R user must know!\nInstead, identify a use case and goal that is not achievable with Intro R skills, and fill in the missing skills.\nOur course is project-driven, not exam or assignment based."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#the-structure",
+    "href": "materials/01-setup-installs.html#the-structure",
+    "title": "Workshop Installs & Set-up",
+    "section": "The structure:",
+    "text": "The structure:"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#unit-a-intermediate-r-for-data-science-1",
+    "href": "materials/01-setup-installs.html#unit-a-intermediate-r-for-data-science-1",
+    "title": "Workshop Installs & Set-up",
+    "section": "Unit A: Intermediate R for Data Science",
+    "text": "Unit A: Intermediate R for Data Science"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#learning-objectives",
+    "href": "materials/01-setup-installs.html#learning-objectives",
+    "title": "Workshop Installs & Set-up",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\n\nManage, process, and load data from non-tabular and non-local sources.\nClean and prepare messy and unstructured data, including handling missing values, and the use of regular expressions to extract information from text data.\nUse joins to combine multiple datasets with many-to-many relationships.\nUse complex data wrangling pipelines, including multiple pivots and/or multiple grouping levels, to wrangle data."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#unit-a-project",
+    "href": "materials/01-setup-installs.html#unit-a-project",
+    "title": "Workshop Installs & Set-up",
+    "section": "Unit A Project",
+    "text": "Unit A Project\nStudents will produce a stylized, publication-ready report that performs exploratory data analysis to address specific research questions.\nData for the report will be taken from multiple online and non-csv sources, and will require the use of regular expressions to collect, clean, or wrangle their data.\nResearch questions will be provided that require complex, multi-step data wrangling, and results should be communicated using complex and polished visualizations."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#unit-a-project---example",
+    "href": "materials/01-setup-installs.html#unit-a-project---example",
+    "title": "Workshop Installs & Set-up",
+    "section": "Unit A Project - Example",
+    "text": "Unit A Project - Example\nRegional Differences in Fast Food Preference\n\nData: Refer to this dataset of fast food locations across the US. Then, use Yelp’s open dataset for education to find reviews and other information pertaining to fast food restaurants."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#unit-a-project---example-1",
+    "href": "materials/01-setup-installs.html#unit-a-project---example-1",
+    "title": "Workshop Installs & Set-up",
+    "section": "Unit A Project - Example",
+    "text": "Unit A Project - Example\nRegional Differences in Fast Food Preference\n\nResearch Questions:\n\nAre certain fast food brands more prevalent in different regions of the US than others?\nAre certain fast food chains more highly rated in different regions of the US than others?\nDo reviewers use different language in their reviews in different regions?\nDo customers have different priorities for what they look for in fast food restaurants in different regions?"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#non-tabular-and-non-local-data",
+    "href": "materials/01-setup-installs.html#non-tabular-and-non-local-data",
+    "title": "Workshop Installs & Set-up",
+    "section": "Non-tabular and non-local data",
+    "text": "Non-tabular and non-local data\n\njsonlite and XML packages for hierarchical data structures.\nodbc, DBI, and dbplyr for cloud database-stored data\nduckdb and arrow for local database storage.\ndata.table for large in-memory data"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#messy-and-unstructured-data",
+    "href": "materials/01-setup-installs.html#messy-and-unstructured-data",
+    "title": "Workshop Installs & Set-up",
+    "section": "Messy and unstructured data",
+    "text": "Messy and unstructured data\n\nnaniar for dealing with missing values\nstringr and regular expressions for processing text variables\nBasic content from Text Mining in R and the tidytext package\nData cleaning principles from Reproducible Analysis with R."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#multiple-datasets-joining",
+    "href": "materials/01-setup-installs.html#multiple-datasets-joining",
+    "title": "Workshop Installs & Set-up",
+    "section": "Multiple datasets joining",
+    "text": "Multiple datasets joining\n\n*_join() functions from dplyr\nConcepts of mutating joins and filtering joins (R4DS Chapter 19)\ndbplyr and/or arrow to perform joins at database level"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#complex-data-wrangling-pipelines",
+    "href": "materials/01-setup-installs.html#complex-data-wrangling-pipelines",
+    "title": "Workshop Installs & Set-up",
+    "section": "Complex data wrangling pipelines",
+    "text": "Complex data wrangling pipelines\n\nCreation and matching of keys in relational data\nPivoting with pivot_*() functions from tidyr (content needed!)\ngroup_by() to mutate() pipeline constructions\nUse of vectorized functions or map/apply inside mutate()\nIteration with purrr or apply functions."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#more-advanced-visualizations",
+    "href": "materials/01-setup-installs.html#more-advanced-visualizations",
+    "title": "Workshop Installs & Set-up",
+    "section": "More advanced visualizations",
+    "text": "More advanced visualizations\n\ngeom_text() and geom_annotate() for annotations\nNew plot types from ggplot helpers - e.g. ridgelines from ggridges; alluvial plots with ggsankey, radar plots with fmsb and ggradar.\nChloropleths with leaflet and sf.\nGreat resource: R Graph Gallery"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#learning-goals",
+    "href": "materials/01-setup-installs.html#learning-goals",
+    "title": "Workshop Installs & Set-up",
+    "section": "Learning Goals",
+    "text": "Learning Goals\n\nProduce visualizations beyond basic geometries, including maps and annotated plots.\nIncorporate interactivity into data reports.\nAdopt extensions from peripheral software and packages, such as quarto.\nAdd statistical elements to data analysis pipeline.\nProduce production-quality plots and tables."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#unit-c-project",
+    "href": "materials/01-setup-installs.html#unit-c-project",
+    "title": "Workshop Installs & Set-up",
+    "section": "Unit C Project",
+    "text": "Unit C Project\nStudents will create an interactive dashboard that integrates advanced R features, such as Shiny, Quarto dashboards, or Plotly, to explore and communicate a research question effectively.\nThe dashboard will include statistical results that are well-summarize, well-visualized, and well-interpreted."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#unit-c-project---example",
+    "href": "materials/01-setup-installs.html#unit-c-project---example",
+    "title": "Workshop Installs & Set-up",
+    "section": "Unit C Project - Example",
+    "text": "Unit C Project - Example\nFast Food Preferences at McDonald’s\n\nUsing your Yelp analyses from Unit A and your menu analyses from Unit B, create a dashboard to understand trends and preferences for McDonald’s customers. The dashboard must be deployed for online access."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#unit-c-project---example-1",
+    "href": "materials/01-setup-installs.html#unit-c-project---example-1",
+    "title": "Workshop Installs & Set-up",
+    "section": "Unit C Project - Example",
+    "text": "Unit C Project - Example\nFast Food Preferences at McDonald’s\n\nYour dashboard must be interactive and accessible to non-technical audiences. It should communicate trends in regions as well as connecting Yelp review language to specific menu items.\nYou must include an element of results of a statistical model or test, communicated to non-technical audiences."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#interactivity",
+    "href": "materials/01-setup-installs.html#interactivity",
+    "title": "Workshop Installs & Set-up",
+    "section": "Interactivity",
+    "text": "Interactivity\n\nplotly() for immediately interactive plots\nShiny for user input\nMastering Shiny textbook"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#extensions-and-peripheral-software",
+    "href": "materials/01-setup-installs.html#extensions-and-peripheral-software",
+    "title": "Workshop Installs & Set-up",
+    "section": "Extensions and peripheral software",
+    "text": "Extensions and peripheral software\n\n\nQuarto: Dashboards, themes, websites, etc. etc.\nreactjs for animated visualization\n“Branding” use of css/scss."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#statistical-elements",
+    "href": "materials/01-setup-installs.html#statistical-elements",
+    "title": "Workshop Installs & Set-up",
+    "section": "Statistical elements",
+    "text": "Statistical elements\n\ntidymodels for predictive modeling\ntidyclust for unsupervised learning\nBootstrapping or resampling results"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#production-quality-plots-and-tables",
+    "href": "materials/01-setup-installs.html#production-quality-plots-and-tables",
+    "title": "Workshop Installs & Set-up",
+    "section": "Production-quality plots and tables",
+    "text": "Production-quality plots and tables\n\nWriting custom ggplot themes\nAnnotating plots with geom_text() etc.\ngt() for better tables"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#learning-goals-1",
+    "href": "materials/01-setup-installs.html#learning-goals-1",
+    "title": "Workshop Installs & Set-up",
+    "section": "Learning Goals",
+    "text": "Learning Goals\n\nApply function creation and code design techniques\nEngage in algorithmic thinking, including iteration.\nConsider speed and efficiency concerns in code tasks.\nDevelop a reproducible workflow for code development in R.\nEngage in unit testing and code review, including of others’ code."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#unit-c-project-1",
+    "href": "materials/01-setup-installs.html#unit-c-project-1",
+    "title": "Workshop Installs & Set-up",
+    "section": "Unit C Project",
+    "text": "Unit C Project\nStudents will create a working and installable R package that is well-documented and tracked via version control. The package must include a demonstration document (or “vignette”) and several basic informal unit tests.\nThe package should provide well-designed and user-friendly functions to streamline a data collection, wrangling, and/or analysis task.\nCode design should consider issues of efficiency and should demonstrate both tidyverse and non-tidyverse syntax fluency."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#unit-c-project---example-2",
+    "href": "materials/01-setup-installs.html#unit-c-project---example-2",
+    "title": "Workshop Installs & Set-up",
+    "section": "Unit C Project - Example",
+    "text": "Unit C Project - Example\n\nCreating your own webscraping API\n\n\nCreate an R package that provides functions to scrape, clean, and wrangle data from the McDonald’s menu. Then, provide a vignette document demonstrating use of this package. This package must be hosted on GitHub in proper installable format."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#unit-c-project---example-3",
+    "href": "materials/01-setup-installs.html#unit-c-project---example-3",
+    "title": "Workshop Installs & Set-up",
+    "section": "Unit C Project - Example",
+    "text": "Unit C Project - Example\n\nCreating your own webscraping API\n\n\nYour code and/or vignette must:\n\nInclude at least one use of iteration with purrr\nInclude use of data.table code for large data preparation tasks.\nBe well-commented and code reviewed by peers."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#function-creation-and-code-design",
+    "href": "materials/01-setup-installs.html#function-creation-and-code-design",
+    "title": "Workshop Installs & Set-up",
+    "section": "Function creation and code design",
+    "text": "Function creation and code design\n\nR Packages textbook, first section. (Wickham and Bryan)\nCode Smells and Feels talk by Jenny Bryan\nR4DS Chapter 20"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#algorithmic-thinking-and-iteration",
+    "href": "materials/01-setup-installs.html#algorithmic-thinking-and-iteration",
+    "title": "Workshop Installs & Set-up",
+    "section": "Algorithmic thinking and iteration",
+    "text": "Algorithmic thinking and iteration\n\nR4DS Chapter 26\nR Programming for Data Science\nCS 101 resources for algorithms (content needed!)\nCreate methods from scratch: basic linear regression, kmeans clustering, generative art, bootstrapping or randomization tests."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#speed-and-efficiency",
+    "href": "materials/01-setup-installs.html#speed-and-efficiency",
+    "title": "Workshop Installs & Set-up",
+    "section": "Speed and efficiency",
+    "text": "Speed and efficiency\n\nUse tictoc for informal speed testing; proc.time() for more specific speed testing; or profileR for full profiling.\nAdvanced R Chapter 23\nR Programming for Data Science\ndata.table for many groupings and concise syntax (content coming soon!)"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#reproducible-workflow",
+    "href": "materials/01-setup-installs.html#reproducible-workflow",
+    "title": "Workshop Installs & Set-up",
+    "section": "Reproducible workflow",
+    "text": "Reproducible workflow\n\nHappy Git with R textbook\nTeacher resource: GitHub Classroom for providing skeleton code and controlling student repos.\ntestthat for creating formal unit tests.\nroxygen2 for function documentation"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#unit-testing-and-code-review",
+    "href": "materials/01-setup-installs.html#unit-testing-and-code-review",
+    "title": "Workshop Installs & Set-up",
+    "section": "Unit testing and code review",
+    "text": "Unit testing and code review\n\nR Packages Chapter 13\nFunctional programming and unit testing for data munging with R online textbook\nComputer science resources for code review principles (content needed!)\nCode testing and review content from the Data Carpentries."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#a-few-stretch-goals",
+    "href": "materials/01-setup-installs.html#a-few-stretch-goals",
+    "title": "Workshop Installs & Set-up",
+    "section": "A few stretch goals",
+    "text": "A few stretch goals\n\nPackage passes CRAN checks.\nUse of object-oriented programming\nAdvanced debugging, e.g. with debugonce() or browser()"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#order-of-units",
+    "href": "materials/01-setup-installs.html#order-of-units",
+    "title": "Workshop Installs & Set-up",
+    "section": "Order of Units",
+    "text": "Order of Units\n\nC -&gt; A: Begin with webscraping, then incorporate other data and use it for analysis.\nB -&gt; A: Design a dashboard with simple, Intro R level analyses; then enhance the dashboard with more complex data.\nC -&gt; B: Create webscraping or data anaysis package, then use it underlying a dashboard."
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#overlap-in-content",
+    "href": "materials/01-setup-installs.html#overlap-in-content",
+    "title": "Workshop Installs & Set-up",
+    "section": "Overlap in content",
+    "text": "Overlap in content\n\ndata.table and friends can be emphasized in A for wrangling tasks, or in C as an efficiency/syntax skill.\nplotly and friends can be used in A for easy plot upgrade, or in B for interactive dashboards\nGit and GitHub can be introduced in any Unit.\nfunction writing can be used to streamline steps in units A or B"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#why-are-you-here",
+    "href": "materials/01-setup-installs.html#why-are-you-here",
+    "title": "Workshop Installs & Set-up",
+    "section": "Why are you here?",
+    "text": "Why are you here?\nWhat inspired you to sign-up for this workshop?\nWhat are two goals you have related to teaching intermediate R?\n\n\n\n\n\n\nMake SMART goals!\n\n\nFind goals that are specific, that you can measure, that you can achieve in the next 1.5 days, and that are relevant to your teaching!"
+  },
+  {
+    "objectID": "materials/01-setup-installs.html#activity-find-your-data-sources",
+    "href": "materials/01-setup-installs.html#activity-find-your-data-sources",
+    "title": "Workshop Installs & Set-up",
+    "section": "Activity: Find Your Data Sources",
+    "text": "Activity: Find Your Data Sources\n\nIn pairs, come up with a data context and a few broad research questions. Find online as many of the following as you can related to your data context:\n\nClean tabular datasets, e.g. kaggle or tidytuesday\nMessy or non-tabular datasets, e.g. JSONs or tables on a webpage\nAPI sources related to your data\nMassive datasets\n\nWe recommend starting a Google Doc or similar with your group, to collect references to datasets, as well as content from future activities."
+  },
+  {
+    "objectID": "materials/00-introductions.html#welcome",
+    "href": "materials/00-introductions.html#welcome",
+    "title": "Teaching Intermediate R",
+    "section": "Welcome!",
+    "text": "Welcome!\n WiFi\n\nUsername: IASTATE-Guest\nPassword: NO PASSWORD!\n\n\nMaterials\nTo access the workshop materials use the following link:\n\nhttps://atheobold.github.io/uscots-intermediate-r/"
+  },
+  {
+    "objectID": "materials/00-introductions.html#your-workshop-leaders",
+    "href": "materials/00-introductions.html#your-workshop-leaders",
+    "title": "Teaching Intermediate R",
+    "section": "Your Workshop Leaders",
+    "text": "Your Workshop Leaders\n\n\n\n\n\n\nKelly Bodwin\n\n\n\nTyson Barrett\n\n\n\nAllison Theobold"
+  },
+  {
+    "objectID": "materials/00-introductions.html#section",
+    "href": "materials/00-introductions.html#section",
+    "title": "Teaching Intermediate R",
+    "section": "",
+    "text": "We are assuming\n\n\n You are familar with introductory R concepts\n  You know a little bit of Markdown and / or Quarto\n\n\n\n\n\nWe’ll help you\n\n \nlearn about potential “intermediate” concepts to incorporate into a course\nbrainstorm ideas for incorporating these ideas into a course project"
+  },
+  {
+    "objectID": "materials/00-introductions.html#workshop-structure",
+    "href": "materials/00-introductions.html#workshop-structure",
+    "title": "Teaching Intermediate R",
+    "section": "Workshop structure",
+    "text": "Workshop structure\n\nTopic Overview: Lecture segments + Project examples\nActivity: Make (incremental) progress toward designing three different projects"
+  },
+  {
+    "objectID": "materials/00-introductions.html#code-of-conduct",
+    "href": "materials/00-introductions.html#code-of-conduct",
+    "title": "Teaching Intermediate R",
+    "section": "Code of Conduct",
+    "text": "Code of Conduct\n\nThe American Statistical Association (ASA) is committed to providing an atmosphere in which personal respect and intellectual growth are valued and the free expression and exchange of ideas are encouraged. Consistent with this commitment, it is the policy of the ASA that all participants in ASA activities enjoy a welcoming environment free from unlawful discrimination, harassment, and retaliation. We strive to be a community that welcomes and supports people of all backgrounds and identities. This includes, but is not limited to, members of any race, ethnicity, culture, national origin, color, immigration status, social and economic class, educational level, sex, sexual orientation, gender identity and expression, age, size, family status, political belief, religion, and mental and physical ability.\n\n\n\nASA Code of Conduct"
+  },
+  {
+    "objectID": "materials/00-introductions.html#expected-behavior",
+    "href": "materials/00-introductions.html#expected-behavior",
+    "title": "Teaching Intermediate R",
+    "section": "Expected Behavior",
+    "text": "Expected Behavior\n\n\n\nModel and support the norms of respect necessary to promote the conditions for healthy exchange of scientific ideas.\nIn speech or conduct, do not insult or disparage other participants.\nBe conscious of hierarchical structures, specifically the existence of stark power differentials between students, early career statisticians and established career statisticians—noting that fear of retaliation from more established statisticians can make it difficult for students and early career statisticians to express discomfort, rebuff unwelcome advances, and report violations of the conduct policy.\nBe sensitive to indications that may suggest that individuals are feeling unwelcome.\n\n\n\n\n\n\n\nASA Code of Conduct"
+  },
+  {
+    "objectID": "materials/06-quarto-dashboards.html#section",
+    "href": "materials/06-quarto-dashboards.html#section",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "",
+    "text": "Quarto Dashboards"
+  },
+  {
+    "objectID": "materials/06-quarto-dashboards.html#creating-a-quarto-dashboard",
+    "href": "materials/06-quarto-dashboards.html#creating-a-quarto-dashboard",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "Creating a Quarto Dashboard",
+    "text": "Creating a Quarto Dashboard\n\nTo create a dashboard you need to use format: dashboard in the YAML:\n\n\n\ndashboard.qmd\n\n--- \ntitle: \"Palmer Penguins\"\nauthor: \"Cobblepot Analytics\"\nformat: dashboard\n---\n\n\n\nWe can add further details to the dashboard:\n\n\n\ndashboard.qmd\n\n--- \ntitle: \"Palmer Penguins\"\nauthor: \"Cobblepot Analytics\"\nformat: \n  dashboard:\n    logo: images/penguins.png\n    nav-buttons: [linkedin, twitter, github]\n---"
+  },
+  {
+    "objectID": "materials/06-quarto-dashboards.html#quarto-dashboard-components",
+    "href": "materials/06-quarto-dashboards.html#quarto-dashboard-components",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "Quarto Dashboard Components",
+    "text": "Quarto Dashboard Components\n\n\n\nNavigation Bar — Icon, title, author, links to sub-pages\n\n\n\nPages, Rows, Columns, and Tabsets\n\n\n\nCards, Sidebars, and Toolbars"
+  },
+  {
+    "objectID": "materials/06-quarto-dashboards.html#default-layout-in-rows",
+    "href": "materials/06-quarto-dashboards.html#default-layout-in-rows",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "Default Layout (in Rows)",
+    "text": "Default Layout (in Rows)\n\n\n\n\n---\ntitle: \"Palmer Penguins\"\nauthor: \"Allison Theobold\"\nformat: dashboard\n---\n    \n## Row {height=70%}\n\n```{r}\n```\n\n## Row {height=30%}\n\n```{r}\n```\n\n```{r}\n```"
+  },
+  {
+    "objectID": "materials/06-quarto-dashboards.html#changing-orientation-to-columns",
+    "href": "materials/06-quarto-dashboards.html#changing-orientation-to-columns",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "Changing Orientation (to Columns)",
+    "text": "Changing Orientation (to Columns)\n\n\n\n\n---\ntitle: \"Palmer Penguins\"\nauthor: \"Allison Theobold\"\nformat: \n  dashboard:\n    orientation: columns\n---\n    \n## Column {width=60%}\n\n```{r}\n```\n\n## Column {width=40%}\n\n```{r}\n```\n\n```{r}\n```"
+  },
+  {
+    "objectID": "materials/06-quarto-dashboards.html#adding-more-pages",
+    "href": "materials/06-quarto-dashboards.html#adding-more-pages",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "Adding More Pages",
+    "text": "Adding More Pages\n---\ntitle: \"Palmer Penguins\"\nauthor: \"Allison Theobold\"\nformat: dashboard\n---\n    \n# Bills \n\n```{r}\n```\n\n# Flippers {orientation=\"columns\"}\n\n## Column\n\n```{r}\n```\n\n```{r}\n```\n\n## Column \n\n```{r}\n```\n\n\n\n\n\n\n\nWhat orientation will the Bills page use?"
+  },
+  {
+    "objectID": "materials/06-quarto-dashboards.html#tabsets",
+    "href": "materials/06-quarto-dashboards.html#tabsets",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "Tabsets",
+    "text": "Tabsets\nare created by adding the .tabset class to a row or column.\n\n\n\n---\ntitle: \"Palmer Penguins\"\nformat: dashboard\n---\n    \n## Row\n\n```{r}\n```\n\n## Row {.tabset}\n\n```{r}\n#| title: Chart 2\n```\n\n```{r}\n#| title: Chart 3\n```"
+  },
+  {
+    "objectID": "materials/06-quarto-dashboards.html#deeply-nested-tabsets",
+    "href": "materials/06-quarto-dashboards.html#deeply-nested-tabsets",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "Deeply Nested Tabsets",
+    "text": "Deeply Nested Tabsets\n\n\n\n---\ntitle: \"Palmer Penguins\"\nformat: dashboard\n---\n    \n## Row {height=70%}\n\n```{r}\n```\n\n## Row {height=30%}\n\n### Column {.tabset}\n\n```{r}\n#| title: Chart 2\n```\n\n```{r}\n#| title: Chart 3\n```\n\n### Column\n\n```{r}\n```"
+  },
+  {
+    "objectID": "materials/06-quarto-dashboards.html#value-boxes",
+    "href": "materials/06-quarto-dashboards.html#value-boxes",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "Value Boxes",
+    "text": "Value Boxes\n\n\n## Column - Medals by country {width=35%}\n\n### Row - Value boxes {height=30%}\n\n```{r}\n#| label: summer-calculate-most-medals\n\nsummer_most_golds &lt;- summer_olympics |&gt;\n  filter(medal == \"Gold\") |&gt;\n  count(team, sort = TRUE) |&gt;\n  slice_head(n = 1)\n\nsummer_most_silvers &lt;- summer_olympics |&gt;\n  filter(medal == \"Silver\") |&gt;\n  count(team, sort = TRUE) |&gt;\n  slice_head(n = 1)\n\nsummer_most_bronzes &lt;- summer_olympics |&gt;\n  filter(medal == \"Bronze\") |&gt;\n  count(team, sort = TRUE) |&gt;\n  slice_head(n = 1)\n```\n\n::: {.valuebox icon=\"award-fill\" color=\"#d4af37\"}\nMost golds:\n\n`{{r}} summer_most_golds$n`\n\n`{{r}} summer_most_golds$team`\n:::\n\n::: {.valuebox icon=\"award-fill\" color=\"#c0c0c0\"}\nMost silvers:\n\n`{{r}} summer_most_silvers$n`\n\n`{{r}} summer_most_silvers$team`\n:::\n\n::: {.valuebox icon=\"award-fill\" color=\"#cd7f32\"}\nMost bronzes:\n\n`{{r}} summer_most_bronzes$n`\n\n`{{r}} summer_most_bronzes$team`"
+  },
+  {
+    "objectID": "materials/06-quarto-dashboards.html#creating-a-shiny-dashboard",
+    "href": "materials/06-quarto-dashboards.html#creating-a-shiny-dashboard",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "Creating a Shiny Dashboard",
+    "text": "Creating a Shiny Dashboard\n\n\ndashboard.qmd\n\n--- \ntitle: \"Palmer Penguins\"\nauthor: \"Cobblepot Analytics\"\nformat: dashboard\nserver: shiny\n---"
+  },
+  {
+    "objectID": "materials/06-quarto-dashboards.html#interactive-dashboard-components",
+    "href": "materials/06-quarto-dashboards.html#interactive-dashboard-components",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "Interactive Dashboard Components",
+    "text": "Interactive Dashboard Components\n\nThe format of interactive dashboards are similar to a “standard” dashboard. The difference lies in how the outputs (e.g., plots, tables) are created.\n\n\nThe user is given a set of controls that influence the output that is seen.\nThere are code chunks that “react” to these user inputs.\nThe outputs displayed in the app depend on these user inputs.\n\n\n\n\n\n\n\n\n\n\nThere are three main #| context: values that code chunks can have: data, setup, server."
+  },
+  {
+    "objectID": "materials/06-quarto-dashboards.html#context-setup",
+    "href": "materials/06-quarto-dashboards.html#context-setup",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "#| context: setup",
+    "text": "#| context: setup\n\n\n\ndashboard.qmd\n\n---\ntitle: \"Diamonds Explorer\"\nauthor: \"Barkamian Analytics\"\nformat: dashboard\nserver: shiny\n---\n\n```{r}\n#| context: setup\n\nlibrary(ggplot2)\ndataset &lt;- diamonds\n```\n\n\n\n\n\n\n\n\n\n\nThis could have been broken apart into two code chunks, one with a setup context and one with a data context. Using the data context is helpful because any R objects created in that chunk will be saved to an .RData file, which will then be loaded during Shiny server startup."
+  },
+  {
+    "objectID": "materials/06-quarto-dashboards.html#sidebar-content",
+    "href": "materials/06-quarto-dashboards.html#sidebar-content",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": ".sidebar Content",
+    "text": ".sidebar Content\n\n\n\ndashboard.qmd\n\n---\ntitle: \"Diamonds Explorer\"\nauthor: \"Barkamian Analytics\"\nformat: dashboard\nserver: shiny\n---\n\n```{r}\n#| context: setup\n\nlibrary(ggplot2)\ndataset &lt;- diamonds\n```\n\n\n# {.sidebar}\n\n```{r}\nsliderInput('sampleSize', 'Sample Size', \n            min = 1, max = nrow(dataset),\n            value = min(1000, nrow(dataset)), \n            step = 500, round = 0)\nbr()\ncheckboxInput('jitter', 'Jitter')\ncheckboxInput('smooth', 'Smooth')\n```\n\n```{r}\nselectInput('x', 'X', names(dataset)) \nselectInput('y', 'Y', names(dataset), names(dataset)[[2]])\nselectInput('color', 'Color', c('None', names(dataset)))\n```\n\n```{r}\nselectInput('facet_row', 'Facet Row',\n  c(None = '.', names(diamonds[sapply(diamonds, is.factor)])))\nselectInput('facet_col', 'Facet Column',\n  c(None = '.', names(diamonds[sapply(diamonds, is.factor)])))\n```"
+  },
+  {
+    "objectID": "materials/06-quarto-dashboards.html#whats-with-the-formatting",
+    "href": "materials/06-quarto-dashboards.html#whats-with-the-formatting",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "What’s with the formatting?",
+    "text": "What’s with the formatting?\n\n\nsliderInput('sampleSize', 'Sample Size', min = 1, max = nrow(dataset),\n            value = min(1000, nrow(dataset)), step = 500, round = 0)\n\n\n\n\n\n'sampleSize': the name of the object that stores the value (to be used later in other code chunks)\n'Sample Size': the title (for the slider) that is displayed on the dashboard\nmin = 1: the starting value of the slider\nmax = nrow(dataset): the ending value of the slider\nvalue = min(1000, nrow(dataset)): sets the initial (default) value of the slider\nstep = 500: how big of increments should be displayed\nround = 0: specifies there should be 0 decimals places used\n\n\n\n\n\n\n\n\n\n\n\nWhy do these say dataset instead of diamonds? This makes the app usable for any dataset!"
+  },
+  {
+    "objectID": "materials/06-quarto-dashboards.html#how-are-these-inputs-used",
+    "href": "materials/06-quarto-dashboards.html#how-are-these-inputs-used",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "How are these inputs used?",
+    "text": "How are these inputs used?\n\n\n\ndashboard.qmd\n\n---\ntitle: \"Diamonds Explorer\"\nauthor: \"Barkamian Analytics\"\nformat: dashboard\nserver: shiny\n---\n\n```{r}\n#| context: setup\nlibrary(ggplot2)\ndataset &lt;- diamonds\n```\n\n# {.sidebar}\n\n```{r}\nsliderInput('sampleSize', 'Sample Size', \n            min=1, max=nrow(dataset),\n            value=min(1000, nrow(dataset)), \n            step=500, round=0)\nbr()\ncheckboxInput('jitter', 'Jitter')\ncheckboxInput('smooth', 'Smooth')\n```\n\n```{r}\nselectInput('x', 'X', names(dataset)) \nselectInput('y', 'Y', names(dataset), names(dataset)[[2]])\nselectInput('color', 'Color', c('None', names(dataset)))\n```\n\n```{r}\nselectInput('facet_row', 'Facet Row',\n  c(None='.', names(diamonds[sapply(diamonds, is.factor)])))\nselectInput('facet_col', 'Facet Column',\n  c(None='.', names(diamonds[sapply(diamonds, is.factor)])))\n```\n\n# Plot\n\n```{r}\nplotOutput('plot')\n```\n\n# Data\n\n```{r}\ntableOutput('data')\n```"
+  },
+  {
+    "objectID": "materials/06-quarto-dashboards.html#what-about-plot-and-data",
+    "href": "materials/06-quarto-dashboards.html#what-about-plot-and-data",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "What about 'plot' and 'data'?",
+    "text": "What about 'plot' and 'data'?\n\n\ndashboard.qmd\n\n```{r}\n#| context: server\n\ndataset &lt;- reactive({\n  diamonds[sample(nrow(diamonds), input$sampleSize),]\n})\n \noutput$plot &lt;- renderPlot({\n  \n  p &lt;- ggplot(\n    dataset(), \n    aes_string(x=input$x, y=input$y)) + geom_point()\n  \n  if (input$color != 'None')\n    p &lt;- p + aes_string(color=input$color)\n  \n  facets &lt;- paste(input$facet_row, '~', input$facet_col)\n  if (facets != '. ~ .')\n    p &lt;- p + facet_grid(facets)\n  \n  if (input$jitter)\n    p &lt;- p + geom_jitter()\n  if (input$smooth)\n    p &lt;- p + geom_smooth()\n  \n  p\n  \n})\n\noutput$data &lt;- renderTable({\n  dataset()\n})\n```"
+  },
+  {
+    "objectID": "materials/06-quarto-dashboards.html#how-are-all-of-these-pieces-connected",
+    "href": "materials/06-quarto-dashboards.html#how-are-all-of-these-pieces-connected",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "How are all of these pieces connected?",
+    "text": "How are all of these pieces connected?\n\n\nplotOutput('plot') is an empty picture frame in your user interface\n\n\n\n\n\n\nrenderPlot() is the painting you generate in your server\n\n\n\n\n\n\n\noutput$plot places the painting in the frame\n\n\n\n\n\n\n\nplotOutput('plot') places the painting on display"
+  },
+  {
+    "objectID": "materials/08-developer.html#why-developer-thinking",
+    "href": "materials/08-developer.html#why-developer-thinking",
+    "title": "Thinking Like a Developer",
+    "section": "Why Developer Thinking?",
+    "text": "Why Developer Thinking?\n\n\n\nPerformance awareness: Speed testing and optimization\nCode efficiency: Computational AND cognitive considerations\nMulti-language fluency: R + Python integration\nProfessional standards: Maintainable, readable code\n\n\n\n\n\nToday: Teaching students to think like professional developers"
+  },
+  {
+    "objectID": "materials/08-developer.html#learning-objectives",
+    "href": "materials/08-developer.html#learning-objectives",
+    "title": "Thinking Like a Developer",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\nBy the end of this session, you will:\n\n\nUnderstand speed testing principles (good, bad, ugly approaches)\nKnow how to balance computational and cognitive efficiency\nBe familiar with R-Python integration using reticulate and arrow\n\n\n\n\nFocus: Resources to teach professional development practices"
+  },
+  {
+    "objectID": "materials/08-developer.html#the-good-bad-and-ugly-of-performance",
+    "href": "materials/08-developer.html#the-good-bad-and-ugly-of-performance",
+    "title": "Thinking Like a Developer",
+    "section": "The Good, Bad, and Ugly of Performance",
+    "text": "The Good, Bad, and Ugly of Performance\nThe Good: Systematic, meaningful optimization\nThe Bad: Premature optimization without evidence\nThe Ugly: Micro-optimizing at the expense of readability\n\n\nTeaching principle: Measure first, optimize second"
+  },
+  {
+    "objectID": "materials/08-developer.html#essential-performance-testing-tools",
+    "href": "materials/08-developer.html#essential-performance-testing-tools",
+    "title": "Thinking Like a Developer",
+    "section": "Essential Performance Testing Tools",
+    "text": "Essential Performance Testing Tools\n\n# Install performance tools\n# pak::pak(c(\"microbenchmark\", \"profvis\", \"bench\", \"palmerpenguins\"))\n\n# Core performance packages\nlibrary(microbenchmark)  # Micro-benchmarking\nlibrary(profvis)         # Profiling and visualization\nlibrary(bench)           # Modern benchmarking\nlibrary(palmerpenguins)  # Example data"
+  },
+  {
+    "objectID": "materials/08-developer.html#the-good-systematic-benchmarking",
+    "href": "materials/08-developer.html#the-good-systematic-benchmarking",
+    "title": "Thinking Like a Developer",
+    "section": "The Good: Systematic Benchmarking",
+    "text": "The Good: Systematic Benchmarking\n\nlibrary(data.table)\nlibrary(dplyr)\n\ndt = as.data.table(penguins)\n\n# Compare different approaches systematically\nmicrobenchmark(\n  base_approach = aggregate(body_mass_g ~ species, penguins, mean),\n  dplyr_approach = penguins %&gt;% \n    group_by(species) %&gt;% \n    summarize(mean_mass = mean(body_mass_g, na.rm = TRUE)),\n  data.table_approach = dt[, .(mean_mass = mean(body_mass_g, na.rm = TRUE)), by = species],\n  times = 100\n)\n\nUnit: microseconds\n                expr     min       lq     mean   median       uq      max neval\n       base_approach 268.668 301.7715 341.7602 316.0005 327.7505 1848.792   100\n      dplyr_approach 835.625 872.1045 975.6732 888.4380 920.2300 6758.750   100\n data.table_approach 199.043 220.4585 296.5323 232.3755 247.9175 3203.959   100"
+  },
+  {
+    "objectID": "materials/08-developer.html#the-bad-premature-optimization",
+    "href": "materials/08-developer.html#the-bad-premature-optimization",
+    "title": "Thinking Like a Developer",
+    "section": "The Bad: Premature Optimization",
+    "text": "The Bad: Premature Optimization\n\n# DON'T DO THIS: Optimizing before understanding the problem\n# Spending hours optimizing this:\nfast_but_unreadable &lt;- function(x) {\n  .Call(\"C_fast_mean\", x, PACKAGE = \"mypackage\")\n}\n\n# When this is fast enough and much clearer:\nreadable_solution &lt;- function(x) {\n  mean(x, na.rm = TRUE)\n}\n\n\nAnti-pattern: Optimizing code that runs once per analysis and takes 0.001 seconds"
+  },
+  {
+    "objectID": "materials/08-developer.html#the-ugly-sacrificing-readability",
+    "href": "materials/08-developer.html#the-ugly-sacrificing-readability",
+    "title": "Thinking Like a Developer",
+    "section": "The Ugly: Sacrificing Readability",
+    "text": "The Ugly: Sacrificing Readability\n\n# UGLY: Unreadable \"optimized\" code\nugly_fast &lt;- penguins[!is.na(body_mass_g), \n                     .(m=.Internal(mean(body_mass_g))), \n                     keyby=.(s=species)]\n\n# GOOD: Clear, maintainable code that's fast enough\nclear_code &lt;- penguins %&gt;%\n  filter(!is.na(body_mass_g)) %&gt;%\n  group_by(species) %&gt;%\n  summarize(mean_mass = mean(body_mass_g))\n\n\nTeaching Lesson: Readability matters more than micro-optimizations"
+  },
+  {
+    "objectID": "materials/08-developer.html#profiling-with-profvis",
+    "href": "materials/08-developer.html#profiling-with-profvis",
+    "title": "Thinking Like a Developer",
+    "section": "Profiling with profvis",
+    "text": "Profiling with profvis\n\nlibrary(profvis)\n\n# set up fake large data\npen2 = replicate(10000, penguins, simplify = FALSE) |&gt; \n  bind_rows() |&gt; \n  mutate(species = paste(species, 1:1000))\n\n# Profile a more complex operation\nprofvis({\n  # Simulate some data processing\n  results &lt;- pen2 |&gt; \n    filter(!is.na(bill_length_mm)) |&gt; \n    group_by(species, island) |&gt; \n    summarize(\n      mean_bill = mean(bill_length_mm),\n      sd_bill = sd(bill_length_mm),\n      .groups = \"drop\"\n    ) |&gt; \n    arrange(desc(mean_bill))\n})\n\nprofviz docs\n\nStudent Activity: Profile their own code to identify real bottlenecks"
+  },
+  {
+    "objectID": "materials/08-developer.html#sample-assignment-prompts",
+    "href": "materials/08-developer.html#sample-assignment-prompts",
+    "title": "Thinking Like a Developer",
+    "section": "Sample Assignment Prompts",
+    "text": "Sample Assignment Prompts\n\n\n“Optimize this slow function, but explain why the optimization is worth the complexity”\n“Find the performance bottleneck in this analysis pipeline”\n“Compare three approaches and recommend one for a team project”"
+  },
+  {
+    "objectID": "materials/08-developer.html#performance-testing-teaching-resources",
+    "href": "materials/08-developer.html#performance-testing-teaching-resources",
+    "title": "Thinking Like a Developer",
+    "section": "Performance Testing Teaching Resources",
+    "text": "Performance Testing Teaching Resources\n\nComprehensive Learning Materials:\n\nAdvanced R - Measuring Performance - Hadley Wickham’s comprehensive guide\nMastering Software Development in R - Academic perspective\nUSC Biostats R Handbook - Practical examples\nAdvanced R Solutions - Problem-solving approach\n\nPackage Documentation:\n\nmicrobenchmark Documentation - Accurate timing functions\nAppsilon Microbenchmark Guide - Real-world examples\nRPubs Efficient R Code - Student-friendly tutorial\n\nTeaching Best Practices:\n\nFocus on median times, not minimum\nUse realistic data sizes for benchmarks\nAlways profile before optimizing\nSet performance targets before starting\nRemember, benchmarking is always built on assumptions!"
+  },
+  {
+    "objectID": "materials/08-developer.html#two-types-of-efficiency",
+    "href": "materials/08-developer.html#two-types-of-efficiency",
+    "title": "Thinking Like a Developer",
+    "section": "Two Types of Efficiency",
+    "text": "Two Types of Efficiency\n\nComputational Efficiency:\n\nHow fast does the code run?\nHow much memory does it use?\nDoes it scale well with larger data?\n\nCognitive Efficiency:\n\nHow easy is it to understand?\nHow quickly can someone modify it?\nHow fast can you type it?\nHow likely are bugs to be introduced?\n\n\n\n\nKey insight: Cognitive efficiency often matters more than computational efficiency"
+  },
+  {
+    "objectID": "materials/08-developer.html#the-readability-performance-trade-off",
+    "href": "materials/08-developer.html#the-readability-performance-trade-off",
+    "title": "Thinking Like a Developer",
+    "section": "The Readability-Performance Trade-off",
+    "text": "The Readability-Performance Trade-off\n\n# High readability, adequate performance\nreadable_analysis &lt;- penguins %&gt;%\n  filter(!is.na(bill_length_mm), !is.na(body_mass_g)) %&gt;%\n  mutate(bill_to_mass_ratio = bill_length_mm / body_mass_g) %&gt;%\n  group_by(species) %&gt;%\n  summarize(\n    mean_ratio = mean(bill_to_mass_ratio),\n    median_ratio = median(bill_to_mass_ratio),\n    n_observations = n()\n  )\n\n# Versus optimized but less readable version...\nidx &lt;- !is.na(penguins$bill_length_mm) & !is.na(penguins$body_mass_g)\ns &lt;- penguins$species[idx]\nr &lt;- penguins$bill_length_mm[idx] / penguins$body_mass_g[idx]\nsl &lt;- split(r, s)\n\nvery_ugly_analysis &lt;- data.frame(\n  species = names(sl),\n  mean_ratio = vapply(sl, mean, numeric(1)),\n  median_ratio = vapply(sl, median, numeric(1)),\n  n_observations = vapply(sl, length, integer(1))\n)\n\n\nTeaching Strategy: Start with readable code, optimize only when necessary"
+  },
+  {
+    "objectID": "materials/08-developer.html#cognitive-load-principles",
+    "href": "materials/08-developer.html#cognitive-load-principles",
+    "title": "Thinking Like a Developer",
+    "section": "Cognitive Load Principles",
+    "text": "Cognitive Load Principles\n\nReduce Mental Overhead:\n\nMeaningful names: calculate_species_averages() not calc_sp_avg()\nConsistent style: Pick one approach and stick to it\nAppropriate abstraction: Functions for repeated logic\nClear structure: Logical flow from input to output\n\nResearch-backed: Poor code readability increases cognitive load and reduces maintenance efficiency by up to 58%"
+  },
+  {
+    "objectID": "materials/08-developer.html#good-cognitive-efficiency-example",
+    "href": "materials/08-developer.html#good-cognitive-efficiency-example",
+    "title": "Thinking Like a Developer",
+    "section": "Good Cognitive Efficiency Example",
+    "text": "Good Cognitive Efficiency Example\n\n# GOOD: Clear intent, logical flow\nanalyze_penguin_measures &lt;- function(data, measurement_var) {\n  data %&gt;%\n    filter(!is.na({{measurement_var}})) %&gt;%\n    group_by(species, island) %&gt;%\n    summarize(\n      mean_value = mean({{measurement_var}}, na.rm = TRUE),\n      std_dev = sd({{measurement_var}}, na.rm = TRUE),\n      sample_size = n(),\n      .groups = \"drop\"\n    ) %&gt;%\n    arrange(species, island)\n}\n\n# Usage is self-documenting\nbill_analysis &lt;- analyze_penguin_measures(penguins, bill_length_mm)\nmass_analysis &lt;- analyze_penguin_measures(penguins, body_mass_g)"
+  },
+  {
+    "objectID": "materials/08-developer.html#bad-cognitive-efficiency-example",
+    "href": "materials/08-developer.html#bad-cognitive-efficiency-example",
+    "title": "Thinking Like a Developer",
+    "section": "Bad Cognitive Efficiency Example",
+    "text": "Bad Cognitive Efficiency Example\n\n# BAD: Unclear purpose, complex logic\nf &lt;- function(d, v) {\n  d[!is.na(d[[deparse(substitute(v))]]), ] %&gt;%\n    split(paste(d$species, d$island)) %&gt;%\n    map_dfr(~ data.frame(\n      grp = .x$species[1], \n      isl = .x$island[1],\n      m = mean(.x[[deparse(substitute(v))]]),\n      s = sd(.x[[deparse(substitute(v))]]),\n      n = nrow(.x)\n    ))\n}\n\n# What does this do? How do I use it?\nresult &lt;- f(penguins, bill_length_mm)  # Unclear!"
+  },
+  {
+    "objectID": "materials/08-developer.html#teaching-computational-efficiency",
+    "href": "materials/08-developer.html#teaching-computational-efficiency",
+    "title": "Thinking Like a Developer",
+    "section": "Teaching Computational Efficiency",
+    "text": "Teaching Computational Efficiency\n\n# Show students the progression:\n\n# 1. Inefficient but clear\nslow_approach &lt;- function(data) {\n  results &lt;- data.frame()\n  for(species in unique(data$species)) {\n    subset_data &lt;- data[data$species == species, ]\n    mean_mass &lt;- mean(subset_data$body_mass_g, na.rm = TRUE)\n    results &lt;- rbind(results, data.frame(species = species, mean_mass = mean_mass))\n  }\n  return(results)\n}\n\n# 2. Efficient and still clear\nfast_approach &lt;- function(data) {\n  data %&gt;%\n    group_by(species) %&gt;%\n    summarize(mean_mass = mean(body_mass_g, na.rm = TRUE))\n}\n\n\nPedagogical Value: Students see the evolution from working code to efficient code"
+  },
+  {
+    "objectID": "materials/08-developer.html#code-efficiency-teaching-resources",
+    "href": "materials/08-developer.html#code-efficiency-teaching-resources",
+    "title": "Thinking Like a Developer",
+    "section": "Code Efficiency Teaching Resources",
+    "text": "Code Efficiency Teaching Resources\n\nReadability and Maintainability (2025 Research):\n\nCode Readability Research - 58% variance in maintenance efficiency\nCognitive Load Studies - Impact on developer comprehension\nPremature Optimization Pitfalls - 2025 best practices\n\nPractical Guidelines:\n\nStack Overflow: Readability vs Performance - Community wisdom\nCode Quality Principles - Professional standards\nLinkedIn: Balancing Optimization - Industry perspectives\n\nTeaching Materials:\n\nFocus on meaningful variable names and function design\nEmphasize “readable first, optimize later” principle\n\nUse real examples showing readability impact on debugging\nTeach systematic profiling before optimization"
+  },
+  {
+    "objectID": "materials/08-developer.html#why-r-python-together",
+    "href": "materials/08-developer.html#why-r-python-together",
+    "title": "Thinking Like a Developer",
+    "section": "Why R + Python Together?",
+    "text": "Why R + Python Together?\nThe modern data science workflow is increasingly multilingual:\n\n\nBest tool for the job\nTeam collaboration\nEcosystem access\nCareer preparation\n\n\n\n\nTeaching philosophy: “It’s not Python vs R, it’s Python AND R”"
+  },
+  {
+    "objectID": "materials/08-developer.html#the-reticulate-arrow-stack",
+    "href": "materials/08-developer.html#the-reticulate-arrow-stack",
+    "title": "Thinking Like a Developer",
+    "section": "The reticulate + Arrow Stack",
+    "text": "The reticulate + Arrow Stack\n\n# Install multilingual tools\n# pak::pak(c(\"reticulate\", \"arrow\", \"palmerpenguins\"))\n\n# Setup Python environment\nlibrary(reticulate)\nlibrary(arrow)\n\n# Modern 2025 approach: automatic Python setup\npy_require(c(\"pandas\", \"numpy\", \"pyarrow\"))\n\n\n2025 Update: reticulate 1.41 uses uv backend for simplified Python environment management"
+  },
+  {
+    "objectID": "materials/08-developer.html#efficient-data-transfer-with-arrow",
+    "href": "materials/08-developer.html#efficient-data-transfer-with-arrow",
+    "title": "Thinking Like a Developer",
+    "section": "Efficient Data Transfer with Arrow",
+    "text": "Efficient Data Transfer with Arrow\n\n# R: Prepare data as Arrow table\nlibrary(arrow)\npenguins_arrow &lt;- arrow_table(penguins)\n\n# Pass to Python (zero-copy!)\npy$penguins_data &lt;- penguins_arrow\n\n# Python chunk processes data\n\n\n# Python: Work with the data\nimport pandas as pd\n\n# Convert from Arrow (still efficient)\ndf = r.penguins_data.to_pandas()\n\n# Python-specific analysis\nfrom sklearn.cluster import KMeans\n# ... machine learning code ...\n\n# Return results to R\nprocessed_data = df.groupby('species').mean()"
+  },
+  {
+    "objectID": "materials/08-developer.html#seamless-language-switching",
+    "href": "materials/08-developer.html#seamless-language-switching",
+    "title": "Thinking Like a Developer",
+    "section": "Seamless Language Switching",
+    "text": "Seamless Language Switching\n\n# R: Statistical modeling\nlibrary(broom)\n\nmodel_results &lt;- penguins %&gt;%\n  filter(!is.na(bill_length_mm), !is.na(body_mass_g)) %&gt;%\n  nest_by(species) %&gt;%\n  mutate(\n    model = list(lm(body_mass_g ~ bill_length_mm, data = data)),\n    tidy_results = list(tidy(model))\n  )\n\n\n# Python: Machine learning on same data\nfrom sklearn.ensemble import RandomForestRegressor\nfrom sklearn.model_selection import train_test_split\n\n# Use the R data directly\nX = r.penguins[['bill_length_mm', 'bill_depth_mm']].dropna()\ny = r.penguins['body_mass_g'].dropna()\n\n# Train model\nrf_model = RandomForestRegressor()\nrf_model.fit(X, y)"
+  },
+  {
+    "objectID": "materials/08-developer.html#teaching-multi-language-workflows",
+    "href": "materials/08-developer.html#teaching-multi-language-workflows",
+    "title": "Thinking Like a Developer",
+    "section": "Teaching Multi-Language Workflows",
+    "text": "Teaching Multi-Language Workflows\n\n# R: Data preparation and exploration\nlibrary(palmerpenguins)\nlibrary(ggplot2)\n\n# Exploratory analysis in R\npenguins %&gt;%\n  ggplot(aes(bill_length_mm, body_mass_g, color = species)) +\n  geom_point() +\n  labs(title = \"Penguin Measurements by Species\")\n\n# Pass cleaned data to Python for ML\npy$clean_penguins &lt;- penguins %&gt;%\n  drop_na() %&gt;%\n  select(bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g, species)\n\n\n# Python: Machine learning pipeline\nimport pandas as pd\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.metrics import classification_report\n\n# Use R's cleaned data\ndf = r.clean_penguins\nX = df[['bill_length_mm', 'bill_depth_mm', 'flipper_length_mm', 'body_mass_g']]\ny = df['species']\n\n# Train classifier\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)\nclf = RandomForestClassifier()\nclf.fit(X_train, y_train)\n\n# Return predictions to R\npredictions = clf.predict(X_test)"
+  },
+  {
+    "objectID": "materials/08-developer.html#multi-lingual-packages",
+    "href": "materials/08-developer.html#multi-lingual-packages",
+    "title": "Thinking Like a Developer",
+    "section": "Multi-lingual Packages",
+    "text": "Multi-lingual Packages\n\nSome multi-lingual packages already available:\n\npolars (same for both R and python)\narrow and pyarrow\nduckDB (same for both R and python)\n\n\nThese have very similar syntax and have the same underlying behavior."
+  },
+  {
+    "objectID": "materials/08-developer.html#multi-language-teaching-resources",
+    "href": "materials/08-developer.html#multi-language-teaching-resources",
+    "title": "Thinking Like a Developer",
+    "section": "Multi-Language Teaching Resources",
+    "text": "Multi-Language Teaching Resources\n\nOfficial Documentation & Guides:\n\nArrow R-Python Integration - Official cross-language guide\nreticulate Documentation - Complete R-Python integration\nDanielle Navarro’s Arrow Tutorial - Practical examples\n\nTeaching-Focused Resources:\n\nAtorus Research Multilingual Markdown - Educational approach\nMicrosoft Data Science Guide - Team collaboration\nFlukeandfeather Introduction - Beginner-friendly tutorial\n\n2025 Updates:\n\nreticulate 1.41 with uv backend for simplified setup\nImproved Arrow integration for zero-copy data transfer\nGrowing emphasis on multilingual data science teams"
+  },
+  {
+    "objectID": "materials/08-developer.html#professional-development-for-instructors",
+    "href": "materials/08-developer.html#professional-development-for-instructors",
+    "title": "Thinking Like a Developer",
+    "section": "Professional Development for Instructors",
+    "text": "Professional Development for Instructors\n\nPerformance Optimization:\n\nAdvanced R Performance - Comprehensive optimization guide\nR Inferno - Common performance pitfalls\nEfficient R Programming - Practical optimization strategies\n\nCode Quality Teaching:\n\nClean Code Principles - Industry standards\nCode Quality Research - Academic perspectives\nRefactoring Techniques - Systematic improvement methods\n\nMultilingual Data Science:\n\nPython for R Users - Transition strategies\nPolyglot Data Science - Team workflows\nCross-Language Best Practices - Research software guidelines"
+  },
+  {
+    "objectID": "materials/08-developer.html#assessment-ideas-for-developer-thinking",
+    "href": "materials/08-developer.html#assessment-ideas-for-developer-thinking",
+    "title": "Thinking Like a Developer",
+    "section": "Assessment Ideas for Developer Thinking",
+    "text": "Assessment Ideas for Developer Thinking\n\nPerformance Portfolio:\n\nDocument before/after optimization with benchmarks\nExplain trade-offs between performance and readability\nProfile and optimize a provided slow function\n\nCode Quality Review:\n\nPeer review exercises with readability rubrics\nRefactor legacy code for better maintainability\nWrite functions with clear interfaces and documentation\n\nMultilingual Projects:\n\nImplement analysis using both R and Python\nCompare language-specific approaches to same problem\nCreate reproducible multilingual workflow documentation\n\nReal-World Applications:\n\nOptimize code for large datasets\nDebug performance issues in complex pipelines\nCollaborate on mixed-language team projects"
   },
   {
     "objectID": "index.html",

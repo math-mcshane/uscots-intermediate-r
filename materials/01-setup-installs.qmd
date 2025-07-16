@@ -39,7 +39,6 @@ library(countdown)
 
 install.packages("usethis")
 
-
 usethis::use_course("atheobold/uscots-intermediate-r")
 ```
 
@@ -139,11 +138,11 @@ result <- data_main %>%
 
 ::::: {.columns layout-ncol="2"}
 ::: column
-![](images/00-r4ds.jpg)
+![](images/00-r4ds.jpg){width=400px}
 :::
 
 ::: column
-![](images/00-book-of-r.jpg)
+![](images/00-book-of-r.jpg){width=400px}
 :::
 :::::
 
@@ -185,7 +184,7 @@ result <- data_main %>%
 
 -   It *is* a collection of learning paths (sometimes overlapping) towards a specific end goal.
 
--   **Our course has *three units* that can be rearranged *modularly**
+-   **Our course has *three units* that can be rearranged *modularly***.
 
 ## *Intermediate R* is **defined by goals**
 
@@ -199,7 +198,10 @@ result <- data_main %>%
 
 ## The structure:
 
+![](images/01-structure.png)
+
 ```{r}
+#| eval: false
 library(DiagrammeR)
 
 grViz("
@@ -570,9 +572,9 @@ Find goals that are **specific**, that you can **measure**, that you can
 
 ## Activity: Find Your Data Sources
 
-In pairs, come up with a data context and a few broad research questions.
-
-Find online as many of the following as you can related to your data context:
+::: {.midi}
+In pairs, come up with a data context and a few broad research questions. Find
+online as many of the following as you can related to your data context:
 
 1. Clean tabular datasets, e.g. kaggle or tidytuesday
 
@@ -584,7 +586,4 @@ Find online as many of the following as you can related to your data context:
 
 *We recommend starting a Google Doc or similar with your group, to collect references to datasets, as well as content from future activities.*
 
-```{r}
-countdown(minutes = 15)
-```
-
+:::
