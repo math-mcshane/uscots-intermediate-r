@@ -578,7 +578,7 @@
     "href": "materials/04-professional-viz.html#sometimes-bad-is-the-way",
     "title": "Professional Data Visualization",
     "section": "Sometimes Bad Is The Way",
-    "text": "Sometimes Bad Is The Way\n[](04-mando.png]"
+    "text": "Sometimes Bad Is The Way"
   },
   {
     "objectID": "materials/04-professional-viz.html#sometimes-bad-is-the-way-1",
@@ -819,11 +819,11 @@
     "text": ".css\nA Cascading Style Sheets (CSS) file is a style sheet language used in web development to describe the presentation and formatting of documents written in HTML or XML."
   },
   {
-    "objectID": "materials/05-quarto-projects-websites.html#index.qmd-about.qmd",
-    "href": "materials/05-quarto-projects-websites.html#index.qmd-about.qmd",
+    "objectID": "materials/05-quarto-projects-websites.html#section-1",
+    "href": "materials/05-quarto-projects-websites.html#section-1",
     "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": "index.qmd & about.qmd",
-    "text": "index.qmd & about.qmd\n\n\n\n\nThis is the home page for the website!\nWhatever you place in the index.qmd file will be the first page people see!\nThis page is also accessed using the top navigation menu (on the left side) using the link titled “Home.”\n\n\n\n\n\n\nThis is an additional content page!\nThis is accessed through the top navigation menu.\nNotice that the .yml file doesn’t give this page a name, so it defaults to the title included in the about.qmd document."
+    "section": "",
+    "text": "index.qmd\n\nThis is the home page for the website!\nWhatever you place in the index.qmd file will be the first page people see!\nThis page is also accessed using the top navigation menu (on the left side) using the link titled “Home.”\n\n\n\n\n\nabout.qmd\n\nThis is an additional content page!\nThis is accessed through the top navigation menu.\nNotice that the .yml file doesn’t give this page a name, so it defaults to the title included in the about.qmd document."
   },
   {
     "objectID": "materials/05-quarto-projects-websites.html#website-themes",
@@ -831,6 +831,13 @@
     "title": "USCOTS 2025 Intermediate R Workshop",
     "section": "Website Themes",
     "text": "Website Themes\nformat:\n  html:\n    theme: cosmo\n    css: styles.css\n    toc: true\n\nHere is a list of every theme available for Quarto websites: https://quarto.org/docs/output-formats/html-themes.html\n\n\n\n\nOptionally, you can set separate “light” and “dark” themes:\n\ntheme:\n  light: flatly\n  dark: darkly"
+  },
+  {
+    "objectID": "materials/05-quarto-projects-websites.html#how-would-you-integrate-websites-into-a-course",
+    "href": "materials/05-quarto-projects-websites.html#how-would-you-integrate-websites-into-a-course",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "How would you integrate websites into a course?",
+    "text": "How would you integrate websites into a course?\n\n\n\nProjects\n\nAre students already completing a project that includes R?\nWhy not transform this project into something they can publish?\nhttps://sta199-s24.github.io/project/description.html\n\n\n\n\n\nPersonal Websites\n\nGiving students a way to advertise themselves!\nhttps://mattbabb737.github.io/\nhttps://alisa-krasilnikov.github.io/\nhttps://lilypcook.github.io"
   },
   {
     "objectID": "materials/10-wrapup.html#takeaways",
@@ -1362,7 +1369,7 @@
     "href": "materials/08-developer.html#the-good-systematic-benchmarking",
     "title": "Thinking Like a Developer",
     "section": "The Good: Systematic Benchmarking",
-    "text": "The Good: Systematic Benchmarking\n\nlibrary(data.table)\nlibrary(dplyr)\n\ndt = as.data.table(penguins)\n\n# Compare different approaches systematically\nmicrobenchmark(\n  base_approach = aggregate(body_mass_g ~ species, penguins, mean),\n  dplyr_approach = penguins %&gt;% \n    group_by(species) %&gt;% \n    summarize(mean_mass = mean(body_mass_g, na.rm = TRUE)),\n  data.table_approach = dt[, .(mean_mass = mean(body_mass_g, na.rm = TRUE)), by = species],\n  times = 100\n)\n\nUnit: microseconds\n                expr     min       lq     mean   median       uq      max neval\n       base_approach 266.918 285.2715 344.9649 298.9585 314.9380 2383.292   100\n      dplyr_approach 819.667 847.7090 968.9148 861.0840 894.1885 6742.209   100\n data.table_approach 198.626 214.5840 272.7977 222.6255 237.1045 4775.875   100"
+    "text": "The Good: Systematic Benchmarking\n\nlibrary(data.table)\nlibrary(dplyr)\n\ndt = as.data.table(penguins)\n\n# Compare different approaches systematically\nmicrobenchmark(\n  base_approach = aggregate(body_mass_g ~ species, penguins, mean),\n  dplyr_approach = penguins %&gt;% \n    group_by(species) %&gt;% \n    summarize(mean_mass = mean(body_mass_g, na.rm = TRUE)),\n  data.table_approach = dt[, .(mean_mass = mean(body_mass_g, na.rm = TRUE)), by = species],\n  times = 100\n)\n\nUnit: microseconds\n                expr     min       lq     mean   median       uq      max neval\n       base_approach 268.668 301.7715 341.7602 316.0005 327.7505 1848.792   100\n      dplyr_approach 835.625 872.1045 975.6732 888.4380 920.2300 6758.750   100\n data.table_approach 199.043 220.4585 296.5323 232.3755 247.9175 3203.959   100"
   },
   {
     "objectID": "materials/08-developer.html#the-bad-premature-optimization",
@@ -1538,19 +1545,5 @@
     "title": "USCOTS 2025 Workshop",
     "section": "Intended Audience and Level",
     "text": "Intended Audience and Level\nWe expect attendees to have R fluency at the level of a typical introductory course, such as the textbook R for Data Science (Wickham, Çetinkaya-Rundel, & Grolemund 2023); as well as familiarity with some scattered intermediate to advanced topics, interpreted broadly.\nThe focus of this workshop will not be training in intermediate R skills, but rather in preparing educators to deliver higher-level R courses. We will provide resources, examples, and frameworks to empower attendees to expand their R knowledge and design a meaningful hands-on classroom experience."
-  },
-  {
-    "objectID": "materials/05-quarto-projects-websites.html#section-1",
-    "href": "materials/05-quarto-projects-websites.html#section-1",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": "",
-    "text": "index.qmd\n\nThis is the home page for the website!\nWhatever you place in the index.qmd file will be the first page people see!\nThis page is also accessed using the top navigation menu (on the left side) using the link titled “Home.”\n\n\n\n\n\nabout.qmd\n\nThis is an additional content page!\nThis is accessed through the top navigation menu.\nNotice that the .yml file doesn’t give this page a name, so it defaults to the title included in the about.qmd document."
-  },
-  {
-    "objectID": "materials/05-quarto-projects-websites.html#how-would-you-integrate-websites-into-a-course",
-    "href": "materials/05-quarto-projects-websites.html#how-would-you-integrate-websites-into-a-course",
-    "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": "How would you integrate websites into a course?",
-    "text": "How would you integrate websites into a course?\n\n\nProjects\nAre students already completing a project that includes R?\nWhy not transform this project into something they can publish?\n\n\n\n\nPersonal Websites\nGiving students a way to advertise themselves!\nhttps://mattbabb737.github.io/\nhttps://alisa-krasilnikov.github.io/\nhttps://lilypcook.github.io"
   }
 ]

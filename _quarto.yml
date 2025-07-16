@@ -43,17 +43,6 @@ website:
             text: "Package-Based Teaching"
           - href: materials/10-wrapup.qmd
             text: "Wrap Up"
-         
-       - text: Activities
-         # menu: 
-         #  - href: materials/02-activity-quarto-yaml.qmd
-         #    text: "Exploring YAML Options in Quarto Docs"
-         #  - href: materials/03-activity-styling-quarto-docs.qmd
-         #    text: "Embellishing your Quarto doc"
-         #  - href: materials/04-activity-quarto-presentations.qmd
-         #    text: "Your first (?) Quarto presentation"
-         #  - href: materials/05-activity-styling-quarto-presentations.qmd
-         #    text: "Embellishing your Quarto presentation"
 
     right: 
       - icon: github
