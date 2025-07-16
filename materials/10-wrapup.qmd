@@ -19,10 +19,14 @@ editor: source
 -   Separate content into **modular units** organized by *goals*.
 
 -   Sign up to be notified when the *Course in a Box* is available!
+
+-   Take the USCOTS feedback survey.
 :::
 
 ::: column
 ![](images/10-QR.png)
+
+![](images/feedback-qr.png)
 :::
 :::::
 
