@@ -205,30 +205,95 @@ test_check("example_skeleton_package")
 
 ... and run it!
 
-## Speed Tests, etc.
+## Working with GitHub
 
-Download all the **zip files** and...
+If student work is on GitHub rather than in folders...
 
 ```
-submissions <- list.files("./submissions")
+remotes::install_github("imastudent/example_skeleton_package")
+```
+
+... and loop through each.
+
+## Automation
+
+```
+urls <- # list of student repos
 
 all_test_results <- tibble()
 all_time_results <- tibble()
 
-for (i in 1::length(submissions)){
-  
-    student <- submissions[i]
+for (url in submissions){
   
     unloadNamespace("example_skeleton_package")
     remove.packages("example_skeleton_package", ".")
     
-    devtools::build(paste0("./submissions/", student))
+    remotes::install_github(submissions)
 
     library(example_skeleton_package)
 
     lr_test <- testthat::test_dir("./tests/testthat",
                reporter = "minimal",
                stop_on_failure = FALSE)
+      
+      ## save output however you prefer
+    
+}
+```
+
+
+
+# Leveling up {background-color="#0F4C81"}
+
+## Function design/development
+
+* Remove inputs and output from scaffolding
+
+* Require *tidy eval* and unquoted variables ([Starting Point](https://dcl-prog.stanford.edu/tidy-eval-detailed.html))
+
+* Emphasize code review (["Code Smells and Feels" talk](https://www.youtube.com/watch?v=IzRn-QnOhug))
+
+* Emphasize responsible use of Git and GitHub
+
+
+## Package creation
+
+* Don't provide `roxygen2` documentation; require students do it.
+
+* Require additional unit tests
+
+* Require multiple `.R` files and multiple functions per file.
+
+* Practice CRAN submission?
+
+* [R Packages Textbook](https://r-pkgs.org/)
+
+## Statistical computing
+
+* Matrix operations, e.g. for *multiple regression*
+
+* Iteration to convergence, e.g. *kmeans*
+
+* Model fitting via gradient descent
+
+* Emphasize speed/efficiency
+
+## Speed/memory tests
+
+
+```{r}
+#| eval: false
+
+big_dat <- #some large dataset
+  
+for (url in submissions){
+  
+    unloadNamespace("example_skeleton_package")
+    remove.packages("example_skeleton_package", ".")
+    
+    remotes::install_github(submissions)
+
+    library(example_skeleton_package)
 
     benches <- bench::mark(
       slr = safely(simple_linear_regression)(big_dat, price, gearbox),
@@ -242,31 +307,9 @@ for (i in 1::length(submissions)){
       select(
         expression, median
       ) 
-      
-      ## save output
     
 }
 ```
-
-## Working with GitHub
-
-If student work is on GitHub rather than in folders...
-
-```
-remotes::install_github("imastudent/example_skeleton_package")
-```
-
-... and loop through each.
-
-## Ways to level up
-
-* Tidy eval
-
-* Package creation/design
-
-* Implementing stat algorithms
-
-* Speed and memory tests using secret unit tests
 
 
 
