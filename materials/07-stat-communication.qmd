@@ -142,8 +142,7 @@ countdown(minutes = 3)
 
 ## Create your Project B Dashboard Assignment
 
-Things to include:
-
+::: {.midi}
 * Who is the **target audience** that the student should address?
 
 * Will you require any **specific research questions** to be addressed, or is it open-ended?
@@ -154,8 +153,7 @@ Things to include:
     + the **design** elements?
     + the **technical** elements?
     + the **communication** elements?
-
-
+:::
 
 
 
