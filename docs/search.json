@@ -1253,6 +1253,13 @@
     "text": "Changing Orientation (to Columns)\n\n\n\n\n---\ntitle: \"Palmer Penguins\"\nauthor: \"Allison Theobold\"\nformat: \n  dashboard:\n    orientation: columns\n---\n    \n## Column {width=60%}\n\n```{r}\n```\n\n## Column {width=40%}\n\n```{r}\n```\n\n```{r}\n```"
   },
   {
+    "objectID": "materials/06-quarto-dashboards.html#what-if-you-have-card-content-that-isnt-included-in-a-code-chunk",
+    "href": "materials/06-quarto-dashboards.html#what-if-you-have-card-content-that-isnt-included-in-a-code-chunk",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "What if you have “card” content that isn’t included in a code chunk?",
+    "text": "What if you have “card” content that isn’t included in a code chunk?\n\n---\ntitle: \"Palmer Penguins\"\nauthor: \"Allison Theobold\"\nformat: \n  dashboard:\n    orientation: columns\n---\n    \n## Column {width=60%}\n\n```{r}\n```\n\n## Column {width=40%}\n\n::: {.card}\nThis text will be displayed within a card\n:::\n\n```{r}\n```"
+  },
+  {
     "objectID": "materials/06-quarto-dashboards.html#adding-more-pages",
     "href": "materials/06-quarto-dashboards.html#adding-more-pages",
     "title": "USCOTS 2025 Intermediate R Workshop",
@@ -1292,7 +1299,7 @@
     "href": "materials/06-quarto-dashboards.html#interactive-dashboard-components",
     "title": "USCOTS 2025 Intermediate R Workshop",
     "section": "Interactive Dashboard Components",
-    "text": "Interactive Dashboard Components\n\nThe format of interactive dashboards are similar to a “standard” dashboard. The difference lies in how the outputs (e.g., plots, tables) are created.\n\n\nThe user is given a set of controls that influence the output that is seen.\nThere are code chunks that “react” to these user inputs.\nThe outputs displayed in the app depend on these user inputs.\n\n\n\n\n\n\n\n\n\n\nThere are three main #| context: values that code chunks can have: data, setup, server."
+    "text": "Interactive Dashboard Components\n\nThe format of interactive dashboards are similar to a “standard” dashboard. The difference lies in how the outputs (e.g., plots, tables) are created.\n\n\nThe user is given a set of controls that influence the output that is seen.\nThere are code chunks that “react” to these user inputs.\nThe outputs displayed depend on these user inputs.\n\n\n\n\n\n\n\n\n\n\nThere are three main #| context: values that code chunks can have: data, setup, and server."
   },
   {
     "objectID": "materials/06-quarto-dashboards.html#context-setup",
@@ -1323,18 +1330,18 @@
     "text": "How are these inputs used?\n\n\n\ndashboard.qmd\n\n---\ntitle: \"Diamonds Explorer\"\nauthor: \"Barkamian Analytics\"\nformat: dashboard\nserver: shiny\n---\n\n```{r}\n#| context: setup\nlibrary(ggplot2)\ndataset &lt;- diamonds\n```\n\n# {.sidebar}\n\n```{r}\nsliderInput('sampleSize', 'Sample Size', \n            min=1, max=nrow(dataset),\n            value=min(1000, nrow(dataset)), \n            step=500, round=0)\nbr()\ncheckboxInput('jitter', 'Jitter')\ncheckboxInput('smooth', 'Smooth')\n```\n\n```{r}\nselectInput('x', 'X', names(dataset)) \nselectInput('y', 'Y', names(dataset), names(dataset)[[2]])\nselectInput('color', 'Color', c('None', names(dataset)))\n```\n\n```{r}\nselectInput('facet_row', 'Facet Row',\n  c(None='.', names(diamonds[sapply(diamonds, is.factor)])))\nselectInput('facet_col', 'Facet Column',\n  c(None='.', names(diamonds[sapply(diamonds, is.factor)])))\n```\n\n# Plot\n\n```{r}\nplotOutput('plot')\n```\n\n# Data\n\n```{r}\ntableOutput('data')\n```"
   },
   {
-    "objectID": "materials/06-quarto-dashboards.html#what-about-plot-and-data",
-    "href": "materials/06-quarto-dashboards.html#what-about-plot-and-data",
+    "objectID": "materials/06-quarto-dashboards.html#where-are-plot-and-data-coming-from",
+    "href": "materials/06-quarto-dashboards.html#where-are-plot-and-data-coming-from",
     "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": "What about 'plot' and 'data'?",
-    "text": "What about 'plot' and 'data'?\n\n\ndashboard.qmd\n\n```{r}\n#| context: server\n\ndataset &lt;- reactive({\n  diamonds[sample(nrow(diamonds), input$sampleSize),]\n})\n \noutput$plot &lt;- renderPlot({\n  \n  p &lt;- ggplot(\n    dataset(), \n    aes_string(x=input$x, y=input$y)) + geom_point()\n  \n  if (input$color != 'None')\n    p &lt;- p + aes_string(color=input$color)\n  \n  facets &lt;- paste(input$facet_row, '~', input$facet_col)\n  if (facets != '. ~ .')\n    p &lt;- p + facet_grid(facets)\n  \n  if (input$jitter)\n    p &lt;- p + geom_jitter()\n  if (input$smooth)\n    p &lt;- p + geom_smooth()\n  \n  p\n  \n})\n\noutput$data &lt;- renderTable({\n  dataset()\n})\n```"
+    "section": "Where are 'plot' and 'data' coming from?",
+    "text": "Where are 'plot' and 'data' coming from?\n\n\ndashboard.qmd\n\n```{r}\n#| context: server\n\ndataset &lt;- reactive({\n  diamonds[sample(nrow(diamonds), input$sampleSize),]\n})\n \noutput$plot &lt;- renderPlot({\n  \n  p &lt;- ggplot(\n    dataset(), \n    aes_string(x=input$x, y=input$y)) + geom_point()\n  \n  if (input$color != 'None')\n    p &lt;- p + aes_string(color=input$color)\n  \n  facets &lt;- paste(input$facet_row, '~', input$facet_col)\n  if (facets != '. ~ .')\n    p &lt;- p + facet_grid(facets)\n  \n  if (input$jitter)\n    p &lt;- p + geom_jitter()\n  if (input$smooth)\n    p &lt;- p + geom_smooth()\n  \n  p\n  \n})\n\noutput$data &lt;- renderTable({\n  dataset()\n})\n```"
   },
   {
     "objectID": "materials/06-quarto-dashboards.html#how-are-all-of-these-pieces-connected",
     "href": "materials/06-quarto-dashboards.html#how-are-all-of-these-pieces-connected",
     "title": "USCOTS 2025 Intermediate R Workshop",
     "section": "How are all of these pieces connected?",
-    "text": "How are all of these pieces connected?\n\n\nplotOutput('plot') is an empty picture frame in your user interface\n\n\n\n\n\n\nrenderPlot() is the painting you generate in your server\n\n\n\n\n\n\n\noutput$plot places the painting in the frame\n\n\n\n\n\n\n\nplotOutput('plot') places the painting on display"
+    "text": "How are all of these pieces connected?\n\n\nplotOutput('plot') is an empty picture frame in your user interface\n\n\n\n\n\n\nrenderPlot() is the painting you generate in your server\n\n\n\n\n\n\n\noutput$plot places the painting in the frame"
   },
   {
     "objectID": "materials/08-developer.html#why-developer-thinking",
