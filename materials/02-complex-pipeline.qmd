@@ -97,6 +97,12 @@ r_ff |>
 ```
 
 
+```{r}
+# NBA read-in
+```
+
+
+
 
 
 # Designing problems for complex pipelines
@@ -254,6 +260,20 @@ Find a string column in your dataset, jot down 1-3 new *non-string* columns you 
 countdown(minutes = 3)
 ```
 
+### Ryan 
+
+From `item`, do the following: 
+
+1. Create a new column called `is_salad`. 
+2. Create a new column called `has_chicken` (note: nuggets, chicken, ...).
+
+```{r}
+# r_ff |> 
+#   mutate()
+
+```
+
+
 
 ## Complex/unvectorized functions and mapping
 
@@ -263,6 +283,13 @@ countdown(minutes = 3)
 ## This won't work!
 
 dat_ff |>
+  mutate(
+    bad_fat = max(sat_fat, trans_fat)
+  )
+
+## Ryan: this does!
+dat_ff |>
+  rowwise() |> 
   mutate(
     bad_fat = max(sat_fat, trans_fat)
   )
@@ -300,6 +327,13 @@ As you work on this, make note of any pain points, confusions, or complexities t
 #| echo: false
 countdown(minutes = 10)
 ```
+
+
+```{r}
+r_ff |> 
+  
+```
+
 
 
 ## Answer
