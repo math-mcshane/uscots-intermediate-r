@@ -151,6 +151,34 @@ format:
 :::
 :::
 
+## What if you have "card" content that isn't included in a code chunk?
+
+::: {.chart-example}
+```` {.r}
+---
+title: "Palmer Penguins"
+author: "Allison Theobold"
+format: 
+  dashboard:
+    orientation: columns
+---
+    
+## Column {width=60%}
+
+```{{r}}
+```
+
+## Column {width=40%}
+
+::: {.card}
+This text will be displayed within a card
+:::
+
+```{{r}}
+```
+````
+:::
+
 ## Adding More Pages
 
 ```` {.r}
@@ -352,14 +380,14 @@ difference lies in how the outputs (e.g., plots, tables) are created.
 
 2. There are code chunks that "react" to these user inputs.
 
-3. The outputs displayed in the app depend on these user inputs. 
+3. The outputs displayed depend on these user inputs. 
 :::
 :::
 
 . . .
 
 ::: {.callout-important}
-There are three main `#| context:` values that code chunks can have: `data`, `setup`, `server`.  
+There are three main `#| context:` values that code chunks can have: `data`, `setup`, and `server`.  
 :::
 
 ## `#| context: setup`
@@ -527,7 +555,7 @@ tableOutput('data')
 :::
 
 
-## What about `'plot'` and `'data'`?
+## Where are `'plot'` and `'data'` coming from?
 
 ````{.bash filename="dashboard.qmd"}
 ```{{r}}
@@ -600,16 +628,3 @@ output$data <- renderTable({
 ![](images/06-painting.png)
 :::
 :::
-
-. . .
-
-::: columns
-::: {.column width="90%"}
-`plotOutput('plot')` places the painting on display
-:::
-
-::: {.column width="10%"}
-![](images/06-hang-art.png)
-:::
-:::
-

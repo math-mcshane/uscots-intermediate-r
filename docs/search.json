@@ -529,7 +529,7 @@
     "href": "materials/07-stat-communication.html#create-your-project-b-dashboard-assignment",
     "title": "Communicating Statistical Results",
     "section": "Create your Project B Dashboard Assignment",
-    "text": "Create your Project B Dashboard Assignment\nThings to include:\n\nWho is the target audience that the student should address?\nWill you require any specific research questions to be addressed, or is it open-ended?\nWill you require any specific dashboard elements, such as interactivity?\nHow will you grade:\n\nthe design elements?\nthe technical elements?\nthe communication elements?"
+    "text": "Create your Project B Dashboard Assignment\n\n\nWho is the target audience that the student should address?\nWill you require any specific research questions to be addressed, or is it open-ended?\nWill you require any specific dashboard elements, such as interactivity?\nHow will you grade:\n\nthe design elements?\nthe technical elements?\nthe communication elements?"
   },
   {
     "objectID": "materials/04-professional-viz.html#why-professional-data-visualization",
@@ -700,60 +700,130 @@
     "text": "Professional Development Resources\n\nVisualization Theory & Principles:\n\nClaus Wilke’s “Fundamentals of Data Visualization” - Modern, comprehensive guide\nAlberto Cairo’s “The Truthful Art” - Ethics and principles\nEdward Tufte’s Works - Classic visualization theory\n\nR-Specific Advanced Techniques:\n\nggplot2: Elegant Graphics for Data Analysis - Hadley Wickham’s comprehensive guide\nR Graphics Cookbook - Practical solutions\nData Visualization: A Practical Introduction - Sociology perspective with R\n\nTeaching Methodology:\n\nData Science Education Resources - Complete course framework\nTeaching Data Science - Pedagogical approaches\nJournal of Statistics Education - Academic research on teaching"
   },
   {
-    "objectID": "materials/09-package_workflow.html#what-is-a-package-workflow",
-    "href": "materials/09-package_workflow.html#what-is-a-package-workflow",
+    "objectID": "materials/09-package_workflow.html#why-a-package-workflow",
+    "href": "materials/09-package_workflow.html#why-a-package-workflow",
     "title": "Package-based Workflow",
-    "section": "What is a package workflow?",
-    "text": "What is a package workflow?"
+    "section": "Why a package workflow?",
+    "text": "Why a package workflow?\n\nEase students into developer mindset.\nEmphasize unit-testing and documentation frameworks.\nPractice with code review of others’ code.\nEasier to performance check code.\nGrading via automatic tests."
   },
   {
-    "objectID": "materials/09-package_workflow.html#skeleton-r-package",
-    "href": "materials/09-package_workflow.html#skeleton-r-package",
+    "objectID": "materials/09-package_workflow.html#how-to",
+    "href": "materials/09-package_workflow.html#how-to",
     "title": "Package-based Workflow",
-    "section": "Skeleton R package",
-    "text": "Skeleton R package\n\nusethis::create_package(\"example_skeleton_package\")\nusethis::use_r(\"simple_linear_regression\")\nusethis::use_test(\"simple_linear_regression\")\nNew File &gt; Quarto &gt; slr_demo.qmd"
+    "section": "How-to",
+    "text": "How-to\n\nCreate a skeleton R package on GitHub.\nInclude pre-written unit tests.\nInclude vignette-style function demos.\nDuplicate unit tests with a new dataset for your own use in grading.\nRequire code review as part of assignment."
   },
   {
-    "objectID": "materials/09-package_workflow.html#complete-the-function",
-    "href": "materials/09-package_workflow.html#complete-the-function",
+    "objectID": "materials/09-package_workflow.html#student-assignment",
+    "href": "materials/09-package_workflow.html#student-assignment",
     "title": "Package-based Workflow",
-    "section": "Complete the function",
-    "text": "Complete the function"
-  },
-  {
-    "objectID": "materials/09-package_workflow.html#document-and-build",
-    "href": "materials/09-package_workflow.html#document-and-build",
-    "title": "Package-based Workflow",
-    "section": "Document and build",
-    "text": "Document and build"
-  },
-  {
-    "objectID": "materials/09-package_workflow.html#pass-the-unit-tests",
-    "href": "materials/09-package_workflow.html#pass-the-unit-tests",
-    "title": "Package-based Workflow",
-    "section": "Pass the unit tests",
-    "text": "Pass the unit tests"
-  },
-  {
-    "objectID": "materials/09-package_workflow.html#render-the-demo",
-    "href": "materials/09-package_workflow.html#render-the-demo",
-    "title": "Package-based Workflow",
-    "section": "Render the demo",
-    "text": "Render the demo"
+    "section": "Student Assignment",
+    "text": "Student Assignment\n\nComplete the functions.\nDocument the functions.\nBuild the package.\nRun the unit tests.\nRender the demo document."
   },
   {
     "objectID": "materials/09-package_workflow.html#what-do-students-turn-in",
     "href": "materials/09-package_workflow.html#what-do-students-turn-in",
     "title": "Package-based Workflow",
     "section": "What do students turn in?",
-    "text": "What do students turn in?\n\nA link to their GitHub of the package.\nThe rendered html of slr_demo.\nA code review of someone else’s package."
+    "text": "What do students turn in?\n\nA link to their GitHub of the package. I recommend GitHub Classroom for this.\nA rendered html, showing the functions being run on data.\nA code review of someone else’s package."
   },
   {
     "objectID": "materials/09-package_workflow.html#grading",
     "href": "materials/09-package_workflow.html#grading",
     "title": "Package-based Workflow",
     "section": "Grading",
-    "text": "Grading\n\n`"
+    "text": "Grading\nFour grading elements to combine:\n\nDoes the package properly build and install or are there errors?\nDoes the package pass the provided unit tests?\nDo the package functions behave as expected in the demo document?\nAre the peer code reviews positive?\nDoes the package pass the secret unit tests?"
+  },
+  {
+    "objectID": "materials/09-package_workflow.html#make-a-sandbox-for-yourself",
+    "href": "materials/09-package_workflow.html#make-a-sandbox-for-yourself",
+    "title": "Package-based Workflow",
+    "section": "Make a sandbox for yourself",
+    "text": "Make a sandbox for yourself\n\nMake a folder somewhere called “Package Assignment Practice” or similar.\nRun usethis::create_package(\"YOUR PATH/Package Assignment Practice/example_skeleton_package\"). This will open a new R Project.\nIn the new project, run usethis::use_r(\"simple_linear_regression\")\nRun usethis::use_test(\"simple_linear_regression\")\nNew File &gt; Quarto &gt; slr_demo.qmd"
+  },
+  {
+    "objectID": "materials/09-package_workflow.html#create-the-demo-document-first",
+    "href": "materials/09-package_workflow.html#create-the-demo-document-first",
+    "title": "Package-based Workflow",
+    "section": "Create the demo document first",
+    "text": "Create the demo document first\nInclude code that you hope will work properly…\n\nsimple_linear_regression(data = mtcars,\n                         explanatory = \"gear\",\n                         response = \"mpg\")\n\n… and code you hope will error in a reasonable way.\n\nsimple_linear_regression(data = mtcars,\n                         explanatory = \"gear\",\n                         response = \"not a variable\")"
+  },
+  {
+    "objectID": "materials/09-package_workflow.html#sketch-out-the-function",
+    "href": "materials/09-package_workflow.html#sketch-out-the-function",
+    "title": "Package-based Workflow",
+    "section": "Sketch out the function",
+    "text": "Sketch out the function\nHow much detail you provide depends on the level of your students.\nFor the first pass, I recommend:\n\nInclude all the roxygen-style documentation\nInclude the inputs and names.\nGive them a few lines to get started.\nUse comments to show where you want them to edit.\nProvide the object structure of the expected output.\nMake sure the code is all runnable as-is. (But not fully correct yet!)"
+  },
+  {
+    "objectID": "materials/09-package_workflow.html#example",
+    "href": "materials/09-package_workflow.html#example",
+    "title": "Package-based Workflow",
+    "section": "Example",
+    "text": "Example\n#' Implements simple linear regression by hand\n#'\n#' @param dat A data frame\n#' @param response The name of a response variable in the data frame.\n#' @param explanatory The name of the explanatory variable in the data frame.\n#'\n#' @return A data frame of coefficients\n#'\n#' @import dplyr\n#'\n#' @export\nsimple_linear_regression &lt;- function(dat, response, explanatory){\n\n  x &lt;- dat[[explanatory]]\n  y &lt;- dat[[response]]\n\n  x_bar &lt;- mean(x)\n  y_bar &lt;- mean(y)\n\n  ### Edit code after here\n\n  sd_x &lt;- 1\n  sd_y &lt;- 1\n\n  beta_0 &lt;- 1\n  beta_1 &lt;- 1\n\n  results &lt;- tibble::tibble(\n    Intercept = 0,\n    Slope = 1\n  )\n\n  return(results)\n\n}"
+  },
+  {
+    "objectID": "materials/09-package_workflow.html#unit-tests",
+    "href": "materials/09-package_workflow.html#unit-tests",
+    "title": "Package-based Workflow",
+    "section": "Unit tests",
+    "text": "Unit tests\ntest_that(\"simple linear regression is correct\", {\n\n  my_result &lt;- simple_linear_regression(mtcars, \"mpg\", \"hp\")\n\n  mass_result &lt;- lm(mpg ~ hp, data = mtcars)\n\n  expect_equal(coef(mass_result)[['hp']], my_result$Slope,\n               tolerance = 0.05)\n  expect_equal(coef(mass_result)[[1]], my_result$Intercept,\n               tolerance = 0.05)\n\n})"
+  },
+  {
+    "objectID": "materials/09-package_workflow.html#secret-unit-tests",
+    "href": "materials/09-package_workflow.html#secret-unit-tests",
+    "title": "Package-based Workflow",
+    "section": "Secret Unit Tests",
+    "text": "Secret Unit Tests\n\nMake a copy of the tests folder in your package.\nSave that copy outside the package folder, in your “Package Assignment Practice” folder.\nChange the unit test code to use a different dataset or different variables."
+  },
+  {
+    "objectID": "materials/09-package_workflow.html#auto-grading-with-secret-tests",
+    "href": "materials/09-package_workflow.html#auto-grading-with-secret-tests",
+    "title": "Package-based Workflow",
+    "section": "Auto-grading with secret tests",
+    "text": "Auto-grading with secret tests\nOpen the script “testthat.R” …\nlibrary(testthat)\nlibrary(example_skeleton_package)\n\ntest_check(\"example_skeleton_package\")\n… and run it!"
+  },
+  {
+    "objectID": "materials/09-package_workflow.html#working-with-github",
+    "href": "materials/09-package_workflow.html#working-with-github",
+    "title": "Package-based Workflow",
+    "section": "Working with GitHub",
+    "text": "Working with GitHub\nIf student work is on GitHub rather than in folders…\nremotes::install_github(\"imastudent/example_skeleton_package\")\n… and loop through each."
+  },
+  {
+    "objectID": "materials/09-package_workflow.html#automation",
+    "href": "materials/09-package_workflow.html#automation",
+    "title": "Package-based Workflow",
+    "section": "Automation",
+    "text": "Automation\nurls &lt;- # list of student repos\n\nall_test_results &lt;- tibble()\nall_time_results &lt;- tibble()\n\nfor (url in submissions){\n  \n    unloadNamespace(\"example_skeleton_package\")\n    remove.packages(\"example_skeleton_package\", \".\")\n    \n    remotes::install_github(submissions)\n\n    library(example_skeleton_package)\n\n    lr_test &lt;- testthat::test_dir(\"./tests/testthat\",\n               reporter = \"minimal\",\n               stop_on_failure = FALSE)\n      \n      ## save output however you prefer\n    \n}"
+  },
+  {
+    "objectID": "materials/09-package_workflow.html#function-designdevelopment",
+    "href": "materials/09-package_workflow.html#function-designdevelopment",
+    "title": "Package-based Workflow",
+    "section": "Function design/development",
+    "text": "Function design/development\n\nRemove inputs and output from scaffolding\nRequire tidy eval and unquoted variables (Starting Point)\nEmphasize code review (“Code Smells and Feels” talk)\nEmphasize responsible use of Git and GitHub"
+  },
+  {
+    "objectID": "materials/09-package_workflow.html#package-creation",
+    "href": "materials/09-package_workflow.html#package-creation",
+    "title": "Package-based Workflow",
+    "section": "Package creation",
+    "text": "Package creation\n\nDon’t provide roxygen2 documentation; require students do it.\nRequire additional unit tests\nRequire multiple .R files and multiple functions per file.\nPractice CRAN submission?\nR Packages Textbook"
+  },
+  {
+    "objectID": "materials/09-package_workflow.html#statistical-computing",
+    "href": "materials/09-package_workflow.html#statistical-computing",
+    "title": "Package-based Workflow",
+    "section": "Statistical computing",
+    "text": "Statistical computing\n\nMatrix operations, e.g. for multiple regression\nIteration to convergence, e.g. kmeans\nModel fitting via gradient descent\nEmphasize speed/efficiency"
+  },
+  {
+    "objectID": "materials/09-package_workflow.html#speedmemory-tests",
+    "href": "materials/09-package_workflow.html#speedmemory-tests",
+    "title": "Package-based Workflow",
+    "section": "Speed/memory tests",
+    "text": "Speed/memory tests\n\nbig_dat &lt;- #some large dataset\n  \nfor (url in submissions){\n  \n    unloadNamespace(\"example_skeleton_package\")\n    remove.packages(\"example_skeleton_package\", \".\")\n    \n    remotes::install_github(submissions)\n\n    library(example_skeleton_package)\n\n    benches &lt;- bench::mark(\n      slr = safely(simple_linear_regression)(big_dat, price, gearbox),\n      memory = FALSE,\n      check = FALSE,\n      time_unit = \"ms\",\n      min_time = Inf,\n      max_iterations = 20,\n      filter_gc = FALSE\n    ) %&gt;%\n      select(\n        expression, median\n      ) \n    \n}"
   },
   {
     "objectID": "materials/05-quarto-projects-websites.html#section",
@@ -844,7 +914,7 @@
     "href": "materials/10-wrapup.html#takeaways",
     "title": "Wrap-Up",
     "section": "Takeaways",
-    "text": "Takeaways\n\n\n\nDesign your Intermediate R class around projects\nSeparate content into modular units organized by goals.\nSign up to be notified when the Course in a Box is available!"
+    "text": "Takeaways\n\n\n\nDesign your Intermediate R class around projects\nSeparate content into modular units organized by goals.\nSign up to be notified when the Course in a Box is available!\nTake the USCOTS feedback survey."
   },
   {
     "objectID": "materials/10-wrapup.html#reflections",
@@ -1253,6 +1323,13 @@
     "text": "Changing Orientation (to Columns)\n\n\n\n\n---\ntitle: \"Palmer Penguins\"\nauthor: \"Allison Theobold\"\nformat: \n  dashboard:\n    orientation: columns\n---\n    \n## Column {width=60%}\n\n```{r}\n```\n\n## Column {width=40%}\n\n```{r}\n```\n\n```{r}\n```"
   },
   {
+    "objectID": "materials/06-quarto-dashboards.html#what-if-you-have-card-content-that-isnt-included-in-a-code-chunk",
+    "href": "materials/06-quarto-dashboards.html#what-if-you-have-card-content-that-isnt-included-in-a-code-chunk",
+    "title": "USCOTS 2025 Intermediate R Workshop",
+    "section": "What if you have “card” content that isn’t included in a code chunk?",
+    "text": "What if you have “card” content that isn’t included in a code chunk?\n\n---\ntitle: \"Palmer Penguins\"\nauthor: \"Allison Theobold\"\nformat: \n  dashboard:\n    orientation: columns\n---\n    \n## Column {width=60%}\n\n```{r}\n```\n\n## Column {width=40%}\n\n::: {.card}\nThis text will be displayed within a card\n:::\n\n```{r}\n```"
+  },
+  {
     "objectID": "materials/06-quarto-dashboards.html#adding-more-pages",
     "href": "materials/06-quarto-dashboards.html#adding-more-pages",
     "title": "USCOTS 2025 Intermediate R Workshop",
@@ -1292,7 +1369,7 @@
     "href": "materials/06-quarto-dashboards.html#interactive-dashboard-components",
     "title": "USCOTS 2025 Intermediate R Workshop",
     "section": "Interactive Dashboard Components",
-    "text": "Interactive Dashboard Components\n\nThe format of interactive dashboards are similar to a “standard” dashboard. The difference lies in how the outputs (e.g., plots, tables) are created.\n\n\nThe user is given a set of controls that influence the output that is seen.\nThere are code chunks that “react” to these user inputs.\nThe outputs displayed in the app depend on these user inputs.\n\n\n\n\n\n\n\n\n\n\nThere are three main #| context: values that code chunks can have: data, setup, server."
+    "text": "Interactive Dashboard Components\n\nThe format of interactive dashboards are similar to a “standard” dashboard. The difference lies in how the outputs (e.g., plots, tables) are created.\n\n\nThe user is given a set of controls that influence the output that is seen.\nThere are code chunks that “react” to these user inputs.\nThe outputs displayed depend on these user inputs.\n\n\n\n\n\n\n\n\n\n\nThere are three main #| context: values that code chunks can have: data, setup, and server."
   },
   {
     "objectID": "materials/06-quarto-dashboards.html#context-setup",
@@ -1323,18 +1400,18 @@
     "text": "How are these inputs used?\n\n\n\ndashboard.qmd\n\n---\ntitle: \"Diamonds Explorer\"\nauthor: \"Barkamian Analytics\"\nformat: dashboard\nserver: shiny\n---\n\n```{r}\n#| context: setup\nlibrary(ggplot2)\ndataset &lt;- diamonds\n```\n\n# {.sidebar}\n\n```{r}\nsliderInput('sampleSize', 'Sample Size', \n            min=1, max=nrow(dataset),\n            value=min(1000, nrow(dataset)), \n            step=500, round=0)\nbr()\ncheckboxInput('jitter', 'Jitter')\ncheckboxInput('smooth', 'Smooth')\n```\n\n```{r}\nselectInput('x', 'X', names(dataset)) \nselectInput('y', 'Y', names(dataset), names(dataset)[[2]])\nselectInput('color', 'Color', c('None', names(dataset)))\n```\n\n```{r}\nselectInput('facet_row', 'Facet Row',\n  c(None='.', names(diamonds[sapply(diamonds, is.factor)])))\nselectInput('facet_col', 'Facet Column',\n  c(None='.', names(diamonds[sapply(diamonds, is.factor)])))\n```\n\n# Plot\n\n```{r}\nplotOutput('plot')\n```\n\n# Data\n\n```{r}\ntableOutput('data')\n```"
   },
   {
-    "objectID": "materials/06-quarto-dashboards.html#what-about-plot-and-data",
-    "href": "materials/06-quarto-dashboards.html#what-about-plot-and-data",
+    "objectID": "materials/06-quarto-dashboards.html#where-are-plot-and-data-coming-from",
+    "href": "materials/06-quarto-dashboards.html#where-are-plot-and-data-coming-from",
     "title": "USCOTS 2025 Intermediate R Workshop",
-    "section": "What about 'plot' and 'data'?",
-    "text": "What about 'plot' and 'data'?\n\n\ndashboard.qmd\n\n```{r}\n#| context: server\n\ndataset &lt;- reactive({\n  diamonds[sample(nrow(diamonds), input$sampleSize),]\n})\n \noutput$plot &lt;- renderPlot({\n  \n  p &lt;- ggplot(\n    dataset(), \n    aes_string(x=input$x, y=input$y)) + geom_point()\n  \n  if (input$color != 'None')\n    p &lt;- p + aes_string(color=input$color)\n  \n  facets &lt;- paste(input$facet_row, '~', input$facet_col)\n  if (facets != '. ~ .')\n    p &lt;- p + facet_grid(facets)\n  \n  if (input$jitter)\n    p &lt;- p + geom_jitter()\n  if (input$smooth)\n    p &lt;- p + geom_smooth()\n  \n  p\n  \n})\n\noutput$data &lt;- renderTable({\n  dataset()\n})\n```"
+    "section": "Where are 'plot' and 'data' coming from?",
+    "text": "Where are 'plot' and 'data' coming from?\n\n\ndashboard.qmd\n\n```{r}\n#| context: server\n\ndataset &lt;- reactive({\n  diamonds[sample(nrow(diamonds), input$sampleSize),]\n})\n \noutput$plot &lt;- renderPlot({\n  \n  p &lt;- ggplot(\n    dataset(), \n    aes_string(x=input$x, y=input$y)) + geom_point()\n  \n  if (input$color != 'None')\n    p &lt;- p + aes_string(color=input$color)\n  \n  facets &lt;- paste(input$facet_row, '~', input$facet_col)\n  if (facets != '. ~ .')\n    p &lt;- p + facet_grid(facets)\n  \n  if (input$jitter)\n    p &lt;- p + geom_jitter()\n  if (input$smooth)\n    p &lt;- p + geom_smooth()\n  \n  p\n  \n})\n\noutput$data &lt;- renderTable({\n  dataset()\n})\n```"
   },
   {
     "objectID": "materials/06-quarto-dashboards.html#how-are-all-of-these-pieces-connected",
     "href": "materials/06-quarto-dashboards.html#how-are-all-of-these-pieces-connected",
     "title": "USCOTS 2025 Intermediate R Workshop",
     "section": "How are all of these pieces connected?",
-    "text": "How are all of these pieces connected?\n\n\nplotOutput('plot') is an empty picture frame in your user interface\n\n\n\n\n\n\nrenderPlot() is the painting you generate in your server\n\n\n\n\n\n\n\noutput$plot places the painting in the frame\n\n\n\n\n\n\n\nplotOutput('plot') places the painting on display"
+    "text": "How are all of these pieces connected?\n\n\nplotOutput('plot') is an empty picture frame in your user interface\n\n\n\n\n\n\nrenderPlot() is the painting you generate in your server\n\n\n\n\n\n\n\noutput$plot places the painting in the frame"
   },
   {
     "objectID": "materials/08-developer.html#why-developer-thinking",
