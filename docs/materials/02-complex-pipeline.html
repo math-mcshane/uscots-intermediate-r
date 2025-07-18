@@ -1180,11 +1180,41 @@ class CountdownTimer {
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_43684e89" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_46a3036c" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 </div>
+</div>
+<h3 id="ryans-choice">Ryan’s choice:</h3>
+<p>Find the highest protein to calories ratio item:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>r_ff <span class="ot">=</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;data/fastfood.csv&quot;</span>)</span>
+<span id="cb3-2"><a></a>r_ff <span class="sc">|&gt;</span> </span>
+<span id="cb3-3"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-4"><a></a>    <span class="at">pro_cal =</span> protein <span class="sc">/</span> calories, </span>
+<span id="cb3-5"><a></a>    <span class="at">max_pro_cal =</span> <span class="fu">max</span>(pro_cal, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-6"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb3-7"><a></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(pro_cal)) <span class="sc">|&gt;</span></span>
+<span id="cb3-8"><a></a>  <span class="fu">filter</span>(max_pro_cal <span class="sc">==</span> pro_cal)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 19
+  restaurant item       calories cal_fat total_fat sat_fat trans_fat cholesterol
+  &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
+1 Sonic      Ultimate …      100     580        64      15       0.5         100
+# ℹ 11 more variables: sodium &lt;dbl&gt;, total_carb &lt;dbl&gt;, fiber &lt;dbl&gt;,
+#   sugar &lt;dbl&gt;, protein &lt;dbl&gt;, vit_a &lt;dbl&gt;, vit_c &lt;dbl&gt;, calcium &lt;dbl&gt;,
+#   salad &lt;chr&gt;, pro_cal &lt;dbl&gt;, max_pro_cal &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="co"># NBA read-in</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section></section>
 <section>
@@ -1210,9 +1240,9 @@ class CountdownTimer {
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>dat_ff <span class="sc">|&gt;</span></span>
-<span id="cb3-2"><a></a>  <span class="fu">group_by</span>(restaurant) <span class="sc">|&gt;</span></span>
-<span id="cb3-3"><a></a>  <span class="fu">summarize</span>(<span class="fu">mean</span>(calories))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>dat_ff <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a></a>  <span class="fu">group_by</span>(restaurant) <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a></a>  <span class="fu">summarize</span>(<span class="fu">mean</span>(calories))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 8 × 2
@@ -1237,10 +1267,10 @@ class CountdownTimer {
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>dat_ff <span class="sc">|&gt;</span></span>
-<span id="cb5-2"><a></a>  <span class="fu">pivot_longer</span>(calories<span class="sc">:</span>calcium,</span>
-<span id="cb5-3"><a></a>               <span class="at">values_to =</span> <span class="st">&quot;amount&quot;</span>,</span>
-<span id="cb5-4"><a></a>               <span class="at">names_to =</span> <span class="st">&quot;nutritional_item&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>dat_ff <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a></a>  <span class="fu">pivot_longer</span>(calories<span class="sc">:</span>calcium,</span>
+<span id="cb8-3"><a></a>               <span class="at">values_to =</span> <span class="st">&quot;amount&quot;</span>,</span>
+<span id="cb8-4"><a></a>               <span class="at">names_to =</span> <span class="st">&quot;nutritional_item&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 7,210 × 5
@@ -1268,8 +1298,8 @@ class CountdownTimer {
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>dat_ff <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a></a>  <span class="fu">distinct</span>(restaurant, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>dat_ff <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a></a>  <span class="fu">distinct</span>(restaurant, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 8 × 17
@@ -1297,12 +1327,12 @@ class CountdownTimer {
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>dat_ff <span class="sc">|&gt;</span></span>
-<span id="cb9-2"><a></a>  <span class="fu">group_by</span>(restaurant) <span class="sc">|&gt;</span></span>
-<span id="cb9-3"><a></a>  <span class="fu">mutate</span>(</span>
-<span id="cb9-4"><a></a>    <span class="at">max_calories =</span> <span class="fu">max</span>(calories),</span>
-<span id="cb9-5"><a></a>    <span class="at">prop_of_max_cal =</span> calories<span class="sc">/</span>max_calories</span>
-<span id="cb9-6"><a></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>dat_ff <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a></a>  <span class="fu">group_by</span>(restaurant) <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb12-4"><a></a>    <span class="at">max_calories =</span> <span class="fu">max</span>(calories),</span>
+<span id="cb12-5"><a></a>    <span class="at">prop_of_max_cal =</span> calories<span class="sc">/</span>max_calories</span>
+<span id="cb12-6"><a></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 515 × 19
@@ -1334,15 +1364,28 @@ class CountdownTimer {
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="co">#| echo: false</span></span>
-<span id="cb11-2"><a></a><span class="fu">countdown</span>(<span class="at">minutes =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="co">#| echo: false</span></span>
+<span id="cb14-2"><a></a><span class="fu">countdown</span>(<span class="at">minutes =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div class="countdown" id="timer_6eeccd1c" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_774f0e21" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 </div>
+</div>
+<h3 id="ryan">Ryan</h3>
+<p>Find the highest protein to calories ratio item by restaurant:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>r_ff <span class="ot">=</span> r_ff <span class="sc">|&gt;</span> </span>
+<span id="cb15-2"><a></a>  <span class="fu">group_by</span>(restaurant) <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb15-4"><a></a>    <span class="at">pro_cal =</span> protein <span class="sc">/</span> calories, </span>
+<span id="cb15-5"><a></a>    <span class="at">max_pro_cal =</span> <span class="fu">max</span>(pro_cal, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-6"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="string-parsing" class="slide level2">
@@ -1351,13 +1394,13 @@ class CountdownTimer {
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>dat_ff <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a></a>  <span class="fu">mutate</span>(</span>
-<span id="cb12-3"><a></a>    <span class="at">is_burger =</span> <span class="fu">str_detect</span>(item, <span class="st">&quot;burger&quot;</span>)</span>
-<span id="cb12-4"><a></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb12-5"><a></a>  <span class="fu">filter</span>(is_burger) <span class="sc">|&gt;</span></span>
-<span id="cb12-6"><a></a>  <span class="fu">group_by</span>(restaurant) <span class="sc">|&gt;</span></span>
-<span id="cb12-7"><a></a>  <span class="fu">summarize</span>(<span class="fu">median</span>(calories))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>dat_ff <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb16-3"><a></a>    <span class="at">is_burger =</span> <span class="fu">str_detect</span>(item, <span class="st">&quot;burger&quot;</span>)</span>
+<span id="cb16-4"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb16-5"><a></a>  <span class="fu">filter</span>(is_burger) <span class="sc">|&gt;</span></span>
+<span id="cb16-6"><a></a>  <span class="fu">group_by</span>(restaurant) <span class="sc">|&gt;</span></span>
+<span id="cb16-7"><a></a>  <span class="fu">summarize</span>(<span class="fu">median</span>(calories))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 2
@@ -1377,13 +1420,13 @@ class CountdownTimer {
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>dat_ff <span class="sc">|&gt;</span></span>
-<span id="cb14-2"><a></a>  <span class="fu">mutate</span>(</span>
-<span id="cb14-3"><a></a>    <span class="at">is_cheese_burger =</span> <span class="fu">str_detect</span>(item, <span class="st">&quot;[Ch]ee(z|se) ?[bB]urger&quot;</span>)</span>
-<span id="cb14-4"><a></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb14-5"><a></a>  <span class="fu">filter</span>(is_cheese_burger) <span class="sc">|&gt;</span></span>
-<span id="cb14-6"><a></a>  <span class="fu">group_by</span>(restaurant) <span class="sc">|&gt;</span></span>
-<span id="cb14-7"><a></a>  <span class="fu">summarize</span>(<span class="fu">median</span>(calories))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>dat_ff <span class="sc">|&gt;</span></span>
+<span id="cb18-2"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb18-3"><a></a>    <span class="at">is_cheese_burger =</span> <span class="fu">str_detect</span>(item, <span class="st">&quot;[Ch]ee(z|se) ?[bB]urger&quot;</span>)</span>
+<span id="cb18-4"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb18-5"><a></a>  <span class="fu">filter</span>(is_cheese_burger) <span class="sc">|&gt;</span></span>
+<span id="cb18-6"><a></a>  <span class="fu">group_by</span>(restaurant) <span class="sc">|&gt;</span></span>
+<span id="cb18-7"><a></a>  <span class="fu">summarize</span>(<span class="fu">median</span>(calories))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 2
@@ -1403,11 +1446,24 @@ class CountdownTimer {
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_38116c0f" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_85bd5c7a" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 </div>
+</div>
+<h3 id="ryan-1">Ryan</h3>
+<p>From <code>item</code>, do the following:</p>
+<ol type="1">
+<li>Create a new column called <code>is_salad</code>.</li>
+<li>Create a new column called <code>has_chicken</code> (note: nuggets, chicken, …).</li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="co"># r_ff |&gt; </span></span>
+<span id="cb20-2"><a></a><span class="co">#   mutate()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="complexunvectorized-functions-and-mapping" class="slide level2">
@@ -1416,15 +1472,44 @@ class CountdownTimer {
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="do">## This won&#39;t work!</span></span>
-<span id="cb16-2"><a></a></span>
-<span id="cb16-3"><a></a>dat_ff <span class="sc">|&gt;</span></span>
-<span id="cb16-4"><a></a>  <span class="fu">mutate</span>(</span>
-<span id="cb16-5"><a></a>    <span class="at">bad_fat =</span> <span class="fu">max</span>(sat_fat, trans_fat)</span>
-<span id="cb16-6"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="do">## This won&#39;t work!</span></span>
+<span id="cb21-2"><a></a></span>
+<span id="cb21-3"><a></a>dat_ff <span class="sc">|&gt;</span></span>
+<span id="cb21-4"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb21-5"><a></a>    <span class="at">bad_fat =</span> <span class="fu">max</span>(sat_fat, trans_fat)</span>
+<span id="cb21-6"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 515 × 18
+   restaurant item      calories cal_fat total_fat sat_fat trans_fat cholesterol
+   &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
+ 1 Mcdonalds  Artisan …      380      60         7       2       0            95
+ 2 Mcdonalds  Single B…      840     410        45      17       1.5         130
+ 3 Mcdonalds  Double B…     1130     600        67      27       3           220
+ 4 Mcdonalds  Grilled …      750     280        31      10       0.5         155
+ 5 Mcdonalds  Crispy B…      920     410        45      12       0.5         120
+ 6 Mcdonalds  Big Mac        540     250        28      10       1            80
+ 7 Mcdonalds  Cheesebu…      300     100        12       5       0.5          40
+ 8 Mcdonalds  Classic …      510     210        24       4       0            65
+ 9 Mcdonalds  Double C…      430     190        21      11       1            85
+10 Mcdonalds  Double Q…      770     400        45      21       2.5         175
+# ℹ 505 more rows
+# ℹ 10 more variables: sodium &lt;dbl&gt;, total_carb &lt;dbl&gt;, fiber &lt;dbl&gt;,
+#   sugar &lt;dbl&gt;, protein &lt;dbl&gt;, vit_a &lt;dbl&gt;, vit_c &lt;dbl&gt;, calcium &lt;dbl&gt;,
+#   salad &lt;chr&gt;, bad_fat &lt;dbl&gt;</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="do">## Ryan: this does!</span></span>
+<span id="cb23-2"><a></a>dat_ff <span class="sc">|&gt;</span></span>
+<span id="cb23-3"><a></a>  <span class="fu">rowwise</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb23-4"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb23-5"><a></a>    <span class="at">bad_fat =</span> <span class="fu">max</span>(sat_fat, trans_fat)</span>
+<span id="cb23-6"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 515 × 18
+# Rowwise: 
    restaurant item      calories cal_fat total_fat sat_fat trans_fat cholesterol
    &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
  1 Mcdonalds  Artisan …      380      60         7       2       0            95
@@ -1450,12 +1535,12 @@ class CountdownTimer {
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="do">## This will!</span></span>
-<span id="cb18-2"><a></a></span>
-<span id="cb18-3"><a></a>dat_ff <span class="sc">|&gt;</span></span>
-<span id="cb18-4"><a></a>  <span class="fu">mutate</span>(</span>
-<span id="cb18-5"><a></a>    <span class="at">bad_fat =</span> <span class="fu">pmap_dbl</span>(<span class="fu">list</span>(sat_fat, trans_fat), max)</span>
-<span id="cb18-6"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="do">## This will!</span></span>
+<span id="cb25-2"><a></a></span>
+<span id="cb25-3"><a></a>dat_ff <span class="sc">|&gt;</span></span>
+<span id="cb25-4"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb25-5"><a></a>    <span class="at">bad_fat =</span> <span class="fu">pmap_dbl</span>(<span class="fu">list</span>(sat_fat, trans_fat), max)</span>
+<span id="cb25-6"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 515 × 18
@@ -1494,11 +1579,17 @@ class CountdownTimer {
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_1caf0244" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_9b0975c6" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 </div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="co"># r_ff |&gt; </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="answer" class="slide level2">
@@ -1506,28 +1597,28 @@ class CountdownTimer {
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>check_healthy_fat <span class="ot">&lt;-</span> <span class="cf">function</span>(calories, cal_fat, total_fat, sat_fat, trans_fat) {</span>
-<span id="cb20-2"><a></a>  </span>
-<span id="cb20-3"><a></a>  cal_fat_pct <span class="ot">&lt;-</span> cal_fat<span class="sc">/</span>calories</span>
-<span id="cb20-4"><a></a>  sat_fat_pct <span class="ot">&lt;-</span> sat_fat<span class="sc">/</span>total_fat</span>
-<span id="cb20-5"><a></a>  </span>
-<span id="cb20-6"><a></a>  warning <span class="ot">&lt;-</span> <span class="st">&quot;&quot;</span></span>
-<span id="cb20-7"><a></a>  </span>
-<span id="cb20-8"><a></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.na</span>(cal_fat_pct) <span class="sc">&amp;</span> cal_fat_pct <span class="sc">&gt;</span> <span class="fl">0.4</span>) {</span>
-<span id="cb20-9"><a></a>    warning <span class="ot">&lt;-</span> <span class="fu">paste</span>(warning, <span class="st">&quot;Calories from fat is high.&quot;</span>)</span>
-<span id="cb20-10"><a></a>  }</span>
-<span id="cb20-11"><a></a>  </span>
-<span id="cb20-12"><a></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.na</span>(sat_fat_pct) <span class="sc">&amp;</span> sat_fat_pct <span class="sc">&gt;</span> <span class="fl">0.4</span>) {</span>
-<span id="cb20-13"><a></a>    warning <span class="ot">&lt;-</span> <span class="fu">paste</span>(warning, <span class="st">&quot;High saturated fat percent.&quot;</span>)</span>
-<span id="cb20-14"><a></a>  }</span>
-<span id="cb20-15"><a></a>  </span>
-<span id="cb20-16"><a></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.na</span>(trans_fat) <span class="sc">&amp;</span> trans_fat <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
-<span id="cb20-17"><a></a>    warning <span class="ot">&lt;-</span> <span class="fu">paste</span>(warning, <span class="st">&quot;Contains trans fat.&quot;</span>)</span>
-<span id="cb20-18"><a></a>  }</span>
-<span id="cb20-19"><a></a>  </span>
-<span id="cb20-20"><a></a>  <span class="fu">return</span>(warning)</span>
-<span id="cb20-21"><a></a>  </span>
-<span id="cb20-22"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>check_healthy_fat <span class="ot">&lt;-</span> <span class="cf">function</span>(calories, cal_fat, total_fat, sat_fat, trans_fat) {</span>
+<span id="cb28-2"><a></a>  </span>
+<span id="cb28-3"><a></a>  cal_fat_pct <span class="ot">&lt;-</span> cal_fat<span class="sc">/</span>calories</span>
+<span id="cb28-4"><a></a>  sat_fat_pct <span class="ot">&lt;-</span> sat_fat<span class="sc">/</span>total_fat</span>
+<span id="cb28-5"><a></a>  </span>
+<span id="cb28-6"><a></a>  warning <span class="ot">&lt;-</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb28-7"><a></a>  </span>
+<span id="cb28-8"><a></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.na</span>(cal_fat_pct) <span class="sc">&amp;</span> cal_fat_pct <span class="sc">&gt;</span> <span class="fl">0.4</span>) {</span>
+<span id="cb28-9"><a></a>    warning <span class="ot">&lt;-</span> <span class="fu">paste</span>(warning, <span class="st">&quot;Calories from fat is high.&quot;</span>)</span>
+<span id="cb28-10"><a></a>  }</span>
+<span id="cb28-11"><a></a>  </span>
+<span id="cb28-12"><a></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.na</span>(sat_fat_pct) <span class="sc">&amp;</span> sat_fat_pct <span class="sc">&gt;</span> <span class="fl">0.4</span>) {</span>
+<span id="cb28-13"><a></a>    warning <span class="ot">&lt;-</span> <span class="fu">paste</span>(warning, <span class="st">&quot;High saturated fat percent.&quot;</span>)</span>
+<span id="cb28-14"><a></a>  }</span>
+<span id="cb28-15"><a></a>  </span>
+<span id="cb28-16"><a></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.na</span>(trans_fat) <span class="sc">&amp;</span> trans_fat <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb28-17"><a></a>    warning <span class="ot">&lt;-</span> <span class="fu">paste</span>(warning, <span class="st">&quot;Contains trans fat.&quot;</span>)</span>
+<span id="cb28-18"><a></a>  }</span>
+<span id="cb28-19"><a></a>  </span>
+<span id="cb28-20"><a></a>  <span class="fu">return</span>(warning)</span>
+<span id="cb28-21"><a></a>  </span>
+<span id="cb28-22"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -1536,10 +1627,10 @@ class CountdownTimer {
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a>dat_ff <span class="sc">|&gt;</span></span>
-<span id="cb21-2"><a></a>  <span class="fu">mutate</span>(</span>
-<span id="cb21-3"><a></a>    <span class="at">healthy_fat_warning =</span> <span class="fu">pmap_chr</span>(<span class="fu">list</span>(calories, cal_fat, total_fat, sat_fat, trans_fat), check_healthy_fat)</span>
-<span id="cb21-4"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a>dat_ff <span class="sc">|&gt;</span></span>
+<span id="cb29-2"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb29-3"><a></a>    <span class="at">healthy_fat_warning =</span> <span class="fu">pmap_chr</span>(<span class="fu">list</span>(calories, cal_fat, total_fat, sat_fat, trans_fat), check_healthy_fat)</span>
+<span id="cb29-4"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 515 × 18
@@ -1568,7 +1659,7 @@ class CountdownTimer {
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a>dat_loc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a>dat_loc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10,000 × 11
@@ -1605,10 +1696,10 @@ class CountdownTimer {
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a>dat_ff <span class="sc">|&gt;</span></span>
-<span id="cb25-2"><a></a>  <span class="fu">anti_join</span>(dat_loc,</span>
-<span id="cb25-3"><a></a>            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;restaurant&quot;</span> <span class="ot">=</span> <span class="st">&quot;name&quot;</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb25-4"><a></a>  <span class="fu">distinct</span>(restaurant)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a>dat_ff <span class="sc">|&gt;</span></span>
+<span id="cb33-2"><a></a>  <span class="fu">anti_join</span>(dat_loc,</span>
+<span id="cb33-3"><a></a>            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;restaurant&quot;</span> <span class="ot">=</span> <span class="st">&quot;name&quot;</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb33-4"><a></a>  <span class="fu">distinct</span>(restaurant)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
@@ -1624,11 +1715,11 @@ class CountdownTimer {
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a>dat_ff <span class="sc">|&gt;</span></span>
-<span id="cb27-2"><a></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(item, <span class="st">&quot;burger&quot;</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb27-3"><a></a>  <span class="fu">distinct</span>(restaurant) <span class="sc">|&gt;</span></span>
-<span id="cb27-4"><a></a>  <span class="fu">left_join</span>(dat_loc,</span>
-<span id="cb27-5"><a></a>            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;restaurant&quot;</span> <span class="ot">=</span> <span class="st">&quot;name&quot;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a>dat_ff <span class="sc">|&gt;</span></span>
+<span id="cb35-2"><a></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(item, <span class="st">&quot;burger&quot;</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb35-3"><a></a>  <span class="fu">distinct</span>(restaurant) <span class="sc">|&gt;</span></span>
+<span id="cb35-4"><a></a>  <span class="fu">left_join</span>(dat_loc,</span>
+<span id="cb35-5"><a></a>            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;restaurant&quot;</span> <span class="ot">=</span> <span class="st">&quot;name&quot;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1,075 × 11
@@ -1665,7 +1756,7 @@ class CountdownTimer {
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_4c4ebade" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_bc571ddb" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -1691,17 +1782,17 @@ class CountdownTimer {
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a>burger_counts <span class="ot">&lt;-</span> dat_ff <span class="sc">|&gt;</span> </span>
-<span id="cb29-2"><a></a>  <span class="fu">mutate</span>(</span>
-<span id="cb29-3"><a></a>    <span class="at">is_burger =</span> <span class="fu">str_detect</span>(item, <span class="st">&quot;burger&quot;</span>)</span>
-<span id="cb29-4"><a></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb29-5"><a></a>  <span class="fu">group_by</span>(restaurant) <span class="sc">|&gt;</span> </span>
-<span id="cb29-6"><a></a>  <span class="fu">count</span>(is_burger) <span class="sc">|&gt;</span></span>
-<span id="cb29-7"><a></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> is_burger,</span>
-<span id="cb29-8"><a></a>              <span class="at">values_from =</span> n,</span>
-<span id="cb29-9"><a></a>              <span class="at">names_prefix =</span> <span class="st">&quot;burger_&quot;</span>)</span>
-<span id="cb29-10"><a></a></span>
-<span id="cb29-11"><a></a>burger_counts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a>burger_counts <span class="ot">&lt;-</span> dat_ff <span class="sc">|&gt;</span> </span>
+<span id="cb37-2"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb37-3"><a></a>    <span class="at">is_burger =</span> <span class="fu">str_detect</span>(item, <span class="st">&quot;burger&quot;</span>)</span>
+<span id="cb37-4"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb37-5"><a></a>  <span class="fu">group_by</span>(restaurant) <span class="sc">|&gt;</span> </span>
+<span id="cb37-6"><a></a>  <span class="fu">count</span>(is_burger) <span class="sc">|&gt;</span></span>
+<span id="cb37-7"><a></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> is_burger,</span>
+<span id="cb37-8"><a></a>              <span class="at">values_from =</span> n,</span>
+<span id="cb37-9"><a></a>              <span class="at">names_prefix =</span> <span class="st">&quot;burger_&quot;</span>)</span>
+<span id="cb37-10"><a></a></span>
+<span id="cb37-11"><a></a>burger_counts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 8 × 3
@@ -1727,14 +1818,14 @@ class CountdownTimer {
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a>burger_counts <span class="sc">|&gt;</span></span>
-<span id="cb31-2"><a></a>  <span class="fu">left_join</span>(dat_loc,</span>
-<span id="cb31-3"><a></a>            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;restaurant&quot;</span> <span class="ot">=</span> <span class="st">&quot;name&quot;</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb31-4"><a></a>  <span class="fu">group_by</span>(city) <span class="sc">|&gt;</span></span>
-<span id="cb31-5"><a></a>  <span class="fu">summarize</span>(</span>
-<span id="cb31-6"><a></a>    <span class="at">total_burgers =</span> <span class="fu">sum</span>(burger_TRUE, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb31-7"><a></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb31-8"><a></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(total_burgers))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a>burger_counts <span class="sc">|&gt;</span></span>
+<span id="cb39-2"><a></a>  <span class="fu">left_join</span>(dat_loc,</span>
+<span id="cb39-3"><a></a>            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;restaurant&quot;</span> <span class="ot">=</span> <span class="st">&quot;name&quot;</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb39-4"><a></a>  <span class="fu">group_by</span>(city) <span class="sc">|&gt;</span></span>
+<span id="cb39-5"><a></a>  <span class="fu">summarize</span>(</span>
+<span id="cb39-6"><a></a>    <span class="at">total_burgers =</span> <span class="fu">sum</span>(burger_TRUE, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb39-7"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb39-8"><a></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(total_burgers))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1,502 × 2
@@ -1761,7 +1852,7 @@ class CountdownTimer {
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_b6193322" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_287af586" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -1847,7 +1938,7 @@ STUDENTS FILL IN THIS SKETCH
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_291de840" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_80a38dd5" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
