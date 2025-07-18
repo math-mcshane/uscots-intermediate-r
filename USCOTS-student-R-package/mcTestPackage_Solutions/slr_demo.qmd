@@ -1,0 +1,31 @@
+---
+title: "slr_demo"
+format: html
+execute: 
+  error: true
+---
+
+```{r}
+library(mcTestPackage)
+```
+
+
+## This should return a slope and intercept
+
+```{r}
+simple_linear_regression(
+  data = mtcars, 
+  explanatory = "gear", 
+  response = "mpg"
+)
+```
+
+## This return an error
+
+```{r}
+simple_linear_regression(
+  data = mtcars, 
+  explanatory = "gear", 
+  response = "not a variable"
+)
+```
